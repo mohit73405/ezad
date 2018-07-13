@@ -51,18 +51,25 @@ def saveBrand():
         company_name = request.form.get('company_name')
         password = request.form.get('password')
         password_sha = sha256_crypt.encrypt(str(password))
-        data = [first_name,last_name,email,company_name,password_sha]
+        data = [first_name,last_name,email,company_name,password_sha,'Admin']
         # print(data)
 
-        columns = ['first_name','last_name','email_id','company_name','password']
-        connecsiObj = ConnecsiModel()
-        connecsiObj.insert__(data=data,columns=columns,table_name='users_brands',IGNORE='IGNORE')
-
-
-        flash("Brand Details Successfully Registered", 'success')
+        columns = ['first_name','last_name','email_id','company_name','password','role']
         title = 'Connesi App Login Panel'
-        return render_template('login.html', title=title)
-
+        try:
+            connecsiObj = ConnecsiModel()
+            res = connecsiObj.insert__(data=data,columns=columns,table_name='users_brands',IGNORE='IGNORE')
+            print(res)
+            if res == 1:
+                flash("Brand Details Successfully Registered", 'success')
+                title = 'Connesi App Login Panel'
+                return render_template('user/login.html', title=title)
+            else:
+                flash("Internal error please try later", 'danger')
+                return render_template('user/login.html', title=title)
+        except:
+            flash("Internal error please try later", 'danger')
+            return render_template('user/login.html',title=title)
 
 # Check if user logged in
 def is_logged_in(f):
@@ -114,7 +121,7 @@ def login():
                     error = 'Invalid login'
                     flash(error,'danger')
             else:
-                return render_template('login.html')
+                return render_template('user/login.html')
 
         elif 'influencer' in request.form:
             email_id = request.form.get('inf_username')

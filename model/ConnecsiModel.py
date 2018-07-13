@@ -97,13 +97,21 @@ class ConnecsiModel:
 
         try:
             with self.cnx.cursor() as cursor:
+
                 sql = "INSERT " +IGNORE+ " INTO `" + table_name + "` ("+columns_string+") VALUES ("+values_string+")"
                 print(sql)
                 print(data)
-                cursor.execute(sql, data)
+                print(len(data))
+                if table_name == 'users_brands':
+                    cursor.execute(sql, data)
+                elif table_name == 'youtube_channel_ids':
+                    cursor.executemany(sql,data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()
+            res=1
         except Exception as e:
+            res=0
             print(e)
             print("Exception Occured")
+        return res
