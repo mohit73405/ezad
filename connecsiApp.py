@@ -7,26 +7,39 @@ from passlib.hash import sha256_crypt
 from flask_oauthlib.client import OAuth
 
 connecsiApp = Flask(__name__)
-oauth = OAuth(connecsiApp)
+# oauth = OAuth(connecsiApp)
 
 
 
-linkedin = oauth.remote_app(
-    'linkedin',
-    consumer_key='86ctp4ayian53w',
-    consumer_secret='3fdovLJRbWrQuu3u',
-    request_token_params={
-        'scope': 'r_basicprofile,r_emailaddress',
-        'state': 'RandomString',
-    },
-    base_url='https://api.linkedin.com/v1/',
-    request_token_url=None,
-    access_token_method='POST',
-    access_token_url='https://www.linkedin.com/uas/oauth2/accessToken',
-    authorize_url='https://www.linkedin.com/uas/oauth2/authorization',
-)
+# linkedin = oauth.remote_app(
+#     'linkedin',
+#     consumer_key='86ctp4ayian53w',
+#     consumer_secret='3fdovLJRbWrQuu3u',
+#     request_token_params={
+#         'scope': 'r_basicprofile,r_emailaddress',
+#         'state': 'RandomString',
+#     },
+#     base_url='https://api.linkedin.com/v1/',
+#     request_token_url=None,
+#     access_token_method='POST',
+#     access_token_url='https://www.linkedin.com/uas/oauth2/accessToken',
+#     authorize_url='https://www.linkedin.com/uas/oauth2/authorization',
+# )
+
+# Check if user logged in
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*args,**kwargs):
+        if 'logged_in' in session:
+            return f(*args,**kwargs)
+        else:
+            flash('Unauthorized, Please login','danger')
+            return redirect(url_for('index'))
+    return wrap
+
 
 @connecsiApp.route('/')
+@is_logged_in
 def index():
     title='Connesi App Login Panel'
     data=[]
@@ -34,9 +47,9 @@ def index():
     return render_template('user/login.html',data=data)
 
 
-@connecsiApp.route('/loginLinkedin')
-def loginLinkedin():
-    return linkedin.authorize(callback=url_for('authorized', _external=True))
+# @connecsiApp.route('/loginLinkedin')
+# def loginLinkedin():
+#     return linkedin.authorize(callback=url_for('authorized', _external=True))
 
 @connecsiApp.route('/registerBrand')
 def registerBrand():
@@ -71,16 +84,6 @@ def saveBrand():
             flash("Internal error please try later", 'danger')
             return render_template('user/login.html',title=title)
 
-# Check if user logged in
-def is_logged_in(f):
-    @wraps(f)
-    def wrap(*args,**kwargs):
-        if 'logged_in' in session:
-            return f(*args,**kwargs)
-        else:
-            flash('Unauthorized, Please login','danger')
-            return redirect(url_for('index'))
-    return wrap
 
 
 #Logout
@@ -153,47 +156,52 @@ def profileView():
     print(data)
     return render_template('user/user-profile-page.html',data=data,title=title)
 
-@connecsiApp.route('/login/authorized')
-def authorized():
-    resp = linkedin.authorized_response()
-    if resp is None:
-        return 'Access denied: reason=%s error=%s' % (
-            request.args['error_reason'],
-            request.args['error_description']
-        )
-    session['linkedin_token'] = (resp['access_token'], '')
+@connecsiApp.route('/searchInfluencers')
+@is_logged_in
+def searchInfluencers():
+    return render_template('search/search_influencers.html')
 
-    me = linkedin.get('people/~')
-    email_linkedin = linkedin.get('people/~:(email-address)')
+# @connecsiApp.route('/login/authorized')
+# def authorized():
+#     resp = linkedin.authorized_response()
+#     if resp is None:
+#         return 'Access denied: reason=%s error=%s' % (
+#             request.args['error_reason'],
+#             request.args['error_description']
+#         )
+#     session['linkedin_token'] = (resp['access_token'], '')
+
+    # me = linkedin.get('people/~')
+    # email_linkedin = linkedin.get('people/~:(email-address)')
     # print(jsonify(email_linkedin.data))
 
-    email_id = email_linkedin.data['emailAddress']
-    data=[me.data['id'],me.data['firstName'],me.data['lastName'],email_id,'',me.data['headline'],'Admin']
+    # email_id = email_linkedin.data['emailAddress']
+    # data=[me.data['id'],me.data['firstName'],me.data['lastName'],email_id,'',me.data['headline'],'Admin']
     # print(me.data)
-    session['logged_in'] = True
-    session['type'] = 'brand'
-    session['user_id'] = me.data['id']
-    session['first_name']=me.data['firstName']
-    print(data)
-    return render_template('index.html',data=data)
+    # session['logged_in'] = True
+    # session['type'] = 'brand'
+    # session['user_id'] = me.data['id']
+    # session['first_name']=me.data['firstName']
+    # print(data)
+    # return render_template('index.html',data=data)
 
-@linkedin.tokengetter
-def get_linkedin_oauth_token():
-    return session.get('linkedin_token')
+# @linkedin.tokengetter
+# def get_linkedin_oauth_token():
+#     return session.get('linkedin_token')
 
 
-def change_linkedin_query(uri, headers, body):
-    auth = headers.pop('Authorization')
-    headers['x-li-format'] = 'json'
-    if auth:
-        auth = auth.replace('Bearer', '').strip()
-        if '?' in uri:
-            uri += '&oauth2_access_token=' + auth
-        else:
-            uri += '?oauth2_access_token=' + auth
-    return uri, headers, body
-
-linkedin.pre_request = change_linkedin_query
+# def change_linkedin_query(uri, headers, body):
+#     auth = headers.pop('Authorization')
+#     headers['x-li-format'] = 'json'
+#     if auth:
+#         auth = auth.replace('Bearer', '').strip()
+#         if '?' in uri:
+#             uri += '&oauth2_access_token=' + auth
+#         else:
+#             uri += '?oauth2_access_token=' + auth
+#     return uri, headers, body
+#
+# linkedin.pre_request = change_linkedin_query
 
 if __name__ == '__main__':
     connecsiApp.secret_key = 'connecsiSecretKey'

@@ -1,26 +1,27 @@
 <header id="header" class="page-topbar">
         <!-- start header nav-->
         <div class="navbar-fixed">
-            <nav class="navbar-color white text-purple">
+            <nav class="navbar-color white">
                 <div class="nav-wrapper">
                     <ul class="left">
                       <li><h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="/static/img/logo.png" alt="Connecsi logo"></a> <span class="logo-text">Connecsi</span></h1></li>
                     </ul>
-                    <div class="header-search-wrapper hide-on-med-and-down ">
-                        <i class="mdi-action-search"></i>
-                        <input type="text" name="Search" class="header-search-input z-depth-2 #f5f5f5 grey lighten-4" placeholder="Explore Connecsi"/>
+                    <div class="header-search-wrapper hide-on-med-and-down">
+                        <!--<i class="mdi-action-search purple-text"></i>-->
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Connecsi"/>
                     </div>
                     <ul class="right hide-on-med-and-down">
                         <!--<li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button"  data-activates="translation-dropdown"><img src="images/flag-icons/United-States.png" alt="USA" /></a>
                         </li>-->
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen "><i class="mdi-action-settings-overscan purple-text"></i></a>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button"  data-activates="search-dropdown"><i class="mdi-action-search purple-text"></i></a>
                         </li>
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown"><i class="mdi-social-notifications purple-text"><small class="notification-badge">5</small></i>
-
-                        </a>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan purple-text"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown"><i class="mdi-social-notifications purple-text"><small class="notification-badge">5</small></i></a>
                         </li>
                         <li><a href="#" data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i class="mdi-communication-chat purple-text"></i></a>
                         </li>
+
                     </ul>
                     <!-- translation-button
                     <ul id="translation-dropdown" class="dropdown-content">
@@ -38,7 +39,16 @@
                       </li>
 
                     </ul>-->
+                    <ul id="search-dropdown" class="dropdown-content">
+                      <li>
+                        <a href="/searchInfluencers"><span class="language-select">Influencers</span></a>
+                      </li>
+                      <li>
+                        <a href="#!"><span class="language-select">Campaigns</span></a>
+                      </li>
+                    </ul>
                     <!-- notifications-dropdown -->
+
                     <ul id="notifications-dropdown" class="dropdown-content">
                       <li>
                         <h5>NOTIFICATIONS <span class="new badge">5</span></h5>

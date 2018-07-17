@@ -7,7 +7,7 @@
                 </div>
                 <div class="col col s8 m8 l8">
                     <ul id="profile-dropdown" class="dropdown-content">
-                        <li><a href="/profileView"><i class="mdi-action-face-unlock"></i> Profile</a>
+                        <li><a href="profileView"><i class="mdi-action-face-unlock"></i> Profile</a>
                         </li>
                         <li><a href="/profileEdit"><i class="mdi-action-settings"></i> Settings</a>
                         </li>
@@ -19,12 +19,12 @@
                         <li><a href="/logout"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
                         </li>
                     </ul>
-                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">{{ session.first_name}}<i class="mdi-navigation-arrow-drop-down right"></i></a>
+                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">{{ session.first_name }}<i class="mdi-navigation-arrow-drop-down right"></i></a>
                     <!--<p class="user-email">{{session.email_id}}</p>-->
                 </div>
             </div>
         </li>
-        <li class="bold active"><a href="/admin" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+        <li class="bold active"><a href="index.html" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
         </li>
 
         <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
@@ -41,9 +41,11 @@
                         </ul>
                     </div>
                 </li>
-                <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-communication-business"></i> Campaigns <span class="new badge"></span></a>
+                <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-communication-business"></i> Campaigns </a>
                     <div class="collapsible-body">
                         <ul>
+                            <li><a href="#">Create New Campaign</a>
+                            </li>
                             <li><a href="#">All Campaigns</a>
                             </li>
                             <li><a href="#">Calender View</a>
