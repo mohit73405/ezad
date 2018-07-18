@@ -39,7 +39,7 @@ def is_logged_in(f):
 
 
 @connecsiApp.route('/')
-@is_logged_in
+# @is_logged_in
 def index():
     title='Connesi App Login Panel'
     data=[]
@@ -159,7 +159,10 @@ def profileView():
 @connecsiApp.route('/searchInfluencers')
 @is_logged_in
 def searchInfluencers():
-    return render_template('search/search_influencers.html')
+    connecsiObj = ConnecsiModel()
+    data = connecsiObj.get__(table_name='youtube_channel_ids',STAR='*')
+    print(data)
+    return render_template('search/search_influencers.html',title='Search Infulencers')
 
 # @connecsiApp.route('/login/authorized')
 # def authorized():

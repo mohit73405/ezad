@@ -13,12 +13,17 @@ class YoutubeApiController:
         self.api_key = config.get('auth', 'api_key')
         self.channel_details_url = config.get('instance', 'channel_details_url')
         self.get_channel_ids_url = 'https://www.googleapis.com/youtube/v3/search?part=id&type=channel&key='+self.api_key
-        self.latest_video_ids_url= 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId='+str(self.channelId)+'&order=date&type=video&key='+self.api_key
+        self.latest_video_ids_url= 'https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&type=video&key='+self.api_key
         self.video_details_url = 'https://www.googleapis.com/youtube/v3/videos?key=' + self.api_key + '&part=snippet,statistics&id='
+        self.channel_thumbnail=''
         self.channelTitle=''
+        self.channel_desc=''
         self.subscriberCount=''
+        self.subscriberCount_lost=0
         self.total_100video_views = 0
+        self.total_100video_views_unique = 0
         self.total_100video_likes = 0
+        self.total_100video_dislikes = 0
         self.total_100video_comments = 0
         self.total_100video_shares = 0
         self.facebook_url = ''
@@ -36,12 +41,25 @@ class YoutubeApiController:
 
     def get_channel_details(self):
         url = self.channel_details_url+self.channelId+'&key='+self.api_key
+        print(url)
         channel_data = self.get_Json_data_Request_Lib(url=url)
-        self.channelTitle = channel_data['items'][0]['snippet']['title']
-        self.subscriberCount = channel_data['items'][0]['statistics']['subscriberCount']
-        video_ids = self.get_latest_video_ids(channelId=self.channelId)
-        self.get_video_details(video_ids=video_ids)
-        self.get_social_media_url(channel_id=self.channelId)
+        print(channel_data)
+        # exit()
+        try:
+            self.channel_thumbnail = channel_data['items'][0]['snippet']['thumbnails']['default']['url']
+            # print(self.channel_thumbnail)
+            # exit()
+            self.channelTitle = channel_data['items'][0]['snippet']['title']
+            self.channel_desc = channel_data['items'][0]['snippet']['description']
+            # print(self.channel_desc)
+            # exit()
+            self.subscriberCount = channel_data['items'][0]['statistics']['subscriberCount']
+            video_ids = self.get_latest_video_ids(channelId=self.channelId)
+            self.get_video_details(video_ids=video_ids)
+            self.get_social_media_url(channel_id=self.channelId)
+        except Exception as e:
+            print(e)
+            pass
         # return data
 
     def get_social_media_url(self,channel_id):
@@ -83,6 +101,7 @@ class YoutubeApiController:
             video_ids_string = ','.join(item)
             url = self.video_details_url + video_ids_string
             # print(url)
+            # exit()
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
             # twitter_url_list=[]
@@ -92,6 +111,7 @@ class YoutubeApiController:
                 try:
                     self.total_100video_views += int(item['statistics']['viewCount'])
                     self.total_100video_likes += int(item['statistics']['likeCount'])
+                    self.total_100video_dislikes += int(item['statistics']['dislikeCount'])
                     self.total_100video_comments += int(item['statistics']['commentCount'])
                     # self.total_100video_shares += int(item['statistics']['viewCount'])
                     # description = item['snippet']['description']
@@ -121,19 +141,22 @@ class YoutubeApiController:
         pageToken = ''
         video_ids = []
         while counter <= 2 :
-            url=self.latest_video_ids_url+'&maxResults=50'+'&pageToken='+pageToken
+            url=self.latest_video_ids_url+'&maxResults=50'+'&pageToken='+pageToken+'&channelId='+str(channelId)
             # print(url)
+            # exit()
             json_data = self.get_Json_data_Request_Lib(url=url)
+            # print(json_data)
             try:
                 pageToken = json_data['nextPageToken']
             except:pass
-
-            items = json_data['items']
-            # print(items)
-            counter = counter+1
-            for item in items:
-                video_ids.append(item['id']['videoId'])
-        # print(len(video_ids))
+            try:
+                items = json_data['items']
+                # print(items)
+                counter = counter+1
+                for item in items:
+                    video_ids.append(item['id']['videoId'])
+            except:pass
+        print(len(video_ids))
         # exit()
         return video_ids
 
@@ -171,21 +194,36 @@ class YoutubeApiController:
 
     def get_data(self,channelIds):
         for channelId in channelIds:
-            # self.YoutubeApiController(channelId=channelId)
-            self.channelId=channelId
-            self.get_channel_details()
             myList = []
-            myList.append(self.channelTitle)
-            myList.append(self.subscriberCount)
-            myList.append(self.business_email)
-            myList.append(self.total_100video_views)
-            myList.append(self.total_100video_likes)
-            myList.append(self.total_100video_comments)
-            myList.append(self.total_100video_shares)
-            myList.append(self.facebook_url)
-            myList.append(self.insta_url)
-            myList.append(self.twitter_url)
-            print(myList)
+            # self.YoutubeApiController(channelId=channelId)
+            try:
+                self.channelId=channelId
+                self.get_channel_details()
+                myList.append(channelId)
+                myList.append(self.channelTitle)
+                myList.append(self.channel_thumbnail)
+                myList.append(self.channel_desc)
+                myList.append(self.subscriberCount)
+                myList.append(self.subscriberCount_lost)
+                myList.append(self.business_email)
+                myList.append(self.total_100video_views)
+                myList.append(self.total_100video_views_unique)
+                myList.append(self.total_100video_likes)
+                myList.append(self.total_100video_dislikes)
+                myList.append(self.total_100video_comments)
+                myList.append(self.total_100video_shares)
+                myList.append(self.facebook_url)
+                myList.append(self.insta_url)
+                myList.append(self.twitter_url)
+                print(myList)
+                columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
+                           'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
+                           'total_100video_shares','facebook_url','insta_url','twitter_url']
+                connecsiObj = ConnecsiModel()
+                connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
+            except:
+                print('Channel details failed to insert for channel_id = ',channelId)
+                pass
 
             with open("output.csv", 'a') as resultFile:
                 wr = csv.writer(resultFile, dialect='excel')

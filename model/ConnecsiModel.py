@@ -26,7 +26,7 @@ class ConnecsiModel:
         )
 
 
-    def get__(self,table_name,columns,STAR='',WHERE='',compare_column='',compare_value=''):
+    def get__(self,table_name,columns='',STAR='',WHERE='',compare_column='',compare_value=''):
         columns_string=''
         if columns:
             for name in columns:
@@ -40,7 +40,7 @@ class ConnecsiModel:
             where_string+=' '.join("'"+compare_value+"'")
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT "+ STAR + columns_string + " from " + table_name + "` "+where_string
+                sql = "SELECT "+ STAR + columns_string + " from " + table_name + " "+where_string
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
@@ -106,6 +106,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'youtube_channel_ids':
                     cursor.executemany(sql,data)
+                elif table_name == 'youtube_channel_details':
+                    cursor.execute(sql,data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()

@@ -9,8 +9,12 @@ def get_channel_ids():
     conObj = YoutubeApiController()
     conObj.get_all_channel_ids()
 
-get_channel_ids()
+def get_channel_details():
+    conObj = YoutubeApiController()
+    conObj.get_data(channelIds=['UC1yBKRuGpC1tSM73A0ZjYjQ'])
 
+# get_channel_ids()
+get_channel_details()
 
 ############change parameter for required periodic tasks###################
 #default is 1 minute it can be changed as per requirement

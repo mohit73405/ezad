@@ -2,55 +2,61 @@
 {{ super() }}
 {% block body %}
 
+<title xmlns="http://www.w3.org/1999/html">{{title}}</title>
 <div class="container">
-    <div  class="section">
-    <div class="row">
-        <div class="col s12 m8 l12">
-                  <h4 class="header">Search Influencer</h4>
-                  <div class="card medium">
-
-                    <div class="card-content medium">
-                        <form class="col s12" action="/search">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="last_name" type="text" class="validate">
-                                    <label for="last_name">Enter Keyword</label>
-                                </div>
-                                <div class="input-field col s12 m4">
-                                    <select class="icons">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="1" data-icon="images/sample-1.jpg">Youtube</option>
-                                        <option value="2" data-icon="images/office.jpg">Facebook</option>
-                                        <option value="3" data-icon="images/yuna.jpg">Twitter</option>
-                                        <option value="4" data-icon="images/yuna.jpg">Instagram</option>
-                                    </select>
-                                    <label>Channel</label>
-                                </div>
-                                <div class="input-field col s12 m4">
-                                    <select class="icons">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="1">US</option>
-                                        <option value="2">GBT</option>
-                                        <option value="3">INDIA</option>
-                                        <option value="4">POLAND</option>
-                                    </select>
-                                    <label>Country</label>
-                                </div>
-                                <div class="input-field col s6 m4">
-                                <p class="range-field">
-                                    <input type="range" id="range_followers" min="10" max="100000000" />
-                                    <label>Followers</label>
-                                </p>
-                                </div>
-
+    <div class="">
+        <div class="row">
+            <div class="card-panel" >
+                <div class="row">
+                    <H6 class="header">Search Influencers</H6>
+                    <form class="col s12" action="/search" method="GET">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="first_name" type="text">
+                                <label for="first_name">Enter Keyword</label>
                             </div>
-                        </form>
-                    </div>
-
-                  </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <select>
+                                    <option value="" disabled selected></option>
+                                    <option value="1">Youtube</option>
+                                    <option value="2">Facebook</option>
+                                    <option value="3">Twitter</option>
+                                    <option value="3">Instagram</option>
+                                </select>
+                                <label>Select Channel</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <select>
+                                    <option value="" disabled selected></option>
+                                    <option value="1">US</option>
+                                    <option value="2">GBT</option>
+                                    <option value="3">POLAND</option>
+                                </select>
+                                <label>Select Country</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <span>Followers</span>
+                                <p class="range-field">
+                                    <input type="range" id="followers" min="0" max="100" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn cyan waves-effect waves-light left" type="submit" name="action">Search
+                                    <i class="mdi-content-search right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
+            </div>
+        </div>
     </div>
+<div class="card-panel">
+
 </div>
 </div>
 
