@@ -11,7 +11,7 @@ def get_channel_ids():
 
 def get_channel_details():
     conObj = YoutubeApiController()
-    conObj.get_data(channelIds=['UC1yBKRuGpC1tSM73A0ZjYjQ'])
+    conObj.get_data()
 
 # get_channel_ids()
 get_channel_details()

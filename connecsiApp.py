@@ -160,9 +160,32 @@ def profileView():
 @is_logged_in
 def searchInfluencers():
     connecsiObj = ConnecsiModel()
-    data = connecsiObj.get__(table_name='youtube_channel_ids',STAR='*')
+    data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
     print(data)
-    return render_template('search/search_influencers.html',title='Search Infulencers')
+
+    return render_template('search/search_influencers.html',title='Search Infulencers',data=data)
+
+@connecsiApp.route('/search',methods=['POST','GET'])
+@is_logged_in
+def search():
+    if request.method=='POST':
+        if 'search_inf' in request.form:
+            string_word = request.form.get('string_word')
+            channel = request.form.get('select_channel')
+            country = request.form.get('select_country')
+            followers = request.form.get('followers')
+            print(string_word)
+            print(channel)
+            print(country)
+            print(followers)
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get__(table_name='youtube_channel_details', STAR='*',WHERE='WHERE',compare_column=['subscriberCount_gained'],compare_value=[followers])
+            print(data)
+            return  render_template('search/search_influencers.html',title='Search Infulencers',data=data,
+                                    string_word=string_word,channel=channel,country=country,followers=followers)
+
+        return redirect(url_for('searchInfluencers'))
+
 
 # @connecsiApp.route('/login/authorized')
 # def authorized():

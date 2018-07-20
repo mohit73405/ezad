@@ -192,7 +192,16 @@ class YoutubeApiController:
 
 
 
-    def get_data(self,channelIds):
+    def get_data(self):
+        obj = ConnecsiModel()
+        data = obj.get__(table_name='youtube_channel_ids',STAR='*')
+        # print(data)
+        channelIds = []
+        for item in data:
+            # print(item[0])
+            channelIds.append(item[0])
+        # print(channelIds)
+        # exit()
         for channelId in channelIds:
             myList = []
             # self.YoutubeApiController(channelId=channelId)
@@ -216,6 +225,7 @@ class YoutubeApiController:
                 myList.append(self.insta_url)
                 myList.append(self.twitter_url)
                 print(myList)
+                # exit()
                 columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
                            'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
                            'total_100video_shares','facebook_url','insta_url','twitter_url']
@@ -225,9 +235,9 @@ class YoutubeApiController:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass
 
-            with open("output.csv", 'a') as resultFile:
-                wr = csv.writer(resultFile, dialect='excel')
-                wr.writerow(myList)
+            # with open("output.csv", 'a') as resultFile:
+            #     wr = csv.writer(resultFile, dialect='excel')
+            #     wr.writerow(myList)
 
 
 
