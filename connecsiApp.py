@@ -161,7 +161,7 @@ def profileView():
 def searchInfluencers():
     connecsiObj = ConnecsiModel()
     data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
-    print(data)
+    # print(data)
 
     return render_template('search/search_influencers.html',title='Search Infulencers',data=data)
 
@@ -173,17 +173,24 @@ def search():
             string_word = request.form.get('string_word')
             channel = request.form.get('select_channel')
             country = request.form.get('select_country')
-            followers = request.form.get('followers')
+            min_lower = request.form.get('min_lower')
+            max_upper = request.form.get('max_upper')
             print(string_word)
             print(channel)
             print(country)
-            print(followers)
+            print(min_lower)
+            print(max_upper)
             connecsiObj = ConnecsiModel()
-            data = connecsiObj.get__(table_name='youtube_channel_details', STAR='*',WHERE='WHERE',compare_column=['subscriberCount_gained'],compare_value=[followers])
+            # data = connecsiObj.get__(table_name='youtube_channel_details', STAR='*',WHERE='WHERE',compare_column='subscriberCount_gained',compare_value=str(max_upper))
+            data = connecsiObj.search_inf(table_name='youtube_channel_details',channel_id=channel,min_lower=str(min_lower),max_upper=str(max_upper)
+                                          ,keyword=string_word,country=country)
+            print('length of data =',len(data))
             print(data)
-            return  render_template('search/search_influencers.html',title='Search Infulencers',data=data,
-                                    string_word=string_word,channel=channel,country=country,followers=followers)
 
+            return  render_template('search/search_influencers.html',title='Search Infulencers',data=data,
+                                    string_word=string_word,channel=channel,country=country,min_lower=min_lower,max_upper=max_upper)
+
+        print("i m here")
         return redirect(url_for('searchInfluencers'))
 
 

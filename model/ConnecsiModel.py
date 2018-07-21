@@ -26,7 +26,26 @@ class ConnecsiModel:
         )
 
 
-    def get__(self,table_name,columns='',STAR='',WHERE='',compare_column='',compare_value=''):
+    def search_inf(self,table_name,channel_id,min_lower='',max_upper='',country='',keyword=''):
+        try:
+
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT  * from " + table_name + " WHERE subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
+
+
+
+    def get__(self,table_name,columns='',STAR='',WHERE='',compare_column='',compare_value='',BETWEEN='',AND='',BEETWEEN_VALUE1='',):
         columns_string=''
         if columns:
             for name in columns:
@@ -35,9 +54,9 @@ class ConnecsiModel:
         columns_string = columns_string[:-1]
         where_string=''
         if WHERE:
-            where_string+=''.join(WHERE)
-            where_string+=' '.join('`'+compare_column+'`')
-            where_string+=' '.join("'"+compare_value+"'")
+            where_string+=''.join(WHERE+' ')
+            where_string+=''.join(compare_column+' '+'=')
+            where_string+=''.join("'"+compare_value+"'")
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT "+ STAR + columns_string + " from " + table_name + " "+where_string

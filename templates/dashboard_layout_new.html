@@ -25,12 +25,14 @@
     <link href="/static/css/style.min.css" type="text/css" rel="stylesheet" media="screen,projection">
     <!-- Custome CSS-->
     <link href="/static/css/custom/custom.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="https://materializecss.com/extras/noUiSlider/nouislider.css" type="text/css" rel="stylesheet" media="screen,projection">
 
 
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="/static/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="/static/js/plugins/jvectormap/jquery-jvectormap.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="/static/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <script type="text/javascript" src="http://materializecss.com/extras/noUiSlider/nouislider.js"></script>
 
 
 </head>
@@ -93,10 +95,12 @@
     <script type="text/javascript" src="/static/js/plugins.min.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="/static/js/custom-script.js"></script>
+
     <!-- Toast Notification -->
     <script type="text/javascript">
     // Toast Notification
     $(window).load(function() {
+
         setTimeout(function() {
             Materialize.toast('<span>Hiya! I am a toast.</span>', 1500);
         }, 1500);
@@ -107,7 +111,22 @@
             Materialize.toast('<span>You have new order.</span><a class="btn-flat yellow-text" href="#">Read<a>', 3000);
         }, 15000);
     });
+
     </script>
+<script>
+    $( document ).ready(function() {
+        $("#btn-search-inf").click(function(){
+             var min_lower = $(".noUi-handle-lower").text();
+             var max_upper = $(".noUi-handle-upper").text();
+             alert(min_lower);
+             alert(max_upper);
+             $("#min_lower").val(min_lower);
+             $("#max_upper").val(max_upper);
+        });
+
+    });
+
+</script>
 
 </body>
 </html>
