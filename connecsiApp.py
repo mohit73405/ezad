@@ -162,8 +162,8 @@ def searchInfluencers():
     connecsiObj = ConnecsiModel()
     data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
     # print(data)
-
-    return render_template('search/search_influencers.html',title='Search Infulencers',data=data)
+    region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
+    return render_template('search/search_influencers.html',title='Search Infulencers',data=data,region_codes=region_codes)
 
 @connecsiApp.route('/search',methods=['POST','GET'])
 @is_logged_in
@@ -181,14 +181,13 @@ def search():
             print(min_lower)
             print(max_upper)
             connecsiObj = ConnecsiModel()
-            # data = connecsiObj.get__(table_name='youtube_channel_details', STAR='*',WHERE='WHERE',compare_column='subscriberCount_gained',compare_value=str(max_upper))
             data = connecsiObj.search_inf(table_name='youtube_channel_details',channel_id=channel,min_lower=str(min_lower),max_upper=str(max_upper)
                                           ,keyword=string_word,country=country)
-            print('length of data =',len(data))
-            print(data)
-
+            # print('length of data =',len(data))
+            # print(data)
+            region_codes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
             return  render_template('search/search_influencers.html',title='Search Infulencers',data=data,
-                                    string_word=string_word,channel=channel,country=country,min_lower=min_lower,max_upper=max_upper)
+                                    string_word=string_word,channel=channel,country=country,min_lower=min_lower,max_upper=max_upper,region_codes=region_codes)
 
         print("i m here")
         return redirect(url_for('searchInfluencers'))
