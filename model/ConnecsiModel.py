@@ -127,6 +127,8 @@ class ConnecsiModel:
                     cursor.executemany(sql,data)
                 elif table_name == 'youtube_channel_details':
                     cursor.execute(sql,data)
+                elif table_name == 'youtube_region_codes':
+                    cursor.executemany(sql,data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()

@@ -11,6 +11,7 @@ class YoutubeApiController:
         config = ConfigParser()
         config.read('config.ini')
         self.api_key = config.get('auth', 'api_key')
+        self.regionCode_url = 'https://www.googleapis.com/youtube/v3/i18nRegions?part=id,snippet&key='+self.api_key
         self.channel_details_url = config.get('instance', 'channel_details_url')
         self.get_channel_ids_url = 'https://www.googleapis.com/youtube/v3/search?part=id&type=channel&key='+self.api_key
         self.latest_video_ids_url= 'https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&type=video&key='+self.api_key
@@ -189,6 +190,26 @@ class YoutubeApiController:
         # exit()
         connecsiObj = ConnecsiModel()
         connecsiObj.insert__(data=channel_ids,table_name='youtube_channel_ids',columns=['channel_id'],IGNORE='IGNORE')
+
+    def get_all_regionCodes(self):
+        url = self.regionCode_url
+        jsonData = self.get_Json_data_Request_Lib(url=url)
+        print(jsonData)
+        items=[]
+        data = []
+        try:
+            items = jsonData['items']
+        except:pass
+        for item in items:
+            regionCode = item['snippet']['gl']
+            country_name = item['snippet']['name']
+            tdata = (regionCode,country_name)
+            data.append(tdata)
+        print(data)
+        columns = ['regionCode','country_name']
+        connesiObj = ConnecsiModel()
+        connesiObj.insert__(table_name='youtube_region_codes',IGNORE='IGNORE',columns=columns,data=data)
+
 
 
 
