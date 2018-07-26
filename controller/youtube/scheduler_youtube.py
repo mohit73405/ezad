@@ -9,6 +9,10 @@ def get_regionCodes():
     conObj = YoutubeApiController()
     conObj.get_all_regionCodes()
 
+def get_video_cat_ids():
+    conObj = YoutubeApiController()
+    conObj.get_all_video_categories()
+
 def get_channel_ids():
     conObj = YoutubeApiController()
     conObj.get_all_channel_ids()
@@ -18,8 +22,9 @@ def get_channel_details():
     conObj.get_data()
 
 # get_channel_ids()
-# get_channel_details()
+get_channel_details()
 # get_regionCodes()
+# get_video_cat_ids()
 
 ############change parameter for required periodic tasks###################
 #default is 1 minute it can be changed as per requirement

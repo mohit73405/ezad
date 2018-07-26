@@ -26,11 +26,31 @@ class ConnecsiModel:
         )
 
 
-    def search_inf(self,table_name,channel_id,min_lower='',max_upper='',country='',keyword=''):
+    def search_inf(self,channel_id,min_lower='',max_upper='',country='',category_id=''):
         try:
 
             with self.cnx.cursor() as cursor:
-                sql = "SELECT  * from " + table_name + " WHERE subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
+                group_by=" group by t1.channel_id"
+
+                category_id_filter = " t2.video_cat_id ="+category_id
+                country_filter = " t3.regionCode = "+country
+                sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
+                "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
+                "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
+                "t1.facebook_url,t1.insta_url,t1.twitter_url " \
+                "FROM youtube_channel_details t1 " \
+                "left join youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
+                "WHERE subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
+
+                if category_id and country:
+                    sql = sql+ 'AND '+ category_id_filter + ' AND '+ country_filter + group_by
+                elif category_id:
+                    sql = sql+' AND '+category_id_filter + group_by
+                elif country:
+                    sql = sql+ 'AND '+ country_filter + group_by
+
+                else: sql = sql + group_by
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
@@ -121,6 +141,7 @@ class ConnecsiModel:
                 print(sql)
                 print(data)
                 print(len(data))
+                cursor.execute("set names utf8mb4")
                 if table_name == 'users_brands':
                     cursor.execute(sql, data)
                 elif table_name == 'youtube_channel_ids':
@@ -129,6 +150,12 @@ class ConnecsiModel:
                     cursor.execute(sql,data)
                 elif table_name == 'youtube_region_codes':
                     cursor.executemany(sql,data)
+                elif table_name == 'youtube_video_categories':
+                    cursor.executemany(sql,data)
+                elif table_name == 'youtube_channel_ids_regioncode':
+                    cursor.executemany(sql, data)
+                elif table_name == 'youtube_channel_ids_video_categories_id':
+                    cursor.executemany(sql, data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()

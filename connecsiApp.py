@@ -156,44 +156,100 @@ def profileView():
     print(data)
     return render_template('user/user-profile-page.html',data=data,title=title)
 
-@connecsiApp.route('/searchInfluencers')
+@connecsiApp.route('/searchInfluencers',methods=['POST','GET'])
 @is_logged_in
 def searchInfluencers():
     connecsiObj = ConnecsiModel()
-    data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
-    # print(data)
-    region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
-    return render_template('search/search_influencers.html',title='Search Infulencers',data=data,region_codes=region_codes)
-
-@connecsiApp.route('/search',methods=['POST','GET'])
-@is_logged_in
-def search():
+    region_codes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
+    video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
+    lookup_string = ''
+    for cat in video_categories:
+        lookup_string += ''.join(',' + cat[1])
+    lookup_string = lookup_string.replace('&', 'and')
     if request.method=='POST':
         if 'search_inf' in request.form:
             string_word = request.form.get('string_word')
+            # print(string_word)
+            category = string_word.replace('and','&')
+            # print(category)
+            category_id=''
+            try:
+                category_details = connecsiObj.get__(table_name='youtube_video_categories',STAR='*',WHERE='WHERE',compare_column='video_cat_name',compare_value=category)
+                category_id = category_details[0][0]
+            except:pass
+            print(category_id)
             channel = request.form.get('select_channel')
             country = request.form.get('select_country')
             min_lower = request.form.get('min_lower')
             max_upper = request.form.get('max_upper')
-            print(string_word)
-            print(channel)
-            print(country)
-            print(min_lower)
-            print(max_upper)
-            connecsiObj = ConnecsiModel()
-            data = connecsiObj.search_inf(table_name='youtube_channel_details',channel_id=channel,min_lower=str(min_lower),max_upper=str(max_upper)
-                                          ,keyword=string_word,country=country)
-            # print('length of data =',len(data))
-            # print(data)
-            region_codes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
-            return  render_template('search/search_influencers.html',title='Search Infulencers',data=data,
-                                    string_word=string_word,channel=channel,country=country,min_lower=min_lower,max_upper=max_upper,region_codes=region_codes)
+            data = connecsiObj.search_inf(channel_id=channel,
+                                          min_lower=str(min_lower), max_upper=str(max_upper)
+                                          , category_id=str(category_id), country=str(country))
+            return render_template('search/search_influencers.html', title='Search Infulencers', data=data,
+                                   string_word=string_word, channel=channel, country=country, min_lower=min_lower,
+                                   max_upper=max_upper, region_codes=region_codes, lookup_string=lookup_string)
+    else:
+        connecsiObj = ConnecsiModel()
+        data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
+        # print(data)
+        region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
+        video_categories = connecsiObj.get__(table_name='youtube_video_categories',STAR='*')
+        lookup_string = ''
+        for cat in video_categories:
+            lookup_string+=''.join(','+cat[1])
+        lookup_string=lookup_string.replace('&', 'and')
+        return render_template('search/search_influencers.html',title='Search Infulencers',data=data,region_codes=region_codes,lookup_string=lookup_string)
 
-        print("i m here")
-        return redirect(url_for('searchInfluencers'))
 
 
-# @connecsiApp.route('/login/authorized')
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # @connecsiApp.route('/search', methods=['POST', 'GET'])
+    # @is_logged_in
+    # def search():
+    #     if request.method == 'POST':
+    #         if 'search_inf' in request.form:
+    #             string_word = request.form.get('string_word')
+    #             channel = request.form.get('select_channel')
+    #             country = request.form.get('select_country')
+    #             min_lower = request.form.get('min_lower')
+    #             max_upper = request.form.get('max_upper')
+    #             print(string_word)
+    #             print(channel)
+    #             print(country)
+    #             print(min_lower)
+    #             print(max_upper)
+    #             connecsiObj = ConnecsiModel()
+    #             data = connecsiObj.search_inf(table_name='youtube_channel_details', channel_id=channel,
+    #                                           min_lower=str(min_lower), max_upper=str(max_upper)
+    #                                           , keyword=string_word, country=country)
+    #             print('length of data =',len(data))
+    #             print(data)
+                # region_codes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
+                # video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
+                # lookup_string = ''
+                # for cat in video_categories:
+                #     lookup_string += ''.join(',' + cat[1])
+                # lookup_string = lookup_string.replace('&', 'and')
+                # return render_template('search/search_influencers.html', title='Search Infulencers', data=data,
+                #                        string_word=string_word, channel=channel, country=country, min_lower=min_lower,
+                #                        max_upper=max_upper, region_codes=region_codes, lookup_string=lookup_string)
+            # print("i m here")
+            # return redirect(url_for('searchInfluencers'))
+
+
+        # @connecsiApp.route('/login/authorized')
 # def authorized():
 #     resp = linkedin.authorized_response()
 #     if resp is None:

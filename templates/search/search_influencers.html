@@ -1,6 +1,36 @@
 {% extends 'dashboard_layout_new.html' %}
 {{ super() }}
 {% block body %}
+<head>
+    <style>
+    .text-field {
+    -moz-box-sizing: border-box;
+    border: 1px solid #EEEEEE;
+    font-family: "Source Sans Pro",Arial,sans-serif;
+    font-size: 0.73684em;
+    font-weight: 600;
+    height: 37px;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+}
+.autocomplete-suggestion {
+    overflow: hidden;
+    padding: 2px 5px;
+    white-space: nowrap;
+    background-color:white;
+}
+.autocomplete-suggestions strong {
+    color: #3399FF;
+    font-weight: normal;
+
+}
+.autocomplete-selected{
+  background-color:#F0F0F0;
+}
+    </style>
+
+</head>
 
 <title xmlns="http://www.w3.org/1999/html">{{title}}</title>
 <div class="container">
@@ -9,25 +39,40 @@
             <div class="card-panel" >
                 <div class="row">
                     <!--<H6 class="header">Search Influencers</H6>-->
-                    <form class="col s12" action="/search" method="POST">
+                    <form class="col s12" action="/searchInfluencers" method="POST">
                         <div class="row">
-                            <div class="form-field col s12">
-                                <input id="string_word" name="string_word" type="text" placeholder="Enter Keyword">
+                            <div class="form-field col s8">
+                                <input id="string_word" name="string_word" type="text" placeholder="Search Category"
+                                       {% if string_word %}
+                                       value="{{ string_word }}"
+                                       {% endif %}
+                                >
+                                <!--<div class="input-field col s12">
+                                    <input type="text" id="autocomplete-input" class="autocomplete">
+                                    <label for="autocomplete-input">Autocomplete</label>
+                                </div>-->
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-field col s4">
                                 <select id="select_channel" name="select_channel" class="icons">
-                                    <option value="1" data-icon="/static/img/youtube.png">Youtube</option>
-                                    <option value="2">Facebook</option>
-                                    <option value="3">Twitter</option>
-                                    <option value="4">Instagram</option>
+                                    {% if channel %}
+                                    <option value="{{ channel }}">{{ channel }}</option>
+                                    {% endif %}
+                                    <option value="Youtube">Youtube</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="Twitter">Twitter</option>
+                                    <option value="Instagram">Instagram</option>
                                 </select>
                                 <label>Select Channel</label>
                             </div>
                             <div class="form-field col s4">
                                 <select id="select_country" name="select_country">
+                                    {% if country %}
+                                    <option value="{{ country }}">{{ country }}</option>
+                                    {% else %}
                                     <option value="" disabled selected>Select Country</option>
+                                    {% endif %}
                                     {% for item in region_codes %}
                                     <option value="{{ item[0] }}">{{ item[1] }}</option>
                                     {% endfor %}
@@ -39,7 +84,7 @@
                                 <div><br></div>
                                 <div id="test-slider"></div>
                             </div>
-                            <input type="hidden" name="min_lower" value=""id="min_lower">
+                            <input type="hidden" name="min_lower" value="" id="min_lower">
                             <input type="hidden" name="max_upper" value="" id="max_upper">
                         </div>
                         <div class="row">
@@ -59,7 +104,7 @@
     <div class="card-panel">
         <div class="row">
             <div class="col s1 "><img src="{{item[2]}}" class="circle responsive-img"></div>
-            <div class="col  s11  truncate"><b>{{item[1]}}</b></div>
+            <div class="col s6 truncate card-panel #e3f2fd blue lighten-5"><b>{{item[1]}}</b></div>
             <div class="col s6 #e3f2fd blue lighten-5 card-panel">
                 <table class="responsive-table striped centered">
                     <thead>
@@ -80,13 +125,20 @@
                     <tr>
                         <td colspan="4">
                             <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Message"><i class="small mdi-communication-quick-contacts-mail blue-text"></i></a>
-                            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Add to Campaign"><i class="small mdi-content-add-circle yellow-text"></i></a>
+                            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Add to Campaign"><i class="small mdi-content-add-circle pink-text"></i></a>
                             <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Add to Watch list"><i class="small mdi-image-remove-red-eye blue-text"></i></a>
                             <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Add to Favourites"><i class="small mdi-action-stars purple-text"></i></a>
                             <b>Other Channels</b>
-                            <a href="#"><img src="/static/img/facebook 24.png"></a>
-                            <a href="#"><img src="/static/img/instagram.png"></a>
-                            <a href="#"><img src="/static/img/twitter.png"></a>
+                            {% if item[13] %}
+                                <a href="{{ item[13] }}"><img src="/static/img/facebook 24.png"></a>
+                            {% endif %}
+                            {% if item[14] %}
+                                <a href="{{ item[14] }}"><img src="/static/img/instagram.png"></a>
+                            {% endif %}
+                            {% if item[15] %}
+                                <a href="{{ item[15] }}"><img src="/static/img/twitter.png"></a>
+                            {% endif %}
+
                         </td>
                     </tr>
 
@@ -104,7 +156,11 @@
 
     var slider = document.getElementById('test-slider');
     noUiSlider.create(slider, {
-       start: [20, 20000],
+       {% if min_lower and max_upper %}
+       start: [{{ min_lower }}, {{ max_upper }}],
+       {% else %}
+       start: [20,20000],
+       {% endif %}
        connect: true,
        step: 1,
        orientation: 'horizontal', // 'horizontal' or 'vertical'
@@ -116,6 +172,15 @@
          decimals: 0
        })
     });
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js"></script>
+<script>
+   a1 = $('#string_word').autocomplete({
+         width: 448,
+         delimiter: /(,|;)\s*/,
+         lookup: '{{ lookup_string }}'.split(',')
+      });
 </script>
 
 {% endblock %}
