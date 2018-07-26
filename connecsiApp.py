@@ -180,6 +180,10 @@ def searchInfluencers():
             print(category_id)
             channel = request.form.get('select_channel')
             country = request.form.get('select_country')
+            print(country)
+            if country == None:
+                country = ''
+            print(country)
             min_lower = request.form.get('min_lower')
             max_upper = request.form.get('max_upper')
             data = connecsiObj.search_inf(channel_id=channel,

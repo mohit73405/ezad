@@ -159,14 +159,14 @@
        {% if min_lower and max_upper %}
        start: [{{ min_lower }}, {{ max_upper }}],
        {% else %}
-       start: [20,20000],
+       start: [0,100000],
        {% endif %}
        connect: true,
        step: 1,
        orientation: 'horizontal', // 'horizontal' or 'vertical'
        range: {
          'min': 0,
-         'max': 100000
+         'max': 1000000
        },
        format: wNumb({
          decimals: 0
