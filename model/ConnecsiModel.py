@@ -2,11 +2,18 @@ import pandas as pd
 import pymysql,pymysql.cursors
 from sshtunnel import SSHTunnelForwarder
 from configparser import ConfigParser
+import os
 
 class ConnecsiModel:
     def __init__(self):
+        print("i m inside model")
         config = ConfigParser()
-        config.read('database_config.ini')
+
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        # ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+        print(dir_path)
+        # print(ROOT_DIR)
+        config.read(dir_path+'/database_config.ini')
         host = config.get('auth', 'host')
         user = config.get('auth', 'user')
         password = config.get('auth', 'password')

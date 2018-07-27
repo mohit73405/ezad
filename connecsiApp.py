@@ -5,11 +5,14 @@ from model.ConnecsiModel import ConnecsiModel
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators,TextField
 from passlib.hash import sha256_crypt
 from flask_oauthlib.client import OAuth
+import os
 
 connecsiApp = Flask(__name__)
+connecsiApp.secret_key = 'connecsiSecretKey'
 # oauth = OAuth(connecsiApp)
 
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
+base_url = request.base_url
 
 # linkedin = oauth.remote_app(
 #     'linkedin',
@@ -119,7 +122,7 @@ def login():
                     session['user_id']=data[0]
                     print(session['user_id'])
                     flash('You are now logged in', 'success')
-                    return redirect(url_for('admin'))
+                    return redirect(url_for(base_url+'/admin'))
                 else:
                     error = 'Invalid login'
                     flash(error,'danger')
