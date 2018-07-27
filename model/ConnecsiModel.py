@@ -3,16 +3,23 @@ import pymysql,pymysql.cursors
 from sshtunnel import SSHTunnelForwarder
 from configparser import ConfigParser
 import os
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2424fee7febe451d736c7e7276003a9903acff97
 class ConnecsiModel:
     def __init__(self):
         print("i m inside model")
         config = ConfigParser()
+<<<<<<< HEAD
 
         dir_path = os.path.dirname(os.path.realpath(__file__))
         # ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
         print(dir_path)
         # print(ROOT_DIR)
+=======
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+>>>>>>> 2424fee7febe451d736c7e7276003a9903acff97
         config.read(dir_path+'/database_config.ini')
         host = config.get('auth', 'host')
         user = config.get('auth', 'user')
