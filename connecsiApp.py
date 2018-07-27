@@ -188,15 +188,18 @@ def searchInfluencers():
             print(country)
             min_lower = request.form.get('min_lower')
             max_upper = request.form.get('max_upper')
+            sort_order = request.form.get('sort')
+            print(sort_order)
             data = connecsiObj.search_inf(channel_id=channel,
                                           min_lower=str(min_lower), max_upper=str(max_upper)
-                                          , category_id=str(category_id), country=str(country))
+                                          , category_id=str(category_id), country=str(country),sort_order=sort_order)
             return render_template('search/search_influencers.html', title='Search Infulencers', data=data,
                                    string_word=string_word, channel=channel, country=country, min_lower=min_lower,
-                                   max_upper=max_upper, region_codes=region_codes, lookup_string=lookup_string)
+                                   max_upper=max_upper, region_codes=region_codes, lookup_string=lookup_string,sort_order=sort_order)
     else:
         connecsiObj = ConnecsiModel()
-        data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
+        # data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
+        data = connecsiObj.get_infulencers()
         # print(data)
         region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
         video_categories = connecsiObj.get__(table_name='youtube_video_categories',STAR='*')

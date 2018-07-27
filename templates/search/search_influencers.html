@@ -19,7 +19,14 @@
     padding: 2px 5px;
     white-space: nowrap;
     background-color:white;
+    <!--max-width:500px;-->
+    <!--margin: auto;-->
+    <!--border: 3px solid #73AD21;-->
 }
+@media only screen and (max-width: 450px){
+    .autocomplete-suggestion { width: 80%; }
+}
+
 .autocomplete-suggestions strong {
     color: #3399FF;
     font-weight: normal;
@@ -41,7 +48,7 @@
                     <!--<H6 class="header">Search Influencers</H6>-->
                     <form class="col s12" action="/searchInfluencers" method="POST">
                         <div class="row">
-                            <div class="form-field col s8">
+                            <div class="form-field col s6">
                                 <input id="string_word" name="string_word" type="text" placeholder="Search Category"
                                        {% if string_word %}
                                        value="{{ string_word }}"
@@ -52,6 +59,14 @@
                                     <label for="autocomplete-input">Autocomplete</label>
                                 </div>-->
                             </div>
+                            <div class="form-field col s6">
+                                <span>Followers</span>
+                                <div><br></div>
+                                <div id="test-slider"></div>
+                            </div>
+                            <input type="hidden" name="min_lower" value="" id="min_lower">
+                            <input type="hidden" name="max_upper" value="" id="max_upper">
+
                         </div>
                         <div class="row">
                             <div class="form-field col s4">
@@ -80,12 +95,14 @@
                                 <label>Select Country</label>
                             </div>
                             <div class="form-field col s4">
-                                <span>Followers</span>
-                                <div><br></div>
-                                <div id="test-slider"></div>
+                                <select id="sort" name="sort">
+                                    {% if channel %}
+                                    <option value="{{ sort_order }}">{{ sort_order }}</option>
+                                    {% endif %}
+                                    <option value="High To Low">High To Low</option>
+                                    <option value="Low To High">Low To High</option>
+                                </select>
                             </div>
-                            <input type="hidden" name="min_lower" value="" id="min_lower">
-                            <input type="hidden" name="max_upper" value="" id="max_upper">
                         </div>
                         <div class="row">
                             <div class="form-field col s12">
@@ -159,14 +176,14 @@
        {% if min_lower and max_upper %}
        start: [{{ min_lower }}, {{ max_upper }}],
        {% else %}
-       start: [0,100000],
+       start: [0,10000000],
        {% endif %}
        connect: true,
        step: 1,
        orientation: 'horizontal', // 'horizontal' or 'vertical'
        range: {
          'min': 0,
-         'max': 1000000
+         'max': 10000000
        },
        format: wNumb({
          decimals: 0
@@ -177,7 +194,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js"></script>
 <script>
    a1 = $('#string_word').autocomplete({
-         width: 448,
+         width: 348,
          delimiter: /(,|;)\s*/,
          lookup: '{{ lookup_string }}'.split(',')
       });

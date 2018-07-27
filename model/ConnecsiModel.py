@@ -6,7 +6,7 @@ import os
 
 class ConnecsiModel:
     def __init__(self):
-        print("i m inside model")
+
         config = ConfigParser()
         dir_path = os.path.dirname(os.path.realpath(__file__))
         # ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -35,14 +35,20 @@ class ConnecsiModel:
         )
 
 
-    def search_inf(self,channel_id,min_lower='',max_upper='',country='',category_id=''):
+    def search_inf(self,channel_id,sort_order,min_lower='',max_upper='',country='',category_id=''):
         try:
 
             with self.cnx.cursor() as cursor:
                 group_by=" group by t1.channel_id"
                 category_id_filter = " t2.video_cat_id ="+category_id
                 country_filter = " t3.regionCode = '"+country+"'"
-
+                order='desc'
+                if sort_order == 'High To Low':
+                    order = 'desc'
+                elif sort_order == 'Low To High':
+                    order = 'asc'
+                else:order='desc'
+                order_by = " order by t1.subscriberCount_gained "+order
 
                 sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
                 "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
@@ -54,13 +60,13 @@ class ConnecsiModel:
                 "WHERE subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
 
                 if category_id and country:
-                    sql = sql+ ' AND '+ category_id_filter + ' AND '+ country_filter + group_by
+                    sql = sql+ ' AND '+ category_id_filter + ' AND '+ country_filter + group_by + order_by
                 elif category_id:
-                    sql = sql+' AND '+category_id_filter + group_by
+                    sql = sql+' AND '+category_id_filter + group_by + order_by
                 elif country:
                     # sql = sql = sql + group_by
-                    sql = sql+ ' AND '+country_filter + group_by
-                else: sql = sql + group_by
+                    sql = sql+ ' AND '+country_filter + group_by + order_by
+                else: sql = sql + group_by + order_by
 
                 print(sql)
                 cursor.execute(sql)
@@ -76,18 +82,21 @@ class ConnecsiModel:
 
 
 
-    def get__(self,table_name,columns='',STAR='',WHERE='',compare_column='',compare_value='',BETWEEN='',AND='',BEETWEEN_VALUE1='',):
+    def get__(self,table_name,columns='',STAR='',WHERE='',compare_column='',compare_value=''):
+
         columns_string=''
         if columns:
             for name in columns:
                 #print(name)
                 columns_string+=''.join('`'+name+'`'+',')
         columns_string = columns_string[:-1]
+
         where_string=''
         if WHERE:
             where_string+=''.join(WHERE+' ')
             where_string+=''.join(compare_column+' '+'=')
             where_string+=''.join("'"+compare_value+"'")
+
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT "+ STAR + columns_string + " from " + table_name + " "+where_string
@@ -95,6 +104,21 @@ class ConnecsiModel:
                 cursor.execute(sql)
                 data = cursor.fetchall()
                 #print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
+    def get_infulencers(self):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT  * from youtube_channel_details ORDER BY subscriberCount_gained DESC"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
             print("closing cnx")
             cursor.close()
             return data
