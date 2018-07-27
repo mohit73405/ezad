@@ -1,11 +1,16 @@
 import pandas as pd
 import pymysql,pymysql.cursors
 from sshtunnel import SSHTunnelForwarder
+from configparser import ConfigParser
 
 class ConnecsiModel:
     def __init__(self):
-        #self.URL = URL
-        print("")
+        config = ConfigParser()
+        config.read('model/config.ini')
+        host = config.get('auth', 'host')
+        user = config.get('auth', 'user')
+        password = config.get('auth', 'password')
+        db = config.get('auth', 'db')
         # self.server = SSHTunnelForwarder(
         #     '46.28.109.89',
         #     ssh_username='kiran',
@@ -16,11 +21,11 @@ class ConnecsiModel:
         # self.server.start()
 
         self.cnx = pymysql.connect(
-            host='127.0.0.1',
+            host=host,
         #     port=self.server.local_bind_port,
-            user='root',
-            password='',
-            db='connecsi_admin',
+            user=user,
+            password=password,
+            db=db,
             use_unicode=True, charset="utf8"
 
         )
