@@ -11,12 +11,6 @@ connecsiApp = Flask(__name__)
 connecsiApp.secret_key = 'connecsiSecretKey'
 # oauth = OAuth(connecsiApp)
 
-<<<<<<< HEAD
-dir_path = os.path.dirname(os.path.realpath(__file__))
-base_url = request.base_url
-
-=======
->>>>>>> 2424fee7febe451d736c7e7276003a9903acff97
 # linkedin = oauth.remote_app(
 #     'linkedin',
 #     consumer_key='86ctp4ayian53w',
@@ -125,7 +119,7 @@ def login():
                     session['user_id']=data[0]
                     print(session['user_id'])
                     flash('You are now logged in', 'success')
-                    return redirect(url_for(base_url+'/admin'))
+                    return redirect(url_for('admin'))
                 else:
                     error = 'Invalid login'
                     flash(error,'danger')
