@@ -9,8 +9,6 @@ from flask_oauthlib.client import OAuth
 connecsiApp = Flask(__name__)
 # oauth = OAuth(connecsiApp)
 
-
-
 # linkedin = oauth.remote_app(
 #     'linkedin',
 #     consumer_key='86ctp4ayian53w',
