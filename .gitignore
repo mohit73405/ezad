@@ -105,4 +105,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-database_config.ini
+/model/database_config.ini
