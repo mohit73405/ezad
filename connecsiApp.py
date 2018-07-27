@@ -121,6 +121,8 @@ def login():
                 else:
                     error = 'Invalid login'
                     flash(error,'danger')
+                    print("i m here ")
+                    return render_template('user/login.html')
             else:
                 return render_template('user/login.html')
 
