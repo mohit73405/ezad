@@ -6,7 +6,7 @@ from configparser import ConfigParser
 class ConnecsiModel:
     def __init__(self):
         config = ConfigParser()
-        config.read('model/database_config.ini')
+        config.read('database_config.ini')
         host = config.get('auth', 'host')
         user = config.get('auth', 'user')
         password = config.get('auth', 'password')
