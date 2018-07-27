@@ -9,7 +9,7 @@ class YoutubeApiController:
     def __init__(self):
         self.channelId = ''
         config = ConfigParser()
-        config.read('config.ini.ini')
+        config.read('config.ini')
         self.api_key = config.get('auth', 'api_key')
         self.regionCode_url = 'https://www.googleapis.com/youtube/v3/i18nRegions?part=id,snippet&key='+self.api_key
         self.video_cat_url= 'https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&key='+self.api_key+'&regionCode=US'
