@@ -191,6 +191,8 @@ class ConnecsiModel:
                     cursor.executemany(sql, data)
                 elif table_name == 'youtube_channel_ids_video_categories_id':
                     cursor.executemany(sql, data)
+                elif table_name == 'users_brands_payments':
+                    cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()

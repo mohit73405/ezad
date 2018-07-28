@@ -1,3 +1,4 @@
+import datetime
 from functools import wraps
 import json
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging,jsonify
@@ -211,13 +212,51 @@ def searchInfluencers():
 
 
 
+@connecsiApp.route('/addFundsBrands')
+@is_logged_in
+def addFundsBrands():
+    return render_template('user/add_funds.html')
+
+@connecsiApp.route('/saveFunds',methods=['POST'])
+@is_logged_in
+def saveFunds():
+    if request.method == 'POST':
+       amount = request.form.get('amount')
+       description = request.form.get('description')
+       print(amount)
+       print(description)
+       user_id = session['user_id']
+       print(user_id)
+       email_id = session['email_id']
+       date = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+       data = [user_id,date,email_id,amount,description]
+       connecsiObj =ConnecsiModel()
+       connecsiObj.insert__(table_name='users_brands_payments',columns=['user_id','date','email_id','amount','description'],data=data)
+       # payment(user_id,date,email_id,amount,description)
+       return redirect(url_for('payment'))
+    else:
+        return redirect(url_for('addFundsBrands'))
 
 
+@connecsiApp.route('/payment')
+@is_logged_in
+def payment():
+    # print(user_id,date,email_id,amount,description)
+    return render_template('payment/payment.html')
 
+@connecsiApp.route('/checkout')
+@is_logged_in
+def checkout():
+    return redirect(url_for('viewMyPayments'))
 
-
-
-
+@connecsiApp.route('/viewMyPayments')
+@is_logged_in
+def viewMyPayments():
+    connecsiObj = ConnecsiModel()
+    user_id = session['user_id']
+    data = connecsiObj.get__(table_name='users_brands_payments',STAR='*',WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
+    print(data)
+    return render_template('user/view_my_payments.html',data=data)
 
 
 
