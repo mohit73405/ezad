@@ -1,9 +1,17 @@
 import csv
 import re
+
+import os
 import requests
 from configparser import ConfigParser
 from bs4 import BeautifulSoup
 from model.ConnecsiModel import ConnecsiModel
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 class YoutubeApiController:
     def __init__(self):
@@ -302,6 +310,39 @@ class YoutubeApiController:
             # with open("output.csv", 'a') as resultFile:
             #     wr = csv.writer(resultFile, dialect='excel')
             #     wr.writerow(myList)
+
+    def get_data_by_selinium(self):
+        # example option: add 'incognito' command line arg to options
+        option = webdriver.ChromeOptions()
+        option.add_argument("--incognito")
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        print(dir_path)
+        # exit()
+        # create new instance of chrome in incognito mode
+        browser = webdriver.Chrome(executable_path='C:\connecsiAdminMaterial\controller\youtube\chromedriver_win32\chromedriver.exe',
+                                   chrome_options=option)
+        # go to website of interest
+        browser.get("https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ/about")
+        # wait up to 10 seconds for page to load
+        # timeout = 20
+        # try:
+        #     WebDriverWait(browser, timeout).until(
+        #         EC.visibility_of_element_located((By.XPATH, "//a[@class='style-scope ytd-channel-about-metadata-renderer")))
+        # except TimeoutException:
+        #     print("Timed out waiting for page to load")
+        #     browser.quit()
+        wait = WebDriverWait(browser, 10)
+        try:
+            element = wait.until(EC.element_to_be_clickable((By.ID, 'button')))
+        except:
+            print("Timed out waiting for page to load")
+            browser.quit()
+        # get all of the titles for the financial values
+
+
+        # location = browser.find_element_by_xpath("//td[@class='style-scope ytd-channel-about-metadata-renderer']")
+        # titles = [x.text for x in location]
+
 
 
 
