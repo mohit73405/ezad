@@ -260,7 +260,10 @@ def viewMyPayments():
 
 
 
-
+@connecsiApp.route('/email')
+@is_logged_in
+def email():
+    return render_template('email/email.html')
 
 
     # @connecsiApp.route('/search', methods=['POST', 'GET'])
