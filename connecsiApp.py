@@ -3,7 +3,6 @@ from functools import wraps
 import json
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging,jsonify
 from model.ConnecsiModel import ConnecsiModel
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators,TextField
 from passlib.hash import sha256_crypt
 from flask_oauthlib.client import OAuth
 import os
@@ -276,9 +275,31 @@ def saveCampaign():
         to_date = request.form.get('to_date')
         budget = request.form.get('budget')
         currency = request.form.get('currency')
-        channel = request.form.get('channel[]')
-        print(channel)
-        # campaign_name = request.form.get('campaign_name')
+        channels = request.form.getlist('channel')
+        channels_string = ','.join(channels)
+        regions = request.form.getlist('region')
+        regions_string = ','.join(regions)
+        min_lower = request.form.get('min_lower')
+        max_upper = request.form.get('max_upper')
+
+        files = request.form.getlist('files')
+        # files = request.files.getlist("files")
+        print(files)
+
+        video_cat = request.form.get('video_cat')
+        target_url = request.form.get('target_url')
+        campaign_description = request.form.get('campaign_description')
+        arrangements = request.form.getlist('arrangements')
+        arrangements_string=','.join(arrangements)
+        kpis = request.form.get('kpis')
+        user_id = session['user_id']
+        data=[campaign_name,from_date,to_date,budget,currency,channels_string,
+              regions_string,min_lower,max_upper,video_cat,target_url,campaign_description,arrangements_string,kpis,user_id]
+        columns = ['campaign_name','from_date','to_date','budget','currency','channels','regions',
+                   'min_lower_followers','max_upper_followers','video_cat_id','target_url','campaign_description','arrangements','kpis','user_id']
+        connecsiObj = ConnecsiModel()
+        connecsiObj.insert__(table_name='brands_campaigns',columns=columns,data=data)
+        return ""
 
 @connecsiApp.route('/email')
 @is_logged_in

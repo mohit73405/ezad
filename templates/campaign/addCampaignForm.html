@@ -30,12 +30,12 @@
                         </select>
                     </div>
                     <div class="col s4">
-                        <select multiple id="channel[]" name="channel[]">
+                        <select multiple id="channel" name="channel">
                             <option value="" disabled selected>Channels</option>
-                            <option value="1">Youtube</option>
-                            <option value="2">Facebook</option>
-                            <option value="3">Instagram</option>
-                            <option value="4">Twitter</option>
+                            <option value="Youtube">Youtube</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Twitter">Twitter</option>
                         </select>
                     </div>
                     <div class="col s5">
@@ -57,7 +57,7 @@
                         <div class="file-field input-field">
                             <div class="btn">
                                 <span>File</span>
-                                <input type="file" multiple>
+                                <input type="file" multiple id="files" name="files">
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -96,11 +96,11 @@
                         </select>
                     </div>
                     <div class="col s12">
-                        <select>
+                        <select name="kpis" id="kpis">
                             <option>KPIs</option>
-                            <option value="">No of Clicks</option>
-                            <option value="">New Users</option>
-                            <option value="">Revenue Generated</option>
+                            <option value="No of Clicks">No of Clicks</option>
+                            <option value="New Users">New Users</option>
+                            <option value="Revenue Generated">Revenue Generated</option>
                         </select>
                     </div>
                     <div class="col s4">

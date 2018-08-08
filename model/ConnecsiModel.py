@@ -193,6 +193,8 @@ class ConnecsiModel:
                     cursor.executemany(sql, data)
                 elif table_name == 'users_brands_payments':
                     cursor.execute(sql, data)
+                elif table_name == 'brands_campaigns':
+                    cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()
