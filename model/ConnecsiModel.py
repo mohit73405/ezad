@@ -204,3 +204,22 @@ class ConnecsiModel:
             print(e)
             print("Exception Occured")
         return res
+
+
+    def update__(self,table_name,columns,data,WHERE,compare_column,compare_value):
+        columns_string=''
+        for column in columns:
+            columns_string += ''.join(column+'=%s,')
+        # print(columns_string)
+        columns_string = columns_string[:-1]
+        # print(columns_string)
+        # exit()
+        sql = 'UPDATE ' + table_name + ' SET ' + columns_string +' '+ WHERE +' '+ compare_column + ' = ' + str(compare_value)
+        print(sql)
+        try:
+            with self.cnx.cursor() as cursor:
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                cursor.close()
+        except Exception as e: print(e)
+

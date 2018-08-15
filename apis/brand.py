@@ -14,6 +14,12 @@ brand_form = ns_brand.model('Brand Details', {
     'password' : fields.String(required=True, description='Password')
 })
 
+brand_edit_form = ns_brand.model('Brand Details Update', {
+    'first_name' : fields.String(required=True, description='First Name'),
+    'last_name' : fields.String(required=True, description='Last Name'),
+    'company_name' : fields.String(required=True, description='Company Name')
+})
+
 @ns_brand.route('/register')
 class Brand(Resource):
     @ns_brand.expect(brand_form)
@@ -57,3 +63,15 @@ class Brand(Resource):
         columns = ['user_id', 'first_name', 'last_name', 'company_name', 'email_id', 'role']
         data = connecsiObj.get__(table_name='users_brands',columns=columns,WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
         return {'data':data},200
+
+    @ns_brand.expect(brand_edit_form)
+    def put(self,user_id):
+        '''Update Brand Details'''
+        form_data = request.get_json()
+        first_name = form_data.get('first_name')
+        last_name = form_data.get('last_name')
+        company_name = form_data.get('company_name')
+        connecsiObj = ConnecsiModel()
+        columns = ['first_name','last_name','company_name']
+        data=(first_name,last_name,company_name)
+        connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
