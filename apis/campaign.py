@@ -22,7 +22,9 @@ brand_campaign_form = ns_campaign.model('Brand Campaign', {
     'target_url': fields.Url(required=True, description='Target URL'),
     'campaign_description': fields.String(required=True, description='Campaign description'),
     'arrangements': fields.String(required=True, description='Arrangements'),
-    'kpis': fields.String(required=True, description='KPIs')
+    'kpis': fields.String(required=True, description='KPIs'),
+    'is_classified_post': fields.Boolean(required=False, description='Classified Post',default=False)
+
 })
 
 @ns_campaign.route('/<string:user_id>')
@@ -46,12 +48,13 @@ class Campaign(Resource):
         campaign_description = data_json.get('campaign_description')
         arrangements = data_json.get('arrangements')
         kpis = data_json.get('kpis')
+        is_classified_post = data_json.get('is_classified_post')
         data = [campaign_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, target_url, campaign_description, arrangements,
-                kpis, user_id]
+                kpis, user_id,is_classified_post]
         columns = ['campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'campaign_description',
-                   'arrangements', 'kpis', 'user_id']
+                   'arrangements', 'kpis', 'user_id','is_classified_post']
         connecsiObj = ConnecsiModel()
         res=connecsiObj.insert__(table_name='brands_campaigns', columns=columns, data=data)
 

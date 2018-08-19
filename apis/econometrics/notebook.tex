@@ -1,0 +1,898 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{TimeSeriesAnalysisBitcoin}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{pickle}
+        \PY{k+kn}{import} \PY{n+nn}{quandl}
+        \PY{k+kn}{from} \PY{n+nn}{datetime} \PY{k}{import} \PY{n}{datetime}
+        \PY{k+kn}{import} \PY{n+nn}{plotly}\PY{n+nn}{.}\PY{n+nn}{offline} \PY{k}{as} \PY{n+nn}{py}
+        \PY{k+kn}{import} \PY{n+nn}{plotly}\PY{n+nn}{.}\PY{n+nn}{graph\PYZus{}objs} \PY{k}{as} \PY{n+nn}{go}
+        \PY{k+kn}{import} \PY{n+nn}{plotly}\PY{n+nn}{.}\PY{n+nn}{figure\PYZus{}factory} \PY{k}{as} \PY{n+nn}{ff}
+        \PY{n}{py}\PY{o}{.}\PY{n}{init\PYZus{}notebook\PYZus{}mode}\PY{p}{(}\PY{n}{connected}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{quandl}\PY{o}{.}\PY{n}{ApiConfig}\PY{o}{.}\PY{n}{api\PYZus{}key} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t8LQxYisJ5vhf91FQHno}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{def} \PY{n+nf}{get\PYZus{}quandl\PYZus{}data}\PY{p}{(}\PY{n}{quandl\PYZus{}id}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Download and cache Quandl dataseries\PYZsq{}\PYZsq{}\PYZsq{}}
+            \PY{n}{cache\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{.pkl}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{quandl\PYZus{}id}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{k}{try}\PY{p}{:}
+                \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{cache\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{df} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}   
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loaded }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ from cache}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{quandl\PYZus{}id}\PY{p}{)}\PY{p}{)}
+            \PY{k}{except} \PY{p}{(}\PY{n+ne}{OSError}\PY{p}{,} \PY{n+ne}{IOError}\PY{p}{)} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Downloading }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ from Quandl}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{quandl\PYZus{}id}\PY{p}{)}\PY{p}{)}
+                \PY{n}{df} \PY{o}{=} \PY{n}{quandl}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{quandl\PYZus{}id}\PY{p}{,} \PY{n}{returns}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pandas}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}pickle}\PY{p}{(}\PY{n}{cache\PYZus{}path}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cached }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ at }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{quandl\PYZus{}id}\PY{p}{,} \PY{n}{cache\PYZus{}path}\PY{p}{)}\PY{p}{)}
+            \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Pull Kraken BTC price exchange data}
+        \PY{n}{btc\PYZus{}usd\PYZus{}price\PYZus{}kraken} \PY{o}{=} \PY{n}{get\PYZus{}quandl\PYZus{}data}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BCHARTS/KRAKENUSD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loaded BCHARTS/KRAKENUSD from cache
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{btc\PYZus{}usd\PYZus{}price\PYZus{}kraken}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:}                  Open       High        Low      Close  Volume (BTC)  \textbackslash{}
+        Date                                                                   
+        2014-01-07  874.67040  892.06753  810.00000  810.00000     15.622378   
+        2014-01-08  810.00000  899.84281  788.00000  824.98287     19.182756   
+        2014-01-09  825.56345  870.00000  807.42084  841.86934      8.158335   
+        2014-01-10  839.99000  857.34056  817.00000  857.33056      8.024510   
+        2014-01-11  858.20000  918.05471  857.16554  899.84105     18.748285   
+        
+                    Volume (Currency)  Weighted Price  
+        Date                                           
+        2014-01-07       13151.472844      841.835522  
+        2014-01-08       16097.329584      839.156269  
+        2014-01-09        6784.249982      831.572913  
+        2014-01-10        6780.220188      844.938794  
+        2014-01-11       16698.566929      890.671709  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Chart the BTC pricing data}
+        \PY{n}{btc\PYZus{}trace} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{btc\PYZus{}usd\PYZus{}price\PYZus{}kraken}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{btc\PYZus{}usd\PYZus{}price\PYZus{}kraken}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weighted Price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{py}\PY{o}{.}\PY{n}{iplot}\PY{p}{(}\PY{p}{[}\PY{n}{btc\PYZus{}trace}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Pull Pricing Data From More BTC Exchanges}
+        \PY{c+c1}{\PYZsh{} Noticed a hitch in this dataset \PYZhy{} there are a few notable down\PYZhy{}spikes, particularly in late 2014 and }
+        \PY{c+c1}{\PYZsh{} early 2016. These spikes are specific to the Kraken dataset, and we obviously don\PYZsq{}t want them to be reflected in our }
+        \PY{c+c1}{\PYZsh{} overall pricing analysis.}
+        
+        \PY{c+c1}{\PYZsh{} The nature of Bitcoin exchanges is that the pricing is determined by supply and demand, hence no single exchange }
+        \PY{c+c1}{\PYZsh{} contains a true \PYZdq{}master price\PYZdq{} of Bitcoin. To solve this issue, along with that of down\PYZhy{}spikes, we\PYZsq{}ll pull data from }
+        \PY{c+c1}{\PYZsh{} three more major Bitcoin changes to calculate an aggregate Bitcoin price index.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Pull pricing data for 3 more BTC exchanges}
+        \PY{n}{exchanges} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{COINBASE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BITSTAMP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ITBIT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{exchange\PYZus{}data} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        
+        \PY{n}{exchange\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KRAKEN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{btc\PYZus{}usd\PYZus{}price\PYZus{}kraken}
+        
+        \PY{k}{for} \PY{n}{exchange} \PY{o+ow}{in} \PY{n}{exchanges}\PY{p}{:}
+            \PY{n}{exchange\PYZus{}code} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BCHARTS/}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{USD}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{exchange}\PY{p}{)}
+            \PY{n}{btc\PYZus{}exchange\PYZus{}df} \PY{o}{=} \PY{n}{get\PYZus{}quandl\PYZus{}data}\PY{p}{(}\PY{n}{exchange\PYZus{}code}\PY{p}{)}
+            \PY{n}{exchange\PYZus{}data}\PY{p}{[}\PY{n}{exchange}\PY{p}{]} \PY{o}{=} \PY{n}{btc\PYZus{}exchange\PYZus{}df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Downloading BCHARTS/COINBASEUSD from Quandl
+Cached BCHARTS/COINBASEUSD at BCHARTS-COINBASEUSD.pkl
+Downloading BCHARTS/BITSTAMPUSD from Quandl
+Cached BCHARTS/BITSTAMPUSD at BCHARTS-BITSTAMPUSD.pkl
+Downloading BCHARTS/ITBITUSD from Quandl
+Cached BCHARTS/ITBITUSD at BCHARTS-ITBITUSD.pkl
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Merge All Of The Pricing Data Into A Single Dataframe}
+        \PY{c+c1}{\PYZsh{} Define a simple function to merge a common column of each dataframe into a new combined dataframe.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{merge\PYZus{}dfs\PYZus{}on\PYZus{}column}\PY{p}{(}\PY{n}{dataframes}\PY{p}{,} \PY{n}{labels}\PY{p}{,} \PY{n}{col}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Merge a single column of each dataframe into a new combined dataframe\PYZsq{}\PYZsq{}\PYZsq{}}
+            \PY{n}{series\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+            \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dataframes}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{series\PYZus{}dict}\PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{dataframes}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{n}{col}\PY{p}{]}
+                
+            \PY{k}{return} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{series\PYZus{}dict}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Merge the BTC price dataseries\PYZsq{} into a single dataframe}
+         \PY{n}{btc\PYZus{}usd\PYZus{}datasets} \PY{o}{=} \PY{n}{merge\PYZus{}dfs\PYZus{}on\PYZus{}column}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{exchange\PYZus{}data}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{list}\PY{p}{(}\PY{n}{exchange\PYZus{}data}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weighted Price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:}                BITSTAMP     COINBASE        ITBIT       KRAKEN
+         Date                                                          
+         2018-08-14  6044.381950  6064.944454  6048.473368  6083.281251
+         2018-08-15  6405.883484  6398.476867  6411.165143  6399.840013
+         2018-08-16  6345.799680  6346.968070  6342.792921  6347.361400
+         2018-08-17  6474.701714  6481.433624  6481.742317  6469.824666
+         2018-08-18  6437.674848  6452.522438  6426.404880          NaN
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{c+c1}{\PYZsh{} Visualize The Pricing Datasets}
+         \PY{c+c1}{\PYZsh{} To visualize how these pricing datasets compare. }
+         \PY{c+c1}{\PYZsh{} Define a helper function to provide a single\PYZhy{}line command to compare each column in the dataframe on a graph }
+         \PY{c+c1}{\PYZsh{} using Plotly.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{k}{def} \PY{n+nf}{df\PYZus{}scatter}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{seperate\PYZus{}y\PYZus{}axis}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{y\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{initial\PYZus{}hide}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Generate a scatter plot of the entire dataframe\PYZsq{}\PYZsq{}\PYZsq{}}
+             \PY{n}{label\PYZus{}arr} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+             \PY{n}{series\PYZus{}arr} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{col}\PY{p}{:} \PY{n}{df}\PY{p}{[}\PY{n}{col}\PY{p}{]}\PY{p}{,} \PY{n}{label\PYZus{}arr}\PY{p}{)}\PY{p}{)}
+             
+             \PY{n}{layout} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Layout}\PY{p}{(}
+                 \PY{n}{title}\PY{o}{=}\PY{n}{title}\PY{p}{,}
+                 \PY{n}{legend}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{orientation}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{h}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{xaxis}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{type}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{yaxis}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}
+                     \PY{n}{title}\PY{o}{=}\PY{n}{y\PYZus{}axis\PYZus{}label}\PY{p}{,}
+                     \PY{n}{showticklabels}\PY{o}{=} \PY{o+ow}{not} \PY{n}{seperate\PYZus{}y\PYZus{}axis}\PY{p}{,}
+                     \PY{n+nb}{type}\PY{o}{=}\PY{n}{scale}
+                 \PY{p}{)}
+             \PY{p}{)}
+             
+             \PY{n}{y\PYZus{}axis\PYZus{}config} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}
+                 \PY{n}{overlaying}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{showticklabels}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+                 \PY{n+nb}{type}\PY{o}{=}\PY{n}{scale} \PY{p}{)}
+             
+             \PY{n}{visibility} \PY{o}{=} \PY{k+kc}{True}
+             \PY{k}{if} \PY{n}{initial\PYZus{}hide}\PY{p}{:}
+                 \PY{n}{visibility} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{legendonly}\PY{l+s+s1}{\PYZsq{}}
+                 
+             \PY{c+c1}{\PYZsh{} Form Trace For Each Series}
+             \PY{n}{trace\PYZus{}arr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{index}\PY{p}{,} \PY{n}{series} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{series\PYZus{}arr}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{trace} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Scatter}\PY{p}{(}
+                     \PY{n}{x}\PY{o}{=}\PY{n}{series}\PY{o}{.}\PY{n}{index}\PY{p}{,} 
+                     \PY{n}{y}\PY{o}{=}\PY{n}{series}\PY{p}{,} 
+                     \PY{n}{name}\PY{o}{=}\PY{n}{label\PYZus{}arr}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{visible}\PY{o}{=}\PY{n}{visibility}
+                 \PY{p}{)}
+                 
+                 \PY{c+c1}{\PYZsh{} Add seperate axis for the series}
+                 \PY{k}{if} \PY{n}{seperate\PYZus{}y\PYZus{}axis}\PY{p}{:}
+                     \PY{n}{trace}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yaxis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{index} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+                     \PY{n}{layout}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yaxis}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{index} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{y\PYZus{}axis\PYZus{}config}    
+                 \PY{n}{trace\PYZus{}arr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{trace}\PY{p}{)}
+         
+             \PY{n}{fig} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Figure}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{trace\PYZus{}arr}\PY{p}{,} \PY{n}{layout}\PY{o}{=}\PY{n}{layout}\PY{p}{)}
+             \PY{n}{py}\PY{o}{.}\PY{n}{iplot}\PY{p}{(}\PY{n}{fig}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} Plot all of the BTC exchange prices}
+         \PY{n}{df\PYZus{}scatter}\PY{p}{(}\PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bitcoin Price (USD) By Exchange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Clean and Aggregate the Pricing Data}
+        \PY{c+c1}{\PYZsh{} We can see that, although the four series follow roughly the same path, there are various irregularities in each }
+        \PY{c+c1}{\PYZsh{} that want to get rid of.}
+        
+        \PY{c+c1}{\PYZsh{} Remove all of the zero values from the dataframe, since we know that the price of Bitcoin has never been }
+        \PY{c+c1}{\PYZsh{} equal to zero in the timeframe that we are examining.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Remove \PYZdq{}0\PYZdq{} values}
+         \PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Plot the revised dataframe}
+         \PY{n}{df\PYZus{}scatter}\PY{p}{(}\PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bitcoin Price (USD) By Exchange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} We can now calculate a new column, containing the daily average Bitcoin price across all of the exchanges.}
+         
+         \PY{c+c1}{\PYZsh{} Calculate the average BTC price as a new column}
+         \PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}btc\PYZus{}price\PYZus{}usd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} This new column is our Bitcoin pricing index! Chart that column to make sure it looks ok.}
+         
+         \PY{c+c1}{\PYZsh{} Plot the average BTC price}
+         \PY{n}{btc\PYZus{}trace} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}btc\PYZus{}price\PYZus{}usd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{py}\PY{o}{.}\PY{n}{iplot}\PY{p}{(}\PY{p}{[}\PY{n}{btc\PYZus{}trace}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Cam use this aggregate pricing series later on, in order to convert the exchange rates of other }
+        \PY{c+c1}{\PYZsh{} cryptocurrencies to USD.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Retrieve Altcoin Pricing Data}
+        \PY{c+c1}{\PYZsh{} Now that we have a solid time series dataset for the price of Bitcoin, pull in some data on non\PYZhy{}Bitcoin }
+        \PY{c+c1}{\PYZsh{} cryptocurrencies, commonly referred to as altcoins.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Define Poloniex API Helper Functions}
+        \PY{c+c1}{\PYZsh{} For retrieving data on cryptocurrencies we\PYZsq{}ll be using the Poloniex API. To assist in the altcoin data retrieval, }
+        \PY{c+c1}{\PYZsh{} Define two helper functions to download and cache JSON data from this API.}
+        
+        \PY{c+c1}{\PYZsh{} First, define get\PYZus{}json\PYZus{}data, which will download and cache JSON data from a provided URL.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{def} \PY{n+nf}{get\PYZus{}json\PYZus{}data}\PY{p}{(}\PY{n}{json\PYZus{}url}\PY{p}{,} \PY{n}{cache\PYZus{}path}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Download and cache JSON data, return as a dataframe.\PYZsq{}\PYZsq{}\PYZsq{}}
+             \PY{k}{try}\PY{p}{:}        
+                 \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{cache\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{df} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}   
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loaded }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ from cache}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{json\PYZus{}url}\PY{p}{)}\PY{p}{)}
+             \PY{k}{except} \PY{p}{(}\PY{n+ne}{OSError}\PY{p}{,} \PY{n+ne}{IOError}\PY{p}{)} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Downloading }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{json\PYZus{}url}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{json\PYZus{}url}\PY{p}{)}
+                 \PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}pickle}\PY{p}{(}\PY{n}{cache\PYZus{}path}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cached response at }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{json\PYZus{}url}\PY{p}{,} \PY{n}{cache\PYZus{}path}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{base\PYZus{}polo\PYZus{}url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://poloniex.com/public?command=returnChartData\PYZam{}currencyPair=}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZam{}start=}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZam{}end=}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZam{}period=}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{start\PYZus{}date} \PY{o}{=} \PY{n}{datetime}\PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2015\PYZhy{}01\PYZhy{}01}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} get data from the start of 2015}
+         \PY{n}{end\PYZus{}date} \PY{o}{=} \PY{n}{datetime}\PY{o}{.}\PY{n}{now}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} up until today}
+         \PY{n}{pediod} \PY{o}{=} \PY{l+m+mi}{86400} \PY{c+c1}{\PYZsh{} pull daily data (86,400 seconds per day)}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}crypto\PYZus{}data}\PY{p}{(}\PY{n}{poloniex\PYZus{}pair}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Retrieve cryptocurrency data from poloniex\PYZsq{}\PYZsq{}\PYZsq{}}
+             \PY{n}{json\PYZus{}url} \PY{o}{=} \PY{n}{base\PYZus{}polo\PYZus{}url}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{poloniex\PYZus{}pair}\PY{p}{,} \PY{n}{start\PYZus{}date}\PY{o}{.}\PY{n}{timestamp}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{end\PYZus{}date}\PY{o}{.}\PY{n}{timestamp}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{pediod}\PY{p}{)}
+             \PY{n}{data\PYZus{}df} \PY{o}{=} \PY{n}{get\PYZus{}json\PYZus{}data}\PY{p}{(}\PY{n}{json\PYZus{}url}\PY{p}{,} \PY{n}{poloniex\PYZus{}pair}\PY{p}{)}
+             \PY{n}{data\PYZus{}df} \PY{o}{=} \PY{n}{data\PYZus{}df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{return} \PY{n}{data\PYZus{}df}
+         \PY{c+c1}{\PYZsh{} This function will take a cryptocurrency pair string (such as \PYZsq{}BTC\PYZus{}ETH\PYZsq{}) and return the dataframe containing the }
+         \PY{c+c1}{\PYZsh{} historical exchange rate of the two currencies.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{}  Download Trading Data From Poloniex}
+         \PY{c+c1}{\PYZsh{} Most altcoins cannot be bought directly with USD; to acquire these coins individuals often buy Bitcoins and then trade }
+         \PY{c+c1}{\PYZsh{} the Bitcoins for altcoins on cryptocurrency exchanges. For this reason we\PYZsq{}ll be downloading the exchange rate to BTC }
+         \PY{c+c1}{\PYZsh{} for each coin, and then we\PYZsq{}ll use our existing BTC pricing data to convert this value to USD.}
+         
+         \PY{c+c1}{\PYZsh{} Download exchange data for nine of the top cryptocurrencies \PYZhy{} }
+         \PY{c+c1}{\PYZsh{} Ethereum, Litecoin, Ripple, Ethereum Classic, Stellar, Dashcoin, Siacoin, Monero, and NEM.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{altcoins} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ETH}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LTC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{XRP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ETC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DASH}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{XMR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{XEM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{altcoin\PYZus{}data} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+         \PY{k}{for} \PY{n}{altcoin} \PY{o+ow}{in} \PY{n}{altcoins}\PY{p}{:}
+             \PY{n}{coinpair} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BTC\PYZus{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{altcoin}\PY{p}{)}
+             \PY{n}{crypto\PYZus{}price\PYZus{}df} \PY{o}{=} \PY{n}{get\PYZus{}crypto\PYZus{}data}\PY{p}{(}\PY{n}{coinpair}\PY{p}{)}
+             \PY{n}{altcoin\PYZus{}data}\PY{p}{[}\PY{n}{altcoin}\PY{p}{]} \PY{o}{=} \PY{n}{crypto\PYZus{}price\PYZus{}df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_ETH\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_ETH\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_LTC\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_LTC\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_XRP\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_XRP\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_ETC\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_ETC\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_STR\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_STR\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_DASH\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_DASH\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_SC\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_SC\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_XMR\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_XMR\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Downloading https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_XEM\&start=1420066800.0\&end=1534702546.617485\&period=86400
+Cached response at https://poloniex.com/public?command=returnChartData\&currencyPair=BTC\_XEM\&start=1420066800.0\&end=1534702546.617485\&period=86400
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{altcoin\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ETH}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:}                close      high       low      open   quoteVolume       volume  \textbackslash{}
+         date                                                                            
+         2018-08-15  0.044775  0.046339  0.043987  0.044979  26791.940167  1214.013592   
+         2018-08-16  0.045400  0.046505  0.044472  0.044775  17477.998975   795.763658   
+         2018-08-17  0.048156  0.048530  0.045297  0.045400  13357.452222   626.433852   
+         2018-08-18  0.045990  0.048675  0.044822  0.048156  14264.406892   663.471089   
+         2018-08-19  0.046221  0.047500  0.045500  0.045990   6785.531945   314.896851   
+         
+                     weightedAverage  
+         date                         
+         2018-08-15         0.045313  
+         2018-08-16         0.045529  
+         2018-08-17         0.046898  
+         2018-08-18         0.046512  
+         2018-08-19         0.046407  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Convert Prices to USD}
+        \PY{c+c1}{\PYZsh{} Since we now have the exchange rate for each cryptocurrency to Bitcoin, and we have the Bitcoin/USD historical pricing }
+        \PY{c+c1}{\PYZsh{} index, we can directly calculate the USD price series for each altcoin}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} Calculate USD Price as a new column in each altcoin dataframe}
+         \PY{k}{for} \PY{n}{altcoin} \PY{o+ow}{in} \PY{n}{altcoin\PYZus{}data}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{altcoin\PYZus{}data}\PY{p}{[}\PY{n}{altcoin}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{price\PYZus{}usd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=}  \PY{n}{altcoin\PYZus{}data}\PY{p}{[}\PY{n}{altcoin}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{weightedAverage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{*} \PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}btc\PYZus{}price\PYZus{}usd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Here, we\PYZsq{}ve created a new column in each altcoin dataframe with the USD prices for that coin.}
+        
+        \PY{c+c1}{\PYZsh{} we can re\PYZhy{}use our merge\PYZus{}dfs\PYZus{}on\PYZus{}column function from earlier to create a combined dataframe of the USD price }
+        \PY{c+c1}{\PYZsh{} for each cryptocurrency.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{} Merge USD price of each altcoin into single dataframe }
+         \PY{n}{combined\PYZus{}df} \PY{o}{=} \PY{n}{merge\PYZus{}dfs\PYZus{}on\PYZus{}column}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{altcoin\PYZus{}data}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{list}\PY{p}{(}\PY{n}{altcoin\PYZus{}data}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{price\PYZus{}usd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} Add the Bitcoin prices as a final column to the combined dataframe.}
+         
+         \PY{c+c1}{\PYZsh{} Add BTC price to the dataframe}
+         \PY{n}{combined\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BTC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{btc\PYZus{}usd\PYZus{}datasets}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}btc\PYZus{}price\PYZus{}usd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Now we have a single dataframe containing daily USD prices for the ten cryptocurrencies that we\PYZsq{}re examining.}
+        
+        \PY{c+c1}{\PYZsh{} reuse our df\PYZus{}scatter function from earlier to chart all of the cryptocurrency prices against each other.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} Chart all of the altocoin prices}
+         \PY{n}{df\PYZus{}scatter}\PY{p}{(}\PY{n}{combined\PYZus{}df}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cryptocurrency Prices (USD)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{seperate\PYZus{}y\PYZus{}axis}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{y\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Coin Value (USD)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} This graph gives a pretty solid \PYZdq{}big picture\PYZdq{} view of how the exchange rates of each currency have varied over the }
+        \PY{c+c1}{\PYZsh{} past few years.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Compute Correlation Values of The Cryptocurrencies}
+        \PY{c+c1}{\PYZsh{} Notice that the cryptocurrency exchange rates, despite their wildly different values and volatility, }
+        \PY{c+c1}{\PYZsh{} seem to be slightly correlated. Especially since the spike in April 2017, even many of the smaller fluctuations }
+        \PY{c+c1}{\PYZsh{} appear to be occurring in sync across the entire market.}
+        
+        \PY{c+c1}{\PYZsh{} A visually\PYZhy{}derived hunch is not much better than a guess until we have the stats to back it up.}
+        
+        \PY{c+c1}{\PYZsh{} We can test our correlation hypothesis using the Pandas corr() method, which computes a Pearson correlation }
+        \PY{c+c1}{\PYZsh{} coefficient for each column in the dataframe against each other column.}
+        
+        \PY{c+c1}{\PYZsh{} Computing correlations directly on a non\PYZhy{}stationary time series (such as raw pricing data) can give biased }
+        \PY{c+c1}{\PYZsh{} correlation values. We will work around this by using the pct\PYZus{}change() method, which will convert each cell in the }
+        \PY{c+c1}{\PYZsh{} dataframe from an absolute price value to a daily return percentage.}
+        
+        \PY{c+c1}{\PYZsh{} First we\PYZsq{}ll calculate correlations for 2016.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} Calculate the pearson correlation coefficients for altcoins in 2016}
+         \PY{n}{combined\PYZus{}df\PYZus{}2016} \PY{o}{=} \PY{n}{combined\PYZus{}df}\PY{p}{[}\PY{n}{combined\PYZus{}df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{year} \PY{o}{==} \PY{l+m+mi}{2016}\PY{p}{]}
+         \PY{n}{combined\PYZus{}df\PYZus{}2016}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pearson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:}           DASH       ETC       ETH       LTC        SC       STR       XEM  \textbackslash{}
+         DASH  1.000000  0.003992  0.122695 -0.012194  0.026602  0.058083  0.014571   
+         ETC   0.003992  1.000000 -0.181991 -0.131079 -0.008066 -0.102654 -0.080938   
+         ETH   0.122695 -0.181991  1.000000 -0.064652  0.169642  0.035093  0.043205   
+         LTC  -0.012194 -0.131079 -0.064652  1.000000  0.012253  0.113523  0.160667   
+         SC    0.026602 -0.008066  0.169642  0.012253  1.000000  0.143252  0.106153   
+         STR   0.058083 -0.102654  0.035093  0.113523  0.143252  1.000000  0.225132   
+         XEM   0.014571 -0.080938  0.043205  0.160667  0.106153  0.225132  1.000000   
+         XMR   0.121537 -0.105898  0.087216  0.129475  0.047910  0.027998  0.016438   
+         XRP   0.088657 -0.054095  0.085630  0.053712  0.021098  0.320116  0.101326   
+         BTC  -0.014040 -0.170538 -0.006502  0.750174  0.035116  0.079075  0.227674   
+         
+                    XMR       XRP       BTC  
+         DASH  0.121537  0.088657 -0.014040  
+         ETC  -0.105898 -0.054095 -0.170538  
+         ETH   0.087216  0.085630 -0.006502  
+         LTC   0.129475  0.053712  0.750174  
+         SC    0.047910  0.021098  0.035116  
+         STR   0.027998  0.320116  0.079075  
+         XEM   0.016438  0.101326  0.227674  
+         XMR   1.000000  0.027649  0.127520  
+         XRP   0.027649  1.000000  0.044161  
+         BTC   0.127520  0.044161  1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} These correlation coefficients are all over the place. Coefficients close to 1 or \PYZhy{}1 mean that the series\PYZsq{} are }
+        \PY{c+c1}{\PYZsh{} strongly correlated or inversely correlated respectively, and coefficients close to zero mean that the values tend }
+        \PY{c+c1}{\PYZsh{} to fluctuate independently of each other.}
+        
+        \PY{c+c1}{\PYZsh{} To help visualize these results, create one more helper visualization function.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{def} \PY{n+nf}{correlation\PYZus{}heatmap}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{absolute\PYZus{}bounds}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Plot a correlation heatmap for the entire dataframe\PYZsq{}\PYZsq{}\PYZsq{}}
+             \PY{n}{heatmap} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Heatmap}\PY{p}{(}
+                 \PY{n}{z}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pearson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{x}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{,}
+                 \PY{n}{y}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{,}
+                 \PY{n}{colorbar}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pearson Coefficient}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+             \PY{p}{)}
+             
+             \PY{n}{layout} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Layout}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{n}{title}\PY{p}{)}
+             
+             \PY{k}{if} \PY{n}{absolute\PYZus{}bounds}\PY{p}{:}
+                 \PY{n}{heatmap}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zmax}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.0}
+                 \PY{n}{heatmap}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zmin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}
+                 
+             \PY{n}{fig} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Figure}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{p}{[}\PY{n}{heatmap}\PY{p}{]}\PY{p}{,} \PY{n}{layout}\PY{o}{=}\PY{n}{layout}\PY{p}{)}
+             \PY{n}{py}\PY{o}{.}\PY{n}{iplot}\PY{p}{(}\PY{n}{fig}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{correlation\PYZus{}heatmap}\PY{p}{(}\PY{n}{combined\PYZus{}df\PYZus{}2016}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cryptocurrency Correlations in 2016}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Here, the dark red values represent strong correlations (note that each currency is, obviously, strongly correlated }
+        \PY{c+c1}{\PYZsh{} with itself), and the dark blue values represent strong inverse correlations. }
+        \PY{c+c1}{\PYZsh{} All of the light blue/orange/gray/tan colors in\PYZhy{}between represent varying degrees of weak/non\PYZhy{}existent correlations.}
+        
+        \PY{c+c1}{\PYZsh{} What does this chart tell us? Essentially, it shows that there was very little statistically significant linkage }
+        \PY{c+c1}{\PYZsh{} between how the prices of different cryptocurrencies fluctuated during 2016.}
+        
+        \PY{c+c1}{\PYZsh{} Now, to test our hypothesis that the cryptocurrencies have become more correlated in recent months, }
+        \PY{c+c1}{\PYZsh{} let\PYZsq{}s repeat the same test using only the data from 2017.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{combined\PYZus{}df\PYZus{}2017} \PY{o}{=} \PY{n}{combined\PYZus{}df}\PY{p}{[}\PY{n}{combined\PYZus{}df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{year} \PY{o}{==} \PY{l+m+mi}{2017}\PY{p}{]}
+         \PY{n}{combined\PYZus{}df\PYZus{}2017}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pearson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:}           DASH       ETC       ETH       LTC        SC       STR       XEM  \textbackslash{}
+         DASH  1.000000  0.387555  0.506911  0.340153  0.291424  0.183038  0.325968   
+         ETC   0.387555  1.000000  0.601437  0.482062  0.298406  0.210387  0.321852   
+         ETH   0.506911  0.601437  1.000000  0.437609  0.373078  0.259399  0.399200   
+         LTC   0.340153  0.482062  0.437609  1.000000  0.339144  0.307589  0.379088   
+         SC    0.291424  0.298406  0.373078  0.339144  1.000000  0.402966  0.331350   
+         STR   0.183038  0.210387  0.259399  0.307589  0.402966  1.000000  0.339502   
+         XEM   0.325968  0.321852  0.399200  0.379088  0.331350  0.339502  1.000000   
+         XMR   0.498418  0.447398  0.554632  0.437204  0.378644  0.327488  0.336076   
+         XRP   0.091146  0.114780  0.212350  0.323905  0.243872  0.509828  0.268168   
+         BTC   0.307095  0.416562  0.410771  0.420645  0.325318  0.230957  0.329431   
+         
+                    XMR       XRP       BTC  
+         DASH  0.498418  0.091146  0.307095  
+         ETC   0.447398  0.114780  0.416562  
+         ETH   0.554632  0.212350  0.410771  
+         LTC   0.437204  0.323905  0.420645  
+         SC    0.378644  0.243872  0.325318  
+         STR   0.327488  0.509828  0.230957  
+         XEM   0.336076  0.268168  0.329431  
+         XMR   1.000000  0.226636  0.409183  
+         XRP   0.226636  1.000000  0.131469  
+         BTC   0.409183  0.131469  1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} It is notable, however, that almost all of the cryptocurrencies have become more correlated with each other }
+         \PY{c+c1}{\PYZsh{} across the board.}
+         
+         \PY{n}{correlation\PYZus{}heatmap}\PY{p}{(}\PY{n}{combined\PYZus{}df\PYZus{}2017}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cryptocurrency Correlations in 2017}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{} The most immediate explanation is that hedge funds have recently begun publicly trading in }
+         \PY{c+c1}{\PYZsh{} crypto\PYZhy{}currency markets12. These funds have vastly more capital to play with than the average trader, so if a }
+         \PY{c+c1}{\PYZsh{} fund is hedging their bets across multiple cryptocurrencies, and using similar trading strategies for each based }
+         \PY{c+c1}{\PYZsh{} on independent variables (say, the stock market), it could make sense that this trend would emerge.}
+         
+         \PY{c+c1}{\PYZsh{} In\PYZhy{}Depth \PYZhy{} XRP and STR}
+         \PY{c+c1}{\PYZsh{} For instance, one noticeable trait of the above chart is that XRP (the token for Ripple), is the least correlated }
+         \PY{c+c1}{\PYZsh{} cryptocurrency. The notable exception here is with STR (the token for Stellar, officially known as \PYZdq{}Lumens\PYZdq{}), }
+         \PY{c+c1}{\PYZsh{} which has a stronger (0.62) correlation with XRP.}
+         
+         \PY{c+c1}{\PYZsh{} What is interesting here is that Stellar and Ripple are both fairly similar fintech platforms aimed at reducing the }
+         \PY{c+c1}{\PYZsh{} friction of international money transfers between banks.}
+         
+         \PY{c+c1}{\PYZsh{} It is conceivable that some big\PYZhy{}money players and hedge funds might be using similar trading strategies for their }
+         \PY{c+c1}{\PYZsh{} investments in Stellar and Ripple, due to the similarity of the blockchain services that use each token. }
+         \PY{c+c1}{\PYZsh{} This could explain why XRP is so much more heavily correlated with STR than with the other cryptocurrencies.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Here are some ideas:}
+        
+        \PY{c+c1}{\PYZsh{} Add data from more cryptocurrencies to the analysis.}
+        \PY{c+c1}{\PYZsh{} Adjust the time frame and granularity of the correlation analysis, for a more fine or coarse grained view of the trends.}
+        \PY{c+c1}{\PYZsh{} Search for trends in trading volume and/or blockchain mining data sets. The buy/sell volume ratios are likely more relevant than the raw price data if you want to predict future price fluctuations.}
+        \PY{c+c1}{\PYZsh{} Add pricing data on stocks, commodities, and fiat currencies to determine which of them correlate with cryptocurrencies (but please remember the old adage that \PYZdq{}Correlation does not imply causation\PYZdq{}).}
+        \PY{c+c1}{\PYZsh{} Quantify the amount of \PYZdq{}buzz\PYZdq{} surrounding specific cryptocurrencies using Event Registry, GDLELT, and Google Trends.}
+        \PY{c+c1}{\PYZsh{} Train a predictive machine learning model on the data to predict tomorrow\PYZsq{}s prices. If you\PYZsq{}re more ambitious, you could even try doing this with a recurrent neural network (RNN).}
+        \PY{c+c1}{\PYZsh{} Use your analysis to create an automated \PYZdq{}Trading Bot\PYZdq{} on a trading site such as Poloniex or Coinbase, using their respective trading APIs. Be careful: a poorly optimized trading bot is an easy way to lose your money quickly.}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
