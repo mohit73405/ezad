@@ -28,15 +28,15 @@ class Login(Resource):
         # print(data)
         if data != None:
             if sha256_crypt.verify(password, data[4]):
-                session['logged_in'] = True
-                session['email_id'] = email
-                session['first_name'] = data[1]
-                session['last_name'] = data[2]
-                session['type'] = 'brand'
-                session['company_name'] = data[5]
-                session['user_id'] = data[0]
-                print(session['user_id'])
-                return {'user_id': session['user_id']},200
+                # session['logged_in'] = True
+                # session['email_id'] = email
+                # session['first_name'] = data[1]
+                # session['last_name'] = data[2]
+                # session['type'] = 'brand'
+                # session['company_name'] = data[5]
+                # session['user_id'] = data[0]
+                # print(session['user_id'])
+                return {'user_id': data[0]},200
             else:
                 error = 'Invalid login'
                 return {'error': error},404
