@@ -43,10 +43,10 @@ class Login(Resource):
         else:
             return {'error':'No such Username'},404
 
-@ns_user.route('/logout/<string:user_id>')
-class Logout(Resource):
-    def post(self,user_id):
-        '''clear all session of user_id'''
-        session.clear()
-        return {'Logged out':'Success'},200
+# @ns_user.route('/logout/<string:user_id>')
+# class Logout(Resource):
+#     def post(self,user_id):
+#         '''clear all session of user_id'''
+#         session.clear()
+#         return {'Logged out':'Success'},200
 
