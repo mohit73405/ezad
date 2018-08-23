@@ -1,4 +1,5 @@
 from flask import Flask,Blueprint
+from flask_cors import CORS
 from flask_restplus import Api
 from apis.payments  import ns_payments
 from apis.brand import ns_brand
@@ -7,6 +8,7 @@ from apis.youtube import ns_youtube
 from apis.campaign import ns_campaign
 
 app = Flask(__name__)
+CORS(app)
 
 blueprint = Blueprint('api',__name__,url_prefix='/api')
 api = Api(blueprint,version='1.0', title='Connecsi Api',description='APIS',doc='/documentation')
