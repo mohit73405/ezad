@@ -14,10 +14,19 @@ brand_form = ns_brand.model('Brand Details', {
     'password' : fields.String(required=True, description='Password')
 })
 
+
 brand_edit_form = ns_brand.model('Brand Details Update', {
     'first_name' : fields.String(required=True, description='First Name'),
     'last_name' : fields.String(required=True, description='Last Name'),
-    'company_name' : fields.String(required=True, description='Company Name')
+    'phone': fields.String(required=True, description='Phone'),
+    'position': fields.String(required=True, description='Position'),
+    'company_name': fields.String(required=True, description='Company Name'),
+    'url': fields.String(required=True, description='URL'),
+    'country': fields.String(required=True, description='Country'),
+    'no_of_employees': fields.String(required=True, description='No Of Employees'),
+    'city': fields.String(required=True, description='City'),
+    'monthly_budget': fields.String(required=True, description='Monthly Budget'),
+    'business_sector': fields.String(required=True, description='Business Sector')
 })
 
 @ns_brand.route('/register')
@@ -60,9 +69,12 @@ class Brand(Resource):
     def get(self,user_id):
         '''Brand details by user_id'''
         connecsiObj = ConnecsiModel()
-        columns = ['user_id', 'first_name', 'last_name', 'company_name', 'email_id', 'role']
+        columns = ['user_id', 'first_name', 'last_name', 'company_name', 'email_id', 'role','phone','position','url','country'
+                   ,'no_of_employees','city','monthly_budget','business_sector']
         data = connecsiObj.get__(table_name='users_brands',columns=columns,WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
-        return {'data':data},200
+        response_dict = dict(zip(columns, data[0]))
+        print(response_dict)
+        return {'data':response_dict},200
 
     @ns_brand.expect(brand_edit_form)
     def put(self,user_id):
@@ -70,8 +82,21 @@ class Brand(Resource):
         form_data = request.get_json()
         first_name = form_data.get('first_name')
         last_name = form_data.get('last_name')
+        phone = form_data.get('phone')
+        position = form_data.get('position')
+        url = form_data.get('url')
+        country = form_data.get('country')
+        no_of_employees = form_data.get('no_of_employees')
+        city = form_data.get('city')
+        monthly_budget = form_data.get('monthly_budget')
+        business_sector = form_data.get('business_sector')
         company_name = form_data.get('company_name')
-        connecsiObj = ConnecsiModel()
-        columns = ['first_name','last_name','company_name']
-        data=(first_name,last_name,company_name)
-        connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
+        columns = ['user_id', 'first_name', 'last_name', 'company_name', 'phone', 'position', 'url',
+                   'country', 'no_of_employees', 'city', 'monthly_budget', 'business_sector']
+        data=(first_name,last_name,company_name,phone,position,url,country,no_of_employees,city,monthly_budget,business_sector)
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
+            return {"response" : result},200
+        except Exception as e:
+            return {"response": e},500
