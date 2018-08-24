@@ -91,12 +91,12 @@ class Brand(Resource):
         monthly_budget = form_data.get('monthly_budget')
         business_sector = form_data.get('business_sector')
         company_name = form_data.get('company_name')
-        columns = ['user_id', 'first_name', 'last_name', 'company_name', 'phone', 'position', 'url',
+        columns = ['first_name', 'last_name', 'company_name', 'phone', 'position', 'url',
                    'country', 'no_of_employees', 'city', 'monthly_budget', 'business_sector']
         data=(first_name,last_name,company_name,phone,position,url,country,no_of_employees,city,monthly_budget,business_sector)
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
-            return {"response" : result},200
+            connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
+            return {"response" : 1},200
         except Exception as e:
             return {"response": e},500
