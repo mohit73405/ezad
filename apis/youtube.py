@@ -21,7 +21,13 @@ class RegionCodes(Resource):
         '''get all youtube region codes'''
         connecsiObj = ConnecsiModel()
         region_codes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
-        return {'data' : region_codes}
+        columns = ['region_code', 'country_name']
+        response_list = []
+        for item in region_codes:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+
+        return {'data' : response_list}
 
 @ns_youtube.route('/regionCode/<string:regionCode>')
 class RegionCode(Resource):
@@ -37,7 +43,15 @@ class VideoCategories(Resource):
         ''' get all video categories'''
         connecsiObj = ConnecsiModel()
         video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
-        return {'data': video_categories}
+        print(video_categories)
+        columns = ['video_cat_id','video_cat_name']
+        response_list = []
+        for item in video_categories:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+
+        print(response_list)
+        return {'data': response_list}
 
 @ns_youtube.route('/searchChannels/<string:channel>')
 class SearchChannels(Resource):
