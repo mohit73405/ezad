@@ -9,7 +9,7 @@ from apis.campaign import ns_campaign
 from apis.messages import ns_messages
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 
 blueprint = Blueprint('api',__name__,url_prefix='/api')
 api = Api(blueprint,version='1.0', title='Connecsi Api',description='APIS',doc='/documentation')
