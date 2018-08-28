@@ -9,11 +9,15 @@ from apis.campaign import ns_campaign
 from apis.messages import ns_messages
 
 app = Flask(__name__)
-# CORS(app)
+
 
 blueprint = Blueprint('api',__name__,url_prefix='/api')
 api = Api(blueprint,version='1.0', title='Connecsi Api',description='APIS',doc='/documentation')
 app.register_blueprint(blueprint)
+
+CORS(app)
+# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 api.namespaces.pop(0)
 
 api.add_namespace(ns_user)
