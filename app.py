@@ -6,6 +6,7 @@ from apis.brand import ns_brand
 from apis.user import ns_user
 from apis.youtube import ns_youtube
 from apis.campaign import ns_campaign
+from apis.messages import ns_messages
 
 app = Flask(__name__)
 CORS(app)
@@ -20,6 +21,7 @@ api.add_namespace(ns_brand)
 api.add_namespace(ns_payments)
 api.add_namespace(ns_youtube)
 api.add_namespace(ns_campaign)
+api.add_namespace(ns_messages)
 
 
 

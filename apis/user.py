@@ -11,7 +11,7 @@ login_form = ns_user.model('Login', {
     'password' : fields.String(required=True, description='Password')
 })
 
-@ns_user.route('/login')
+@ns_user.route('/')
 class Login(Resource):
     @ns_user.expect(login_form)
     # @api.param('password')
