@@ -16,7 +16,7 @@ api = Api(blueprint,version='1.0', title='Connecsi Api',description='APIS',doc='
 app.register_blueprint(blueprint)
 
 
-# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 api.namespaces.pop(0)
 
