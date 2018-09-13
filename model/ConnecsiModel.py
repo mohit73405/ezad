@@ -225,3 +225,19 @@ class ConnecsiModel:
                 cursor.close()
         except Exception as e: print(e)
 
+
+    def get_messages_by_user_id_and_user_type(self,user_id,user_type):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'messages'
+                sql = "SELECT  * from " + table_name + " WHERE user_id = '" + user_id + "' AND user_type = '"+ user_type + "'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
