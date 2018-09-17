@@ -3,9 +3,8 @@ from flask_restplus import Resource, Api, fields, Namespace
 from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
 import datetime
-from flask_mail import Mail,Message
-# import app
-from apis.flaskMail import mail_app
+import smtplib
+import email.message
 
 
 ns_messages = Namespace('Messages', description='Messages Operations')
@@ -36,32 +35,7 @@ class MailBox(Resource):
         data = [from_email_id, to_email_id, date, subject, message,user_id,user_type]
         result=0
         try:
-            # mail = Mail(app)
-            # msg = Message("Hello",
-            #               sender=from_email_id,
-            #               recipients=[to_email_id])
-            # msg.html = "<b>testing</b>"
-            # mail.send(msg)
-            try:
-                # mail_app.send_email(from_email=from_email_id,to_email=to_email_id,subject=subject)
-
-                mail_app.config.update(dict(
-                    MAIL_SERVER='smtp.gmail.com',
-                    MAIL_PORT=587,
-                    MAIL_USE_TLS=True,
-                    MAIL_USE_SSL=False,
-                    MAIL_USERNAME='padwalkiran1985@gmail.com',
-                    MAIL_PASSWORD='ironman6@123786',
-                ))
-                print(mail_app.config)
-                mail = Mail(mail_app)
-                msg = Message("Hello",
-                              recipients=[to_email_id])
-                msg.html = "<b>testing</b>"
-                print(msg)
-                mail.send(msg)
-            except Exception as e:
-                print(e)
+            self.send_mail(subject=subject,to_email_id=to_email_id)
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
             return {'response': result},200
@@ -82,3 +56,30 @@ class MailBox(Resource):
         except Exception as e:
             return {"response": e},500
 
+    def send_mail(self,subject,to_email_id):
+        email_content = """
+        <html>
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+           <title>Connecsi</title>
+        </head>
+        <body>
+        Connecsi User wants to connect with you...
+        Please login to view the full message...
+        <a href="#">Login</a>
+        </body>
+        </html>
+        """
+        msg = email.message.Message()
+        msg['Subject'] = subject
+        msg['From'] = 'kiran.padwal@connecsi.com'
+        msg['To'] = to_email_id
+        password = "saibaba@123786"
+        msg.add_header('Content-Type', 'text/html')
+        msg.set_payload(email_content)
+
+        server = smtplib.SMTP('smtp.gmail.com: 587')
+        server.starttls()
+        # Login Credentials for sending the mail
+        server.login(msg['From'], password)
+        server.sendmail(msg['From'], [msg['To']], msg.as_string())
