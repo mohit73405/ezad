@@ -74,7 +74,7 @@ class MailBox(Resource):
         msg['Subject'] = subject
         msg['From'] = 'business@connecsi.com'
         msg['To'] = to_email_id
-        password = "Ezadteam"
+        password = "ezadteamconnecsi123"
         msg.add_header('Content-Type', 'text/html')
         msg.set_payload(email_content)
 
