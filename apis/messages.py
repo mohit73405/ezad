@@ -72,9 +72,9 @@ class MailBox(Resource):
         """
         msg = email.message.Message()
         msg['Subject'] = subject
-        msg['From'] = 'kiran.padwal@connecsi.com'
+        msg['From'] = 'business@connecsi.com'
         msg['To'] = to_email_id
-        password = "saibaba@123786"
+        password = "ezadteam"
         msg.add_header('Content-Type', 'text/html')
         msg.set_payload(email_content)
 
