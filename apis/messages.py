@@ -47,7 +47,7 @@ class MailBox(Resource):
             connecsiObj = ConnecsiModel()
             data = connecsiObj.get_messages_by_user_id_and_user_type(user_id=user_id,user_type=user_type)
             print(data)
-            columns = ['from_email_id', 'to_email_id', 'date', 'subject', 'message', 'user_id', 'user_type']
+            columns = ['message_id','from_email_id', 'to_email_id', 'date', 'subject', 'message', 'user_id', 'user_type']
             response_list = []
             for item in data:
                 dict_temp = dict(zip(columns, item))
