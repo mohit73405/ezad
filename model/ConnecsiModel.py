@@ -226,11 +226,11 @@ class ConnecsiModel:
         except Exception as e: print(e)
 
 
-    def get_messages_by_user_id_and_user_type(self,user_id,user_type):
+    def get_messages_by_email_id_and_user_type(self,email_id,user_type):
         try:
             with self.cnx.cursor() as cursor:
                 table_name = 'messages'
-                sql = "SELECT  * from " + table_name + " WHERE user_id = '" + user_id + "' AND user_type = '"+ user_type + "'"
+                sql = "SELECT  * from " + table_name + " WHERE to_email_id = '" + email_id + "' AND from_email_id = '" + email_id + "' AND user_type = '"+ user_type + "'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
