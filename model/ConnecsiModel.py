@@ -230,7 +230,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 table_name = 'messages'
-                sql = "SELECT  * from " + table_name + " WHERE to_email_id = '" + email_id + "' AND from_email_id = '" + email_id + "' AND user_type = '"+ user_type + "'"
+                sql = "SELECT  * from " + table_name + " WHERE to_email_id = '" + email_id + "' OR from_email_id = '" + email_id + "' AND user_type = '"+ user_type + "'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()

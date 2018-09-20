@@ -45,8 +45,11 @@ class MailBox(Resource):
         ''' get messages by user id and user type'''
         try:
             connecsiObj = ConnecsiModel()
-            email_id = connecsiObj.get__(table_name='users_brands',columns=['email_id'],WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
-            data = connecsiObj.get_messages_by_email_id_and_user_type(email_id=email_id,user_type=user_type)
+            user = connecsiObj.get__(table_name='users_brands',STAR='*',WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
+            print(user)
+            print(user[0][3])
+            email_id = user[0][3]
+            data = connecsiObj.get_messages_by_email_id_and_user_type(email_id=str(email_id),user_type=user_type)
             print(data)
             columns = ['message_id','from_email_id', 'to_email_id', 'date', 'subject', 'message', 'user_id', 'user_type']
             response_list = []
