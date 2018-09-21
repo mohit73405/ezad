@@ -17,6 +17,14 @@ message_form = ns_messages.model('Message Details', {
     'message' : fields.String(required=True, description='Message')
 })
 
+conversation_form = ns_messages.model('Conversation Details', {
+    # 'message_id' : fields.Integer(required=True, description='Message ID'),
+    'conv_from_email_id' : fields.String(required=True, description='From Email Id'),
+    'conv_to_email_id' : fields.String(required=True, description='To Email Id'),
+    'conv_date' : fields.String(required=True, description='Date'),
+    'conv_subject' : fields.String(required=True, description='Subject'),
+    'conv_message' : fields.String(required=True, description='Message')
+})
 
 
 @ns_messages.route('/<string:user_id>/<string:user_type>')
@@ -59,6 +67,50 @@ class MailBox(Resource):
             return {'data': response_list}
         except Exception as e:
             return {"response": e},500
+
+@ns_messages.route('/conversations/<string:message_id>/<string:user_id>/<string:user_type>')
+class MailBox(Resource):
+    @ns_messages.expect(conversation_form)
+    def post(self, message_id,user_id, user_type):
+        '''Reply to message'''
+        form_data = request.get_json()
+        from_email_id = form_data.get('conv_from_email_id')
+        to_email_id = form_data.get('conv_to_email_id')
+        date = form_data.get('conv_date')
+        subject = form_data.get('conv_subject')
+        message = form_data.get('conv_message')
+
+        columns = ['message_id','conv_from_email_id', 'conv_to_email_id', 'conv_date', 'conv_subject', 'conv_message', 'user_id', 'user_type']
+        data = [message_id,from_email_id, to_email_id, date, subject, message, user_id, user_type]
+        result = 0
+        try:
+            self.send_mail(subject=subject, to_email_id=to_email_id)
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
+            return {'response': result}, 200
+        except:
+            return {'response': result}, 500
+
+    def get(self,message_id,user_id,user_type):
+        ''' Get Conversations by message id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            # user = connecsiObj.get__(table_name='users_brands', STAR='*', WHERE='WHERE', compare_column='user_id',
+            #                          compare_value=str(user_id))
+            # print(user)
+            # print(user[0][3])
+            # email_id = user[0][3]
+            data = connecsiObj.get_conversations_by_message_id(message_id=str(message_id))
+            print(data)
+            columns = ['conv_id','message_id', 'conv_from_email_id', 'conv_to_email_id', 'conv_date', 'conv_subject', 'conv_message', 'user_id',
+                       'user_type']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
 
     def send_mail(self,subject,to_email_id):
         email_content = """

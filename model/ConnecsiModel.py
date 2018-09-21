@@ -197,6 +197,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'messages':
                     cursor.execute(sql, data)
+                elif table_name == 'conversations':
+                    cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()
@@ -241,3 +243,20 @@ class ConnecsiModel:
 
         except Exception as e:
             print(e)
+
+    def get_conversations_by_message_id(self,message_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'conversations'
+                sql = "SELECT  * from " + table_name + " WHERE message_id = '" + message_id  + "' GROUP BY conv_id ASC"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
