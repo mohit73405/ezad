@@ -41,13 +41,16 @@ class MailBox(Resource):
 
         columns = ['from_email_id', 'to_email_id', 'date', 'subject', 'message','user_id','user_type']
         data = [from_email_id, to_email_id, date, subject, message,user_id,user_type]
+        print(data)
         result=0
         try:
             self.send_mail(subject=subject,to_email_id=to_email_id)
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
             return {'response': result},200
-        except: return {'response': result},500
+        except Exception as e:
+            print(e)
+            return {'response': result},500
 
     def get(self,user_id,user_type):
         ''' get messages by user id and user type'''
@@ -67,6 +70,36 @@ class MailBox(Resource):
             return {'data': response_list}
         except Exception as e:
             return {"response": e},500
+
+
+    def send_mail(self,subject,to_email_id):
+        email_content = """
+        <html>
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+           <title>Connecsi</title>
+        </head>
+        <body>
+        Connecsi User wants to connect with you...
+        Please login to view the full message...
+        <a href="#">Login</a>
+        </body>
+        </html>
+        """
+        msg = email.message.Message()
+        msg['Subject'] = subject
+        msg['From'] = 'business@connecsi.com'
+        msg['To'] = to_email_id
+        password = "ezadteam123"
+        msg.add_header('Content-Type', 'text/html')
+        msg.set_payload(email_content)
+
+        server = smtplib.SMTP('smtp.gmail.com: 587')
+        server.starttls()
+        # Login Credentials for sending the mail
+        server.login(msg['From'], password)
+        server.sendmail(msg['From'], [msg['To']], msg.as_string())
+
 
 @ns_messages.route('/conversations/<string:message_id>/<string:user_id>/<string:user_type>')
 class MailBox(Resource):
