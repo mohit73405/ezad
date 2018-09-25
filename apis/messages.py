@@ -182,7 +182,7 @@ class MailBox(Resource):
             connecsiObj = ConnecsiModel()
             data = connecsiObj.get_conversations_by_to_email_id(to_email_id=str(to_email_id))
             print(data)
-            columns = ['conv_id','message_id', 'conv_date', 'conv_to_email_id', 'conv_from_email_id', 'conv_subject', 'conv_message', 'user_id',
+            columns = ['conv_id','message_id', 'conv_date', 'conv_from_email_id', 'conv_to_email_id', 'conv_subject', 'conv_message', 'user_id',
                        'user_type']
             response_list = []
             for item in data:
