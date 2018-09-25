@@ -261,3 +261,18 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_conversations_by_to_email_id(self,to_email_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'conversations'
+                sql = "SELECT  * from " + table_name + " WHERE to_email_id = '" + to_email_id  + "' GROUP BY message_id DESC"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
