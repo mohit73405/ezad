@@ -265,7 +265,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 table_name = 'conversations'
-                sql = "SELECT  * from " + table_name + " WHERE to_email_id = '" + to_email_id  + "' GROUP BY message_id DESC"
+                sql = "SELECT  * from " + table_name + " WHERE conv_to_email_id = '" + to_email_id  + "' GROUP BY message_id DESC"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
