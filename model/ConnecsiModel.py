@@ -234,7 +234,7 @@ class ConnecsiModel:
                 table_name = 'messages'
                 # sql = "SELECT  * from " + table_name + " WHERE to_email_id = '" + email_id + "' OR from_email_id = '" + email_id + "' AND user_type = '"+ user_type + "' GROUP BY message_id DESC"
                 sql = "SELECT m.message_id, m.from_email_id, m.to_email_id, m.date,m.subject,m.message  from messages m join conversations c on m.message_id = c.message_id" \
-                      " WHERE c.conv_to_email_id = " + email_id + " OR c.conv_from_email_id = " + email_id +" m.to_email_id = '" + email_id + "' OR m.from_email_id = '" + email_id + "' AND m.user_type = '" + user_type + "' GROUP BY m.message_id DESC"
+                      " WHERE c.conv_to_email_id = '" + email_id + "' OR c.conv_from_email_id = '" + email_id +"'OR m.to_email_id = '" + email_id + "' OR m.from_email_id = '" + email_id + "' AND m.user_type = '" + user_type + "' GROUP BY m.message_id DESC"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
