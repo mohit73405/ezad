@@ -60,3 +60,20 @@ class Campaign(Resource):
 
         return {'response':res}
 
+    def get(self,user_id):
+        ''' get all campaings by user id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            all_campaigns_data = connecsiObj.get__(table_name='brands_campaigns', STAR='*', WHERE='WHERE', compare_column='user_id',compare_value=str(user_id))
+            columns = ['campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
+                       'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url',
+                       'campaign_description',
+                       'arrangements', 'kpis', 'user_id', 'is_classified_post']
+            response_list = []
+            for item in all_campaigns_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        
+        except Exception as e:
+            print(e)
