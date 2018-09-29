@@ -49,9 +49,9 @@ class Campaign(Resource):
         arrangements = data_json.get('arrangements')
         kpis = data_json.get('kpis')
         is_classified_post = data_json.get('is_classified_post')
-        data = [campaign_name, from_date, to_date, budget, currency, channels,
-                regions, min_lower, max_upper, video_cat, target_url, campaign_description, arrangements,
-                kpis, user_id,is_classified_post]
+        data = [str(campaign_name), str(from_date), str(to_date), int(budget), str(currency), str(channels),
+                str(regions), int(min_lower), int(max_upper), str(video_cat), str(target_url), str(campaign_description), str(arrangements),
+                str(kpis), int(user_id),is_classified_post]
         columns = ['campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'campaign_description',
                    'arrangements', 'kpis', 'user_id','is_classified_post']
