@@ -276,3 +276,21 @@ class ConnecsiModel:
 
         except Exception as e:
             print(e)
+
+
+    def get_campaign_details_by_campaign_id_and_user_id(self,campaign_id,user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'brands_campaigns'
+                sql = "SELECT  * from brands_campaigns" \
+                      "  WHERE campaign_id = '" + campaign_id  + "' AND user_id = '" + user_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)

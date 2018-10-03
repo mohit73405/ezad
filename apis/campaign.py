@@ -77,3 +77,24 @@ class Campaign(Resource):
 
         except Exception as e:
             print(e)
+
+
+@ns_campaign.route('/<string:campaign_id>/<string:user_id>')
+class Campaign(Resource):
+    def get(self,campaign_id,user_id):
+        ''' get Campaign details by campaign id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            campaign_data = connecsiObj.get_campaign_details_by_campaign_id_and_user_id(campaign_id=campaign_id,user_id=user_id)
+            columns = ['campaign_id','user_id','campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
+                       'min_lower_followers', 'max_upper_followers','files', 'video_cat_id', 'target_url',
+                       'campaign_description',
+                       'arrangements', 'kpis', 'is_classified_post']
+            response_list = []
+            for item in campaign_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
