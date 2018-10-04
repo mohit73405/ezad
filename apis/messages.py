@@ -192,7 +192,7 @@ class MailBox(Resource):
         except Exception as e:
             return {"response": e}, 500
 
-@ns_messages.route('/conversations/<string:from_email_id>')
+@ns_messages.route('/conversations/sent/<string:from_email_id>')
 class MailBox(Resource):
     def get(self,from_email_id):
         ''' Get Conversations by from email id'''
