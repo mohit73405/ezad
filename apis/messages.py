@@ -177,7 +177,7 @@ class MailBox(Resource):
 @ns_messages.route('/conversations/<string:to_email_id>')
 class MailBox(Resource):
     def get(self,to_email_id):
-        ''' Get Conversations by email id'''
+        ''' Get Conversations by to email id'''
         try:
             connecsiObj = ConnecsiModel()
             data = connecsiObj.get_conversations_by_to_email_id(to_email_id=str(to_email_id))
@@ -191,4 +191,23 @@ class MailBox(Resource):
             return {'data': response_list}
         except Exception as e:
             return {"response": e}, 500
+
+@ns_messages.route('/conversations/<string:from_email_id>')
+class MailBox(Resource):
+    def get(self,from_email_id):
+        ''' Get Conversations by from email id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_conversations_by_from_email_id(from_email_id=str(from_email_id))
+            print(data)
+            columns = ['conv_id','message_id', 'date', 'from_email_id', 'to_email_id', 'subject', 'message', 'user_id',
+                       'user_type']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
+
 

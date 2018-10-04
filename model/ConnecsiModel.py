@@ -277,6 +277,22 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_conversations_by_from_email_id(self,from_email_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'conversations'
+                sql = "SELECT  * from " + table_name + " WHERE conv_from_email_id = '" + from_email_id  + "' GROUP BY message_id DESC"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
 
     def get_campaign_details_by_campaign_id_and_user_id(self,campaign_id,user_id):
         try:
