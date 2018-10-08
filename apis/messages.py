@@ -213,7 +213,7 @@ class MailBox(Resource):
 
 
 
-@ns_messages.route('/conversations/delete/<string:message_id><string:conv_id>/<string:user_id>')
+@ns_messages.route('/conversations/delete/<string:message_id>/<string:conv_id>/<string:user_id>')
 class MailBox(Resource):
     def put(self,message_id,conv_id,user_id):
         ''' Delete message from Conversations by from message_id,conv_id and user_id'''
