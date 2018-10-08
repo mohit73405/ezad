@@ -136,7 +136,7 @@ class MailBox(Resource):
             data = connecsiObj.get_conversations_by_message_id(message_id=str(message_id))
             print(data)
             columns = ['conv_id','message_id', 'date', 'from_email_id', 'to_email_id', 'subject', 'message', 'user_id',
-                       'user_type']
+                       'user_type','deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id']
             response_list = []
             for item in data:
                 dict_temp = dict(zip(columns, item))
