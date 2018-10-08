@@ -227,7 +227,7 @@ class Delete(Resource):
 
 @ns_messages.route('/delete/<string:message_id>/<string:user_id>')
 class Delete(Resource):
-    def put(self,message_id,conv_id,user_id):
+    def put(self,message_id,user_id):
         ''' Delete message from messages by message_id and from user_id'''
         try:
             connecsiObj = ConnecsiModel()
