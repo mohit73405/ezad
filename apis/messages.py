@@ -211,3 +211,16 @@ class MailBox(Resource):
             return {"response": e}, 500
 
 
+
+
+@ns_messages.route('/conversations/delete/<string:message_id><string:conv_id>/<string:user_id>')
+class MailBox(Resource):
+    def put(self,message_id,conv_id,user_id):
+        ''' Delete message from Conversations by from message_id,conv_id and user_id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.delete_message_from_conversation(message_id=message_id,conv_id=conv_id,user_id=user_id)
+            print(data)
+            return {'data': data}
+        except Exception as e:
+            return {"response": e}, 500
