@@ -325,3 +325,18 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+    def delete_message_from_messages(self, message_id, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE messages SET deleted = 'true', deleted_from_user_id = " + user_id + " WHERE message_id = '" + message_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
