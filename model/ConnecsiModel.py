@@ -317,12 +317,11 @@ class ConnecsiModel:
                 sql = "UPDATE conversations SET deleted = 'true', deleted_from_user_id = " + user_id + " WHERE message_id = '" + message_id + "' AND conv_id = '" + conv_id + "'"
                 print(sql)
                 cursor.execute(sql)
-                # data = cursor.fetchall()
+                self.cnx.commit()
                 # print(result)
-            print("closing cnx")
-            cursor.close()
-            return 1
-
+                print("closing cnx")
+                cursor.close()
+                return 1
         except Exception as e:
             print(e)
             return 0
