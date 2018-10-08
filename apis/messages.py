@@ -141,6 +141,7 @@ class MailBox(Resource):
             for item in data:
                 dict_temp = dict(zip(columns, item))
                 response_list.append(dict_temp)
+            print(response_list)
             return {'data': response_list}
         except Exception as e:
             return {"response": e}, 500
