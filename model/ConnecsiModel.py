@@ -294,6 +294,24 @@ class ConnecsiModel:
             print(e)
 
 
+
+    def get_conversations_by_user_id_and_user_type(self,user_id,user_type):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'conversations'
+                sql = "SELECT  * from " + table_name + " WHERE user_id = '" + user_id  + "' AND user_type = '"+ user_type + "'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
+
     def get_campaign_details_by_campaign_id_and_user_id(self,campaign_id,user_id):
         try:
             with self.cnx.cursor() as cursor:
