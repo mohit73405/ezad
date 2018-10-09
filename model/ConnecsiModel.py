@@ -301,7 +301,8 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 table_name = 'conversations'
-                sql = "SELECT  * from " + table_name + " WHERE user_type = '"+ str(user_type) + "'"
+                # sql = "SELECT  * from " + table_name + " WHERE user_type = '"+ str(user_type) + "'"
+                sql = "SELECT  * from " + table_name
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
