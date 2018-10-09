@@ -301,7 +301,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 table_name = 'conversations'
-                sql = "SELECT  * from " + table_name + " WHERE user_type = '"+ user_type + "'"
+                sql = "SELECT  * from " + table_name + " WHERE user_type = '"+ str(user_type) + "'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
@@ -309,7 +309,6 @@ class ConnecsiModel:
             print("closing cnx")
             cursor.close()
             return data
-
         except Exception as e:
             print(e)
 
