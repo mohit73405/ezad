@@ -102,7 +102,7 @@ class Brand(Resource):
             return {"response": e},500
 
 
-@ns_brand.route('/<string:channel_id>/<string:user_id>')
+@ns_brand.route('/addToFavList/<string:channel_id>/<string:user_id>')
 class Brand(Resource):
     def post(self,channel_id,user_id):
         '''add influencer to fav list'''

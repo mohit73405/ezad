@@ -195,13 +195,13 @@ class MailBox(Resource):
             return {"response": e}, 500
 
 
-@ns_messages.route('/conversations/<string:user_id>/<string:user_type>')
+@ns_messages.route('/conversations/<string:user_type>')
 class MailBox(Resource):
     def get(self,user_id,user_type):
-        ''' Get Conversations by user id and user type'''
+        ''' Get Conversations by user type'''
         try:
             connecsiObj = ConnecsiModel()
-            data = connecsiObj.get_conversations_by_user_id_and_user_type(user_id=str(user_id),user_type=str(user_type))
+            data = connecsiObj.get_conversations_by_user_type(user_type=str(user_type))
             print(data)
             columns = ['conv_id','message_id', 'date', 'from_email_id', 'to_email_id', 'subject', 'message', 'user_id',
                        'user_type','deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id']

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/brand.py" afterPath="$PROJECT_DIR$/apis/brand.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="brand.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="109" column="44" lean-forward="true" selection-start-line="109" selection-start-column="44" selection-end-line="109" selection-end-column="44" />
+            <state relative-caret-position="104">
+              <caret line="104" column="31" lean-forward="false" selection-start-line="104" selection-start-column="31" selection-end-line="104" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -33,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="messages.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="244" column="57" lean-forward="true" selection-start-line="244" selection-start-column="57" selection-end-line="244" selection-end-column="57" />
+            <state relative-caret-position="119">
+              <caret line="203" column="31" lean-forward="false" selection-start-line="203" selection-start-column="31" selection-end-line="203" selection-end-column="31" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -58,8 +60,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="349" column="126" lean-forward="true" selection-start-line="349" selection-start-column="126" selection-end-line="349" selection-end-column="126" />
+            <state relative-caret-position="111">
+              <caret line="299" column="33" lean-forward="false" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="33" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -86,8 +88,8 @@
       <find>exception occured</find>
       <find>contain</find>
       <find>screen</find>
-      <find>email</find>
       <find>update</find>
+      <find>email</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,9 +146,9 @@
         <option value="$PROJECT_DIR$/apis/payments.py" />
         <option value="$PROJECT_DIR$/apis/send_email.py" />
         <option value="$PROJECT_DIR$/apis/campaign.py" />
-        <option value="$PROJECT_DIR$/apis/messages.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/apis/messages.py" />
       </list>
     </option>
   </component>
@@ -236,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scheduler_twitter">
+  <component name="RunManager" selected="Python.app">
     <configuration name="api_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -348,8 +350,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.scheduler_twitter" />
-        <item index="1" class="java.lang.String" itemvalue="Python.app" />
+        <item index="0" class="java.lang.String" itemvalue="Python.app" />
+        <item index="1" class="java.lang.String" itemvalue="Python.scheduler_twitter" />
         <item index="2" class="java.lang.String" itemvalue="Python.send_email" />
         <item index="3" class="java.lang.String" itemvalue="Python.connecsiApp" />
         <item index="4" class="java.lang.String" itemvalue="Python.api_test" />
@@ -762,31 +764,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/messages.py">
+    <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="244" column="57" lean-forward="true" selection-start-line="244" selection-start-column="57" selection-end-line="244" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="104">
+          <caret line="104" column="31" lean-forward="false" selection-start-line="104" selection-start-column="31" selection-end-line="104" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="349" column="126" lean-forward="true" selection-start-line="349" selection-start-column="126" selection-end-line="349" selection-end-column="126" />
+        <state relative-caret-position="111">
+          <caret line="299" column="33" lean-forward="false" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="33" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/brand.py">
+    <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="109" column="44" lean-forward="true" selection-start-line="109" selection-start-column="44" selection-end-line="109" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="119">
+          <caret line="203" column="31" lean-forward="false" selection-start-line="203" selection-start-column="31" selection-end-line="203" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -199,6 +199,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'conversations':
                     cursor.execute(sql, data)
+                elif table_name == 'brands_inf_fav_list':
+                    cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()
@@ -295,11 +297,11 @@ class ConnecsiModel:
 
 
 
-    def get_conversations_by_user_id_and_user_type(self,user_id,user_type):
+    def get_conversations_by_user_type(self,user_type):
         try:
             with self.cnx.cursor() as cursor:
                 table_name = 'conversations'
-                sql = "SELECT  * from " + table_name + " WHERE user_id = '" + user_id  + "' AND user_type = '"+ user_type + "'"
+                sql = "SELECT  * from " + table_name + " WHERE user_type = '"+ user_type + "'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
