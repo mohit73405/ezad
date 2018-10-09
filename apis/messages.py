@@ -195,7 +195,7 @@ class MailBox(Resource):
             return {"response": e}, 500
 
 
-@ns_messages.route('/conversations/<string:user_type>')
+@ns_messages.route('/conversations/all/<string:user_type>')
 class MailBox(Resource):
     def get(self,user_type):
         ''' Get Conversations by user type'''
