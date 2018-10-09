@@ -197,7 +197,7 @@ class MailBox(Resource):
 
 @ns_messages.route('/conversations/<string:user_type>')
 class MailBox(Resource):
-    def get(self,user_id,user_type):
+    def get(self,user_type):
         ''' Get Conversations by user type'''
         try:
             connecsiObj = ConnecsiModel()
