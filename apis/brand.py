@@ -106,13 +106,12 @@ class Brand(Resource):
 class Brand(Resource):
     def post(self,channel_id,user_id):
         '''add influencer to fav list'''
-        connecsiObj = ConnecsiModel()
         columns = ['channel_id', 'user_id', 'alert_followers', 'alert_views', 'alert_likes', 'alert_comments']
         data = [channel_id, user_id, '', '', '', '']
         result = 0
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.insert__(table_name='brands_inf_fav_list', columns=columns, data=data)
+            result = connecsiObj.insert__(table_name='brands_inf_fav_list', columns=columns, data=data,IGNORE='IGNORE')
             return {'response': result}, 201
         except:
             return {'response': result}, 500
