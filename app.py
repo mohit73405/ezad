@@ -31,4 +31,4 @@ api.add_namespace(ns_messages)
 
 if __name__ == '__main__':
     app.secret_key = 'connecsiSecretKey'
-    app.run(debug=True,port=8080)
+    app.run(debug=True,port=8080,use_reloader=False)
