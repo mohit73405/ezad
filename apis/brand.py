@@ -115,3 +115,22 @@ class Brand(Resource):
             return {'response': result}, 201
         except:
             return {'response': result}, 500
+
+
+@ns_brand.route('/getInfluencerFavList/<string:user_id>')
+class Brand(Resource):
+    def get(self,user_id):
+        '''get all Fav influencer list by user_id'''
+        columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained', 'subscriberCount_lost',
+                   'business_email', 'total_100video_views',
+                   'total_100video_views_unique', 'total_100video_likes', 'total_100video_dislikes',
+                   'total_100video_comments', 'total_100video_shares',
+                   'facebook_url', 'insta_url', 'twitter_url','alert_followers','alert_views','alert_likes','alert_comments']
+        connecsiObj = ConnecsiModel()
+        data = connecsiObj.get_fav_inf_list(user_id=user_id)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list}
