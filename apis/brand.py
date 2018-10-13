@@ -14,6 +14,12 @@ brand_form = ns_brand.model('Brand Details', {
     'password' : fields.String(required=True, description='Password')
 })
 
+brand_change_password = ns_brand.model('Brand change passoword', {
+    'old_password' : fields.String(required=True, description='Old Password'),
+    'new_password' : fields.String(required=True, description='New Password'),
+    'con_new_password' : fields.String(required=True, description='Confirm New Password')
+})
+
 
 brand_edit_form = ns_brand.model('Brand Details Update', {
     'first_name' : fields.String(required=True, description='First Name'),
@@ -26,7 +32,11 @@ brand_edit_form = ns_brand.model('Brand Details Update', {
     'no_of_employees': fields.String(required=True, description='No Of Employees'),
     'city': fields.String(required=True, description='City'),
     'monthly_budget': fields.String(required=True, description='Monthly Budget'),
-    'business_sector': fields.String(required=True, description='Business Sector')
+    'business_sector': fields.String(required=True, description='Business Sector'),
+    'facebook_url': fields.String(required=False, description='Facebook Url'),
+    'twitter_url': fields.String(required=False, description='Twitter Url'),
+    'insta_url': fields.String(required=False, description='Instegram Url'),
+    'youtube_url': fields.String(required=False, description='Youtube Url')
 })
 
 @ns_brand.route('/register')
@@ -91,9 +101,15 @@ class Brand(Resource):
         monthly_budget = form_data.get('monthly_budget')
         business_sector = form_data.get('business_sector')
         company_name = form_data.get('company_name')
+        facebook_url= form_data.get('facebook_url')
+        twitter_url = form_data.get('twitter_url')
+        insta_url = form_data.get('insta_url')
+        youtube_url = form_data.get('youtube_url')
         columns = ['first_name', 'last_name', 'company_name', 'phone', 'position', 'url',
-                   'country', 'no_of_employees', 'city', 'monthly_budget', 'business_sector']
-        data=(first_name,last_name,company_name,phone,position,url,country,no_of_employees,city,monthly_budget,business_sector)
+                   'country', 'no_of_employees', 'city', 'monthly_budget', 'business_sector','facebook_url','twitter_url',
+                   'insta_url','youtube_url']
+        data=(first_name,last_name,company_name,phone,position,url,country,no_of_employees,city,monthly_budget,business_sector,
+              facebook_url,twitter_url,insta_url,youtube_url)
         try:
             connecsiObj = ConnecsiModel()
             connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
