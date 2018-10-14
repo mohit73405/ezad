@@ -15,9 +15,9 @@ brand_form = ns_brand.model('Brand Details', {
 })
 
 brand_change_password = ns_brand.model('Brand change passoword', {
-    'old_password' : fields.String(required=True, description='Old Password'),
+    # 'old_password' : fields.String(required=True, description='Old Password'),
     'new_password' : fields.String(required=True, description='New Password'),
-    'con_new_password' : fields.String(required=True, description='Confirm New Password')
+    # 'con_new_password' : fields.String(required=True, description='Confirm New Password')
 })
 
 
@@ -151,3 +151,24 @@ class Brand(Resource):
             response_list.append(dict_temp)
         # print(response_list)
         return {'data': response_list}
+
+
+@ns_brand.route('/changePassword/<string:user_id>')
+class Brand(Resource):
+    @ns_brand.expect(brand_change_password)
+    def put(self,user_id):
+        '''Update Brands password'''
+        form_data = request.get_json()
+        new_password = form_data.get('new_password')
+        password_sha = sha256_crypt.encrypt(str(new_password))
+        columns = ['password']
+        data = (password_sha)
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.update__(table_name='users_brands', columns=columns, WHERE='WHERE', data=data,
+                                 compare_column='user_id', compare_value=str(user_id))
+            return {"response": 1}, 200
+        except Exception as e:
+            return {"response": e}, 500
+
+
