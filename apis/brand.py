@@ -24,6 +24,13 @@ brand_change_password = ns_brand.model('Brand change passoword', {
 brand_update_profile_pic = ns_brand.model('Brand update profile pic', {
     'profile_pic' : fields.String(required=True, description='Profile Pic'),
 })
+brand_create_alert_form = ns_brand.model('Brand create alert form', {
+    'channel_id' : fields.String(required=True, description='Channel ID'),
+    'alert_followers' : fields.String(required=False, description='Alert Followers'),
+    'alert_views' : fields.String(required=False, description='Alert Views'),
+    'alert_likes' : fields.String(required=False, description='Alert Likes'),
+    'alert_comments' : fields.String(required=False, description='Alert Comments')
+})
 
 
 brand_edit_form = ns_brand.model('Brand Details Update', {
@@ -193,4 +200,25 @@ class Brand(Resource):
         except Exception as e:
             return {"response": e}, 500
 
+
+@ns_brand.route('/createInfluencerAlerts/<string:user_id>')
+class Brand(Resource):
+    @ns_brand.expect(brand_create_alert_form)
+    def put(self,user_id):
+        '''Create alerts for Fav Influencer'''
+        form_data = request.get_json()
+        channel_id = form_data.get('channel_id')
+        alert_followers = form_data.get('alert_followers')
+        alert_views = form_data.get('alert_views')
+        alert_likes = form_data.get('alert_likes')
+        alert_comments = form_data.get('alert_comments')
+        # columns = ['alert_followers','alert_views','alert_likes','alert_comments']
+        # data = (alert_followers,alert_views,alert_likes,alert_comments)
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.create_alert_for_fav_influencer(user_id=user_id,channel_id=channel_id,alert_followers=alert_followers
+                                                        ,alert_views=alert_views,alert_likes=alert_likes,alert_comments=alert_comments)
+            return {"response": 1}, 200
+        except Exception as e:
+            return {"response": e}, 500
 
