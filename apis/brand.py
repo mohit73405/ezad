@@ -21,6 +21,11 @@ brand_change_password = ns_brand.model('Brand change passoword', {
 })
 
 
+brand_update_profile_pic = ns_brand.model('Brand update profile pic', {
+    'profile_pic' : fields.String(required=True, description='Profile Pic'),
+})
+
+
 brand_edit_form = ns_brand.model('Brand Details Update', {
     'first_name' : fields.String(required=True, description='First Name'),
     'last_name' : fields.String(required=True, description='Last Name'),
@@ -163,6 +168,23 @@ class Brand(Resource):
         password_sha = sha256_crypt.encrypt(str(new_password))
         columns = ['password']
         data = (password_sha)
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.update__(table_name='users_brands', columns=columns, WHERE='WHERE', data=data,
+                                 compare_column='user_id', compare_value=str(user_id))
+            return {"response": 1}, 200
+        except Exception as e:
+            return {"response": e}, 500
+
+@ns_brand.route('/updateProfilePic/<string:user_id>')
+class Brand(Resource):
+    @ns_brand.expect(brand_update_profile_pic)
+    def put(self,user_id):
+        '''Update Brands Profile Pic'''
+        form_data = request.get_json()
+        profile_pic = form_data.get('profile_pic')
+        columns = ['profile_pic']
+        data = (profile_pic)
         try:
             connecsiObj = ConnecsiModel()
             connecsiObj.update__(table_name='users_brands', columns=columns, WHERE='WHERE', data=data,
