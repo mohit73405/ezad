@@ -86,7 +86,7 @@ class Brand(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['user_id', 'first_name', 'last_name', 'company_name', 'email_id', 'role','phone','position','url','country'
                    ,'no_of_employees','city','monthly_budget','business_sector','facebook_url','twitter_url',
-                   'insta_url','youtube_url']
+                   'insta_url','youtube_url','profile_pic']
         data = connecsiObj.get__(table_name='users_brands',columns=columns,WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
         response_dict = dict(zip(columns, data[0]))
         print(response_dict)
