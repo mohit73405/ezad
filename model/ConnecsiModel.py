@@ -385,7 +385,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 sql = "UPDATE brands_inf_fav_list SET alert_followers = " + alert_followers + " , " \
                       "alert_views = " + alert_views + ", alert_likes = " + alert_likes + \
-                      ", alert_comments = " + alert_comments + " WHERE user_is = " + user_id +" AND channel_id = '" + channel_id + "'"
+                      ", alert_comments = " + alert_comments + " WHERE user_id = " + user_id +" AND channel_id = '" + channel_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
