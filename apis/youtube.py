@@ -53,6 +53,24 @@ class VideoCategories(Resource):
         print(response_list)
         return {'data': response_list}
 
+@ns_youtube.route('/videoCategories/<string:video_cat_id>')
+class VideoCategories(Resource):
+    def get(self,video_cat_id):
+        ''' get video categories by video cat id '''
+        connecsiObj = ConnecsiModel()
+        video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*',WHERE='WHERE',compare_column='video_cat_id'
+                                             ,compare_value=video_cat_id)
+        print(video_categories)
+        columns = ['video_cat_id','video_cat_name']
+        response_list = []
+        for item in video_categories:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+
+        print(response_list)
+        return {'data': response_list}
+
+
 @ns_youtube.route('/searchChannels/<string:channel>')
 class SearchChannels(Resource):
     @ns_youtube.expect(search_channels_form)
