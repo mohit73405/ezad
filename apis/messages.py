@@ -259,3 +259,60 @@ class Delete(Resource):
             return {'data': data}
         except Exception as e:
             return {"response": e}, 500
+
+
+
+
+@ns_messages.route('sentWelcomeEmail/<string:user_id>/<string:user_type>')
+class MailBox(Resource):
+    @ns_messages.expect(message_form)
+    def post(self,user_id,user_type):
+        '''Send welcome email message'''
+        form_data = request.get_json()
+        from_email_id = form_data.get('from_email_id')
+        to_email_id = form_data.get('to_email_id')
+        date = form_data.get('date')
+        subject = form_data.get('subject')
+        message = form_data.get('message')
+
+        columns = ['from_email_id', 'to_email_id', 'date', 'subject', 'message','user_id','user_type']
+        data = [from_email_id, to_email_id, date, subject, message,user_id,user_type]
+        print(data)
+        result=0
+        try:
+            self.send_mail(subject=subject,to_email_id=to_email_id)
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
+            return {'response': result},200
+        except Exception as e:
+            print(e)
+            return {'response': result},500
+
+
+    def send_mail(self,subject,to_email_id):
+        email_content = """
+        <html>
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+           <title>Connecsi</title>
+        </head>
+        <body>
+        Welcome To Connecsi
+        Thank you
+        Connesi Team
+        </body>
+        </html>
+        """
+        msg = email.message.Message()
+        msg['Subject'] = subject
+        msg['From'] = 'business@connecsi.com'
+        msg['To'] = to_email_id
+        password = "ezadteam123"
+        msg.add_header('Content-Type', 'text/html')
+        msg.set_payload(email_content)
+
+        server = smtplib.SMTP('smtp.gmail.com: 587')
+        server.starttls()
+        # Login Credentials for sending the mail
+        server.login(msg['From'], password)
+        server.sendmail(msg['From'], [msg['To']], msg.as_string())
