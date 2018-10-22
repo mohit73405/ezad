@@ -263,7 +263,7 @@ class Delete(Resource):
 
 
 
-@ns_messages.route('sentWelcomeEmail/<string:user_id>/<string:user_type>')
+@ns_messages.route('/sentWelcomeEmail/<string:user_id>/<string:user_type>')
 class MailBox(Resource):
     @ns_messages.expect(message_form)
     def post(self,user_id,user_type):
