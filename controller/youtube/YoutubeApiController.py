@@ -56,7 +56,7 @@ class YoutubeApiController:
         # print(channel_data)
         # exit()
         try:
-            self.channel_thumbnail = channel_data['items'][0]['snippet']['thumbnails']['default']['url']
+            self.channel_thumbnail = channel_data['items'][0]['snippet']['thumbnails']['medium']['url']
             # print(self.channel_thumbnail)
             # exit()
             self.channelTitle = channel_data['items'][0]['snippet']['title']
@@ -195,7 +195,7 @@ class YoutubeApiController:
             channel_ids = []
             data = []
             while counter <= 2:
-                url = self.get_channel_ids_url + '&maxResults=2' + '&pageToken=' + pageToken +'&regionCode='+code[0]
+                url = self.get_channel_ids_url + '&maxResults=50' + '&pageToken=' + pageToken +'&regionCode='+code[0]
                 print(url)
                 # exit()
                 json_data = self.get_Json_data_Request_Lib(url=url)
