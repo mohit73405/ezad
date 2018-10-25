@@ -1,3 +1,4 @@
+# import collections
 import csv
 import re
 
@@ -68,9 +69,10 @@ class YoutubeApiController:
             # print(self.channel_desc)
             # exit()
             self.subscriberCount = channel_data['items'][0]['statistics']['subscriberCount']
+            # print('channel id before getting videos data = ',self.channelId)
             video_ids = self.get_latest_video_ids(channelId=self.channelId)
             self.get_video_details(video_ids=video_ids)
-            print('channel id = ',self.channelId)
+            # print('channel id before social media = ',self.channelId)
             self.get_social_media_url(channel_id=self.channelId)
         except Exception as e:
             print(e)
@@ -110,22 +112,33 @@ class YoutubeApiController:
 
 
     def get_video_details(self,video_ids):
+        print('video ids before splitting =',video_ids)
+        self.total_100video_views = 0
+        self.total_100video_likes = 0
+        self.total_100video_dislikes = 0
+        self.total_100video_comments = 0
         try:
             size = int(len(video_ids)/2)
             video_ids = [video_ids[x:x + size] for x in range(0, len(video_ids), size)]
         except:pass
         data = []
-        for item in video_ids:
-            video_ids_string = ','.join(item)
+        print('video ids after spliting = ',video_ids)
+        # print(type(video_ids))
+        if len(video_ids) ==1:
+            video_ids = [video_ids]
+            print(video_ids)
+            # print(type(video_ids))
+        for video_id in video_ids:
+            print(video_id)
+            # print(type(video_id))
+            video_ids_string = ','.join(video_id)
             url = self.video_details_url + video_ids_string
-            # print(url)
+            print(url)
             # exit()
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
-            # twitter_url_list=[]
-            # facebook_url_list=[]
-            # insta_url_list=[]
             for item in items:
+                # print(item)
                 try:
                     self.total_100video_views += int(item['statistics']['viewCount'])
                     self.total_100video_likes += int(item['statistics']['likeCount'])
@@ -164,6 +177,7 @@ class YoutubeApiController:
 
 
     def get_latest_video_ids(self,channelId):
+        print('channel id inside video method = ',channelId)
         counter = 1
         pageToken = ''
         video_ids = []
@@ -172,7 +186,7 @@ class YoutubeApiController:
             # print(url)
             # exit()
             json_data = self.get_Json_data_Request_Lib(url=url)
-            # print(json_data)
+            print(json_data)
             try:
                 pageToken = json_data['nextPageToken']
             except:pass
@@ -183,7 +197,9 @@ class YoutubeApiController:
                 for item in items:
                     video_ids.append(item['id']['videoId'])
             except:pass
-        print(len(video_ids))
+            if pageToken == '':
+                break
+        print('length of video ids = ',len(video_ids))
         # exit()
         return video_ids
 
@@ -278,6 +294,8 @@ class YoutubeApiController:
         obj = ConnecsiModel()
         data = obj.get__(table_name='youtube_channel_ids',STAR='*')
         # print(data)
+        # exit()
+        # data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UCqbjngYxb_5vLtnTiAO0-Yw',))
         channelIds = []
         for item in data:
             # print(item[0])
