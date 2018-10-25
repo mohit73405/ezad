@@ -40,6 +40,7 @@ class YoutubeApiController:
         self.insta_url = ''
         self.twitter_url = ''
         self.business_email = ''
+        self.country=''
 
 
 
@@ -53,12 +54,15 @@ class YoutubeApiController:
         url = self.channel_details_url+self.channelId+'&key='+self.api_key
         # print(url)
         channel_data = self.get_Json_data_Request_Lib(url=url)
-        # print(channel_data)
+        print(channel_data)
         # exit()
         try:
             self.channel_thumbnail = channel_data['items'][0]['snippet']['thumbnails']['medium']['url']
             # print(self.channel_thumbnail)
             # exit()
+            try:
+                self.country = channel_data['items'][0]['snippet']['country']
+            except:pass
             self.channelTitle = channel_data['items'][0]['snippet']['title']
             self.channel_desc = channel_data['items'][0]['snippet']['description']
             # print(self.channel_desc)
@@ -187,43 +191,49 @@ class YoutubeApiController:
         connecsiObj = ConnecsiModel()
         regionCodes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
         # print(regionCodes)
+        query=['gaming in poland','fashion in poland','moda i uroda w polsce','gry w polsce']
         for code in regionCodes:
             # print(code[0])
-            # exit()
-            counter = 1
-            pageToken = ''
-            channel_ids = []
-            data = []
-            while counter <= 2:
-                url = self.get_channel_ids_url + '&maxResults=50' + '&pageToken=' + pageToken +'&regionCode='+code[0]
-                print(url)
-                # exit()
-                json_data = self.get_Json_data_Request_Lib(url=url)
-                # print(len(json_data))
-                try:
-                    pageToken = json_data['nextPageToken']
-                except:
-                    pass
-                items = json_data['items']
-                print(len(items))
-                # exit()
-                counter = counter + 1
-                try:
-                    for item in items:
-                        # print(item)
-                        # print(item['id'])
-                        # print(item['id']['channelId'])
-                        channel_id = item['id']['channelId']
-                        # print(channel_id,code[0])
-                        channel_ids.append(channel_id)
-                        tdata= (channel_id,code[0])
-                        print(tdata)
-                        data.append(tdata)
-                except:pass
+            # country_code_list=['US','CN','IN','DE','CH','AT','AU','NZ','NL','BE','LU','PL','SA','SE','NO','DK']
+            priority_country_list=['PL']
+            if  code[0] in priority_country_list:
+                for q in query:
+                    print(q)
+                    # exit()
+                    counter = 1
+                    pageToken = ''
+                    channel_ids = []
+                    data = []
+                    while counter <= 4:
+                        url = self.get_channel_ids_url + '&maxResults=50' + '&pageToken=' + pageToken +'&q='+q
+                        print(url)
+                        # exit()
+                        json_data = self.get_Json_data_Request_Lib(url=url)
+                        # print(len(json_data))
+                        try:
+                            pageToken = json_data['nextPageToken']
+                        except:
+                            pass
+                        items = json_data['items']
+                        print(len(items))
+                        # exit()
+                        counter = counter + 1
+                        try:
+                            for item in items:
+                                # print(item)
+                                # print(item['id'])
+                                # print(item['id']['channelId'])
+                                channel_id = item['id']['channelId']
+                                # print(channel_id,code[0])
+                                channel_ids.append(channel_id)
+                                tdata= (channel_id,code[0])
+                                # print(tdata)
+                                data.append(tdata)
+                        except:pass
 
-            connecsiObj = ConnecsiModel()
-            connecsiObj.insert__(data=channel_ids,table_name='youtube_channel_ids',columns=['channel_id'],IGNORE='IGNORE')
-            connecsiObj.insert__(table_name='youtube_channel_ids_regioncode',columns=['channel_id','regionCode'],data=data)
+                    connecsiObj = ConnecsiModel()
+                    connecsiObj.insert__(data=channel_ids,table_name='youtube_channel_ids',columns=['channel_id'],IGNORE='IGNORE')
+                    connecsiObj.insert__(table_name='youtube_channel_ids_regioncode',columns=['channel_id','regionCode'],data=data)
 
     def get_all_regionCodes(self):
         url = self.regionCode_url
@@ -296,11 +306,12 @@ class YoutubeApiController:
                 myList.append(self.facebook_url)
                 myList.append(self.insta_url)
                 myList.append(self.twitter_url)
+                myList.append(self.country)
                 print(myList)
                 # exit()
                 columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
                            'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
-                           'total_100video_shares','facebook_url','insta_url','twitter_url']
+                           'total_100video_shares','facebook_url','insta_url','twitter_url','country']
                 connecsiObj = ConnecsiModel()
                 connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
             except:

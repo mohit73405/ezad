@@ -26,7 +26,7 @@ def get_business_email():
     conObj.get_data_by_selinium()
 
 # get_channel_ids()
-get_channel_details()
+# get_channel_details()
 # get_regionCodes()
 # get_video_cat_ids()
 # get_business_email()
