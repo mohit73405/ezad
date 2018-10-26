@@ -332,6 +332,25 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_brand_classified_details_by_classified_id_and_user_id(self,classified_id,user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT  * from brands_classifieds" \
+                      "  WHERE classified_id = '" + classified_id  + "' AND user_id = '" + user_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
+
+
+
     def delete_message_from_conversation(self, message_id,conv_id, user_id):
         try:
             with self.cnx.cursor() as cursor:
