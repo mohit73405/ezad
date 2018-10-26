@@ -214,6 +214,10 @@ class Brand(Resource):
         alert_comments = form_data.get('alert_comments')
         # columns = ['alert_followers','alert_views','alert_likes','alert_comments']
         # data = (alert_followers,alert_views,alert_likes,alert_comments)
+        connecsiObj = ConnecsiModel()
+        fav_list = connecsiObj.get_fav_inf_list(user_id=user_id)
+        print(fav_list)
+        exit()
         try:
             connecsiObj = ConnecsiModel()
             connecsiObj.create_alert_for_fav_influencer(user_id=user_id,channel_id=channel_id,alert_followers=alert_followers
