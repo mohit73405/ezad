@@ -382,21 +382,43 @@ class ConnecsiModel:
             print(e)
 
     def create_alert_for_fav_influencer(self, user_id,channel_id,alert_followers,alert_views,alert_likes,alert_comments):
-        try:
-            with self.cnx.cursor() as cursor:
-                sql = "UPDATE brands_inf_fav_list SET alert_followers = " + alert_followers + " , " \
-                      "alert_views = " + alert_views + ", alert_likes = " + alert_likes + \
-                      ", alert_comments = " + alert_comments + " WHERE user_id = " + user_id +" AND channel_id = '" + channel_id + "'"
-                print(sql)
-                cursor.execute(sql)
-                self.cnx.commit()
-                # print(result)
-                print("closing cnx")
-                cursor.close()
-                return 1
-        except Exception as e:
-            print(e)
-            return 0
+
+        columns = ['user_id', 'channel_id', 'alert_followers', 'alert_views', 'alert_likes', 'alert_comments']
+        data = (user_id, channel_id, alert_followers, alert_views, alert_likes, alert_comments)
+
+        fav_inf_list = self.get_fav_inf_list(user_id=user_id)
+        present = 0
+        for item in fav_inf_list:
+            print(item[0])
+            if item[0] == channel_id:
+                present = 1
+                break
+        print(present)
+        # exit()
+        if present == 0:
+            try:
+                connecsiObj = ConnecsiModel()
+                connecsiObj.insert__(table_name='brands_inf_fav_list',columns=columns,data=data)
+                return {"response": 1}, 200
+            except Exception as e:
+                return {"response": e}, 500
+
+        else:
+            try:
+                with self.cnx.cursor() as cursor:
+                    sql = "UPDATE brands_inf_fav_list SET alert_followers = " + alert_followers + " , " \
+                          "alert_views = " + alert_views + ", alert_likes = " + alert_likes + \
+                          ", alert_comments = " + alert_comments + " WHERE user_id = " + user_id +" AND channel_id = '" + channel_id + "'"
+                    print(sql)
+                    cursor.execute(sql)
+                    self.cnx.commit()
+                    # print(result)
+                    print("closing cnx")
+                    cursor.close()
+                    return 1
+            except Exception as e:
+                print(e)
+                return 0
 
 
     def update_youtube_channel_data(self, channel_id,country):
