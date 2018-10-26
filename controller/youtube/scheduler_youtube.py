@@ -21,12 +21,18 @@ def get_channel_details():
     conObj = YoutubeApiController()
     conObj.get_data()
 
+
+def update_channel_data():
+    conObj = YoutubeApiController()
+    conObj.update_channel_data()
+
 def get_business_email():
     conObj = YoutubeApiController()
     conObj.get_data_by_selinium()
 
+update_channel_data()
 # get_channel_ids()
-get_channel_details()
+# get_channel_details()
 # get_regionCodes()
 # get_video_cat_ids()
 # get_business_email()

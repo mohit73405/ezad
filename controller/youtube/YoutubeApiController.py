@@ -52,6 +52,7 @@ class YoutubeApiController:
 
 
     def get_channel_details(self):
+        self.country=''
         url = self.channel_details_url+self.channelId+'&key='+self.api_key
         # print(url)
         channel_data = self.get_Json_data_Request_Lib(url=url)
@@ -374,6 +375,28 @@ class YoutubeApiController:
 
 
 
-
-
-
+    def update_channel_data(self):
+        obj = ConnecsiModel()
+        data = obj.get__(table_name='youtube_channel_ids', STAR='*')
+        channelIds = []
+        for item in data:
+            # print(item[0])
+            channelIds.append(item[0])
+        for channel_id in channelIds:
+            country=''
+            print(channel_id)
+            url = self.channel_details_url + channel_id + '&key=' + self.api_key
+            channel_data = self.get_Json_data_Request_Lib(url=url)
+            print(channel_data)
+            try:
+                country = channel_data['items'][0]['snippet']['country']
+            except:
+                pass
+            columns = ['country']
+            data = country,
+            try:
+                connecsiObj = ConnecsiModel()
+                res = connecsiObj.update_youtube_channel_data(channel_id=channel_id,country=country)
+            except Exception as e:
+                print(e)
+            # exit()
