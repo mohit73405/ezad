@@ -212,17 +212,30 @@ class Brand(Resource):
         alert_views = form_data.get('alert_views')
         alert_likes = form_data.get('alert_likes')
         alert_comments = form_data.get('alert_comments')
-        # columns = ['alert_followers','alert_views','alert_likes','alert_comments']
-        # data = (alert_followers,alert_views,alert_likes,alert_comments)
+        columns = ['user_id','channel_id','alert_followers','alert_views','alert_likes','alert_comments']
+        data = (user_id,channel_id,alert_followers,alert_views,alert_likes,alert_comments)
         connecsiObj = ConnecsiModel()
         fav_list = connecsiObj.get_fav_inf_list(user_id=user_id)
-        print(fav_list)
-        exit()
-        try:
-            connecsiObj = ConnecsiModel()
-            connecsiObj.create_alert_for_fav_influencer(user_id=user_id,channel_id=channel_id,alert_followers=alert_followers
-                                                        ,alert_views=alert_views,alert_likes=alert_likes,alert_comments=alert_comments)
-            return {"response": 1}, 200
-        except Exception as e:
-            return {"response": e}, 500
+        present=0
+        for item in fav_list:
+            if item[0] == channel_id:
+                present=1
+                break
+
+        if present == 1:
+            try:
+                connecsiObj = ConnecsiModel()
+                connecsiObj.insert__(table_name='brands_inf_fav_list',columns=columns,data=data)
+                return {"response": 1}, 200
+            except Exception as e:
+                return {"response": e}, 500
+
+        else:
+            try:
+                connecsiObj = ConnecsiModel()
+                connecsiObj.create_alert_for_fav_influencer(user_id=user_id,channel_id=channel_id,alert_followers=alert_followers
+                                                            ,alert_views=alert_views,alert_likes=alert_likes,alert_comments=alert_comments)
+                return {"response": 1}, 200
+            except Exception as e:
+                return {"response": e}, 500
 

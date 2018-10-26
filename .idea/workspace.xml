@@ -16,8 +16,8 @@
       <file leaf-file-name="brand.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="219" column="14" lean-forward="true" selection-start-line="219" selection-start-column="14" selection-end-line="219" selection-end-column="14" />
+            <state relative-caret-position="255">
+              <caret line="224" column="24" lean-forward="true" selection-start-line="224" selection-start-column="24" selection-end-line="224" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -56,8 +56,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="364" column="8" lean-forward="false" selection-start-line="364" selection-start-column="8" selection-end-line="364" selection-end-column="8" />
+            <state relative-caret-position="85">
+              <caret line="386" column="49" lean-forward="false" selection-start-line="386" selection-start-column="30" selection-end-line="386" selection-end-column="49" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -770,8 +770,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="364" column="8" lean-forward="false" selection-start-line="364" selection-start-column="8" selection-end-line="364" selection-end-column="8" />
+        <state relative-caret-position="85">
+          <caret line="386" column="49" lean-forward="false" selection-start-line="386" selection-start-column="30" selection-end-line="386" selection-end-column="49" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -780,8 +780,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="219" column="14" lean-forward="true" selection-start-line="219" selection-start-column="14" selection-end-line="219" selection-end-column="14" />
+        <state relative-caret-position="255">
+          <caret line="224" column="24" lean-forward="true" selection-start-line="224" selection-start-column="24" selection-end-line="224" selection-end-column="24" />
           <folding />
         </state>
       </provider>
