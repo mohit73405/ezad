@@ -202,6 +202,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'brands_inf_fav_list':
                     cursor.execute(sql, data)
+                elif table_name == 'brands_classifieds':
+                    cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()
