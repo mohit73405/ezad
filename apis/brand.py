@@ -220,3 +220,32 @@ class Brand(Resource):
         except Exception as e:
             return {"response": e}, 500
 
+
+@ns_brand.route('/addYotubeInfToCampaignList/<string:channel_id>/<string:campaign_id>')
+class Brand(Resource):
+    def post(self,channel_id,campaign_id):
+        '''add Youtube influencer to Campaign list'''
+        columns = ['channel_id', 'campaign_id']
+        data = [channel_id, campaign_id]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert__(table_name='youtube_campaigns', columns=columns, data=data)
+            return {'response': result}, 201
+        except:
+            return {'response': result}, 500
+
+
+@ns_brand.route('/getYoutubeInfList/<string:campaign_id>')
+class Brand(Resource):
+    def get(self,campaign_id):
+        '''get all Youtube influencer list by campaign_id'''
+        columns = ['channel_id', 'title', 'channel_img']
+        connecsiObj = ConnecsiModel()
+        data = connecsiObj.get_youtube_inf_list(campaign_id=campaign_id)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list}
