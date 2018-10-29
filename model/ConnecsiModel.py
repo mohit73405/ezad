@@ -205,7 +205,7 @@ class ConnecsiModel:
                 elif table_name == 'brands_classifieds':
                     cursor.execute(sql, data)
                 elif table_name == 'youtube_campaigns':
-                    cursor.executemany(sql, data)
+                    cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
             cursor.close()
