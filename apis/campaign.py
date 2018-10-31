@@ -51,10 +51,10 @@ class Campaign(Resource):
         is_classified_post = data_json.get('is_classified_post')
         data = [campaign_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, target_url, campaign_description, arrangements,
-                kpis, user_id,is_classified_post]
+                kpis, user_id,is_classified_post,files]
         columns = ['campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'campaign_description',
-                   'arrangements', 'kpis', 'user_id','is_classified_post']
+                   'arrangements', 'kpis', 'user_id','is_classified_post','files']
         connecsiObj = ConnecsiModel()
         res=connecsiObj.insert__(table_name='brands_campaigns', columns=columns, data=data)
 
