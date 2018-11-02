@@ -51,10 +51,10 @@ class Classified(Resource):
         convert_to_campaign = data_json.get('convert_to_campaign')
         data = [classified_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, target_url, classified_description, arrangements,
-                kpis, user_id,convert_to_campaign]
+                kpis, user_id,convert_to_campaign,files]
         columns = ['classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'classified_description',
-                   'arrangements', 'kpis', 'user_id','convert_to_campaign']
+                   'arrangements', 'kpis', 'user_id','convert_to_campaign','files']
         connecsiObj = ConnecsiModel()
         res=connecsiObj.insert__(table_name='brands_classifieds', columns=columns, data=data)
         return {'response':res}
