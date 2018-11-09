@@ -316,3 +316,20 @@ class MailBox(Resource):
         # Login Credentials for sending the mail
         server.login(msg['From'], password)
         server.sendmail(msg['From'], [msg['To']], msg.as_string())
+
+
+@ns_messages.route('/addCampaignIdToMessageId/<string:message_id>/<string:campaign_id>')
+class MailBox(Resource):
+    def post(self,message_id,campaign_id):
+        '''add campaign id to message'''
+        columns=['message_id','campaign_id']
+        data=(message_id,campaign_id)
+        connecsiObj = ConnecsiModel()
+        result=0
+        try:
+            connecsiObj.insert__(table_name='message_campaigns',columns=columns,data=data)
+            return {'response': result}, 200
+        except Exception as e:
+            print(e)
+            return {'response': result}, 500
+
