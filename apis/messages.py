@@ -328,8 +328,27 @@ class MailBox(Resource):
         result=0
         try:
             connecsiObj.insert__(table_name='message_campaigns',columns=columns,data=data)
+            result=1
             return {'response': result}, 200
         except Exception as e:
             print(e)
             return {'response': result}, 500
 
+@ns_messages.route('/getCampaignsAddedToMessage/<string:message_id>')
+class MailBox(Resource):
+    def get(self,message_id):
+        ''' Get campaigns added to message by from message id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_campaigns_added_to_message(message_id=str(message_id))
+            print(data)
+            columns = ['campaign_id','user_id', 'campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels',
+                       'regions','min_lower_followers','max_upper_followers','files','video_cat_id'
+                       ,'target_url','campaign_description','arrangements','kpis','is_classified_post','message_id','campaign_id']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500

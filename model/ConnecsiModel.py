@@ -477,3 +477,21 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+
+    def get_campaigns_added_to_message(self, message_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT * FROM brands_campaigns bc" \
+                      " Left JOIN message_campaigns mc on bc.campaign_id = mc.campaign_id" \
+                      " WHERE mc.message_id = '"+ message_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+

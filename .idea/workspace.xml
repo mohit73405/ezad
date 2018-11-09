@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/twitter/TwitterApiController.py" afterPath="$PROJECT_DIR$/controller/twitter/TwitterApiController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/twitter/config.ini" afterPath="$PROJECT_DIR$/controller/twitter/config.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/twitter/scheduler_twitter.py" afterPath="$PROJECT_DIR$/controller/twitter/scheduler_twitter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +17,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="209" column="45" lean-forward="true" selection-start-line="209" selection-start-column="45" selection-end-line="209" selection-end-column="45" />
+            <state relative-caret-position="231">
+              <caret line="491" column="32" lean-forward="true" selection-start-line="491" selection-start-column="32" selection-end-line="491" selection-end-column="32" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -42,8 +39,8 @@
       <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="333" column="44" lean-forward="true" selection-start-line="333" selection-start-column="44" selection-end-line="333" selection-end-column="44" />
+            <state relative-caret-position="206">
+              <caret line="346" column="40" lean-forward="true" selection-start-line="346" selection-start-column="40" selection-end-line="346" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -783,8 +780,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="209" column="45" lean-forward="true" selection-start-line="209" selection-start-column="45" selection-end-line="209" selection-end-column="45" />
+        <state relative-caret-position="231">
+          <caret line="491" column="32" lean-forward="true" selection-start-line="491" selection-start-column="32" selection-end-line="491" selection-end-column="32" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -793,8 +790,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="333" column="44" lean-forward="true" selection-start-line="333" selection-start-column="44" selection-end-line="333" selection-end-column="44" />
+        <state relative-caret-position="206">
+          <caret line="346" column="40" lean-forward="true" selection-start-line="346" selection-start-column="40" selection-end-line="346" selection-end-column="40" />
           <folding />
         </state>
       </provider>
