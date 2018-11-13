@@ -225,12 +225,12 @@ class Brand(Resource):
 class Brand(Resource):
     def post(self,channel_id,campaign_id):
         '''add Youtube influencer to Campaign list'''
-        columns = ['channel_id', 'campaign_id']
-        data = [channel_id, campaign_id]
+        columns = ['channel_id', 'campaign_id','status']
+        data = [channel_id, campaign_id,'Added']
         result = 0
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.insert__(table_name='youtube_campaigns', columns=columns, data=data)
+            result = connecsiObj.insert__(table_name='channel_campaign_message', columns=columns, data=data)
             return {'response': result}, 201
         except:
             return {'response': result}, 500
