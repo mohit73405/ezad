@@ -478,6 +478,23 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_channel_campaign_message_status(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT ccm.campaign_id,bc.campaign_name,ccm.message_id,ccm.status FROM channel_campaign_message ccm" \
+                      " JOIN youtube_channel_details ycd on ccm.channel_id = ycd.channel_id" \
+                      " JOIN brands_campaigns bc on ccm.campaign_id = bc.campaign_id" \
+                      " WHERE ccm.channel_id = '"+ channel_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
 
     def get_campaigns_added_to_message(self, message_id):
         try:
