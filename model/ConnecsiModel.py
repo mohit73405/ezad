@@ -204,7 +204,7 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'brands_classifieds':
                     cursor.execute(sql, data)
-                elif table_name == 'youtube_campaigns':
+                elif table_name == 'channel_campaign_message':
                     cursor.execute(sql, data)
                 elif table_name == 'message_campaigns':
                     cursor.execute(sql, data)
