@@ -26,8 +26,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="524" column="46" lean-forward="true" selection-start-line="524" selection-start-column="46" selection-end-line="524" selection-end-column="46" />
+            <state relative-caret-position="174">
+              <caret line="527" column="35" lean-forward="true" selection-start-line="527" selection-start-column="35" selection-end-line="527" selection-end-column="35" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -806,8 +806,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="524" column="46" lean-forward="true" selection-start-line="524" selection-start-column="46" selection-end-line="524" selection-end-column="46" />
+        <state relative-caret-position="174">
+          <caret line="527" column="35" lean-forward="true" selection-start-line="527" selection-start-column="35" selection-end-line="527" selection-end-column="35" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
