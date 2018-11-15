@@ -517,3 +517,18 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def update_channel_campaign_message(self, channel_id,message_id,status):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE channel_campaign_message SET message_id = "+ message_id +", status = '"+ status +"' WHERE channel_id = '" + channel_id +"'"
+                print(sql)
+                cursor.executemany(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+

@@ -49,9 +49,7 @@ class MailBox(Resource):
             connecsiObj = ConnecsiModel()
             message_id = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
             if channel_id:
-                columns = ['message_id', 'status']
-                data = [message_id, 'Contacted']
-                connecsiObj.update__(table_name='channel_campaign_message',columns=columns,data=data,WHERE='WHERE',compare_column='channel_id',compare_value=channel_id)
+                connecsiObj.update_channel_campaign_message(channel_id=channel_id,message_id=message_id,status='Contacted')
             return {'response': result},200
         except Exception as e:
             print(e)
