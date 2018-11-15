@@ -523,7 +523,7 @@ class ConnecsiModel:
                 print('channel id =',channel_id,type(channel_id))
                 print('message id =', message_id,type(message_id))
                 print('status = ',status,type(status))
-                sql = "UPDATE channel_campaign_message SET message_id = "+ message_id +", status = '"+ status +"' WHERE channel_id = '" + str(channel_id) +"'"
+                sql = "UPDATE channel_campaign_message SET message_id = "+ str(message_id) +", status = '"+ status +"' WHERE channel_id = '" + str(channel_id) +"'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
