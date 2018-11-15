@@ -236,11 +236,7 @@ class ConnecsiModel:
         print(sql)
         try:
             with self.cnx.cursor() as cursor:
-                if table_name == 'channel_campaign_message':
-                    print('i m here in executemany')
-                    cursor.executemany(sql,data)
-                else:
-                    cursor.execute(sql, data)
+                cursor.execute(sql, data)
                 self.cnx.commit()
                 cursor.close()
         except Exception as e: print(e)
