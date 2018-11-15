@@ -35,18 +35,23 @@ class MailBox(Resource):
         form_data = request.get_json()
         from_email_id = form_data.get('from_email_id')
         to_email_id = form_data.get('to_email_id')
+        channel_id = form_data.get('channel_id')
         date = form_data.get('date')
         subject = form_data.get('subject')
         message = form_data.get('message')
 
-        columns = ['from_email_id', 'to_email_id', 'date', 'subject', 'message','user_id','user_type']
-        data = [from_email_id, to_email_id, date, subject, message,user_id,user_type]
+        columns = ['from_email_id', 'to_email_id','channel_id', 'date', 'subject', 'message','user_id','user_type']
+        data = [from_email_id, to_email_id,channel_id, date, subject, message,user_id,user_type]
         print(data)
         result=0
         try:
             self.send_mail(subject=subject,to_email_id=to_email_id)
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
+            message_id = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
+            if channel_id:
+                columns = ['message_id', 'status']
+                data = [message_id, 'Contacted']
+                connecsiObj.update__(table_name='channel_campaign_message',columns=columns,data=data,compare_column='channel_id',compare_value=channel_id)
             return {'response': result},200
         except Exception as e:
             print(e)

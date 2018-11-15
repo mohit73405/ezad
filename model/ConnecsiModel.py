@@ -169,7 +169,7 @@ class ConnecsiModel:
                 values_string+=''.join('%s'+',')
         columns_string = columns_string[:-1]
         values_string = values_string[:-1]
-
+        inserted_id = ''
         try:
             with self.cnx.cursor() as cursor:
 
@@ -198,6 +198,7 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'messages':
                     cursor.execute(sql, data)
+                    inserted_id = cursor.lastrowid
                 elif table_name == 'conversations':
                     cursor.execute(sql, data)
                 elif table_name == 'brands_inf_fav_list':
@@ -210,13 +211,17 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
+
             cursor.close()
+
             res=1
         except Exception as e:
             res=0
             print(e)
             print("Exception Occured")
-        return res
+        if inserted_id:
+           return inserted_id
+        else: return res
 
 
     def update__(self,table_name,columns,data,WHERE,compare_column,compare_value):
@@ -231,7 +236,10 @@ class ConnecsiModel:
         print(sql)
         try:
             with self.cnx.cursor() as cursor:
-                cursor.execute(sql,data)
+                if table_name == 'channel_campaign_message':
+                    cursor.executemany(sql,data)
+                else:
+                    cursor.execute(sql, data)
                 self.cnx.commit()
                 cursor.close()
         except Exception as e: print(e)
