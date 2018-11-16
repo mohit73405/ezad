@@ -347,7 +347,7 @@ class MailBox(Resource):
             print(data)
             columns = ['campaign_id','user_id', 'campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels',
                        'regions','min_lower_followers','max_upper_followers','files','video_cat_id'
-                       ,'target_url','campaign_description','arrangements','kpis','is_classified_post','message_id','campaign_id']
+                       ,'target_url','campaign_description','arrangements','kpis','is_classified_post','message_id','campaign_id','channel_id','status']
             response_list = []
             for item in data:
                 dict_temp = dict(zip(columns, item))
