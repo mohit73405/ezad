@@ -111,6 +111,7 @@ class MailBox(Resource):
     def post(self, message_id,user_id, user_type):
         '''Reply to message'''
         form_data = request.get_json()
+        print('form data = ',form_data)
         from_email_id = form_data.get('conv_from_email_id')
         to_email_id = form_data.get('conv_to_email_id')
         date = form_data.get('conv_date')
