@@ -505,8 +505,8 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT * FROM brands_campaigns bc" \
-                      " Left JOIN message_campaigns mc on bc.campaign_id = mc.campaign_id" \
-                      " WHERE mc.message_id = '"+ message_id +"'"
+                      " Left JOIN channel_campaign_message ccm on bc.campaign_id = ccm.campaign_id" \
+                      " WHERE ccm.message_id = '"+ message_id +"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
