@@ -126,7 +126,8 @@ class MailBox(Resource):
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
             return {'response': result}, 200
-        except:
+        except Exception as e:
+            print(e)
             return {'response': result}, 500
 
     def get(self,message_id,user_id,user_type):
