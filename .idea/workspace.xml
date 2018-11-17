@@ -48,8 +48,8 @@
       <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="352" column="130" lean-forward="false" selection-start-line="352" selection-start-column="130" selection-end-line="352" selection-end-column="130" />
+            <state relative-caret-position="223">
+              <caret line="124" column="38" lean-forward="false" selection-start-line="124" selection-start-column="38" selection-end-line="124" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -809,8 +809,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="352" column="130" lean-forward="false" selection-start-line="352" selection-start-column="130" selection-end-line="352" selection-end-column="130" />
+        <state relative-caret-position="223">
+          <caret line="124" column="38" lean-forward="false" selection-start-line="124" selection-start-column="38" selection-end-line="124" selection-end-column="38" />
           <folding />
         </state>
       </provider>

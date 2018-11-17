@@ -112,6 +112,7 @@ class MailBox(Resource):
         '''Reply to message'''
         form_data = request.get_json()
         print('form data = ',form_data)
+        print(type(form_data))
         from_email_id = form_data.get('conv_from_email_id')
         to_email_id = form_data.get('conv_to_email_id')
         date = form_data.get('conv_date')
@@ -121,6 +122,7 @@ class MailBox(Resource):
 
         columns = ['message_id','conv_from_email_id', 'conv_to_email_id', 'conv_date', 'conv_subject', 'conv_message', 'user_id', 'user_type']
         data = [message_id,from_email_id, to_email_id, str(date), subject, message, user_id, user_type]
+        print('data to insert = ',data)
         result = 0
         try:
             # self.send_mail(subject=subject, to_email_id=to_email_id)
