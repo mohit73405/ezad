@@ -114,11 +114,11 @@ class MailBox(Resource):
         print('form data = ',form_data)
         print(type(form_data))
         from_email_id = form_data.get('conv_from_email_id')
-        to_email_id = form_data.get('conv_to_email_id')
+        to_email_id = form_data.get('to_email_id')
         date = form_data.get('conv_date')
         print('conv_date = ',date)
-        subject = form_data.get('conv_subject')
-        message = form_data.get('conv_message')
+        subject = form_data.get('subject')
+        message = form_data.get('message')
 
         columns = ['message_id','conv_from_email_id', 'conv_to_email_id', 'conv_date', 'conv_subject', 'conv_message', 'user_id', 'user_type']
         data = [message_id,from_email_id, to_email_id, str(date), subject, message, user_id, user_type]
