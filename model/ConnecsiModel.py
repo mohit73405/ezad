@@ -221,7 +221,8 @@ class ConnecsiModel:
             print("Exception Occured")
         if inserted_id:
            return inserted_id
-        else: return res
+        else:
+            return res
 
 
     def update__(self,table_name,columns,data,WHERE,compare_column,compare_value):
