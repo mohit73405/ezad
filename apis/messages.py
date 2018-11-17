@@ -119,6 +119,7 @@ class MailBox(Resource):
         print('conv_date = ',date)
         subject = form_data.get('subject')
         message = form_data.get('message')
+        channel_id = form_data.get('channel_id')
 
         columns = ['message_id','conv_from_email_id', 'conv_to_email_id', 'conv_date', 'conv_subject', 'conv_message', 'user_id', 'user_type']
         data = [message_id,from_email_id, to_email_id, str(date), subject, message, user_id, user_type]
@@ -128,6 +129,8 @@ class MailBox(Resource):
             self.send_mail(subject=subject, to_email_id=to_email_id)
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
+            if channel_id:
+                connecsiObj.update_channel_campaign_message(channel_id=str(channel_id),message_id=str(message_id),status='Negotiations')
             return {'response': result}, 200
         except Exception as e:
             print(e)
