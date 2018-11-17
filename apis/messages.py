@@ -125,7 +125,7 @@ class MailBox(Resource):
         print('data to insert = ',data)
         result = 0
         try:
-            # self.send_mail(subject=subject, to_email_id=to_email_id)
+            self.send_mail(subject=subject, to_email_id=to_email_id)
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
             return {'response': result}, 200
