@@ -124,8 +124,8 @@ class MailBox(Resource):
         result = 0
         try:
             self.send_mail(subject=subject, to_email_id=to_email_id)
-            connecsiObj = ConnecsiModel()
-            result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
+            # connecsiObj = ConnecsiModel()
+            # result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
             return {'response': result}, 200
         except Exception as e:
             print(e)
