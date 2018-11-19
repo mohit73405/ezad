@@ -279,6 +279,8 @@ class Brand(Resource):
         try:
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='campaign_proposal', columns=columns, data=data)
+            if channel_id and campaign_id:
+                connecsiObj.update_channel_status_by_campaign_id(channel_id=str(channel_id),message_id=str(message_id),campaign_id=str(campaign_id),status='Proposal Sent')
             return {'response': result}, 201
         except:
             return {'response': result}, 500
