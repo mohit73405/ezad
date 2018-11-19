@@ -599,7 +599,7 @@ class ConnecsiModel:
                       " WHERE cp.proposal_id = '"+ proposal_id +"'"
                 print(sql)
                 cursor.execute(sql)
-                data = cursor.fetchone()
+                data = cursor.fetchall()
                 # print(result)
             print("closing cnx")
             cursor.close()
