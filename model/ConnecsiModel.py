@@ -623,7 +623,7 @@ class ConnecsiModel:
                       " WHERE cp.message_id = '"+ message_id +"' AND cp.campaign_id = '"+campaign_id+"'"
                 print(sql)
                 cursor.execute(sql)
-                data = cursor.fetchone()
+                data = cursor.fetchall()
                 # print(result)
             print("closing cnx")
             cursor.close()
