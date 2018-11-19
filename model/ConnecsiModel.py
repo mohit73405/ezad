@@ -570,6 +570,7 @@ class ConnecsiModel:
                       " FROM campaign_proposal cp" \
                       " JOIN users_brands ub on cp.user_id = ub.user_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \
+                      " JOIN brands_campaigns bc on bc.campaign_id = cp.campaign_id" \
                       " WHERE cp.user_id = '"+ user_id +"'"
                 print(sql)
                 cursor.execute(sql)
@@ -594,6 +595,7 @@ class ConnecsiModel:
                       " FROM campaign_proposal cp" \
                       " JOIN users_brands ub on cp.user_id = ub.user_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \
+                      " JOIN brands_campaigns bc on bc.campaign_id = cp.campaign_id" \
                       " WHERE cp.proposal_id = '"+ proposal_id +"'"
                 print(sql)
                 cursor.execute(sql)
@@ -609,7 +611,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
-                      " cp.proposal_id,cp.campaign_id, cp.campaign_name, cp.message_id, cp.user_id, " \
+                      " cp.proposal_id,cp.campaign_id, bc.campaign_name, cp.message_id, cp.user_id, " \
                       " ub.company_name,ub.email_id," \
                       " ycd.channel_id,ycd.title,ycd.business_email," \
                       " cp.influencer_id, cp.proposal_description,cp.proposal_from_date,cp.proposal_to_date," \
@@ -617,6 +619,7 @@ class ConnecsiModel:
                       " FROM campaign_proposal cp" \
                       " JOIN users_brands ub on cp.user_id = ub.user_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \
+                      " JOIN brands_campaigns bc on bc.campaign_id = cp.campaign_id" \
                       " WHERE cp.message_id = '"+ message_id +"' AND cp.campaign_id = '"+campaign_id+"'"
                 print(sql)
                 cursor.execute(sql)
