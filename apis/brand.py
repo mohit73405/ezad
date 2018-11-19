@@ -249,3 +249,72 @@ class Brand(Resource):
             response_list.append(dict_temp)
         # print(response_list)
         return {'data': response_list}
+
+
+@ns_brand.route('/Proposal/<string:user_id>')
+class Brand(Resource):
+    def post(self,user_id):
+        '''add Proposal '''
+        form_data = request.get_json()
+        campaign_id = form_data.get('campaign_id')
+        message_id = form_data.get('message_id')
+
+        channel_id = form_data.get('channel_id')
+        influencer_id = form_data.get('influencer_id')
+        proposal_description = form_data.get('proposal_description')
+        proposal_from_date = form_data.get('proposal_from_date')
+        proposal_to_date = form_data.get('proposal_to_date')
+        proposal_channels = form_data.get('proposal_channels')
+        proposal_arrangements = form_data.get('proposal_arrangements')
+        proposal_kpis = form_data.get('proposal_kpis')
+        currency = form_data.get('currency')
+        proposal_price = form_data.get('proposal_price')
+
+        columns = ['campaign_id','message_id','user_id','channel_id','influencer_id','proposal_description',
+                   'proposal_from_date','proposal_to_date',
+                   'proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price']
+        data = [campaign_id,message_id,user_id,channel_id,influencer_id,proposal_description,proposal_from_date,
+                proposal_to_date,proposal_channels,proposal_arrangements,proposal_kpis,currency,proposal_price]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert__(table_name='campaign_proposal', columns=columns, data=data)
+            return {'response': result}, 201
+        except:
+            return {'response': result}, 500
+
+
+    def get(self,user_id):
+        '''get all Proposal by user id of brands'''
+        columns = ['proposal_id','campaign_id','campaign_name','message_id','user_id','company_name','email_id','channel_id','title',
+                   'business_email','influencer_id','proposal_description',
+                   'proposal_from_date','proposal_to_date',
+                   'proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price']
+        connecsiObj = ConnecsiModel()
+        data = connecsiObj.get_all_proposal(user_id=user_id)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list}
+
+
+
+@ns_brand.route('/Proposal/<string:proposal_id>')
+class Brand(Resource):
+    def get(self,proposal_id):
+        '''get Proposal by proposal id '''
+        columns = ['proposal_id', 'campaign_id', 'campaign_name', 'message_id', 'user_id', 'company_name', 'email_id',
+                   'channel_id', 'title',
+                   'business_email', 'influencer_id', 'proposal_description',
+                   'proposal_from_date', 'proposal_to_date',
+                   'proposal_channels', 'proposal_arrangements', 'proposal_kpis', 'currency', 'proposal_price']
+        connecsiObj = ConnecsiModel()
+        data = connecsiObj.get_proposal(proposal_id=proposal_id)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list}

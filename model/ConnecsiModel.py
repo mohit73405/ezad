@@ -536,3 +536,50 @@ class ConnecsiModel:
             print(e)
             return 0
 
+
+    def get_all_proposal(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " cp.proposal_id,cp.campaign_id, cp.campaign_name, cp.message_id, cp.user_id, " \
+                      " ub.company_name,ub.email_id," \
+                      " ycd.channel_id,ycd.title,ycd.business_email," \
+                      " cp.influencer_id, cp.proposal_description,cp.proposal_from_date,cp.proposal_to_date," \
+                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price" \
+                      " FROM campaign_proposal cp" \
+                      " JOIN users_brands ub on cp.user_id = ub.user_id" \
+                      " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \
+                      " WHERE cp.user_id = '"+ user_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+
+    def get_proposal(self, proposal_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " cp.proposal_id,cp.campaign_id, cp.campaign_name, cp.message_id, cp.user_id, " \
+                      " ub.company_name,ub.email_id," \
+                      " ycd.channel_id,ycd.title,ycd.business_email," \
+                      " cp.influencer_id, cp.proposal_description,cp.proposal_from_date,cp.proposal_to_date," \
+                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price" \
+                      " FROM campaign_proposal cp" \
+                      " JOIN users_brands ub on cp.user_id = ub.user_id" \
+                      " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \
+                      " WHERE cp.proposal_id = '"+ proposal_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchone()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
