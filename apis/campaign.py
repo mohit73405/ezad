@@ -139,10 +139,12 @@ class Campaign(Resource):
         connecsiObj = ConnecsiModel()
         res=''
         try:
-            res = connecsiObj.update__(table_name='brands_campaigns', columns=columns, data=data,WHERE='WHERE',compare_column='campaign_id',compare_value=campaign_id)
+            connecsiObj.update__(table_name='brands_campaigns', columns=columns, data=data,WHERE='WHERE',compare_column='campaign_id',compare_value=campaign_id)
+            res = 1
             return {'response': res},201
         except Exception as e:
             print(e)
+            res = 0
             return {'response': res},500
 
 
