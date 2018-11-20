@@ -116,3 +116,18 @@ class Campaign(Resource):
 
         except Exception as e:
             print(e)
+
+
+@ns_campaign.route('/update_channel_status_for_campaign/<string:message_id>/<string:campaign_id>/<string:status>')
+class Campaign(Resource):
+    def put(self,message_id,campaign_id,status):
+        ''' update Channel status campaigns by message id and campaign id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.update_channel_campaign_message_status_by_message_id_campaign_id(message_id=message_id,campaign_id=campaign_id,status=status)
+
+            return {'response': 1},201
+
+        except Exception as e:
+            print(e)
+
