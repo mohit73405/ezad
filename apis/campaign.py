@@ -27,6 +27,9 @@ brand_campaign_form = ns_campaign.model('Brand Campaign', {
 
 })
 
+
+
+
 @ns_campaign.route('/<string:user_id>')
 class Campaign(Resource):
     @ns_campaign.expect(brand_campaign_form)
@@ -56,9 +59,13 @@ class Campaign(Resource):
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'campaign_description',
                    'arrangements', 'kpis', 'user_id','is_classified_post','files']
         connecsiObj = ConnecsiModel()
-        res=connecsiObj.insert__(table_name='brands_campaigns', columns=columns, data=data)
-
-        return {'response':res}
+        res=''
+        try:
+            res=connecsiObj.insert__(table_name='brands_campaigns', columns=columns, data=data)
+            return {'response' : res}
+        except Exception as e:
+            print(e)
+            return {'response':res}
 
     def get(self,user_id):
         ''' get all campaings by user id'''
@@ -77,6 +84,11 @@ class Campaign(Resource):
 
         except Exception as e:
             print(e)
+
+
+
+
+
 
 
 @ns_campaign.route('/<string:campaign_id>/<string:user_id>')
@@ -98,6 +110,40 @@ class Campaign(Resource):
 
         except Exception as e:
             print(e)
+
+    @ns_campaign.expect(brand_campaign_form)
+    def put(self,campaign_id, user_id):
+        data_json = request.get_json()
+        campaign_name = data_json.get('campaign_name')
+        from_date = data_json.get('from_date')
+        to_date = data_json.get('to_date')
+        budget = data_json.get('budget')
+        currency = data_json.get('currency')
+        channels = data_json.get('channels')
+        regions = data_json.get('regions')
+        min_lower = data_json.get('min_lower')
+        max_upper = data_json.get('max_upper')
+        files = data_json.get('files')
+        video_cat = data_json.get('video_cat')
+        target_url = data_json.get('target_url')
+        campaign_description = data_json.get('campaign_description')
+        arrangements = data_json.get('arrangements')
+        kpis = data_json.get('kpis')
+        is_classified_post = data_json.get('is_classified_post')
+        data = [campaign_name, from_date, to_date, budget, currency, channels,
+                regions, min_lower, max_upper, video_cat, target_url, campaign_description, arrangements,
+                kpis, user_id, is_classified_post, files]
+        columns = ['campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
+                   'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'campaign_description',
+                   'arrangements', 'kpis', 'user_id', 'is_classified_post', 'files']
+        connecsiObj = ConnecsiModel()
+        res=''
+        try:
+            res = connecsiObj.update__(table_name='brands_campaigns', columns=columns, data=data,WHERE='WHERE',compare_column='campaign_id',compare_value=campaign_id)
+            return {'response': res},201
+        except Exception as e:
+            print(e)
+            return {'response': res},500
 
 
 @ns_campaign.route('/channel_status_for_campaign/<string:channel_id>')
