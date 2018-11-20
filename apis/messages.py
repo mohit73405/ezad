@@ -363,3 +363,89 @@ class MailBox(Resource):
             return {'data': response_list}
         except Exception as e:
             return {"response": e}, 500
+
+
+
+@ns_messages.route('/uploadMessageFiles/<string:message_id>')
+class MailBox(Resource):
+    def post(self,message_id):
+        '''Upload Files for messages id '''
+        columns=['user_id','channel_id','message_id','message_files']
+        form_data = request.get_json()
+        user_id = form_data.get('user_id')
+        channel_id = form_data.get('channel_id')
+        # message_id = form_data.get('message_id')
+        message_files = form_data.get('message_files')
+
+        data=(user_id,channel_id,message_id,message_files)
+        connecsiObj = ConnecsiModel()
+        result=0
+        try:
+            connecsiObj.insert__(table_name='user_channel_message_files',columns=columns,data=data)
+            result=1
+            return {'response': result}, 200
+        except Exception as e:
+            print(e)
+            return {'response': result}, 500
+
+
+    def get(self,message_id):
+        ''' Get uploaded message files by message id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get__(table_name='user_channel_message_files',STAR='*',WHERE='WHERE',compare_column='message_id',compare_value=str(message_id))
+            print(data)
+            # columns = ['campaign_id','user_id', 'campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels',
+            #            'regions','min_lower_followers','max_upper_followers','files','video_cat_id'
+            #            ,'target_url','campaign_description','arrangements','kpis','is_classified_post','channel_id','campaign_id','message_id','status']
+            columns = ['user_id', 'channel_id', 'message_id', 'message_files']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
+
+
+
+@ns_messages.route('/uploadMessageAgreements/<string:message_id>')
+class MailBox(Resource):
+    def post(self,message_id):
+        '''Upload Agreements for messages id '''
+        columns=['user_id','channel_id','message_id','message_agreements']
+        form_data = request.get_json()
+        user_id = form_data.get('user_id')
+        channel_id = form_data.get('channel_id')
+        # message_id = form_data.get('message_id')
+        message_agreements = form_data.get('message_agreements')
+
+        data=(user_id,channel_id,message_id,message_agreements)
+        connecsiObj = ConnecsiModel()
+        result=0
+        try:
+            connecsiObj.insert__(table_name='user_channel_message_agreements',columns=columns,data=data)
+            result=1
+            return {'response': result}, 200
+        except Exception as e:
+            print(e)
+            return {'response': result}, 500
+
+
+    def get(self,message_id):
+        ''' Get uploaded message Agreements by message id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get__(table_name='user_channel_message_agreements',STAR='*',WHERE='WHERE',compare_column='message_id',compare_value=str(message_id))
+            print(data)
+            # columns = ['campaign_id','user_id', 'campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels',
+            #            'regions','min_lower_followers','max_upper_followers','files','video_cat_id'
+            #            ,'target_url','campaign_description','arrangements','kpis','is_classified_post','channel_id','campaign_id','message_id','status']
+            columns = ['user_id', 'channel_id', 'message_id', 'message_agreements']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
