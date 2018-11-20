@@ -113,6 +113,7 @@ class Campaign(Resource):
 
     @ns_campaign.expect(brand_campaign_form)
     def put(self,campaign_id, user_id):
+        ''' Edit Campaign'''
         data_json = request.get_json()
         campaign_name = data_json.get('campaign_name')
         from_date = data_json.get('from_date')
