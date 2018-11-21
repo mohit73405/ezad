@@ -84,13 +84,13 @@ class Classified(Resource):
             print(e)
 
 
-@ns_classified.route('/<string:clasified_id>/<string:user_id>')
+@ns_classified.route('/<string:classified_id>/<string:user_id>')
 class Classified(Resource):
-    def get(self,clasified_id,user_id):
+    def get(self,classified_id,user_id):
         ''' get Classified details by classified id'''
         try:
             connecsiObj = ConnecsiModel()
-            classified_data = connecsiObj.get_brand_classified_details_by_classified_id_and_user_id(classified_id=clasified_id,user_id=user_id)
+            classified_data = connecsiObj.get_brand_classified_details_by_classified_id_and_user_id(classified_id=classified_id,user_id=user_id)
             columns = ['classified_id','user_id','classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                        'min_lower_followers', 'max_upper_followers','files', 'video_cat_id', 'target_url',
                        'classified_description',
@@ -142,7 +142,7 @@ class Classified(Resource):
             return {'response': res}
 
 
-@ns_classified.route('/NumberOfViews/<string:clasified_id>/<string:user_id>/<string:no_of_views>')
+@ns_classified.route('/NumberOfViews/<string:classified_id>/<string:user_id>/<string:no_of_views>')
 class Classified(Resource):
     def put(self,classified_id,user_id,no_of_views):
         try:
@@ -156,7 +156,7 @@ class Classified(Resource):
             return {'response': res},500
 
 
-@ns_classified.route('/NumberOfReplies/<string:clasified_id>/<string:user_id>/<string:no_of_replies>')
+@ns_classified.route('/NumberOfReplies/<string:classified_id>/<string:user_id>/<string:no_of_replies>')
 class Classified(Resource):
     def put(self,classified_id,user_id,no_of_replies):
         try:
