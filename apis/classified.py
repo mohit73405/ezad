@@ -142,3 +142,29 @@ class Classified(Resource):
             return {'response': res}
 
 
+@ns_classified.route('/NumberOfViews/<string:clasified_id>/<string:user_id>/<string:no_of_views>')
+class Classified(Resource):
+    def put(self,classified_id,user_id,no_of_views):
+        try:
+            connecsiObj=ConnecsiModel()
+            connecsiObj.update_classified_no_of_views(classified_id,user_id,no_of_views)
+            res = 1
+            return {'response': res},201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res},500
+
+
+@ns_classified.route('/NumberOfReplies/<string:clasified_id>/<string:user_id>/<string:no_of_replies>')
+class Classified(Resource):
+    def put(self,classified_id,user_id,no_of_replies):
+        try:
+            connecsiObj=ConnecsiModel()
+            connecsiObj.update_classified_no_of_replies(classified_id,user_id,no_of_replies)
+            res = 1
+            return {'response': res},201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res},500

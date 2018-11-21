@@ -654,3 +654,38 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+    def update_classified_no_of_views(self,classified_id,user_id,no_of_views):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE brands_classifieds SET no_of_views = '" + str(no_of_views) + "' WHERE classified_id = '"\
+                      + str(classified_id) + "' AND user_id = '" + str(user_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def update_classified_no_of_replies(self,classified_id,user_id,no_of_replies):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE brands_classifieds SET no_of_replies = '" + str(no_of_replies) + "' WHERE classified_id = '"\
+                      + str(classified_id) + "' AND user_id = '" + str(user_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
