@@ -73,7 +73,7 @@ class Classified(Resource):
             columns = ['classified_id','user_id','classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                        'min_lower_followers', 'max_upper_followers','files', 'video_cat_id', 'target_url',
                        'classified_description',
-                       'arrangements', 'kpis', 'convert_to_campaign']
+                       'arrangements', 'kpis', 'convert_to_campaign','no_of_views','no_of_replies']
             response_list = []
             for item in all_classifieds_data:
                 dict_temp = dict(zip(columns, item))
