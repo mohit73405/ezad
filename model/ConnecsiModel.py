@@ -215,6 +215,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'user_channel_message_agreements':
                     cursor.execute(sql, data)
+                elif table_name == 'brand_campaign_report':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")
