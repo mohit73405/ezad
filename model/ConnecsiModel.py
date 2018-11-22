@@ -689,3 +689,19 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+    def confirm_brands_email(self,user_id,confirmed):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE users_brands SET confirmed_email = '" + str(confirmed) + "' WHERE user_id = '"+ str(user_id) +"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
