@@ -216,7 +216,7 @@ class Campaign(Resource):
         try:
             connecsiObj = ConnecsiModel()
             brand_campaign_report_data = connecsiObj.get_brand_campaign_report(user_id=user_id,campaign_id=campaign_id)
-            columns = ['brand_campaign_report_id', 'user_id', 'campaign_id', 'revenue_generated','currency','new_users']
+            columns = ['brand_campaign_report_id', 'user_id', 'campaign_id', 'revenue_generated','currency','target_url','new_users']
             response_list = []
             for item in brand_campaign_report_data:
                 dict_temp = dict(zip(columns, item))
