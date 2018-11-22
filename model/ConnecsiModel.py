@@ -705,3 +705,18 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+    def get_brand_campaign_report(self, user_id,campaign_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT * from brand_campaign_report WHERE user_id  = '"+ user_id +"' AND campaign_id = '"+ campaign_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+

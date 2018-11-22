@@ -28,6 +28,13 @@ brand_campaign_form = ns_campaign.model('Brand Campaign', {
 })
 
 
+brand_campaign_report_form = ns_campaign.model('Brand Campaign report form', {
+    'revenue_generated' : fields.Integer(required=True, description='Revenue generated'),
+    'currency' : fields.String(required=True, description='Currency'),
+    'target_url' : fields.String(required=True, description='Target URL'),
+    'new_users' : fields.Integer(required=True, description='New Users')
+})
+
 
 
 @ns_campaign.route('/<string:user_id>')
@@ -180,3 +187,41 @@ class Campaign(Resource):
         except Exception as e:
             print(e)
 
+@ns_campaign.route('/BrandCampaignReport/<string:user_id>/<string:campaign_id>')
+class Campaign(Resource):
+    @ns_campaign.expect(brand_campaign_report_form)
+    def post(self,user_id,campaign_id):
+        ''' Add New Brand Campaign report'''
+        data_json = request.get_json()
+        revenue_generated = data_json.get('revenue_generated')
+        currency = data_json.get('currency')
+        target_url = data_json.get('target_url')
+        new_users = data_json.get('new_users')
+        data = [user_id, campaign_id, revenue_generated, currency, target_url,new_users]
+
+        columns = ['user_id', 'campaign_id', 'revenue_generated', 'currency', 'target_url', 'new_users']
+        connecsiObj = ConnecsiModel()
+
+        try:
+            connecsiObj.insert__(table_name='brand_campaign_report', columns=columns, data=data)
+            res=1
+            return {'response': res},200
+        except Exception as e:
+            res=0
+            print(e)
+            return {'response': res},500
+
+    def get(self, user_id,campaign_id):
+        ''' get Brand Campaign Report details  by user id and campaign id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            brand_campaign_report_data = connecsiObj.get_brand_campaign_report(user_id=user_id,campaign_id=campaign_id)
+            columns = ['brand_campaign_report_id', 'user_id', 'campaign_id', 'revenue_generated','currency','new_users']
+            response_list = []
+            for item in brand_campaign_report_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
