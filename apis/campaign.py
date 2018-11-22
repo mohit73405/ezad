@@ -226,6 +226,7 @@ class Campaign(Resource):
         except Exception as e:
             print(e)
 
+    @ns_campaign.expect(brand_campaign_report_form)
     def put(self,user_id,campaign_id):
         ''' Edit Brand Campaign report'''
         data_json = request.get_json()
