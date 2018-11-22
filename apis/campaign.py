@@ -225,3 +225,24 @@ class Campaign(Resource):
 
         except Exception as e:
             print(e)
+
+    def put(self,user_id,campaign_id):
+        ''' Edit Brand Campaign report'''
+        data_json = request.get_json()
+        revenue_generated = data_json.get('revenue_generated')
+        currency = data_json.get('currency')
+        target_url = data_json.get('target_url')
+        new_users = data_json.get('new_users')
+        data = [revenue_generated, currency, target_url,new_users]
+
+        # columns = ['user_id', 'campaign_id', 'revenue_generated', 'currency', 'target_url', 'new_users']
+        connecsiObj = ConnecsiModel()
+
+        try:
+            connecsiObj.update_brand_campaign_report(user_id,campaign_id,data=data)
+            res=1
+            return {'response': res},200
+        except Exception as e:
+            res=0
+            print(e)
+            return {'response': res},500

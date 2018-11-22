@@ -39,8 +39,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="712" column="26" lean-forward="true" selection-start-line="712" selection-start-column="26" selection-end-line="712" selection-end-column="26" />
+            <state relative-caret-position="213">
+              <caret line="729" column="39" lean-forward="false" selection-start-line="729" selection-start-column="39" selection-end-line="729" selection-end-column="39" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -73,8 +73,8 @@
       <file leaf-file-name="campaign.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/campaign.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="221" column="52" lean-forward="true" selection-start-line="221" selection-start-column="52" selection-end-line="221" selection-end-column="52" />
+            <state relative-caret-position="240">
+              <caret line="242" column="17" lean-forward="true" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -827,8 +827,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="712" column="26" lean-forward="true" selection-start-line="712" selection-start-column="26" selection-end-line="712" selection-end-column="26" />
+        <state relative-caret-position="213">
+          <caret line="729" column="39" lean-forward="false" selection-start-line="729" selection-start-column="39" selection-end-line="729" selection-end-column="39" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -837,8 +837,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/campaign.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="221" column="52" lean-forward="true" selection-start-line="221" selection-start-column="52" selection-end-line="221" selection-end-column="52" />
+        <state relative-caret-position="240">
+          <caret line="242" column="17" lean-forward="true" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
           <folding />
         </state>
       </provider>
