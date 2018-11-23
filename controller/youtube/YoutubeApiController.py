@@ -208,11 +208,12 @@ class YoutubeApiController:
         connecsiObj = ConnecsiModel()
         regionCodes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
         # print(regionCodes)
-        query=['gaming in poland','fashion in poland','moda i uroda w polsce','gry w polsce']
+        # query=["gaming in poland",'fashion in poland','moda i uroda w polsce','gry w polsce']
+        query=["gaming%20in%20USA","gaming in america"]
         for code in regionCodes:
             # print(code[0])
             # country_code_list=['US','CN','IN','DE','CH','AT','AU','NZ','NL','BE','LU','PL','SA','SE','NO','DK']
-            priority_country_list=['PL']
+            priority_country_list=['US']
             if  code[0] in priority_country_list:
                 for q in query:
                     print(q)
@@ -221,7 +222,7 @@ class YoutubeApiController:
                     pageToken = ''
                     channel_ids = []
                     data = []
-                    while counter <= 4:
+                    while counter <= 5:
                         url = self.get_channel_ids_url + '&maxResults=50' + '&pageToken=' + pageToken +'&q='+q
                         print(url)
                         # exit()
