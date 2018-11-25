@@ -221,6 +221,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'channels_mapper':
                     cursor.execute(sql, data)
+                elif table_name == 'users_influencers':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")

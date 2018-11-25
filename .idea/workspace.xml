@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="222" column="45" lean-forward="true" selection-start-line="222" selection-start-column="45" selection-end-line="222" selection-end-column="45" />
+            <state relative-caret-position="265">
+              <caret line="223" column="53" lean-forward="false" selection-start-line="223" selection-start-column="53" selection-end-line="223" selection-end-column="53" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -79,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="325">
@@ -174,11 +174,11 @@
         <option value="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
         <option value="$PROJECT_DIR$/apis/AuthLogins.py" />
         <option value="$PROJECT_DIR$/apis/youtube.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/controller/twitter/TwitterApiController.py" />
         <option value="$PROJECT_DIR$/controller/twitter/scheduler_twitter.py" />
         <option value="$PROJECT_DIR$/apis/influencer.py" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
       </list>
     </option>
   </component>
@@ -794,16 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="222" column="45" lean-forward="true" selection-start-line="222" selection-start-column="45" selection-end-line="222" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/twitter/TwitterApiController.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -836,6 +826,16 @@
           <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="223" column="53" lean-forward="false" selection-start-line="223" selection-start-column="53" selection-end-line="223" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
