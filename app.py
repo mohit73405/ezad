@@ -8,6 +8,7 @@ from apis.youtube import ns_youtube
 from apis.campaign import ns_campaign
 from apis.classified import ns_classified
 from apis.messages import ns_messages
+from apis.influencer import ns_influencer
 
 app = Flask(__name__)
 CORS(app)
@@ -28,7 +29,7 @@ api.add_namespace(ns_youtube)
 api.add_namespace(ns_campaign)
 api.add_namespace(ns_classified)
 api.add_namespace(ns_messages)
-
+api.add_namespace(ns_influencer)
 
 
 if __name__ == '__main__':
