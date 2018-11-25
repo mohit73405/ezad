@@ -58,8 +58,7 @@ class VideoCategories(Resource):
     def get(self,video_cat_id):
         ''' get video categories by video cat id '''
         connecsiObj = ConnecsiModel()
-        video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*',WHERE='WHERE',compare_column='video_cat_id'
-                                             ,compare_value=video_cat_id)
+        video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*',WHERE='WHERE',compare_column=video_cat_id,compare_value=video_cat_id)
         print(video_categories)
         columns = ['video_cat_id','video_cat_name']
         response_list = []

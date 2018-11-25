@@ -17,21 +17,40 @@ def get_data_by_screen_name():
     columns=['channel_id','twitter_url']
     channel_data=modelObj.get__(table_name='youtube_channel_details',columns=columns)
     print(channel_data)
+    # exit()
+    ratelimit_counter = 0
     for item in channel_data:
+        channel_id = item[0]
+
         if item[1]:
             try:
                 screen_name=''
                 print(item[1])
+                ratelimit_counter+=1
                 twitter_url = item[1]
                 # output = re.findall('http(.*)', twitter_url)
                 parsed = urllib.parse.urlsplit(twitter_url)
                 path=parsed.path
                 output=path.rsplit('/', 3)
                 screen_name = output[1]
-                conObj = TwitterApiController()
-                conObj.get_data_by_screen_name()
-            except:pass
-            exit()
+                print(screen_name)
+                if ratelimit_counter < 37:
+                    conObj = TwitterApiController()
+                    conObj.get_data_by_screen_name(channel_id=channel_id,twitter_url=twitter_url,screen_name=screen_name)
+                else:
+                    time.sleep(900)
+                    ratelimit_counter = 0
+            except Exception as e:
+                print(e)
+                pass
+
+                # exit()
+
+
+        else:
+            data = [channel_id, 'false']
+            modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
+
 
 def get_content_categories():
     conObj = TwitterApiController()

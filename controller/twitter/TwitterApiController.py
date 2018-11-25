@@ -19,7 +19,8 @@ class TwitterApiController:
         self.api = twitter.Api(consumer_key=self.consumer_key,
                       consumer_secret=self.consumer_secret,
                       access_token_key=self.access_token,
-                      access_token_secret=self.access_token_secret)
+                      access_token_secret=self.access_token_secret,
+                               sleep_on_rate_limit=True)
         self.api.VerifyCredentials()
 
 
@@ -41,9 +42,12 @@ class TwitterApiController:
                 print(key, ':', value)
         print(len(user_timeline))
 
-    def get_data_by_screen_name(self,screen_name='Cristiano'):
+    def get_data_by_screen_name(self,channel_id,twitter_url,screen_name):
+        twitter_id = ''
         title=''
-        no_of_followers=''
+        description=''
+        location=''
+        no_of_followers=0
         business_email=''
         website=''
         no_of_views=0
@@ -51,52 +55,87 @@ class TwitterApiController:
         no_of_comments=0
         no_of_retweets=0
         hashtagsList=[]
+
         user_data = self.api.GetUser(screen_name=screen_name)
         user_data_dict = user_data.AsDict()
         print(user_data_dict)
-        title=user_data_dict['name']
-        no_of_followers = user_data_dict['followers_count']
-        website = user_data_dict['url']
+        try:
+            twitter_id = user_data_dict['id_str']
+            title=user_data_dict['name']
+            description = user_data_dict['description']
+            location = user_data_dict['location']
+            no_of_followers = user_data_dict['followers_count']
+            website = user_data_dict['url']
+        except Exception as e:
+            print(e)
+            pass
+
+        print('twitter id = ',twitter_id)
+        print('screen name =',screen_name)
         print('title =',title)
+        print('description = ',description)
+        print('location = ', location)
         print('no of followers = ',no_of_followers)
         print('website = ',website)
+        print('twitter_url = ',twitter_url)
 
         # for key, value in user_data.__dict__.items():
         #     print(key, ':', value)
 
-        user_timeline = self.api.GetUserTimeline(screen_name=screen_name, count=7)
+        user_timeline = self.api.GetUserTimeline(screen_name=screen_name, count=100)
 
         # print(user_timeline)
         for item in user_timeline:
             status_dict = item.AsDict()
             # for key, value in item.__dict__.items():
             #     print(key, ':', value)
-            status_id = status_dict['id']
-            no_of_likes  += status_dict['favorite_count']
-            no_of_retweets += status_dict['retweet_count']
-            # no_of_comments = status_dict['user_mentions']
-            # print('user mentions = ',no_of_comments)
-            hashtags=status_dict['hashtags']
-            for hashtag in hashtags:
-                # print(hashtag['text'])
-                hashtagsList.append(hashtag['text'])
+            try:
+                status_id = status_dict['id']
+                no_of_likes  += status_dict['favorite_count']
+                no_of_retweets += status_dict['retweet_count']
+                # no_of_comments = status_dict['user_mentions']
+                # print('user mentions = ',no_of_comments)
+                hashtags=status_dict['hashtags']
+                for hashtag in hashtags:
+                    # print(hashtag['text'])
+                    hashtagsList.append(hashtag['text'])
+            except Exception as e:
+                print(e)
+                pass
         print('no of likes = ',no_of_likes)
         print('no of retweets',no_of_retweets)
         # print('hashtags = ',hashtagsList)
         hashtagsList_string=','.join(hashtagsList)
-        print(hashtagsList_string)
-        no_of_comments_url='https://twitter.com/'+screen_name+'/with_replies'
-        print(no_of_comments_url)
-        page = requests.get(url=no_of_comments_url).content
-        soup = BeautifulSoup(page, "html.parser")
+        print('hastags = ',hashtagsList_string)
+
+        # no_of_comments_url='https://twitter.com/'+screen_name+'/with_replies'
+        # print(no_of_comments_url)
+        # page = requests.get(url=no_of_comments_url).content
+        # soup = BeautifulSoup(page, "html.parser")
         # print(soup)
         # find a list of all span elements
-        spans = soup.find_all('span', {'class': 'ProfileTweet-actionCount'})
-        print(spans)
-        # create a list of lines corresponding to element texts
-        lines = [span.get_text() for span in spans]
-        print(lines)
+        # spans = soup.find_all('span', {'class': 'ProfileTweet-actionCount'})
+        # button = soup.find_all('button', {'class': 'ProfileTweet-actionButton js-actionButton js-actionReply'})
+        # span = button.find('span', {'class': 'ProfileTweet-actionCount'})
+        # replies_count=span.attrs["data-tweet-stat-count"]
 
+        # print(button)
+        # print(span)
+        # print(replies_count)
+        columns = ['twitter_id','screen_name','title','description','location','no_of_followers','no_of_likes_recent100',
+        'no_of_retweets_recent100','website','twitter_url','hashtags']
+        data = [twitter_id,screen_name,title,description,location,no_of_followers,no_of_likes,no_of_retweets,website,twitter_url,hashtagsList_string]
+        connecsiObj= ConnecsiModel()
+        try:
+            connecsiObj.insert__(table_name='twitter_channel_details',IGNORE='IGNORE',columns=columns,data=data)
+        except Exception as e:
+            print(e)
+            pass
+        try:
+            connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,'false'])
+        except Exception as e:
+            print(e)
+            pass
 
 
     def get_content_categories(self):

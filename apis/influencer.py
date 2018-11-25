@@ -6,6 +6,11 @@ import datetime
 
 ns_influencer = Namespace('Influencer', description='Influencer Operations')
 
+influencer_register_form = ns_influencer.model('Influencer Details',{
+    'channel_id': fields.String(required=True,description='channel id'),
+    'business_email': fields.String(required=True,description='Business Email')
+})
+
 influencer_edit_form = ns_influencer.model('Influencer Details Update', {
     'first_name' : fields.String(required=True, description='First Name'),
     'last_name' : fields.String(required=True, description='Last Name'),
@@ -56,3 +61,23 @@ class Influencer(Resource):
             return {"response" : 1},200
         except Exception as e:
             return {"response": e},500
+
+
+
+@ns_influencer.route('/saveInfluncer')
+class Brand(Resource):
+    @ns_influencer.expect(influencer_register_form)
+    def post(self):
+        '''Registers Influencer Details'''
+        form_data = request.get_json()
+        channel_id= form_data.get('channel_id')
+        # password_sha = sha256_crypt.encrypt('influencer123')
+        email = form_data.get('business_email')
+        columns = ['channel_id','business_email']
+        data = [channel_id, email]
+        result=0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert__(table_name='users_influencer',columns=columns,data=data,IGNORE='IGNORE')
+            return {'response': result},201
+        except: return {'response': result},500
