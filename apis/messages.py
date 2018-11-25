@@ -59,19 +59,34 @@ class MailBox(Resource):
         ''' get messages by user id and user type'''
         try:
             connecsiObj = ConnecsiModel()
-            user = connecsiObj.get__(table_name='users_brands',STAR='*',WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
-            print(user)
-            print(user[0][3])
-            email_id = user[0][3]
-            data = connecsiObj.get_messages_by_email_id_and_user_type(email_id=str(email_id),user_type=user_type)
-            print(data)
-            columns = ['message_id','from_email_id', 'to_email_id','channel_id', 'date', 'subject', 'message', 'user_id', 'user_type',
+            if user_type == 'brand':
+                user = connecsiObj.get__(table_name='users_brands',STAR='*',WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
+                print(user)
+                print(user[0][3])
+                email_id = user[0][3]
+                data = connecsiObj.get_messages_by_email_id_and_user_type(email_id=str(email_id),user_type=user_type)
+                print(data)
+                columns = ['message_id','from_email_id', 'to_email_id','channel_id', 'date', 'subject', 'message', 'user_id', 'user_type',
                        'deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id']
-            response_list = []
-            for item in data:
-                dict_temp = dict(zip(columns, item))
-                response_list.append(dict_temp)
-            return {'data': response_list}
+                response_list = []
+                for item in data:
+                    dict_temp = dict(zip(columns, item))
+                    response_list.append(dict_temp)
+                return {'data': response_list}
+            if user_type == 'influencer':
+                user = connecsiObj.get__(table_name='users_influencers',STAR='*',WHERE='WHERE',compare_column='channel_id',compare_value=str(user_id))
+                print(user)
+                # print(user[0][2])
+                email_id = user[0][2]
+                data = connecsiObj.get_messages_by_email_id_and_user_type(email_id=str(email_id),user_type=user_type)
+                print(data)
+                columns = ['message_id','from_email_id', 'to_email_id','channel_id', 'date', 'subject', 'message', 'user_id', 'user_type',
+                       'deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id']
+                response_list = []
+                for item in data:
+                    dict_temp = dict(zip(columns, item))
+                    response_list.append(dict_temp)
+                return {'data': response_list}
         except Exception as e:
             return {"response": e},500
 
