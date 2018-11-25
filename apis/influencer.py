@@ -4,6 +4,8 @@ from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
 import datetime
 
+
+
 ns_influencer = Namespace('Influencer', description='Influencer Operations')
 
 influencer_register_form = ns_influencer.model('Influencer Details',{
@@ -75,9 +77,13 @@ class Brand(Resource):
         email = form_data.get('business_email')
         columns = ['channel_id','business_email']
         data = [channel_id, email]
-        result=0
+
         try:
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='users_influencers',columns=columns,data=data,IGNORE='IGNORE')
             return {'response': result},201
-        except: return {'response': result},500
+
+        except:
+            result=0
+            return {'response': result},500
+
