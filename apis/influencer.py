@@ -66,7 +66,7 @@ class Influencer(Resource):
 
 
 
-@ns_influencer.route('/saveInfluncer')
+@ns_influencer.route('/saveInfleuncer')
 class Brand(Resource):
     @ns_influencer.expect(influencer_register_form)
     def post(self):
