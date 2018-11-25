@@ -80,7 +80,7 @@ class Brand(Resource):
 
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.insert__(table_name='users_influencers',columns=columns,data=data,IGNORE='IGNORE')
+            result = connecsiObj.insert__(table_name='users_influencers',columns=columns,data=data)
             return {'response': result},201
 
         except:
