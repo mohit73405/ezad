@@ -96,3 +96,24 @@ class Brand(Resource):
             result=0
             return {'response': result},500
 
+@ns_influencer.route('/getMyCampaigns/<string:user_id>')
+class Influencer(Resource):
+    def get(self,user_id):
+        ''' get all campaings by channel id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            influencer_campaigns_data = connecsiObj.getAllInfluencerCampaigns(channel_id=str(user_id))
+            # columns = ['channel_id','campaign_id','brand_user_id','campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
+            #            'min_lower_followers', 'max_upper_followers','files', 'target_url',
+            #            'campaign_description',
+            #            'arrangements', 'kpis']
+
+            columns = ['campaign_id','campaign_name','youtube_channel_id','twitter_channel_id']
+            response_list = []
+            for item in influencer_campaigns_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)

@@ -796,3 +796,26 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+
+    def getAllInfluencerCampaigns(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " cp.campaign_id,bc.campaign_name,chm.youtube_channel_id,chm.twitter_channel_id" \
+                      " FROM campaign_proposal cp" \
+                      " JOIN brands_campaigns bc on bc.campaign_id = cp.campaign_id" \
+                      " JOIN channels_mapper chm on chm.youtube_channel_id = cp.channel_id" \
+                      " JOIN channel_campaign_message ccm on ccm.campaign_id=cp.campaign_id" \
+                      " WHERE ccm.status = 'Current Parter' and cp.channel_id = '" + channel_id + "'"
+
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
