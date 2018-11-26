@@ -9,6 +9,7 @@ from apis.campaign import ns_campaign
 from apis.classified import ns_classified
 from apis.messages import ns_messages
 from apis.influencer import ns_influencer
+from apis.offers import ns_offer
 
 app = Flask(__name__)
 CORS(app)
@@ -30,7 +31,7 @@ api.add_namespace(ns_campaign)
 api.add_namespace(ns_classified)
 api.add_namespace(ns_messages)
 api.add_namespace(ns_influencer)
-
+api.add_namespace(ns_offer)
 
 if __name__ == '__main__':
     app.secret_key = 'connecsiSecretKey'
