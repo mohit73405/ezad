@@ -16,14 +16,11 @@ influencer_register_form = ns_influencer.model('Influencer Details',{
 influencer_edit_form = ns_influencer.model('Influencer Details Update', {
     'first_name' : fields.String(required=True, description='First Name'),
     'last_name' : fields.String(required=True, description='Last Name'),
-    'business_email': fields.String(required=True, description='Business Email'),
     'phone': fields.String(required=True, description='Phone'),
-    'Categories': fields.String(required=True, description='Categories'),
+    'categories': fields.String(required=True, description='Categories'),
     'website': fields.String(required=True, description='Website'),
     'country': fields.String(required=True, description='Country'),
     'city': fields.String(required=True, description='City'),
-    'social_media_accounts': fields.String(required=True, description='Social Media Accounts')
-
 })
 
 
@@ -32,9 +29,8 @@ class Influencer(Resource):
     def get(self,user_id):
         '''Influencer details by user_id'''
         connecsiObj = ConnecsiModel()
-        columns = ['user_id', 'first_name', 'last_name', 'company_name', 'email_id', 'role','phone','position','url','country'
-                   ,'no_of_employees','city','monthly_budget','business_sector']
-        data = connecsiObj.get__(table_name='users_brands',columns=columns,WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
+        columns = ['first_name', 'last_name', 'business_email','phone','categories','website','country','city','channel_id']
+        data = connecsiObj.get__(table_name='users_influencers',columns=columns,WHERE='WHERE',compare_column='channel_id',compare_value=str(user_id))
         response_dict = dict(zip(columns, data[0]))
         print(response_dict)
         return {'data':response_dict},200
@@ -46,20 +42,17 @@ class Influencer(Resource):
         first_name = form_data.get('first_name')
         last_name = form_data.get('last_name')
         phone = form_data.get('phone')
-        position = form_data.get('position')
-        url = form_data.get('url')
+        categories = form_data.get('categories')
+        website = form_data.get('website')
         country = form_data.get('country')
-        no_of_employees = form_data.get('no_of_employees')
         city = form_data.get('city')
-        monthly_budget = form_data.get('monthly_budget')
-        business_sector = form_data.get('business_sector')
-        company_name = form_data.get('company_name')
-        columns = ['first_name', 'last_name', 'company_name', 'phone', 'position', 'url',
-                   'country', 'no_of_employees', 'city', 'monthly_budget', 'business_sector']
-        data=(first_name,last_name,company_name,phone,position,url,country,no_of_employees,city,monthly_budget,business_sector)
+
+        columns = ['first_name', 'last_name','phone', 'cetegories', 'website',
+                   'country','city']
+        data=(first_name,last_name,phone,categories,website,country,city)
         try:
             connecsiObj = ConnecsiModel()
-            connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
+            connecsiObj.update__(table_name='users_influencers',columns=columns,WHERE='WHERE',data=data,compare_column='channel_id',compare_value=str(user_id))
             return {"response" : 1},200
         except Exception as e:
             return {"response": e},500

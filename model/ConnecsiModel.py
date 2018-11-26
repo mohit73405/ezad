@@ -376,6 +376,22 @@ class ConnecsiModel:
             print(e)
 
 
+    def get_inf_offer_details_by_offer_id_and_user_id(self,offer_id,user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT  * from inf_offers" \
+                      "  WHERE offer_id = '" + offer_id  + "' AND user_id = '" + user_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
 
 
     def delete_message_from_conversation(self, message_id,conv_id, user_id):
@@ -680,6 +696,24 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def update_offer_no_of_views(self,offer_id,user_id,no_of_views):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE inf_offers SET no_of_views = '" + str(no_of_views) + "' WHERE offer_id = '"\
+                      + str(offer_id) + "' AND user_id = '" + str(user_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
 
     def update_classified_no_of_replies(self,classified_id,user_id,no_of_replies):
         try:
@@ -687,6 +721,24 @@ class ConnecsiModel:
 
                 sql = "UPDATE brands_classifieds SET no_of_replies = '" + str(no_of_replies) + "' WHERE classified_id = '"\
                       + str(classified_id) + "' AND user_id = '" + str(user_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def update_offer_no_of_replies(self, offer_id, user_id, no_of_replies):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE inf_offers SET no_of_replies = '" + str(
+                    no_of_replies) + "' WHERE offer_id = '" \
+                      + str(offer_id) + "' AND user_id = '" + str(user_id) + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
