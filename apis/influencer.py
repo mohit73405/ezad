@@ -80,12 +80,13 @@ class Brand(Resource):
 
         try:
             connecsiObj = ConnecsiModel()
+            channel_ids = connecsiObj.get__(table_name='users_influencers',columns=['channel_id'])
             channels_mapped_youtube = connecsiObj.get__(table_name='channels_mapper',STAR='*',WHERE='WHERE',compare_column='youtube_channel_id',compare_value=str(channel_id))
             print(channels_mapped_youtube)
             if channels_mapped_youtube:
                 for channels in channels_mapped_youtube:
                     print('mapped twitter channel = ',channels[1])
-                    mapped_twitter_channels=channels[1]
+                    mapped_twitter_channel=channels[1]
 
             channels_mapped_twitter = connecsiObj.get__(table_name='channels_mapper', STAR='*', WHERE='WHERE',
                                                 compare_column='twitter_channel_id', compare_value=str(channel_id))
