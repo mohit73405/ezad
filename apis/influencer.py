@@ -82,9 +82,19 @@ class Brand(Resource):
             connecsiObj = ConnecsiModel()
             channels_mapped_youtube = connecsiObj.get__(table_name='channels_mapper',STAR='*',WHERE='WHERE',compare_column='youtube_channel_id',compare_value=str(channel_id))
             print(channels_mapped_youtube)
+            if channels_mapped_youtube:
+                for channels in channels_mapped_youtube:
+                    print('mapped twitter channel = ',channels[1])
+                    mapped_twitter_channels=channels[1]
+
             channels_mapped_twitter = connecsiObj.get__(table_name='channels_mapper', STAR='*', WHERE='WHERE',
                                                 compare_column='twitter_channel_id', compare_value=str(channel_id))
             print(channels_mapped_twitter)
+            if channels_mapped_twitter:
+                for channels in channels_mapped_twitter:
+                    print('mapped youtube channel = ',channels[0])
+                    mapped_youtube_channels=channels[0]
+
             result = connecsiObj.insert__(table_name='users_influencers',columns=columns,data=data)
             return {'response': result},201
 
