@@ -840,27 +840,27 @@ class ConnecsiModel:
     def get_all_inf_channels(self, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                # sql = "SELECT " \
-                #       " ui1.first_name as youtube_first_name,ui1.last_name as youtube_last_name,ui1.business_email as youtube_business_email," \
-                #       " ui1.phone as youtube_phone,ui1.categories as youtube_categories, ui1.website as youtube_website, ui1.country as youtube_country," \
-                #       " ui1.city as youtube_city,ui1.channel_id as youtube_channel_id," \
-                #       " ui2.first_name as twitter_first_name,ui2.last_name as twitter_last_name,ui2.business_email as twitter_business_email," \
-                #       " ui2.phone as twitter_phone,ui2.categories as twitter_categories, ui2.website as twitter_website, ui2.country as twitter_country," \
-                #       " ui2.city as twitter_city,ui2.channel_id as twitter_channel_id," \
-                #       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id," \
-                #       " chm.confirmed" \
-                #       " FROM channels_mapper chm" \
-                #       " LEFT JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id" \
-                #       " LEFT JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id" \
-                #       " WHERE ui1.channel_id = '" + user_id + "' OR ui2.channel_id = '"+ user_id +"'"
+                sql = "SELECT " \
+                      " ui1.first_name as youtube_first_name,ui1.last_name as youtube_last_name,ui1.business_email as youtube_business_email," \
+                      " ui1.phone as youtube_phone,ui1.categories as youtube_categories, ui1.website as youtube_website, ui1.country as youtube_country," \
+                      " ui1.city as youtube_city,ui1.channel_id as youtube_channel_id," \
+                      " ui2.first_name as twitter_first_name,ui2.last_name as twitter_last_name,ui2.business_email as twitter_business_email," \
+                      " ui2.phone as twitter_phone,ui2.categories as twitter_categories, ui2.website as twitter_website, ui2.country as twitter_country," \
+                      " ui2.city as twitter_city,ui2.channel_id as twitter_channel_id," \
+                      " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id," \
+                      " chm.confirmed" \
+                      " FROM channels_mapper chm" \
+                      " LEFT JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id" \
+                      " LEFT JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id" \
+                      " WHERE ui1.channel_id = '" + user_id + "' OR ui2.channel_id = '"+ user_id +"'"
 
 
-                sql = " select ui1.first_name as youtube_first_name,ui2.first_name as twitter_first_name,chm.youtube_channel_id," \
-                      " chm.twitter_channel_id " \
-                      " FROM channels_mapper chm " \
-                      " LEFT JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id " \
-                      " LEFT JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id " \
-                      " WHERE ui1.channel_id = '"+ user_id +"' or ui2.channel_id = '"+ user_id +"'"
+                # sql = " select ui1.first_name as youtube_first_name,ui2.first_name as twitter_first_name,chm.youtube_channel_id," \
+                #       " chm.twitter_channel_id " \
+                #       " FROM channels_mapper chm " \
+                #       " LEFT JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id " \
+                #       " LEFT JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id " \
+                #       " WHERE ui1.channel_id = '"+ user_id +"' or ui2.channel_id = '"+ user_id +"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
