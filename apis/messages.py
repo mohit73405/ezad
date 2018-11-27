@@ -488,7 +488,7 @@ class MailBox(Resource):
                 print(e)
         to_email_id = email_id
         subject = 'Your Password for Connecsi Admin'
-        message = 'Your Password for Connecsi is '+ new_password + 'You can now login with this new temporary password and then change it'
+        message = 'Your Password for Connecsi is '+ new_password + ', You can now login with this new temporary password and then change it'
         try:
             self.send_mail(subject=subject,to_email_id=to_email_id,message=message)
             result=1

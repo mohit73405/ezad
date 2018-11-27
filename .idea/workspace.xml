@@ -117,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="490" column="128" lean-forward="false" selection-start-line="490" selection-start-column="128" selection-end-line="490" selection-end-column="128" />
+              <caret line="490" column="70" lean-forward="false" selection-start-line="490" selection-start-column="70" selection-end-line="490" selection-end-column="70" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -863,7 +863,7 @@
     <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="490" column="128" lean-forward="false" selection-start-line="490" selection-start-column="128" selection-end-line="490" selection-end-column="128" />
+          <caret line="490" column="70" lean-forward="false" selection-start-line="490" selection-start-column="70" selection-end-line="490" selection-end-column="70" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
