@@ -117,3 +117,15 @@ class Influencer(Resource):
 
         except Exception as e:
             print(e)
+
+
+@ns_influencer.route('/GetDetailsByEmailId/<string:email_id>')
+class Influencer(Resource):
+    def get(self,email_id):
+        '''Influencer details by email id '''
+        connecsiObj = ConnecsiModel()
+        columns = ['first_name', 'last_name', 'business_email','phone','categories','website','country','city','channel_id']
+        data = connecsiObj.get__(table_name='users_influencers',columns=columns,WHERE='WHERE',compare_column='email_id',compare_value=str(email_id))
+        response_dict = dict(zip(columns, data[0]))
+        print(response_dict)
+        return {'data':response_dict},200
