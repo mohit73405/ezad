@@ -856,11 +856,11 @@ class ConnecsiModel:
 
 
                 sql = " select ui1.first_name as youtube_first_name,ui2.first_name as twitter_first_name,chm.youtube_channel_id," \
-                      " chm.twitter_channel_id" \
+                      " chm.twitter_channel_id " \
                       " FROM channels_mapper chm " \
                       " JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id " \
                       " JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id " \
-                      " WHERE ui1.channel_id = '"+ user_id +"' or ui2.channel_id = "+ user_id +"'"
+                      " WHERE ui1.channel_id = '"+ user_id +"' or ui2.channel_id = '"+ user_id +"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
