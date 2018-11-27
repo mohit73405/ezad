@@ -474,15 +474,21 @@ class MailBox(Resource):
 class MailBox(Resource):
     def post(self,user_id,user_type,email_id):
         '''Send password to given email id'''
-        password=''
+        new_password=''
         connecsiObj = ConnecsiModel()
         if user_type=='brand':
-            password = connecsiObj.get_password_by_user_id(table_name='users_brands',user_id=user_id)
-            # password = sha256_crypt.encrypt(password)
-            print(password)
+            new_password= email_id+'_111'
+            password_sha = sha256_crypt.encrypt(str(new_password))
+            columns = ['password']
+            data = (password_sha)
+            try:
+                connecsiObj.update__(table_name='users_brands', columns=columns, WHERE='WHERE', data=data,
+                                     compare_column='user_id', compare_value=str(user_id))
+            except Exception as e:
+                print(e)
         to_email_id = email_id
         subject = 'Your Password for Connecsi Admin'
-        message = 'Your Password for Connecsi is '+password
+        message = 'Your Password for Connecsi is '+ new_password + 'You can now login with this new temporary password and then change it'
         try:
             self.send_mail(subject=subject,to_email_id=to_email_id,message=message)
             result=1
