@@ -29,16 +29,21 @@ class Influencer(Resource):
     def get(self,user_id):
         '''Influencer details by user_id'''
         connecsiObj = ConnecsiModel()
-        columns = ['first_name', 'last_name', 'business_email','phone','categories','website','country','city','channel_id','youtube_channel_id','twitter_channel_id','confirmed']
-        try:
-            data = connecsiObj.get_all_inf_channels(user_id=str(user_id))
-            # response_dict = dict(zip(columns, data[0]))
-            print('data = ',data)
-            print(type(data))
-            return {'data':data},200
-        except Exception as e:
-            print(e)
-            # return {'data': data},500
+        columns = ['youtube_first_name', 'youtube_last_name', 'youtube_business_email','youtube_phone','youtube_categories',
+                   'youtube_website','youtube_country','youtube_city','youtube_channel_id',
+                   'twitter_first_name', 'twitter_last_name', 'twitter_business_email', 'twitter_phone','twitter_categories',
+                   'twitter_website', 'twitter_country', 'twitter_city', 'twitter_channel_id',
+                   'mapped_youtube_channel_id','mapped_twitter_channel_id','confirmed']
+
+        data = connecsiObj.get_all_inf_channels(user_id=str(user_id))
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        return {'data': response_list}
+
+
+
 
     @ns_influencer.expect(influencer_edit_form)
     def put(self,user_id):
