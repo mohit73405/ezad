@@ -478,7 +478,7 @@ class MailBox(Resource):
         connecsiObj = ConnecsiModel()
         if user_type=='brand':
             password = connecsiObj.get_user_by_user_id(table_name='users_brands',user_id=user_id)
-            password = sha256_crypt.encrypt(password)
+            # password = sha256_crypt.encrypt(password)
             print(password)
         to_email_id = email_id
         subject = 'Your Password for Connecsi Admin'
