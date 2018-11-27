@@ -30,10 +30,14 @@ class Influencer(Resource):
         '''Influencer details by user_id'''
         connecsiObj = ConnecsiModel()
         columns = ['first_name', 'last_name', 'business_email','phone','categories','website','country','city','channel_id','youtube_channel_id','twitter_channel_id','confirmed']
-        data = connecsiObj.get_all_inf_channels(user_id=str(user_id))
-        # response_dict = dict(zip(columns, data[0]))
-        print(data)
-        return {'data':data},200
+        try:
+            data = connecsiObj.get_all_inf_channels(user_id=str(user_id))
+            # response_dict = dict(zip(columns, data[0]))
+            print(data)
+            return {'data':data},200
+        except Exception as e:
+            print(e)
+            # return {'data': data},500
 
     @ns_influencer.expect(influencer_edit_form)
     def put(self,user_id):
