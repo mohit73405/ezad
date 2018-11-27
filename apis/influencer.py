@@ -47,7 +47,7 @@ class Influencer(Resource):
 
     @ns_influencer.expect(influencer_edit_form)
     def put(self,user_id):
-        '''Update Brand Details'''
+        '''Update Influencer Details'''
         form_data = request.get_json()
         first_name = form_data.get('first_name')
         last_name = form_data.get('last_name')
