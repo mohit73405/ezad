@@ -33,7 +33,8 @@ class Influencer(Resource):
         try:
             data = connecsiObj.get_all_inf_channels(user_id=str(user_id))
             # response_dict = dict(zip(columns, data[0]))
-            print(data)
+            print('data = ',data)
+            print(type(data))
             return {'data':data},200
         except Exception as e:
             print(e)
