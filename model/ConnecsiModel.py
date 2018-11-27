@@ -826,7 +826,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
-                      " ui.first_name,ui.last_name,ui.business_email,ui.phone,ui,categories,ui.website,ui.country,ui.city,ui.channel_id" \
+                      " ui.first_name,ui.last_name,ui.business_email,ui.phone,ui.categories,ui.website,ui.country,ui.city,ui.channel_id" \
                       " ,chm.youtube_channel_id,chm.twitter_channel_id" \
                       " FROM users_influencers ui" \
                       " JOIN channels_mapper chm on ui.channel_id = chm.youtube_channel_id" \
