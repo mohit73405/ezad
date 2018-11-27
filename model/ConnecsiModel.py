@@ -808,7 +808,7 @@ class ConnecsiModel:
                       " JOIN brands_campaigns bc on bc.campaign_id = cp.campaign_id" \
                       " JOIN channels_mapper chm on chm.youtube_channel_id = cp.channel_id" \
                       " JOIN channel_campaign_message ccm on ccm.campaign_id=cp.campaign_id" \
-                      " WHERE ccm.status = 'Current Parter' and cp.channel_id = '" + channel_id + "'"
+                      " WHERE ccm.status = 'Current Partner' and cp.channel_id = '" + channel_id + "'"
 
                 print(sql)
                 cursor.execute(sql)
