@@ -851,7 +851,7 @@ class ConnecsiModel:
                       " chm.confirmed" \
                       " FROM channels_mapper chm" \
                       " JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id" \
-                      " JOIN users_influencers ui2 on ui2.channel_id = chm1.twitter_channel_id" \
+                      " JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id" \
                       " WHERE ui1.channel_id = '" + user_id + "' OR ui2.channel_id = '"+ user_id +"'"
 
                 print(sql)
