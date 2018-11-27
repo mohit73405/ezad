@@ -57,7 +57,7 @@ class Influencer(Resource):
         country = form_data.get('country')
         city = form_data.get('city')
 
-        columns = ['first_name', 'last_name','phone', 'cetegories', 'website',
+        columns = ['first_name', 'last_name','phone', 'categories', 'website',
                    'country','city']
         data=(first_name,last_name,phone,categories,website,country,city)
         try:
