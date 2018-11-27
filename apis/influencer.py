@@ -29,8 +29,8 @@ class Influencer(Resource):
     def get(self,user_id):
         '''Influencer details by user_id'''
         connecsiObj = ConnecsiModel()
-        columns = ['first_name', 'last_name', 'business_email','phone','categories','website','country','city','channel_id']
-        data = connecsiObj.get__(table_name='users_influencers',columns=columns,WHERE='WHERE',compare_column='channel_id',compare_value=str(user_id))
+        columns = ['first_name', 'last_name', 'business_email','phone','categories','website','country','city','channel_id','youtube_channel_id','twitter_channel_id','confirmed']
+        data = connecsiObj.get_all_inf_channels(user_id=str(user_id))
         response_dict = dict(zip(columns, data[0]))
         print(response_dict)
         return {'data':response_dict},200

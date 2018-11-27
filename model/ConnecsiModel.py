@@ -819,3 +819,30 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+
+
+    def get_all_inf_channels(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " ui.first_name,ui.last_name,ui.business_email,ui.phone,ui,categories,ui.website,ui.country,ui.city,ui.channel_id" \
+                      " chm.youtube_channel_id,chm.twitter_channel_id" \
+                      " FROM users_influencers ui" \
+                      " JOIN channels_mapper chm on ui.channel_id = chm.youtube_channel_id" \
+                      " JOIN channels_mapper chm on chm.twitter_channel_id = ui.channel_id" \
+                      " WHERE ui.channel_id = '" + user_id + "'"
+
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+
+
+
