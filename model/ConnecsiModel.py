@@ -830,7 +830,7 @@ class ConnecsiModel:
                       " ,chm.youtube_channel_id,chm.twitter_channel_id" \
                       " FROM users_influencers ui" \
                       " JOIN channels_mapper chm on ui.channel_id = chm.youtube_channel_id" \
-                      " JOIN channels_mapper chm1 on chm1.twitter_channel_id = ui.channel_id" \
+                      " JOIN channels_mapper chm1 on ui.channel_id = chm1.twitter_channel_id" \
                       " WHERE ui.channel_id = '" + user_id + "'"
 
                 print(sql)
