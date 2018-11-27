@@ -159,6 +159,21 @@ class ConnecsiModel:
             print(e)
 
 
+    def get_password_by_user_id(self,user_id,table_name):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT  password from " + table_name + " WHERE user_id = '" + user_id + "' "
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchone()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
     def insert__(self,data,table_name,columns,IGNORE=''):
         columns_string = ''
         values_string=''
@@ -826,12 +841,12 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
-                      " ui.first_name,ui.last_name,ui.business_email,ui.phone,ui.categories,ui.website,ui.country,ui.city,ui.channel_id" \
+                      " ui1.first_name,ui1.last_name,ui1.business_email,ui.phone,ui.categories,ui.website,ui.country,ui.city,ui.channel_id" \
                       " ,chm.youtube_channel_id,chm.twitter_channel_id" \
-                      " FROM users_influencers ui" \
-                      " JOIN channels_mapper chm on ui.channel_id = chm.youtube_channel_id" \
-                      " JOIN channels_mapper chm1 on ui.channel_id = chm1.twitter_channel_id" \
-                      " WHERE ui.channel_id = '" + user_id + "'"
+                      " FROM channels_mapper chm" \
+                      " JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id" \
+                      " JOIN users_influencers ui2 on ui2.channel_id = chm1.twitter_channel_id" \
+                      " WHERE ui1.channel_id = '" + user_id + "'"
 
                 print(sql)
                 cursor.execute(sql)
