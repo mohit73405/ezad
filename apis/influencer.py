@@ -139,3 +139,19 @@ class Influencer(Resource):
         response_dict = dict(zip(columns, data[0]))
         print(response_dict)
         return {'data':response_dict},200
+
+
+
+@ns_influencer.route('/getMappedChannels/<string:channel_id>')
+class Influencer(Resource):
+    def get(self,channel_id):
+        '''get all mapped channels by channel id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['mapped_youtube_channel_id','mapped_twitter_channel_id','confirmed']
+
+        data = connecsiObj.get_all_inf_channels(user_id=str(channel_id))
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        return {'data': response_list}
