@@ -629,7 +629,7 @@ class ConnecsiModel:
                       " ub.company_name,ub.email_id," \
                       " ycd.channel_id,ycd.title,ycd.business_email," \
                       " cp.influencer_id, cp.proposal_description,cp.proposal_from_date,cp.proposal_to_date," \
-                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price" \
+                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price,cp.target_url,cp.ref_link" \
                       " FROM campaign_proposal cp" \
                       " JOIN users_brands ub on cp.user_id = ub.user_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \
@@ -654,7 +654,7 @@ class ConnecsiModel:
                       " ub.company_name,ub.email_id," \
                       " ycd.channel_id,ycd.title,ycd.business_email," \
                       " cp.influencer_id, cp.proposal_description,cp.proposal_from_date,cp.proposal_to_date," \
-                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price" \
+                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price,cp.target_url,cp.ref_link" \
                       " FROM campaign_proposal cp" \
                       " JOIN users_brands ub on cp.user_id = ub.user_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \
@@ -678,7 +678,7 @@ class ConnecsiModel:
                       " ub.company_name,ub.email_id," \
                       " ycd.channel_id,ycd.title,ycd.business_email," \
                       " cp.influencer_id, cp.proposal_description,cp.proposal_from_date,cp.proposal_to_date," \
-                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price" \
+                      " cp.proposal_channels,cp.proposal_arrangements,cp.proposal_kpis,cp.currency,cp.proposal_price,cp.target_url,cp.ref_link" \
                       " FROM campaign_proposal cp" \
                       " JOIN users_brands ub on cp.user_id = ub.user_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = cp.channel_id" \

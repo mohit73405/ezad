@@ -269,12 +269,14 @@ class Brand(Resource):
         proposal_kpis = form_data.get('proposal_kpis')
         currency = form_data.get('currency')
         proposal_price = form_data.get('proposal_price')
+        target_url=form_data.get('target_url')
+        ref_link = form_data.get('ref_link')
 
         columns = ['campaign_id','message_id','user_id','channel_id','influencer_id','proposal_description',
                    'proposal_from_date','proposal_to_date',
-                   'proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price']
+                   'proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price','target_url','ref_link']
         data = [campaign_id,message_id,user_id,channel_id,influencer_id,proposal_description,proposal_from_date,
-                proposal_to_date,proposal_channels,proposal_arrangements,proposal_kpis,currency,proposal_price]
+                proposal_to_date,proposal_channels,proposal_arrangements,proposal_kpis,currency,proposal_price,target_url,ref_link]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
@@ -291,7 +293,7 @@ class Brand(Resource):
         columns = ['proposal_id','campaign_id','campaign_name','message_id','user_id','company_name','email_id','channel_id','title',
                    'business_email','influencer_id','proposal_description',
                    'proposal_from_date','proposal_to_date',
-                   'proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price']
+                   'proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price','target_url','ref_link']
         connecsiObj = ConnecsiModel()
         data = connecsiObj.get_all_proposal(user_id=user_id)
         response_list = []
@@ -311,7 +313,7 @@ class Brand(Resource):
                    'channel_id', 'title',
                    'business_email', 'influencer_id', 'proposal_description',
                    'proposal_from_date', 'proposal_to_date',
-                   'proposal_channels', 'proposal_arrangements', 'proposal_kpis', 'currency', 'proposal_price']
+                   'proposal_channels', 'proposal_arrangements', 'proposal_kpis', 'currency', 'proposal_price','target_url','ref_link']
         connecsiObj = ConnecsiModel()
         data = connecsiObj.get_proposal(proposal_id=proposal_id)
         response_list = []
@@ -330,7 +332,7 @@ class Brand(Resource):
                    'channel_id', 'title',
                    'business_email', 'influencer_id', 'proposal_description',
                    'proposal_from_date', 'proposal_to_date',
-                   'proposal_channels', 'proposal_arrangements', 'proposal_kpis', 'currency', 'proposal_price']
+                   'proposal_channels', 'proposal_arrangements', 'proposal_kpis', 'currency', 'proposal_price','target_url','ref_link']
         connecsiObj = ConnecsiModel()
         data = connecsiObj.get_proposal_by_message_id_and_campaign_id(message_id=message_id,campaign_id=campaign_id)
         response_list = []
