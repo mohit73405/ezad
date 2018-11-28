@@ -118,7 +118,7 @@ class Influencer(Resource):
             #            'campaign_description',
             #            'arrangements', 'kpis']
 
-            columns = ['campaign_id','youtube_channel_id','twitter_channel_id','confirmed']
+            columns = ['campaign_id','mapped_youtube_channel_id','mapped_twitter_channel_id','proposal_channels','confirmed']
             response_list = []
             for item in influencer_campaigns_data:
                 dict_temp = dict(zip(columns, item))
