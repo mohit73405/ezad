@@ -124,8 +124,8 @@ class Offers(Resource):
         data = [offer_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, offer_description, arrangements,
                 kpis, files]
-        columns = ['classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
-                   'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'classified_description',
+        columns = ['offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
+                   'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'offer_description',
                    'arrangements', 'kpis', 'files']
         connecsiObj = ConnecsiModel()
         try:
