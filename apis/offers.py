@@ -123,10 +123,10 @@ class Offers(Resource):
 
         data = [offer_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, offer_description, arrangements,
-                kpis, user_id, files]
+                kpis, files]
         columns = ['classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'classified_description',
-                   'arrangements', 'kpis', 'channel_id', 'files']
+                   'arrangements', 'kpis', 'files']
         connecsiObj = ConnecsiModel()
         try:
             connecsiObj.update__(table_name='inf_offers', columns=columns, data=data, WHERE='WHERE',
