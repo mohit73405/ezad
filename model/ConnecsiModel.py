@@ -827,13 +827,12 @@ class ConnecsiModel:
 
                 sql = "SELECT " \
                       " cp1.campaign_id,chm.youtube_channel_id,chm.twitter_channel_id,cp1.proposal_channels," \
-                      " chm.confirmed " \
+                      " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
                       " LEFT JOIN campaign_proposal cp1 on cp1.channel_id = chm.youtube_channel_id" \
                       " LEFT JOIN campaign_proposal cp2 on cp2.channel_id = chm.twitter_channel_id" \
+                      " LEFT JOIN channel_campaign_message ccm on ccm.campaign_id=cp1.campaign_id " \
                       " WHERE chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "'" \
-                    # " JOIN channel_campaign_message ccm on ccm.campaign_id=cp1.campaign_id " \
-
                       # " AND ccm.status = 'Current Partner' "
 
                 print(sql)
