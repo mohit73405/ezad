@@ -39,8 +39,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="835" column="22" lean-forward="true" selection-start-line="835" selection-start-column="22" selection-end-line="835" selection-end-column="22" />
+            <state relative-caret-position="163">
+              <caret line="829" column="38" lean-forward="false" selection-start-line="829" selection-start-column="38" selection-end-line="829" selection-end-column="38" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -62,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/apis/influencer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="120" column="93" lean-forward="false" selection-start-line="120" selection-start-column="93" selection-end-line="120" selection-end-column="93" />
+              <caret line="120" column="124" lean-forward="false" selection-start-line="120" selection-start-column="124" selection-end-line="120" selection-end-column="124" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -212,8 +212,8 @@
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/apis/messages.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
-        <option value="$PROJECT_DIR$/apis/influencer.py" />
         <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/apis/influencer.py" />
       </list>
     </option>
   </component>
@@ -854,7 +854,7 @@
     <entry file="file://$PROJECT_DIR$/apis/influencer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="120" column="93" lean-forward="false" selection-start-line="120" selection-start-column="93" selection-end-line="120" selection-end-column="93" />
+          <caret line="120" column="124" lean-forward="false" selection-start-line="120" selection-start-column="124" selection-end-line="120" selection-end-column="124" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -863,8 +863,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="835" column="22" lean-forward="true" selection-start-line="835" selection-start-column="22" selection-end-line="835" selection-end-column="22" />
+        <state relative-caret-position="163">
+          <caret line="829" column="38" lean-forward="false" selection-start-line="829" selection-start-column="38" selection-end-line="829" selection-end-column="38" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
