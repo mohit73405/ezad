@@ -826,7 +826,7 @@ class ConnecsiModel:
                 #       " WHERE ccm.status = 'Current Partner' and cp.channel_id = '" + channel_id + "'"
 
                 sql = "SELECT " \
-                      " cp1.campaign_id,cp1.proposal_id,cp1.proposal_from_date, cp1.proposal_to_date," \
+                      " cp1.campaign_id,cp1.proposal_id,cp1.proposal_from_date, cp1.proposal_to_date,cp1.currency,cp1.proposal_price," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,cp1.proposal_channels," \
                       " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
