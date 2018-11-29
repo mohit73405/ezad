@@ -853,7 +853,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
                       " cp1.campaign_id,bc.campaign_name,cp1.proposal_id,cp1.proposal_from_date, cp1.proposal_to_date,cp1.currency,cp1.proposal_price," \
-                      " cp1.proposal_description,cp1.proposal_arrangements,cp1.proposal_kpis,cp1.proposal_target_link,proposal_ref_link," \
+                      " cp1.proposal_description,cp1.proposal_arrangements,cp1.proposal_kpis,cp1.target_link,cp1.ref_link," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,cp1.proposal_channels," \
                       " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
