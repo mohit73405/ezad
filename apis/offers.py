@@ -52,7 +52,7 @@ class Offers(Resource):
                 kpis, user_id,files]
         columns = ['offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'offer_description',
-                   'arrangements', 'kpis', 'user_id','files']
+                   'arrangements', 'kpis', 'channel_id','files']
         connecsiObj = ConnecsiModel()
         try:
             connecsiObj.insert__(table_name='inf_offers', columns=columns, data=data)
