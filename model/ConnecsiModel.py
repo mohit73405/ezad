@@ -848,6 +848,33 @@ class ConnecsiModel:
 
 
 
+    def getInfluencerCampaignDetails(self, channel_id,proposal_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " cp1.campaign_id,cp1.proposal_id,cp1.proposal_from_date, cp1.proposal_to_date,cp1.currency,cp1.proposal_price," \
+                      " chm.youtube_channel_id,chm.twitter_channel_id,cp1.proposal_channels," \
+                      " chm.confirmed, ccm.status " \
+                      " FROM channels_mapper chm" \
+                      " LEFT JOIN campaign_proposal cp1 on cp1.channel_id = chm.youtube_channel_id" \
+                      " LEFT JOIN campaign_proposal cp2 on cp2.channel_id = chm.twitter_channel_id" \
+                      " LEFT JOIN channel_campaign_message ccm on ccm.campaign_id=cp1.campaign_id " \
+                      " WHERE ccm.status = 'Current Partner ' AND cp1.proposal_id = '" + proposal_id + "'" \
+                      " AND (chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "')"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+
+
+
+
     def get_all_inf_channels(self, user_id):
         try:
             with self.cnx.cursor() as cursor:

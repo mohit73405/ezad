@@ -129,6 +129,30 @@ class Influencer(Resource):
             print(e)
 
 
+@ns_influencer.route('/getMyCampaignDetails/<string:user_id>/<string:proposal_id>')
+class Influencer(Resource):
+    def get(self,user_id,proposal_id):
+        ''' get Influencer campaing by channel id and proposal id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            influencer_campaigns_data = connecsiObj.getInfluencerCampaignDetails(channel_id=str(user_id),proposal_id=str(proposal_id))
+            # columns = ['channel_id','campaign_id','brand_user_id','campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
+            #            'min_lower_followers', 'max_upper_followers','files', 'target_url',
+            #            'campaign_description',
+            #            'arrangements', 'kpis']
+
+            columns = ['campaign_id','proposal_id','proposal_from_date','proposal_to_date','currency','proposal_price','mapped_youtube_channel_id','mapped_twitter_channel_id','proposal_channels','confirmed','campaign_status']
+            response_list = []
+            for item in influencer_campaigns_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
+
+
+
 @ns_influencer.route('/GetDetailsByEmailId/<string:email_id>')
 class Influencer(Resource):
     def get(self,email_id):
