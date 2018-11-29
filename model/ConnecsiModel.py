@@ -850,6 +850,9 @@ class ConnecsiModel:
 
 
 
+
+
+
     def getInfluencerCampaignDetails(self, channel_id,proposal_id):
         try:
             with self.cnx.cursor() as cursor:
@@ -914,5 +917,25 @@ class ConnecsiModel:
             print(e)
 
 
-
+    def get_all_offers(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " io1.offer_id,io1.channel_id,io1.offer_name, io1.from_date,io1.to_date,io1.budget,io1.currency," \
+                      " io1.channels,io1.regions,io1.min_lower_followers,io1.max_upper_followers,io1.files,io1.video_cat_id," \
+                      " io1.offer_description,io1.arrangements,io1.kpis,io1.no_of_views,io1.no_of_replies" \
+                      " chm.youtube_channel_id,chm.twitter_channel_id,chm.confirmed" \
+                      " FROM channels_mapper chm" \
+                      " LEFT JOIN inf_offers io1 on io1.channel_id = chm.youtube_channel_id" \
+                      " LEFT JOIN inf_offers io2 on io2.channel_id = chm.twitter_channel_id" \
+                      " WHERE chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "'" 
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
 

@@ -65,11 +65,11 @@ class Offers(Resource):
         ''' get all Offers by user id'''
         try:
             connecsiObj = ConnecsiModel()
-            all_classifieds_data = connecsiObj.get__(table_name='inf_offers', STAR='*', WHERE='WHERE', compare_column='user_id',compare_value=str(user_id))
-            columns = ['offer_id','user_id','offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
-                       'min_lower_followers', 'max_upper_followers','files', 'video_cat_id', 'target_url',
+            all_classifieds_data = connecsiObj.get_all_offers(channel_id=str(user_id))
+            columns = ['offer_id','channel_id','offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
+                       'min_lower_followers', 'max_upper_followers','files', 'video_cat_id',
                        'offer_description',
-                       'arrangements', 'kpis','no_of_views','no_of_replies']
+                       'arrangements', 'kpis','no_of_views','no_of_replies','mapped_yotube_channel_id','mapped_twitter_channel_id','confirmed']
             response_list = []
             for item in all_classifieds_data:
                 dict_temp = dict(zip(columns, item))
