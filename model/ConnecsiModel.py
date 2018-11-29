@@ -726,7 +726,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
 
                 sql = "UPDATE inf_offers SET no_of_views = '" + str(no_of_views) + "' WHERE offer_id = '"\
-                      + str(offer_id) + "' AND user_id = '" + str(user_id) + "'"
+                      + str(offer_id) + "' AND channel_id = '" + str(user_id) + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
@@ -763,7 +763,7 @@ class ConnecsiModel:
 
                 sql = "UPDATE inf_offers SET no_of_replies = '" + str(
                     no_of_replies) + "' WHERE offer_id = '" \
-                      + str(offer_id) + "' AND user_id = '" + str(user_id) + "'"
+                      + str(offer_id) + "' AND channel_id = '" + str(user_id) + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()

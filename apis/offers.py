@@ -139,7 +139,7 @@ class Offers(Resource):
             return {'response': res}
 
 
-@ns_offer.route('/NumberOfViews/<string:classified_id>/<string:user_id>/<string:no_of_views>')
+@ns_offer.route('/NumberOfViews/<string:offer_id>/<string:user_id>/<string:no_of_views>')
 class Offers(Resource):
     def put(self,offer_id,user_id,no_of_views):
         try:
