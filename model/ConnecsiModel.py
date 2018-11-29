@@ -947,3 +947,37 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def post_as_classified(self, campaign_id, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = " UPDATE brands_campaigns SET is_classified_post = 'True' WHERE campaign_id = '" + str(campaign_id) + "'" \
+                      " AND user_id = '"+ str(user_id) +"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def convert_to_campaign(self, classified_id, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = " UPDATE brands_classifieds SET convert_to_campaign = 'True' WHERE classified_id = '" + str(classified_id) + "'" \
+                      " AND user_id = '"+ str(user_id) +"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0

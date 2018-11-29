@@ -247,3 +247,18 @@ class Campaign(Resource):
             res=0
             print(e)
             return {'response': res},500
+
+
+
+@ns_campaign.route('/postAsClassified/<string:campaign_id>/<string:user_id>/')
+class Campaign(Resource):
+    def put(self,campaign_id,user_id):
+        try:
+            connecsiObj=ConnecsiModel()
+            connecsiObj.post_as_classified(campaign_id=campaign_id,user_id=user_id)
+            res = 1
+            return {'response': res},201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res},500

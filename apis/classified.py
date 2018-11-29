@@ -168,3 +168,16 @@ class Classified(Resource):
             print(e)
             res = 0
             return {'response': res},500
+
+@ns_classified.route('/convertToCampaign/<string:classified_id>/<string:user_id>/')
+class Classified(Resource):
+    def put(self,classified_id,user_id):
+        try:
+            connecsiObj=ConnecsiModel()
+            connecsiObj.convert_to_campaign(classified_id=classified_id,user_id=user_id)
+            res = 1
+            return {'response': res},201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res},500
