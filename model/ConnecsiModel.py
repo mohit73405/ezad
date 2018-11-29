@@ -852,13 +852,15 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
-                      " cp1.campaign_id,cp1.proposal_id,cp1.proposal_from_date, cp1.proposal_to_date,cp1.currency,cp1.proposal_price," \
+                      " cp1.campaign_id,bc.campaign_name,cp1.proposal_id,cp1.proposal_from_date, cp1.proposal_to_date,cp1.currency,cp1.proposal_price," \
+                      " cp1.proposal_description,cp1.proposal_arrangements,cp1.proposal_kpis,cp1.proposal_target_link,proposal_ref_link," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,cp1.proposal_channels," \
                       " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
                       " LEFT JOIN campaign_proposal cp1 on cp1.channel_id = chm.youtube_channel_id" \
                       " LEFT JOIN campaign_proposal cp2 on cp2.channel_id = chm.twitter_channel_id" \
                       " LEFT JOIN channel_campaign_message ccm on ccm.campaign_id=cp1.campaign_id " \
+                      " LEFT JOIN brands_campaigns bc on bc.campaign_id=cp1.campaign_id " \
                       " WHERE ccm.status = 'Current Partner ' AND cp1.proposal_id = '" + proposal_id + "'" \
                       " AND (chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "')"
                 print(sql)
