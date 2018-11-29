@@ -87,11 +87,12 @@ class Offers(Resource):
         try:
             connecsiObj = ConnecsiModel()
             offer_data = connecsiObj.get_inf_offer_details_by_offer_id_and_user_id(offer_id=offer_id,user_id=user_id)
-            columns = ['offer_id', 'user_id', 'offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels',
+            columns = ['offer_id', 'channel_id', 'offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels',
                        'regions',
-                       'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id', 'target_url',
+                       'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id',
                        'offer_description',
-                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies']
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies', 'mapped_yotube_channel_id',
+                       'mapped_twitter_channel_id', 'confirmed']
             response_list = []
             for item in offer_data:
                 dict_temp = dict(zip(columns, item))
