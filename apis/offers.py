@@ -102,6 +102,9 @@ class Offers(Resource):
         except Exception as e:
             print(e)
 
+
+
+
     @ns_offer.expect(inf_offer_form)
     def put(self, offer_id,user_id):
         ''' Edit offer'''
@@ -165,3 +168,28 @@ class Offers(Resource):
             print(e)
             res = 0
             return {'response': res},500
+
+
+
+@ns_offer.route('/getAllOffers')
+class Offers(Resource):
+    def get(self):
+        ''' get All Offers for brands'''
+        try:
+            connecsiObj = ConnecsiModel()
+            offer_data = connecsiObj.get_all_offers_for_brands()
+            columns = ['offer_id', 'channel_id', 'offer_name', 'from_date', 'to_date', 'budget', 'currency',
+                       'channels',
+                       'regions',
+                       'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id',
+                       'offer_description',
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies', 'mapped_yotube_channel_id',
+                       'mapped_twitter_channel_id', 'confirmed']
+            response_list = []
+            for item in offer_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
