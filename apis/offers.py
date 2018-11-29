@@ -19,7 +19,6 @@ inf_offer_form = ns_offer.model('Offer', {
     'max_upper': fields.Integer(required=True, description='Max Followers'),
     'files': fields.String(required=False, description='Files'),
     'video_cat': fields.String(required=True, description='Video Category'),
-    'target_url': fields.Url(required=False, description='Target URL'),
     'offer_description': fields.String(required=True, description='Classified description'),
     'arrangements': fields.String(required=True, description='Arrangements'),
     'kpis': fields.String(required=True, description='KPIs'),
@@ -42,13 +41,12 @@ class Offers(Resource):
         max_upper = data_json.get('max_upper')
         files = data_json.get('files')
         video_cat = data_json.get('video_cat')
-        target_url = data_json.get('target_url')
         offer_description = data_json.get('offer_description')
         arrangements = data_json.get('arrangements')
         kpis = data_json.get('kpis')
 
         data = [offer_name, from_date, to_date, budget, currency, channels,
-                regions, min_lower, max_upper, video_cat, target_url, offer_description, arrangements,
+                regions, min_lower, max_upper, video_cat, offer_description, arrangements,
                 kpis, user_id,files]
         columns = ['offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'offer_description',
