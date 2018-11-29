@@ -117,17 +117,16 @@ class Offers(Resource):
         max_upper = data_json.get('max_upper')
         files = data_json.get('files')
         video_cat = data_json.get('video_cat')
-        target_url = data_json.get('target_url')
         offer_description = data_json.get('offer_description')
         arrangements = data_json.get('arrangements')
         kpis = data_json.get('kpis')
 
         data = [offer_name, from_date, to_date, budget, currency, channels,
-                regions, min_lower, max_upper, video_cat, target_url, offer_description, arrangements,
+                regions, min_lower, max_upper, video_cat, offer_description, arrangements,
                 kpis, user_id, files]
         columns = ['classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
-                   'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'classified_description',
-                   'arrangements', 'kpis', 'user_id', 'convert_to_campaign', 'files']
+                   'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'classified_description',
+                   'arrangements', 'kpis', 'channel_id', 'files']
         connecsiObj = ConnecsiModel()
         try:
             connecsiObj.update__(table_name='inf_offers', columns=columns, data=data, WHERE='WHERE',
