@@ -404,7 +404,7 @@ class ConnecsiModel:
                       " FROM channels_mapper chm" \
                       " LEFT JOIN inf_offers io1 on io1.channel_id = chm.youtube_channel_id" \
                       " LEFT JOIN inf_offers io2 on io2.channel_id = chm.twitter_channel_id" \
-                      " WHERE chm.youtube_channel_id = '" + user_id + "' OR chm.twitter_channel_id = '" + user_id + "'" \
+                      " WHERE (chm.youtube_channel_id = '" + user_id + "' OR chm.twitter_channel_id = '" + user_id + "')" \
                       " AND io1.offer_id='" +offer_id+ "'"
                 print(sql)
                 cursor.execute(sql)
