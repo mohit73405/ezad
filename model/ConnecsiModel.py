@@ -833,7 +833,7 @@ class ConnecsiModel:
                       " LEFT JOIN campaign_proposal cp2 on cp2.channel_id = chm.twitter_channel_id" \
                       " LEFT JOIN channel_campaign_message ccm on ccm.campaign_id=cp1.campaign_id " \
                       " WHERE chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "'" \
-                      " AND ccm.status = 'Current Partner' "
+                      " AND (ccm.status = 'Current Partner') "
 
                 print(sql)
                 cursor.execute(sql)
