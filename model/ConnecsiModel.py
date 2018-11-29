@@ -439,6 +439,28 @@ class ConnecsiModel:
             print(e)
 
 
+
+    def get_all_classifieds_for_inf(self):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " io1.classified_id,io1.user_id,io1.classified_name, io1.from_date,io1.to_date,io1.budget,io1.currency," \
+                      " io1.channels,io1.regions,io1.min_lower_followers,io1.max_upper_followers,io1.files,io1.video_cat_id," \
+                      " io1.classified_description,io1.arrangements,io1.kpis,io1.no_of_views,io1.no_of_replies" \
+                      " from brands_classifieds io1"
+
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
+
     def delete_message_from_conversation(self, message_id,conv_id, user_id):
         try:
             with self.cnx.cursor() as cursor:

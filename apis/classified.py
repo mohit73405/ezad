@@ -181,3 +181,27 @@ class Classified(Resource):
             print(e)
             res = 0
             return {'response': res},500
+
+
+@ns_classified.route('/getAllClassifieds')
+class Classified(Resource):
+    def get(self):
+        ''' get All Classifieds for Influencers'''
+        try:
+            connecsiObj = ConnecsiModel()
+            offer_data = connecsiObj.get_all_classifieds_for_inf()
+            columns = ['classified_id', 'user_id', 'classified_name', 'from_date', 'to_date', 'budget', 'currency',
+                       'channels',
+                       'regions',
+                       'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id',
+                       'classified_description',
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies'
+                       ]
+            response_list = []
+            for item in offer_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
