@@ -98,7 +98,7 @@ class SearchChannels(Resource):
         for item in data:
             dict_temp = dict(zip(columns, item))
             response_list.append(dict_temp)
-            response_list.append(total_no_of_rows)
+            # response_list.append(total_no_of_rows)
         # print(response_list)
 
         return {'data':response_list}
