@@ -240,7 +240,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'inf_offers':
                     cursor.execute(sql, data)
-
+                elif table_name == 'inf_campaign_report':
+                    cursor.execute(sql, data)
                 self.cnx.commit()
             print("closing cnx")
 
