@@ -76,6 +76,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
+            print('number of rows  = ',len(data))
             return data
 
         except Exception as e:
