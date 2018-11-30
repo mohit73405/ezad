@@ -76,30 +76,33 @@ class SearchChannels(Resource):
     @ns_youtube.expect(search_channels_form)
     def post(self,channel):
         '''search channels'''
-        form_data = request.get_json()
-        category_id = form_data.get('category_id')
-        country = form_data.get('country')
-        min_lower = form_data.get('min_lower')
-        max_upper = form_data.get('max_upper')
-        sort_order = form_data.get('sort_order')
-        offset = form_data.get('offset')
-        connecsiObj=ConnecsiModel()
-        total_rows = connecsiObj.search_inf_get_total_rows(channel_id=channel,
-                                      min_lower=str(min_lower), max_upper=str(max_upper)
-                                      , category_id=str(category_id), country=str(country), sort_order=sort_order)
-        total_no_of_rows = len(total_rows)
-        data = connecsiObj.search_inf(channel_id=channel,
-                                      min_lower=str(min_lower), max_upper=str(max_upper)
-                                      , category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
-        columns = ['channel_id', 'title','channel_img','desc','subscriberCount_gained','subscriberCount_lost','business_email','total_100video_views',
-                   'total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments','total_100video_shares',
-                   'facebook_url','insta_url','twitter_url','country','total_rows']
-        response_list = []
-        for item in data:
-            dict_temp = dict(zip(columns, item))
-            response_list.append(dict_temp)
-            # response_list.append(total_no_of_rows)
-        # print(response_list)
-
-        return {'data':response_list}
+        try:
+            form_data = request.get_json()
+            category_id = form_data.get('category_id')
+            country = form_data.get('country')
+            min_lower = form_data.get('min_lower')
+            max_upper = form_data.get('max_upper')
+            sort_order = form_data.get('sort_order')
+            offset = form_data.get('offset')
+            connecsiObj=ConnecsiModel()
+            total_rows = connecsiObj.search_inf_get_total_rows(channel_id=channel,
+                                          min_lower=str(min_lower), max_upper=str(max_upper)
+                                          , category_id=str(category_id), country=str(country), sort_order=sort_order)
+            total_no_of_rows = len(total_rows)
+            data = connecsiObj.search_inf(channel_id=channel,
+                                          min_lower=str(min_lower), max_upper=str(max_upper)
+                                          , category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
+            columns = ['channel_id', 'title','channel_img','desc','subscriberCount_gained','subscriberCount_lost','business_email','total_100video_views',
+                       'total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments','total_100video_shares',
+                       'facebook_url','insta_url','twitter_url','country','total_rows']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+                # response_list.append(total_no_of_rows)
+            # print(response_list)
+            return {'data':response_list}
+        except Exception as e:
+            print(e)
+            return {'response' : e}
 
