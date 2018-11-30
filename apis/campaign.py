@@ -46,7 +46,7 @@ inf_campaign_report_form = ns_campaign.model('Influencer Campaign report form', 
     'post_dislikes' : fields.Integer(required=False, description='Dislikes'),
     'post_comments' : fields.Integer(required=False, description='Comments'),
     'post_retweets' : fields.Integer(required=False, description='Retweets'),
-    'post_remarks' : fields.Integer(required=False, description='Remarks'),
+    'post_remarks' : fields.String(required=False, description='Remarks'),
 })
 
 
