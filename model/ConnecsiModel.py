@@ -39,7 +39,8 @@ class ConnecsiModel:
         try:
 
             with self.cnx.cursor() as cursor:
-                group_by=" group by t1.channel_id"
+                # group_by=" group by t1.channel_id"
+                group_by =''
                 category_id_filter = " t2.video_cat_id ="+category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
                 country_filter = " t1.country = '" + country + "'"

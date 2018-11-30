@@ -84,6 +84,7 @@ class SearchChannels(Resource):
         sort_order = form_data.get('sort_order')
         offset = form_data.get('offset')
         connecsiObj=ConnecsiModel()
+
         data = connecsiObj.search_inf(channel_id=channel,
                                       min_lower=str(min_lower), max_upper=str(max_upper)
                                       , category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
