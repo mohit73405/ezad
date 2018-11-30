@@ -100,7 +100,7 @@ class ConnecsiModel:
                     order = 'desc'
                 order_by = " order by t1.subscriberCount_gained " + order
 
-                sql = "SELECT count(*) " \ 
+                sql = "SELECT count(t1.channel_id) " \  
                       "FROM youtube_channel_details t1 " \
                       "LEFT JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
                       "WHERE t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
