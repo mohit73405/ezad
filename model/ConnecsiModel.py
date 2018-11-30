@@ -82,51 +82,51 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
-    def search_inf_get_total_rows(self, channel_id, sort_order, min_lower='', max_upper='', country='', category_id=''):
-        try:
-
-            with self.cnx.cursor() as cursor:
-                group_by = " group by t1.channel_id"
-                # group_by =''
-                category_id_filter = " t2.video_cat_id =" + category_id
-                # country_filter = " t3.regionCode = '"+country+"'"
-                country_filter = " t1.country = '" + country + "'"
-                order = 'desc'
-                if sort_order == 'High To Low':
-                    order = 'desc'
-                elif sort_order == 'Low To High':
-                    order = 'asc'
-                else:
-                    order = 'desc'
-                order_by = " order by t1.subscriberCount_gained " + order
-
-                sql = "SELECT t1.channel_id " \  
-                      "FROM youtube_channel_details t1 " \
-                      "LEFT JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
-                      "WHERE t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
-                # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
-
-                if category_id and country:
-                    sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + group_by + order_by
-                elif category_id:
-                    sql = sql + ' AND ' + category_id_filter + group_by + order_by
-                elif country:
-                    # sql = sql = sql + group_by
-                    sql = sql + ' AND ' + country_filter + group_by + order_by
-                else:
-                    sql = sql + group_by + order_by
-
-                print(sql)
-                cursor.execute(sql)
-                data = cursor.fetchall()
-                # print(result)
-            print("closing cnx")
-            cursor.close()
-
-            return data
-
-        except Exception as e:
-            print(e)
+    # def search_inf_get_total_rows(self, channel_id, sort_order, min_lower='', max_upper='', country='', category_id=''):
+    #     try:
+    #
+    #         with self.cnx.cursor() as cursor:
+    #             group_by = " group by t1.channel_id"
+    #             # group_by =''
+    #             category_id_filter = " t2.video_cat_id =" + category_id
+    #             # country_filter = " t3.regionCode = '"+country+"'"
+    #             country_filter = " t1.country = '" + country + "'"
+    #             order = 'desc'
+    #             if sort_order == 'High To Low':
+    #                 order = 'desc'
+    #             elif sort_order == 'Low To High':
+    #                 order = 'asc'
+    #             else:
+    #                 order = 'desc'
+    #             order_by = " order by t1.subscriberCount_gained " + order
+    #
+    #             sql = "SELECT t1.channel_id " \
+    #                   "FROM youtube_channel_details t1 " \
+    #                   "LEFT JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+    #                   "WHERE t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
+    #             # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
+    #
+    #             if category_id and country:
+    #                 sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + group_by + order_by
+    #             elif category_id:
+    #                 sql = sql + ' AND ' + category_id_filter + group_by + order_by
+    #             elif country:
+    #                 # sql = sql = sql + group_by
+    #                 sql = sql + ' AND ' + country_filter + group_by + order_by
+    #             else:
+    #                 sql = sql + group_by + order_by
+    #
+    #             print(sql)
+    #             cursor.execute(sql)
+    #             data = cursor.fetchall()
+    #             # print(result)
+    #         print("closing cnx")
+    #         cursor.close()
+    #
+    #         return data
+    #
+    #     except Exception as e:
+    #         print(e)
 
 
 
