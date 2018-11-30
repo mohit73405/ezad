@@ -57,8 +57,8 @@ class ConnecsiModel:
                 "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
                 "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country ,count(*) " \
                 "FROM youtube_channel_details t1 " \
-                "left join youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
-                "WHERE subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
+                "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                "WHERE t1.subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
                 if category_id and country:
