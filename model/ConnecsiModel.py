@@ -39,8 +39,8 @@ class ConnecsiModel:
         try:
 
             with self.cnx.cursor() as cursor:
-                # group_by=" group by t1.channel_id"
-                group_by =''
+                group_by=" group by t1.channel_id"
+                # group_by =''
                 category_id_filter = " t2.video_cat_id ="+category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
                 country_filter = " t1.country = '" + country + "'"
@@ -55,7 +55,7 @@ class ConnecsiModel:
                 sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
                 "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
                 "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
-                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country ,count(t1.channel_id) " \
+                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country ,count(*) " \
                 "FROM youtube_channel_details t1 " \
                 "left join youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
                 "WHERE subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
