@@ -1023,3 +1023,22 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+
+    def get_inf_campaign_report(self, campaign_id,proposal_id,channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT * from inf_campaign_report" \
+                      " WHERE channel_id = '" + channel_id + "'" \
+                      " AND campaign_id = '" + campaign_id + "'" \
+                      " AND proposal_id = '" + proposal_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)

@@ -36,6 +36,20 @@ brand_campaign_report_form = ns_campaign.model('Brand Campaign report form', {
 })
 
 
+inf_campaign_report_form = ns_campaign.model('Influencer Campaign report form', {
+    'channel_name' : fields.String(required=True, description='Channel Name'),
+    'date_posted' : fields.String(required=True, description='Date Posted'),
+    'link_posted' : fields.String(required=True, description='Link Posted'),
+    'content_type' : fields.String(required=True, description='Content Type'),
+    'post_views' : fields.Integer(required=False, description='Views'),
+    'post_likes' : fields.Integer(required=False, description='Likes'),
+    'post_dislikes' : fields.Integer(required=False, description='Dislikes'),
+    'post_comments' : fields.Integer(required=False, description='Comments'),
+    'post_retweets' : fields.Integer(required=False, description='Retweets'),
+    'post_remarks' : fields.Integer(required=False, description='Remarks'),
+})
+
+
 
 @ns_campaign.route('/<string:user_id>')
 class Campaign(Resource):
@@ -247,6 +261,84 @@ class Campaign(Resource):
             res=0
             print(e)
             return {'response': res},500
+
+
+
+
+
+@ns_campaign.route('/InfluencerCampaignReport/<string:campaign_id>/<string:proposal_id>/<string:user_id>')
+class Campaign(Resource):
+    @ns_campaign.expect(inf_campaign_report_form)
+    def post(self,campaign_id,proposal_id,user_id):
+        ''' Add New Influencer Campaign report'''
+        data_json = request.get_json()
+        channel_name = data_json.get('channel_name')
+        date_posted = data_json.get('date_posted')
+        link_posted = data_json.get('link_posted')
+        content_type = data_json.get('content_type')
+        post_views = data_json.get('post_views')
+        post_likes = data_json.get('post_likes')
+        post_dislikes = data_json.get('post_dislikes')
+        post_comments = data_json.get('post_comments')
+        post_retweets = data_json.get('post_retweets')
+        post_remarks = data_json.get('post_remarks')
+
+        data = [campaign_id,proposal_id,user_id,channel_name, date_posted, link_posted,content_type,
+                post_views,post_likes,post_dislikes,post_comments,post_retweets,post_remarks]
+
+        columns = ['campaign_id','proposal_id','channel_id','channel_name', 'date_posted', 'link_posted', 'content_type',
+                   'post_views','post_likes','post_dislikes','post_comments','post_retweets','post_remarks']
+        connecsiObj = ConnecsiModel()
+
+        try:
+            connecsiObj.insert__(table_name='inf_campaign_report', columns=columns, data=data)
+            res=1
+            return {'response': res},200
+        except Exception as e:
+            res=0
+            print(e)
+            return {'response': res},500
+
+    def get(self,campaign_id,proposal_id, user_id):
+        ''' get All Influencer Campaign Report details  by campaign id ,proposal id and user id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            inf_campaign_report_data = connecsiObj.get_inf_campaign_report(campaign_id=campaign_id,proposal_id=proposal_id,channel_id=str(user_id))
+            columns = ['inf_campaign_report_id','campaign_id', 'proposal_id', 'channel_id', 'channel_name',
+                       'date_posted', 'link_posted','content_type',
+                       'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks']
+            response_list = []
+            for item in inf_campaign_report_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
+
+    @ns_campaign.expect(inf_campaign_report_form)
+    def put(self,user_id,campaign_id):
+        ''' Edit Brand Campaign report'''
+        data_json = request.get_json()
+        revenue_generated = data_json.get('revenue_generated')
+        currency = data_json.get('currency')
+        target_url = data_json.get('target_url')
+        new_users = data_json.get('new_users')
+        data = [revenue_generated, currency, target_url,new_users]
+
+        # columns = ['user_id', 'campaign_id', 'revenue_generated', 'currency', 'target_url', 'new_users']
+        connecsiObj = ConnecsiModel()
+
+        try:
+            connecsiObj.update_brand_campaign_report(user_id,campaign_id,data=data)
+            res=1
+            return {'response': res},200
+        except Exception as e:
+            res=0
+            print(e)
+            return {'response': res},500
+
+
 
 
 
