@@ -88,11 +88,10 @@ class SearchChannels(Resource):
             total_rows = connecsiObj.search_inf_get_total_rows(channel_id=channel,
                                           min_lower=str(min_lower), max_upper=str(max_upper)
                                           , category_id=str(category_id), country=str(country), sort_order=sort_order)
-            try:
-                total_no_of_rows = len(total_rows)
-            except Exception as e:
-                print(e)
-                
+
+            total_no_of_rows = len(total_rows)
+
+
             data = connecsiObj.search_inf(channel_id=channel,
                                           min_lower=str(min_lower), max_upper=str(max_upper)
                                           , category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
@@ -103,7 +102,7 @@ class SearchChannels(Resource):
             for item in data:
                 dict_temp = dict(zip(columns, item))
                 response_list.append(dict_temp)
-                # response_list.append(total_no_of_rows)
+                response_list.append(total_no_of_rows)
             # print(response_list)
             return {'data':response_list}
         except Exception as e:
