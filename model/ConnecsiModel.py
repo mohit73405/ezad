@@ -1043,3 +1043,19 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+
+    def delete_inf_campaign_report(self, inf_campaign_report_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "Delete from  inf_campaign_report  WHERE inf_campaign_report_id = '"+ inf_campaign_report_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0

@@ -316,29 +316,71 @@ class Campaign(Resource):
         except Exception as e:
             print(e)
 
-    @ns_campaign.expect(inf_campaign_report_form)
-    def put(self,user_id,campaign_id):
-        ''' Edit Brand Campaign report'''
-        data_json = request.get_json()
-        revenue_generated = data_json.get('revenue_generated')
-        currency = data_json.get('currency')
-        target_url = data_json.get('target_url')
-        new_users = data_json.get('new_users')
-        data = [revenue_generated, currency, target_url,new_users]
 
-        # columns = ['user_id', 'campaign_id', 'revenue_generated', 'currency', 'target_url', 'new_users']
+
+
+@ns_campaign.route('/getInfluencerCampaignReportByReportId/<string:inf_campaign_report_id>')
+class Campaign(Resource):
+    def get(self,inf_campaign_report_id):
+        ''' get  Influencer Campaign Report details  by report id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            inf_campaign_report_data = connecsiObj.get__(table_name='inf_campaign_report',STAR='*',WHERE='WHERE',
+                                                         compare_column='inf_campaign_report_id',compare_value=str(inf_campaign_report_id))
+            columns = ['inf_campaign_report_id','campaign_id', 'proposal_id', 'channel_id', 'channel_name',
+                       'date_posted', 'link_posted','content_type',
+                       'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks']
+            response_list = []
+            for item in inf_campaign_report_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
+
+    @ns_campaign.expect(inf_campaign_report_form)
+    def put(self,inf_campaign_report_id):
+        ''' Edit Influencer Campaign report'''
+        data_json = request.get_json()
+        channel_name = data_json.get('channel_name')
+        date_posted = data_json.get('date_posted')
+        link_posted = data_json.get('link_posted')
+        content_type = data_json.get('content_type')
+        post_views = data_json.get('post_views')
+        post_likes = data_json.get('post_likes')
+        post_dislikes = data_json.get('post_dislikes')
+        post_comments = data_json.get('post_comments')
+        post_retweets = data_json.get('post_retweets')
+        post_remarks = data_json.get('post_remarks')
+
+        data = [channel_name, date_posted, link_posted, content_type,
+                post_views, post_likes, post_dislikes, post_comments, post_retweets, post_remarks]
+
+        columns = ['channel_name', 'date_posted', 'link_posted',
+                   'content_type',
+                   'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks']
         connecsiObj = ConnecsiModel()
 
         try:
-            connecsiObj.update_brand_campaign_report(user_id,campaign_id,data=data)
-            res=1
-            return {'response': res},200
+            connecsiObj.update__(table_name='inf_campaign_report',WHERE='WHERE', columns=columns, data=data,compare_column='inf_campaign_report_id'
+                                 ,compare_value=str(inf_campaign_report_id))
+            res = 1
+            return {'response': res}, 200
         except Exception as e:
-            res=0
+            res = 0
             print(e)
-            return {'response': res},500
+            return {'response': res}, 500
 
-
+    def delete(self,inf_campaign_report_id):
+        ''' Delete  Influencer Campaign Report details  by report id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.delete_inf_campaign_report(inf_campaign_report_id=str(inf_campaign_report_id))
+            return {'response': 'deleted'},200
+        except Exception as e:
+            print(e)
+            return {'response':e},500
 
 
 
