@@ -49,7 +49,7 @@ class ConnecsiModel:
                 elif sort_order == 'Low To High':
                     order = 'asc'
                 else:order='desc'
-                order_by = " order by t1.subscriberCount_gained "+order
+                order_by = " order by t1.subscriberCount_gained "+order + "LIMIT 50"
 
                 sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
                 "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \

@@ -11,7 +11,8 @@ search_channels_form = ns_youtube.model('Search Channels', {
     'country' : fields.String(required=False, description='Country'),
     'min_lower' : fields.Integer(required=False, description='Min Followers'),
     'max_upper' : fields.Integer(required=False, description='Max Followers'),
-    'sort_order' : fields.String(required=False, description='Sort Order')
+    'sort_order' : fields.String(required=False, description='Sort Order'),
+    # 'offset' : fields.Integer(required=True, description='Offset')
 })
 
 
