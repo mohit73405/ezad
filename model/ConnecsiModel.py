@@ -35,7 +35,7 @@ class ConnecsiModel:
         )
 
 
-    def search_inf(self,channel_id,sort_order,min_lower='',max_upper='',country='',category_id=''):
+    def search_inf(self,channel_id,offset,sort_order,min_lower='',max_upper='',country='',category_id=''):
         try:
 
             with self.cnx.cursor() as cursor:
@@ -49,12 +49,12 @@ class ConnecsiModel:
                 elif sort_order == 'Low To High':
                     order = 'asc'
                 else:order='desc'
-                order_by = " order by t1.subscriberCount_gained "+order + " LIMIT 50"
+                order_by = " order by t1.subscriberCount_gained "+order + " LIMIT 20 OFFSET " +offset
 
                 sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
                 "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
                 "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
-                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country " \
+                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country ,count(*)" \
                 "FROM youtube_channel_details t1 " \
                 "left join youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
                 "WHERE subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper

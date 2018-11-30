@@ -12,7 +12,7 @@ search_channels_form = ns_youtube.model('Search Channels', {
     'min_lower' : fields.Integer(required=False, description='Min Followers'),
     'max_upper' : fields.Integer(required=False, description='Max Followers'),
     'sort_order' : fields.String(required=False, description='Sort Order'),
-    # 'offset' : fields.Integer(required=True, description='Offset')
+    'offset' : fields.Integer(required=True, description='Offset')
 })
 
 
@@ -82,13 +82,14 @@ class SearchChannels(Resource):
         min_lower = form_data.get('min_lower')
         max_upper = form_data.get('max_upper')
         sort_order = form_data.get('sort_order')
+        offset = form_data.get('offset')
         connecsiObj=ConnecsiModel()
         data = connecsiObj.search_inf(channel_id=channel,
                                       min_lower=str(min_lower), max_upper=str(max_upper)
-                                      , category_id=str(category_id), country=str(country), sort_order=sort_order)
+                                      , category_id=str(category_id), country=str(country), sort_order=sort_order,offset=offset)
         columns = ['channel_id', 'title','channel_img','desc','subscriberCount_gained','subscriberCount_lost','business_email','total_100video_views',
                    'total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments','total_100video_shares',
-                   'facebook_url','insta_url','twitter_url']
+                   'facebook_url','insta_url','twitter_url','country','total_rows']
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))
