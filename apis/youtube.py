@@ -85,27 +85,45 @@ class SearchChannels(Resource):
             sort_order = form_data.get('sort_order')
             offset = form_data.get('offset')
             connecsiObj=ConnecsiModel()
-            total_rows = connecsiObj.search_inf_get_total_rows(channel_id=channel,
-                                          min_lower=str(min_lower), max_upper=str(max_upper)
-                                          , category_id=str(category_id), country=str(country), sort_order=sort_order)
+            if channel == 'youtube':
+                total_rows = connecsiObj.search_youtube_inf_get_total_rows(min_lower=str(min_lower), max_upper=str(max_upper)
+                                              , category_id=str(category_id), country=str(country), sort_order=sort_order)
+                total_no_of_rows = len(total_rows)
+                data = connecsiObj.search_youtube_inf(min_lower=str(min_lower), max_upper=str(max_upper)
+                                              ,category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
+                columns = ['channel_id', 'title','channel_img','desc','subscriberCount_gained','subscriberCount_lost','business_email','total_100video_views',
+                           'total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments','total_100video_shares',
+                           'facebook_url','insta_url','twitter_url','country']
+                response_list = []
+                for item in data:
+                    dict_temp = dict(zip(columns, item))
+                    dict_temp.update({'total_rows':total_no_of_rows})
+                    response_list.append(dict_temp)
+                # print(response_list)
+                return {'data':response_list}
 
-            total_no_of_rows = len(total_rows)
+            elif channel == 'twitter':
+                total_rows = connecsiObj.search_twitter_inf_get_total_rows(min_lower=str(min_lower),
+                                                                           max_upper=str(max_upper)
+                                                                           , category_id=str(category_id),
+                                                                           country=str(country), sort_order=sort_order)
+                total_no_of_rows = len(total_rows)
+                data = connecsiObj.search_twitter_inf(min_lower=str(min_lower), max_upper=str(max_upper)
+                                                      , category_id=str(category_id), country=str(country),
+                                                      sort_order=sort_order, offset=str(offset))
+                columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained',
+                           'subscriberCount_lost', 'business_email', 'total_100video_views',
+                           'total_100video_views_unique', 'total_100video_likes', 'total_100video_dislikes',
+                           'total_100video_comments', 'total_100video_shares',
+                           'facebook_url', 'insta_url', 'twitter_url', 'country']
+                response_list = []
+                for item in data:
+                    dict_temp = dict(zip(columns, item))
+                    dict_temp.update({'total_rows': total_no_of_rows})
+                    response_list.append(dict_temp)
+                # print(response_list)
+                return {'data': response_list}
 
-
-            data = connecsiObj.search_inf(channel_id=channel,
-                                          min_lower=str(min_lower), max_upper=str(max_upper)
-                                          , category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
-            columns = ['channel_id', 'title','channel_img','desc','subscriberCount_gained','subscriberCount_lost','business_email','total_100video_views',
-                       'total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments','total_100video_shares',
-                       'facebook_url','insta_url','twitter_url','country']
-            response_list = []
-            for item in data:
-                dict_temp = dict(zip(columns, item))
-                dict_temp.update({'total_rows':total_no_of_rows})
-                response_list.append(dict_temp)
-
-            # print(response_list)
-            return {'data':response_list}
         except Exception as e:
             print(e)
             return {'response' : e}

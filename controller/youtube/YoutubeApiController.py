@@ -5,6 +5,8 @@ import re
 import os
 import requests
 from configparser import ConfigParser
+
+import time
 from bs4 import BeautifulSoup
 from model.ConnecsiModel import ConnecsiModel
 
@@ -204,30 +206,111 @@ class YoutubeApiController:
         # exit()
         return video_ids
 
+
+    def get_channel_ids_from_socialblade(self):
+        all_hrefs = []
+        youtube_usernames = []
+        youtube_channel_id = []
+        youtube_usernames_2 = []
+        channel_ids=[]
+        social_blade_url = 'https://socialblade.com/youtube/top/5000'
+        print(social_blade_url)
+        page = requests.get(url=social_blade_url).content
+        soup = BeautifulSoup(page, "html.parser")
+
+        for a in soup.find_all('a', href=True):
+            # print("Found the URL:", a['href'])
+            all_hrefs.append(a['href'])
+
+        for item in all_hrefs:
+            # print(item)
+            # print(type(item))
+            m = re.search("(/youtube/c/)(.*)", item)
+            if m:
+                usernames = re.sub('\xa0', '', m.group(2))
+                usernames = usernames.replace('\\', '')
+                # usernames = m.group(2).encode('utf-8')
+                youtube_usernames.append(usernames)
+
+
+            m1  = re.search("(/youtube/channel/)(.*)",item)
+            if m1:
+                youtube_channel_id.append(m1.group(2))
+
+            m2 = re.search("(/youtube/user/)(.*)", item)
+            if m2:
+                youtube_usernames_2.append(m2.group(2))
+
+
+        print(youtube_usernames)
+        print(len(youtube_usernames))
+        print(youtube_channel_id)
+        print(len(youtube_channel_id))
+        print(youtube_usernames_2)
+        print(len(youtube_usernames_2))
+
+        for username in youtube_usernames:
+            social_blade_channel_url = 'https://socialblade.com/youtube/c/'+username
+            print(social_blade_channel_url)
+            page = requests.get(url=social_blade_channel_url).content
+            soup = BeautifulSoup(page, "html.parser")
+            for a in soup.find_all('a', href=True):
+                m3 = re.search("(https://youtube.com/channel/)(.*)", a['href'])
+                if m3:
+                    channel_ids.append(m3.group(2))
+            print(len(channel_ids))
+
+
+        for username in youtube_usernames_2:
+            social_blade_user_url = 'https://socialblade.com/youtube/user/' + username
+            print(social_blade_user_url)
+            page = requests.get(url=social_blade_user_url).content
+            soup = BeautifulSoup(page, "html.parser")
+            for a in soup.find_all('a', href=True):
+                m3 = re.search("(https://youtube.com/channel/)(.*)", a['href'])
+                if m3:
+                    channel_ids.append(m3.group(2))
+            print(len(channel_ids))
+
+        print(channel_ids)
+        print(len(channel_ids))
+        mergerd_channel_ids = channel_ids+youtube_channel_id
+        print(mergerd_channel_ids)
+        print(len(mergerd_channel_ids))
+
+        connecsiObj = ConnecsiModel()
+        connecsiObj.insert__(data=mergerd_channel_ids, table_name='youtube_channel_ids', columns=['channel_id'],
+                             IGNORE='IGNORE')
+
+
+
+
     def get_all_channel_ids(self):
         connecsiObj = ConnecsiModel()
         regionCodes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
         # print(regionCodes)
         # query=["gaming in poland",'fashion in poland','moda i uroda w polsce','gry w polsce']
-        query=["gaming%20in%20USA","gaming in america"]
+        # keywords = ['Gaming','Fashion','Fitness','Sports','Lifestyle']
+        query=["Gaming%20in%20USA"]
+            # , 'Fashion%20in%20USA', 'Fitness%20in%20USA','Sports%20in%20USA', 'Lifestyle%20in%20USA']
         for code in regionCodes:
             # print(code[0])
             # country_code_list=['US','CN','IN','DE','CH','AT','AU','NZ','NL','BE','LU','PL','SA','SE','NO','DK']
             priority_country_list=['US']
+                # ,'PL','DE','NL','IN']
             if  code[0] in priority_country_list:
                 for q in query:
-                    print(q)
-                    # exit()
                     counter = 1
                     pageToken = ''
                     channel_ids = []
                     data = []
-                    while counter <= 5:
-                        url = self.get_channel_ids_url + '&maxResults=50' + '&pageToken=' + pageToken +'&q='+q
+                    while counter <= 1:
+                        url = self.get_channel_ids_url + '&maxResults=50' + '&order=viewcount' + '&pageToken=' + pageToken +'&q='+q
                         print(url)
                         # exit()
                         json_data = self.get_Json_data_Request_Lib(url=url)
                         # print(len(json_data))
+                        print('final json = ',json_data)
                         try:
                             pageToken = json_data['nextPageToken']
                         except:
@@ -245,13 +328,92 @@ class YoutubeApiController:
                                 # print(channel_id,code[0])
                                 channel_ids.append(channel_id)
                                 tdata= (channel_id,code[0])
-                                # print(tdata)
+                                print(tdata)
                                 data.append(tdata)
                         except:pass
 
                     connecsiObj = ConnecsiModel()
                     connecsiObj.insert__(data=channel_ids,table_name='youtube_channel_ids',columns=['channel_id'],IGNORE='IGNORE')
-                    connecsiObj.insert__(table_name='youtube_channel_ids_regioncode',columns=['channel_id','regionCode'],data=data)
+                    # connecsiObj.insert__(table_name='youtube_channel_ids_regioncode',columns=['channel_id','regionCode'],data=data)
+
+
+    def get_all_channel_ids_new(self):
+        priority_country_list = ['US', 'PL', 'DE', 'NL', 'IN']
+        keywords = ['Gaming','Fashion','Fitness','Sports','Lifestyle']
+
+
+        # query=["Gaming%20in%20USA", 'Fashion%20in%20USA', 'Fitness%20in%20USA','Sports%20in%20USA', 'Lifestyle%20in%20USA',]
+        query=["Gaming%20in%20POLAND", 'Fashion%20in%20POLAND', 'Fitness%20in%20POLAND', 'Sports%20in%20POLAND','Lifestyle%20in%20POLAND',
+               "Gaming%20in%20GERMANY", 'Fashion%20in%20GERMANY', 'Fitness%20in%20GERMANY', 'Sports%20in%20GERMANY','Lifestyle%20in%20GERMANY',
+               "Gaming%20in%20NETHERLANDS", 'Fashion%20in%20NETHERLANDS', 'Fitness%20in%20NETHERLANDS', 'Sports%20in%20NETHERLANDS','Lifestyle%20in%20NETHERLANDS',
+               "Gaming%20in%20INDIA", 'Fashion%20in%20INDIA', 'Fitness%20in%20INDIA', 'Sports%20in%20INDIA','Lifestyle%20in%20INDIA']
+
+        for q in query:
+            # counter = 1
+            print(q)
+            pageToken = ''
+            channel_ids=[]
+            while len(channel_ids) < 1000:
+                print('length of channels ids = ', len(channel_ids))
+                url = self.get_channel_ids_url + '&maxResults=50&pageToken=' + pageToken +'&q='+q
+                print('search url = ',url)
+                # time.sleep(10)
+                json_data = self.get_Json_data_Request_Lib(url=url)
+
+                try:
+                    pageToken = json_data['nextPageToken']
+                except:
+                    pass
+
+                items = json_data['items']
+                print('length items = ',len(items))
+                if len(items) == 0:
+                    print(channel_ids)
+                    print(len(channel_ids))
+                    connecsiObj = ConnecsiModel()
+                    connecsiObj.insert__(data=channel_ids, table_name='youtube_channel_ids', columns=['channel_id'],IGNORE='IGNORE')
+                    # connecsiObj.insert__(table_name='youtube_channel_ids_regioncode',columns=['channel_id','regionCode'],data=data)
+                    break
+                print(type(items))
+                # exit()
+                print("i m outside")
+                for item in items:
+                    print("i m in for loop")
+                    try:
+                        channel_id = item['id']['channelId']
+                        print(channel_id)
+                    except:pass
+                    channel_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&key=' + self.api_key + '&id=' + channel_id
+                    print('channel url = ',channel_url)
+
+                    json_stats = self.get_Json_data_Request_Lib(url=channel_url)
+                    items1 = json_stats['items']
+                    for item1 in items1:
+                        try:
+                            subscriberCount = item1['statistics']['subscriberCount']
+                            print(subscriberCount)
+                            print('query = ',q)
+                            if int(subscriberCount) >= 10000:
+                                channel_ids.append(channel_id)
+                            else:
+                                print('subscriber Count is less than 10000')
+                        except:pass
+
+                # counter = counter + 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def get_all_regionCodes(self):
         url = self.regionCode_url
