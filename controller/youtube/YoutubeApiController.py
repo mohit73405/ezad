@@ -58,7 +58,7 @@ class YoutubeApiController:
         url = self.channel_details_url+self.channelId+'&key='+self.api_key
         # print(url)
         channel_data = self.get_Json_data_Request_Lib(url=url)
-        print(channel_data)
+        # print(channel_data)
         # exit()
         try:
             self.channel_thumbnail = channel_data['items'][0]['snippet']['thumbnails']['medium']['url']
@@ -489,7 +489,7 @@ class YoutubeApiController:
                 myList.append(self.insta_url)
                 myList.append(self.twitter_url)
                 myList.append(self.country)
-                print(myList)
+                # print(myList)
                 # exit()
                 columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
                            'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',

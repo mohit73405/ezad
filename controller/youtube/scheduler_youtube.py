@@ -1,6 +1,8 @@
 import schedule #pip install schedule
 import time
-# import sys
+import sys
+print(sys.path)
+# exit()
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
 from controller.youtube.YoutubeApiController import YoutubeApiController
 
