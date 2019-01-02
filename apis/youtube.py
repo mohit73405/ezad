@@ -85,7 +85,7 @@ class SearchChannels(Resource):
             sort_order = form_data.get('sort_order')
             offset = form_data.get('offset')
             connecsiObj=ConnecsiModel()
-            if channel == 'youtube':
+            if channel == 'youtube' or channel == 'Youtube':
                 total_rows = connecsiObj.search_youtube_inf_get_total_rows(min_lower=str(min_lower), max_upper=str(max_upper)
                                               , category_id=str(category_id), country=str(country), sort_order=sort_order)
                 total_no_of_rows = len(total_rows)
