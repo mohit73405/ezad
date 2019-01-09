@@ -76,7 +76,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-            self.cnx.close()
+            # self.cnx.close()
             return data
 
         except Exception as e:
@@ -124,7 +124,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-            self.cnx.close()
+            # self.cnx.close()
             return data
 
         except Exception as e:
@@ -169,7 +169,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-            self.cnx.close()
+            # self.cnx.close()
             return data
 
         except Exception as e:
@@ -214,7 +214,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-            self.cnx.close()
+            # self.cnx.close()
 
             return data
 
