@@ -76,7 +76,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-
+            self.cnx.close()
             return data
 
         except Exception as e:
@@ -124,7 +124,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-
+            self.cnx.close()
             return data
 
         except Exception as e:
@@ -169,7 +169,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-
+            self.cnx.close()
             return data
 
         except Exception as e:
@@ -181,7 +181,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 group_by = " group by twitter_id"
                 # group_by =''
-                # category_id_filter = " t2.video_cat_id =" + category_id
+                category_id_filter = " t2.video_cat_id =" + category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
                 country_filter = " location = '" + country + "'"
                 order = 'desc'
@@ -214,6 +214,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
+            self.cnx.close()
 
             return data
 
