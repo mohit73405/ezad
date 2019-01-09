@@ -14,8 +14,8 @@ from apis.offers import ns_offer
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-blueprint = Blueprint('api',__name__,url_prefix='/api')
-api = Api(blueprint,version='1.0', title='Connecsi Api',description='APIS',doc='/documentation')
+blueprint = Blueprint('api',__name__,url_prefix='/Apis')
+api = Api(blueprint,version='1.0', title='Connecsi Api',description='APIS',doc='/Documentation')
 app.register_blueprint(blueprint)
 
 
