@@ -134,7 +134,7 @@ class ConnecsiModel:
     def search_youtube_inf_get_total_rows(self, sort_order, min_lower='', max_upper='', country='', category_id=''):
         try:
             with self.cnx.cursor() as cursor:
-                group_by = " group by t1.channel_id"
+                # group_by = " group by t1.channel_id"
                 # group_by =''
                 category_id_filter = " t2.video_cat_id =" + category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
@@ -148,20 +148,24 @@ class ConnecsiModel:
                     order = 'desc'
                 order_by = " order by t1.subscriberCount_gained " + order
 
-                sql = "SELECT * FROM youtube_channel_details t1 " \
-                      "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                sql = "SELECT distinct(t1.channel_id) FROM youtube_channel_details t1 " \
+                      "INNER JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
                       "WHERE t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
                 if category_id and country:
-                    sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + group_by + order_by
+                    # sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + group_by + order_by
+                    sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter  + order_by
                 elif category_id:
-                    sql = sql + ' AND ' + category_id_filter + group_by + order_by
+                    # sql = sql + ' AND ' + category_id_filter + group_by + order_by
+                    sql = sql + ' AND ' + category_id_filter + order_by
                 elif country:
                     # sql = sql = sql + group_by
-                    sql = sql + ' AND ' + country_filter + group_by + order_by
+                    # sql = sql + ' AND ' + country_filter + group_by + order_by
+                    sql = sql + ' AND ' + country_filter + order_by
                 else:
-                    sql = sql + group_by + order_by
+                    # sql = sql + group_by + order_by
+                    sql = sql + order_by
 
                 print(sql)
                 cursor.execute(sql)
@@ -169,7 +173,7 @@ class ConnecsiModel:
                 # print(result)
             print("closing cnx")
             cursor.close()
-            # self.cnx.close()
+            self.cnx.close()
             return data
 
         except Exception as e:
