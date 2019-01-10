@@ -80,6 +80,7 @@ class ConnecsiModel:
             return data
 
         except Exception as e:
+            print('i m here in model')
             print(e)
 
 
