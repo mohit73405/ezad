@@ -86,10 +86,13 @@ class SearchChannels(Resource):
             offset = form_data.get('offset')
             connecsiObj=ConnecsiModel()
             if channel == 'youtube' or channel == 'Youtube':
+                print('i m inside if')
                 total_rows = connecsiObj.search_youtube_inf_get_total_rows(min_lower=str(min_lower), max_upper=str(max_upper)
                                               , category_id=str(category_id), country=str(country), sort_order=sort_order)
                 total_no_of_rows = len(total_rows)
+
                 print('my data = ',total_rows)
+                print(total_no_of_rows)
                 # data = connecsiObj.search_youtube_inf(min_lower=str(min_lower), max_upper=str(max_upper)
                 #                               ,category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
                 # columns = ['channel_id', 'title','channel_img','desc','subscriberCount_gained','subscriberCount_lost','business_email','total_100video_views',
