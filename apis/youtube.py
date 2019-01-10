@@ -99,8 +99,11 @@ class SearchChannels(Resource):
                            'total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments','total_100video_shares',
                            'facebook_url','insta_url','twitter_url','country']
                 response_list = []
-                for item in data:
-                    print(item)
+
+                print(type(data))
+                print(data)
+                # for item in data:
+                #     print(item)
                     # dict_temp = dict(zip(columns, item))
                     # dict_temp.update({'total_rows':total_no_of_rows})
                     # response_list.append(dict_temp)
