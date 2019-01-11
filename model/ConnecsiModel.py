@@ -77,7 +77,7 @@ class ConnecsiModel:
 
             print("closing cnx")
             cursor.close()
-            self.cnx.close()
+            # self.cnx.close()
 
             return data
 

@@ -91,7 +91,7 @@ class SearchChannels(Resource):
                                               , category_id=str(category_id), country=str(country), sort_order=sort_order)
                 total_no_of_rows = len(total_rows)
 
-                print('my data = ',total_rows)
+                # print('my data = ',total_rows)
                 print(total_no_of_rows)
                 data = connecsiObj.search_youtube_inf(min_lower=str(min_lower), max_upper=str(max_upper)
                                               ,category_id=str(category_id), country=str(country), sort_order=sort_order,offset=str(offset))
@@ -100,8 +100,8 @@ class SearchChannels(Resource):
                            'facebook_url','insta_url','twitter_url','country']
                 response_list = []
 
-                print(type(data))
-                print(data)
+                # print(type(data))
+                # print(data)
                 for item in data:
                     print(item)
                     dict_temp = dict(zip(columns, item))
