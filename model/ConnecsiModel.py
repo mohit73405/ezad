@@ -71,12 +71,16 @@ class ConnecsiModel:
                 else: sql = sql + order_by
 
                 print(sql)
-                cursor.execute(sql)
-                data = cursor.fetchall()
-                print('data in model',data)
+                try:
+                    cursor.execute(sql)
+                    data = cursor.fetchall()
+                    print('data in model',data)
+                except Exception as e:
+                    print(e)
             print("closing cnx")
             cursor.close()
             # self.cnx.close()
+            data = 1
             return data
 
         except Exception as e:
