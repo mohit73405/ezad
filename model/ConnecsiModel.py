@@ -1205,3 +1205,18 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+    def delete_fav_inf(self, channel_id,user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "Delete from  brands_inf_fav_list  WHERE channel_id = '" + channel_id + "'" + " AND user_id = '" + user_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0

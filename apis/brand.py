@@ -145,6 +145,17 @@ class Brand(Resource):
         except:
             return {'response': result}, 500
 
+@ns_brand.route('/deleteFromFavList/<string:channel_id>/<string:user_id>')
+class Brand(Resource):
+    def post(self,channel_id,user_id):
+        '''Delete  influencer from fav list'''
+        result=0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.delete_fav_inf(channel_id=channel_id,user_id=user_id)
+            return {'response': result}, 201
+        except:
+            return {'response': result}, 500
 
 @ns_brand.route('/getInfluencerFavList/<string:user_id>')
 class Brand(Resource):
