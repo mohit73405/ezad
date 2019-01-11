@@ -102,11 +102,11 @@ class SearchChannels(Resource):
 
                 print(type(data))
                 print(data)
-                # for item in data:
-                #     print(item)
-                    # dict_temp = dict(zip(columns, item))
-                    # dict_temp.update({'total_rows':total_no_of_rows})
-                    # response_list.append(dict_temp)
+                for item in data:
+                    print(item)
+                    dict_temp = dict(zip(columns, item))
+                    dict_temp.update({'total_rows':total_no_of_rows})
+                    response_list.append(dict_temp)
                 # print(response_list)
                 return {'data':response_list}
 
