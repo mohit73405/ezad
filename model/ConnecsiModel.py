@@ -73,7 +73,7 @@ class ConnecsiModel:
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
-                # print(result)
+                print('data in model',data)
             print("closing cnx")
             cursor.close()
             # self.cnx.close()
