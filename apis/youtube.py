@@ -54,8 +54,8 @@ class VideoCategories(Resource):
         print(response_list)
         return {'data': response_list}
 
-@ns_youtube.route('/videoCategories/<string:video_cat_id>')
-class VideoCategories(Resource):
+@ns_youtube.route('/videoCategory/<string:video_cat_id>')
+class VideoCategory(Resource):
     def get(self,video_cat_id):
         ''' get video categories by video cat id '''
         connecsiObj = ConnecsiModel()
