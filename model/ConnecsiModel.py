@@ -1222,3 +1222,19 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+    def delete_campaign(self, campaign_id, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE brands_campaign SET deleted = 'true' WHERE campaign_id = '" + campaign_id + "' AND user_id = '" + user_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0

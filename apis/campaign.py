@@ -169,6 +169,18 @@ class Campaign(Resource):
             res = 0
             return {'response': res},500
 
+    def delete(self,campaign_id,user_id):
+        '''Delete Campaign'''
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.delete_campaign(campaign_id=campaign_id,user_id=user_id)
+            res = 1
+            return {'response': res}, 201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res}, 500
+
 
 @ns_campaign.route('/channel_status_for_campaign/<string:channel_id>')
 class Campaign(Resource):
