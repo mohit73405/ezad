@@ -1227,7 +1227,7 @@ class ConnecsiModel:
     def delete_campaign(self, campaign_id, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "UPDATE brands_campaign SET deleted = 'true' WHERE campaign_id = '" + campaign_id + "' AND user_id = '" + user_id + "'"
+                sql = "UPDATE brands_campaigns SET deleted = 'true' WHERE campaign_id = '" + campaign_id + "' AND user_id = '" + user_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
