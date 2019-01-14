@@ -123,7 +123,7 @@ class Campaign(Resource):
             columns = ['campaign_id','user_id','campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                        'min_lower_followers', 'max_upper_followers','files', 'video_cat_id', 'target_url',
                        'campaign_description',
-                       'arrangements', 'kpis', 'is_classified_post']
+                       'arrangements', 'kpis', 'is_classified_post','deleted','campaign_status']
             response_list = []
             for item in campaign_data:
                 dict_temp = dict(zip(columns, item))
