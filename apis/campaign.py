@@ -73,12 +73,13 @@ class Campaign(Resource):
         arrangements = data_json.get('arrangements')
         kpis = data_json.get('kpis')
         is_classified_post = data_json.get('is_classified_post')
+        campaign_status = 'New'
         data = [campaign_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, target_url, campaign_description, arrangements,
-                kpis, user_id,is_classified_post,files]
+                kpis, user_id,is_classified_post,files,campaign_status]
         columns = ['campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'campaign_description',
-                   'arrangements', 'kpis', 'user_id','is_classified_post','files']
+                   'arrangements', 'kpis', 'user_id','is_classified_post','files','campaign_status']
         connecsiObj = ConnecsiModel()
         res=''
         try:
