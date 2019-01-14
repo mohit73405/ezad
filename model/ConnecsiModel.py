@@ -838,6 +838,21 @@ class ConnecsiModel:
             return 0
 
 
+    def update_campaign_status(self,campaign_id,campaign_status):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE brands_campaigns SET campaign_status = '"+ str(campaign_status) +"' WHERE campaign_id = '" + str(campaign_id) +"' "
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
     def get_all_proposal(self, user_id):
         try:
             with self.cnx.cursor() as cursor:

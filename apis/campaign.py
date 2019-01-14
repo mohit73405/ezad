@@ -232,6 +232,20 @@ class Campaign(Resource):
         except Exception as e:
             print(e)
 
+
+@ns_campaign.route('/update_campaign_status/<string:campaign_id>/<string:campaign_status>')
+class Campaign(Resource):
+    def put(self,campaign_id,campaign_status):
+        ''' update campaign status by campaign id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.update_campaign_status(campaign_id=campaign_id,campaign_status=campaign_status)
+
+            return {'response': 1},201
+
+        except Exception as e:
+            print(e)
+
 @ns_campaign.route('/BrandCampaignReport/<string:user_id>/<string:campaign_id>')
 class Campaign(Resource):
     @ns_campaign.expect(brand_campaign_report_form)
