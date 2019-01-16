@@ -718,7 +718,7 @@ class ConnecsiModel:
     def get_youtube_inf_list(self, campaign_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT ccm.channel_id,ycd.title,ycd.channel_img FROM channel_campaign_message ccm" \
+                sql = "SELECT ccm.channel_id,ycd.title,ycd.channel_img,ycd.business_email FROM channel_campaign_message ccm" \
                       " JOIN youtube_channel_details ycd on ccm.channel_id = ycd.channel_id" \
                       " WHERE ccm.campaign_id = '"+ campaign_id +"'"
                 print(sql)
