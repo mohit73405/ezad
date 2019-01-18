@@ -254,11 +254,13 @@ class Campaign(Resource):
         data_json = request.get_json()
         revenue_generated = data_json.get('revenue_generated')
         currency = data_json.get('currency')
-        target_url = data_json.get('target_url')
-        new_users = data_json.get('new_users')
-        data = [user_id, campaign_id, revenue_generated, currency, target_url,new_users]
 
-        columns = ['user_id', 'campaign_id', 'revenue_generated', 'currency', 'target_url', 'new_users']
+        new_users = data_json.get('new_users')
+        channel_id = data_json.get('channel_id')
+        channel = data_json.get('channel')
+        data = [user_id, campaign_id, revenue_generated, currency,new_users,channel_id,channel]
+
+        columns = ['user_id', 'campaign_id', 'revenue_generated', 'currency', 'new_users','channel_id','channel']
         connecsiObj = ConnecsiModel()
 
         try:
