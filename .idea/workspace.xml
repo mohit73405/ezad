@@ -18,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="305">
-              <caret line="723" column="22" lean-forward="false" selection-start-line="723" selection-start-column="22" selection-end-line="723" selection-end-column="22" />
+              <caret line="723" column="124" lean-forward="false" selection-start-line="723" selection-start-column="124" selection-end-line="723" selection-end-column="124" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -80,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="253" column="72" lean-forward="true" selection-start-line="253" selection-start-column="72" selection-end-line="253" selection-end-column="72" />
+              <caret line="253" column="120" lean-forward="true" selection-start-line="253" selection-start-column="120" selection-end-line="253" selection-end-column="120" />
               <folding />
             </state>
           </provider>
@@ -835,7 +835,7 @@
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
-          <caret line="723" column="22" lean-forward="false" selection-start-line="723" selection-start-column="22" selection-end-line="723" selection-end-column="22" />
+          <caret line="723" column="124" lean-forward="false" selection-start-line="723" selection-start-column="124" selection-end-line="723" selection-end-column="124" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -845,7 +845,7 @@
     <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="253" column="72" lean-forward="true" selection-start-line="253" selection-start-column="72" selection-end-line="253" selection-end-column="72" />
+          <caret line="253" column="120" lean-forward="true" selection-start-line="253" selection-start-column="120" selection-end-line="253" selection-end-column="120" />
           <folding />
         </state>
       </provider>
