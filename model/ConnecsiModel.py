@@ -1242,6 +1242,22 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def delete_brand_campaign_report(self, brand_report_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "Delete from  brand_campaign_report  WHERE brand_campaign_report_id = '"+ brand_report_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
     def delete_fav_inf(self, channel_id,user_id):
         try:
             with self.cnx.cursor() as cursor:

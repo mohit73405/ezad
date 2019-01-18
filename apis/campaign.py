@@ -311,6 +311,21 @@ class Campaign(Resource):
 
 
 
+@ns_campaign.route('/BrandCampaignReport/Delete/<string:brand_report_id>')
+class Campaign(Resource):
+    def delete(self,brand_report_id):
+        ''' Delete Brand Campaign report by report id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.delete_brand_campaign_report(brand_report_id=brand_report_id)
+            res = 1
+            return {'response': res}, 200
+        except Exception as  e:
+            res = 0
+            print(e)
+            return {'response': res}, 500
+
+
 
 
 @ns_campaign.route('/InfluencerCampaignReport/<string:campaign_id>/<string:proposal_id>/<string:user_id>')
