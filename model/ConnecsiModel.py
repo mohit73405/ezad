@@ -719,9 +719,10 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT ccm.channel_id,ycd.title,ycd.channel_img,ycd.business_email," \
-                      " cp.ref_link,cp.proposal_channels,cp.proposal_price  FROM channel_campaign_message ccm" \
+                      " cp.ref_link,cp.proposal_channels,cp.proposal_price ,bcr.channel_id as bcr_channel_id,bcr.revenue_generated  FROM channel_campaign_message ccm" \
                       " JOIN youtube_channel_details ycd on ccm.channel_id = ycd.channel_id" \
                       " LEFT JOIN campaign_proposal cp on cp.campaign_id = ccm.campaign_id and cp.channel_id=ccm.channel_id " \
+                      " RIGHT JOIN brand_campaign_report bcr on bcr.campaign_id = cp.campaign_id and bcr.user_id=cp.user_id and ccm.channel_id=bcr.channel_id" \
                       " WHERE ccm.campaign_id = '"+ campaign_id +"'"
                 print(sql)
                 cursor.execute(sql)
