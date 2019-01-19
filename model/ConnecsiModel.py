@@ -1031,11 +1031,11 @@ class ConnecsiModel:
             print(e)
 
 
-    def update_brand_campaign_report(self,user_id,campaign_id,data):
+    def update_brand_campaign_report(self,campaign_id,channel_id,data):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "UPDATE brand_campaign_report SET revenue_generated = %s, currency = %s, target_url = %s," \
-                      " new_users = %s WHERE user_id = '"+ user_id + "'" +" AND campaign_id = '"+ campaign_id +"'"
+                sql = "UPDATE brand_campaign_report SET revenue_generated = %s, currency = %s," \
+                      " new_users = %s WHERE campaign_id = '"+ str(campaign_id) + "'" +" AND channel_id = '"+ str(channel_id) +"'"
                 print(sql)
                 cursor.execute(sql,data)
                 self.cnx.commit()
