@@ -287,7 +287,8 @@ class Campaign(Resource):
         except Exception as e:
             print(e)
 
-
+@ns_campaign.route('/BrandCampaignReport/Update/<string:campaign_id>/<string:channel_id>')
+class Campaign(Resource):
     def put(self,campaign_id,channel_id):
         ''' Edit Brand Campaign report by campaign_id and channel_id'''
         data_json = request.get_json()
