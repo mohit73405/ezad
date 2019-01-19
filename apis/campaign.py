@@ -208,7 +208,7 @@ class Campaign(Resource):
         try:
             connecsiObj = ConnecsiModel()
             channel_campaign_message_status_data=connecsiObj.get_channel_campaign_message_status_by_campaign_id(campaign_id=campaign_id)
-            columns = ['campaign_id', 'campaign_name','message_id','status']
+            columns = ['campaign_id','campaign_name','message_id','status','channel_id','user_id']
             response_list = []
             for item in channel_campaign_message_status_data:
                 dict_temp = dict(zip(columns, item))

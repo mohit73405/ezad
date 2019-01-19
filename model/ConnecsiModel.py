@@ -754,7 +754,7 @@ class ConnecsiModel:
     def get_channel_campaign_message_status_by_campaign_id(self, campaign_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT ccm.campaign_id,bc.campaign_name,ccm.message_id,ccm.status FROM channel_campaign_message ccm" \
+                sql = "SELECT ccm.campaign_id,bc.campaign_name,ccm.message_id,ccm.status,ccm.channel_id,bc.user_id FROM channel_campaign_message ccm" \
                       " JOIN brands_campaigns bc on ccm.campaign_id = bc.campaign_id" \
                       " WHERE ccm.campaign_id = '"+ campaign_id +"'"
                 print(sql)
