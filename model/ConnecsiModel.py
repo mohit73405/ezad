@@ -1242,10 +1242,10 @@ class ConnecsiModel:
             print(e)
             return 0
 
-    def delete_brand_campaign_report(self, brand_report_id):
+    def delete_brand_campaign_report(self, campaign_id,channel_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "Delete from  brand_campaign_report  WHERE brand_campaign_report_id = '"+ brand_report_id + "'"
+                sql = "Delete from  brand_campaign_report  WHERE campaign_id = '"+ campaign_id + "' AND channel_id = '"+channel_id+"'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()

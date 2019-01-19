@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="1244" column="24" lean-forward="true" selection-start-line="1244" selection-start-column="24" selection-end-line="1244" selection-end-column="24" />
+            <state relative-caret-position="229">
+              <caret line="1247" column="131" lean-forward="true" selection-start-line="1247" selection-start-column="131" selection-end-line="1247" selection-end-column="131" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -46,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="campaign.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="campaign.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/campaign.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="313" column="40" lean-forward="false" selection-start-line="313" selection-start-column="21" selection-end-line="313" selection-end-column="40" />
+            <state relative-caret-position="178">
+              <caret line="319" column="44" lean-forward="true" selection-start-line="319" selection-start-column="44" selection-end-line="319" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -151,8 +151,8 @@
       <find>concat</find>
       <find>concar</find>
       <find>getCampaignsAddedToMessage</find>
-      <find>proposal</find>
       <find>delete</find>
+      <find>proposal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -210,8 +210,8 @@
         <option value="$PROJECT_DIR$/apis/youtube.py" />
         <option value="$PROJECT_DIR$/apis/messages.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/campaign.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
       </list>
     </option>
   </component>
@@ -832,21 +832,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+    <entry file="file://$PROJECT_DIR$/apis/campaign.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="1244" column="24" lean-forward="true" selection-start-line="1244" selection-start-column="24" selection-end-line="1244" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="178">
+          <caret line="319" column="44" lean-forward="true" selection-start-line="319" selection-start-column="44" selection-end-line="319" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/campaign.py">
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="313" column="40" lean-forward="false" selection-start-line="313" selection-start-column="21" selection-end-line="313" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="229">
+          <caret line="1247" column="131" lean-forward="true" selection-start-line="1247" selection-start-column="131" selection-end-line="1247" selection-end-column="131" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
