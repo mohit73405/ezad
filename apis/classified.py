@@ -73,7 +73,7 @@ class Classified(Resource):
             columns = ['classified_id','user_id','classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                        'min_lower_followers', 'max_upper_followers','files', 'video_cat_id', 'target_url',
                        'classified_description',
-                       'arrangements', 'kpis', 'convert_to_campaign','no_of_views','no_of_replies']
+                       'arrangements', 'kpis', 'convert_to_campaign','no_of_views','no_of_replies','deleted']
             response_list = []
             for item in all_classifieds_data:
                 dict_temp = dict(zip(columns, item))
@@ -140,6 +140,19 @@ class Classified(Resource):
             print(e)
             res = 0
             return {'response': res}
+
+    def delete(self, classified_id, user_id):
+        '''Delete Classified'''
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.delete_classified(classified_id=classified_id, user_id=user_id)
+            res = 1
+            return {'response': res}, 201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res}, 500
+
 
 
 @ns_classified.route('/NumberOfViews/<string:classified_id>/<string:user_id>/<string:no_of_views>')

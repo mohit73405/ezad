@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/campaign.py" afterPath="$PROJECT_DIR$/apis/campaign.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/classified.py" afterPath="$PROJECT_DIR$/apis/classified.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,14 +14,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="756" column="114" lean-forward="false" selection-start-line="756" selection-start-column="114" selection-end-line="756" selection-end-column="114" />
+            <state relative-caret-position="178">
+              <caret line="527" column="56" lean-forward="true" selection-start-line="527" selection-start-column="56" selection-end-line="527" selection-end-column="56" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classified.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apis/classified.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="83" column="20" lean-forward="true" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -49,8 +59,8 @@
       <file leaf-file-name="campaign.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/campaign.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="209" column="73" lean-forward="true" selection-start-line="209" selection-start-column="73" selection-end-line="209" selection-end-column="73" />
+            <state relative-caret-position="500">
+              <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,8 +89,8 @@
       <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="253" column="120" lean-forward="false" selection-start-line="253" selection-start-column="120" selection-end-line="253" selection-end-column="120" />
+            <state relative-caret-position="322">
+              <caret line="287" column="22" lean-forward="true" selection-start-line="287" selection-start-column="22" selection-end-line="287" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -101,16 +111,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="901">
               <caret line="57" column="32" lean-forward="false" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="17" column="82" lean-forward="false" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -200,7 +200,6 @@
         <option value="$PROJECT_DIR$/offers.py" />
         <option value="$PROJECT_DIR$/apis/influencer.py" />
         <option value="$PROJECT_DIR$/apis/offers.py" />
-        <option value="$PROJECT_DIR$/apis/classified.py" />
         <option value="$PROJECT_DIR$/model/__init__.py" />
         <option value="$PROJECT_DIR$/controller/__init__.py" />
         <option value="$PROJECT_DIR$/controller/youtube/__init__.py" />
@@ -212,6 +211,7 @@
         <option value="$PROJECT_DIR$/apis/brand.py" />
         <option value="$PROJECT_DIR$/apis/campaign.py" />
         <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/apis/classified.py" />
       </list>
     </option>
   </component>
@@ -694,13 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/classified.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="188" column="50" lean-forward="true" selection-start-line="188" selection-start-column="50" selection-end-line="188" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apis/offers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -826,27 +819,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="253" column="120" lean-forward="false" selection-start-line="253" selection-start-column="120" selection-end-line="253" selection-end-column="120" />
+        <state relative-caret-position="322">
+          <caret line="287" column="22" lean-forward="true" selection-start-line="287" selection-start-column="22" selection-end-line="287" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/campaign.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="209" column="73" lean-forward="true" selection-start-line="209" selection-start-column="73" selection-end-line="209" selection-end-column="73" />
+        <state relative-caret-position="500">
+          <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="756" column="114" lean-forward="false" selection-start-line="756" selection-start-column="114" selection-end-line="756" selection-end-column="114" />
+        <state relative-caret-position="178">
+          <caret line="527" column="56" lean-forward="true" selection-start-line="527" selection-start-column="56" selection-end-line="527" selection-end-column="56" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/classified.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="83" column="20" lean-forward="true" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
