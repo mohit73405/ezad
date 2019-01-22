@@ -49,12 +49,14 @@ class Classified(Resource):
         arrangements = data_json.get('arrangements')
         kpis = data_json.get('kpis')
         convert_to_campaign = data_json.get('convert_to_campaign')
+        posted_date = datetime.date.today()
+        posted_date = datetime.date.strftime(posted_date, '%Y-%m-%d')
         data = [classified_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, target_url, classified_description, arrangements,
-                kpis, user_id,convert_to_campaign,files]
+                kpis, user_id,convert_to_campaign,files,posted_date]
         columns = ['classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'classified_description',
-                   'arrangements', 'kpis', 'user_id','convert_to_campaign','files']
+                   'arrangements', 'kpis', 'user_id','convert_to_campaign','files','posted_date']
         connecsiObj = ConnecsiModel()
         try:
             connecsiObj.insert__(table_name='brands_classifieds', columns=columns, data=data)
@@ -73,7 +75,7 @@ class Classified(Resource):
             columns = ['classified_id','user_id','classified_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                        'min_lower_followers', 'max_upper_followers','files', 'video_cat_id', 'target_url',
                        'classified_description',
-                       'arrangements', 'kpis', 'convert_to_campaign','no_of_views','no_of_replies','deleted']
+                       'arrangements', 'kpis', 'convert_to_campaign','no_of_views','no_of_replies','deleted','posted_date']
             response_list = []
             for item in all_classifieds_data:
                 dict_temp = dict(zip(columns, item))
