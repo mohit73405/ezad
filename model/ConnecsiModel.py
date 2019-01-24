@@ -1159,7 +1159,7 @@ class ConnecsiModel:
                       " ui.city ,ui.channel_id," \
                       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id," \
                       " chm.confirmed," \
-                      " ycd.title, ycd.channel_img,ycd.country" \
+                      " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,'ycd.insta_url'" \
                       " FROM channels_mapper chm" \
                       " LEFT JOIN users_influencers ui on ui.channel_id = chm.youtube_channel_id or ui.channel_id=chm.twitter_channel_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = ui.channel_id" \
