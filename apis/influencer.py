@@ -194,7 +194,7 @@ class Influencer(Resource):
                    'categories','website', 'country', 'city', 'channel_id',
                    'mapped_youtube_channel_id', 'mapped_twitter_channel_id',
                    'confirmed','title','channel_img','youtube_country','facebook_url','twitter_url','insta_url',
-                   'youtube_video_cat']
+                   'twitter_business_email','twitter_screen_name','youtube_video_cat']
 
         data = connecsiObj.get_inf_and_channel_details(user_id=str(user_id))
         response_list = []
