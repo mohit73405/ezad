@@ -1160,11 +1160,12 @@ class ConnecsiModel:
                       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id," \
                       " chm.confirmed," \
                       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,'ycd.insta_url'," \
-                      " GROUP_CONCAT(ycivc.video_cat_id SEPARATOR ', ')" \
+                      " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ',')" \
                       " FROM channels_mapper chm" \
                       " LEFT JOIN users_influencers ui on ui.channel_id = chm.youtube_channel_id or ui.channel_id=chm.twitter_channel_id" \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = ui.channel_id" \
                       " JOIN youtube_channel_ids_video_categories_id ycivc on ycd.channel_id = ycivc.channel_id" \
+                      " JOIN youtube_video_categories yvc on yvc.video_cat_id = ycivc.video_cat_id" \
                       " WHERE ui.channel_id = '" + user_id + "' ORDER BY ycd.channel_id"
 
 
