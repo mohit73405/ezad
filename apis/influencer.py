@@ -192,7 +192,8 @@ class Influencer(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['first_name', 'last_name', 'business_email', 'phone',
                    'categories','website', 'country', 'city', 'channel_id',
-                   'mapped_youtube_channel_id', 'mapped_twitter_channel_id', 'confirmed']
+                   'mapped_youtube_channel_id', 'mapped_twitter_channel_id',
+                   'confirmed','title','channel_img','youtube_country']
 
         data = connecsiObj.get_inf_and_channel_details(user_id=str(user_id))
         response_list = []
