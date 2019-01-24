@@ -1150,6 +1150,37 @@ class ConnecsiModel:
             print(e)
 
 
+    def get_inf_and_channel_details(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " ui.first_name ,ui.last_name ,ui.business_email," \
+                      " ui.phone ,ui.categories , ui.website , ui.country ," \
+                      " ui.city ,ui.channel_id," \
+                      " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id," \
+                      " chm.confirmed" \
+                      " FROM channels_mapper chm" \
+                      " LEFT JOIN users_influencers ui on ui.channel_id = chm.youtube_channel_id or ui.channel_id=chm.twitter_channel_id" \
+                      " WHERE ui.channel_id = '" + user_id + "'"
+
+
+                # sql = " select ui1.first_name as youtube_first_name,ui2.first_name as twitter_first_name,chm.youtube_channel_id," \
+                #       " chm.twitter_channel_id " \
+                #       " FROM channels_mapper chm " \
+                #       " LEFT JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id " \
+                #       " LEFT JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id " \
+                #       " WHERE ui1.channel_id = '"+ user_id +"' or ui2.channel_id = '"+ user_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+
     def get_all_offers(self, channel_id):
         try:
             with self.cnx.cursor() as cursor:

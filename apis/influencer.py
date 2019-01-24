@@ -27,7 +27,7 @@ influencer_edit_form = ns_influencer.model('Influencer Details Update', {
 @ns_influencer.route('/<string:user_id>')
 class Influencer(Resource):
     def get(self,user_id):
-        '''Influencer details by user_id'''
+        '''Influencer login  details by user_id'''
         connecsiObj = ConnecsiModel()
         columns = ['youtube_first_name', 'youtube_last_name', 'youtube_business_email','youtube_phone','youtube_categories',
                    'youtube_website','youtube_country','youtube_city','youtube_channel_id',
@@ -178,6 +178,23 @@ class Influencer(Resource):
         columns = ['mapped_youtube_channel_id','mapped_twitter_channel_id','confirmed']
 
         data = connecsiObj.get_all_inf_channels(user_id=str(channel_id))
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        return {'data': response_list}
+
+
+@ns_influencer.route('/getDetailsByUserId/<string:user_id>')
+class Influencer(Resource):
+    def get(self, user_id):
+        '''Influencer and channel details by user_id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['first_name', 'last_name', 'business_email', 'phone',
+                   'categories','website', 'country', 'city', 'channel_id',
+                   'mapped_youtube_channel_id', 'mapped_twitter_channel_id', 'confirmed']
+
+        data = connecsiObj.get_inf_and_channel_details(user_id=str(user_id))
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))
