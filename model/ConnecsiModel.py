@@ -1344,6 +1344,22 @@ class ConnecsiModel:
             print(e)
             return 0
 
+
+    def delete_offer(self, offer_id, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE inf_offers SET deleted = 'true' WHERE offer_id = '" + offer_id + "' AND user_id = '" + user_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
     def update_inf_details(self, channel_id, data):
         try:
             with self.cnx.cursor() as cursor:

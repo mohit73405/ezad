@@ -143,6 +143,21 @@ class Offers(Resource):
             return {'response': res}
 
 
+    def delete(self, offer_id, user_id):
+        '''Delete Offer'''
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.delete_offer(offer_id=offer_id, user_id=user_id)
+            res = 1
+            return {'response': res}, 201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res}, 500
+
+
+
+
 @ns_offer.route('/NumberOfViews/<string:offer_id>/<string:user_id>/<string:no_of_views>')
 class Offers(Resource):
     def put(self,offer_id,user_id,no_of_views):
