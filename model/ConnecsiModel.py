@@ -548,7 +548,7 @@ class ConnecsiModel:
                 sql = "SELECT " \
                       " io1.offer_id,io1.channel_id,io1.offer_name, io1.from_date,io1.to_date,io1.budget,io1.currency," \
                       " io1.channels,io1.regions,io1.min_lower_followers,io1.max_upper_followers,io1.files,io1.video_cat_id," \
-                      " io1.offer_description,io1.arrangements,io1.kpis,io1.no_of_views,io1.no_of_replies," \
+                      " io1.offer_description,io1.arrangements,io1.kpis,io1.no_of_views,io1.no_of_replies,io1.deleted,io1.posted_date," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,chm.confirmed" \
                       " FROM channels_mapper chm" \
                       " LEFT JOIN inf_offers io1 on io1.channel_id = chm.youtube_channel_id" \
