@@ -44,13 +44,14 @@ class Offers(Resource):
         offer_description = data_json.get('offer_description')
         arrangements = data_json.get('arrangements')
         kpis = data_json.get('kpis')
-
+        posted_date = datetime.date.today()
+        posted_date = datetime.date.strftime(posted_date, '%Y-%m-%d')
         data = [offer_name, from_date, to_date, budget, currency, channels,
                 regions, min_lower, max_upper, video_cat, offer_description, arrangements,
-                kpis, user_id,files]
+                kpis, user_id,files,posted_date]
         columns = ['offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'offer_description',
-                   'arrangements', 'kpis', 'channel_id','files']
+                   'arrangements', 'kpis', 'channel_id','files','posted_date']
         connecsiObj = ConnecsiModel()
         try:
             connecsiObj.insert__(table_name='inf_offers', columns=columns, data=data)
@@ -183,7 +184,7 @@ class Offers(Resource):
                        'regions',
                        'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id',
                        'offer_description',
-                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies'
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date'
                        ]
             response_list = []
             for item in offer_data:
