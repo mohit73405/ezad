@@ -1348,7 +1348,7 @@ class ConnecsiModel:
     def delete_offer(self, offer_id, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "UPDATE inf_offers SET deleted = 'true' WHERE offer_id = '" + offer_id + "' AND user_id = '" + user_id + "'"
+                sql = "UPDATE inf_offers SET deleted = 'true' WHERE offer_id = '" + offer_id + "' AND channel_id = '" + user_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
