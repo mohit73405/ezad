@@ -1343,3 +1343,19 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+    def update_inf_details(self, channel_id, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE users_influencers SET first_name = %s, last_name = %s, phone = %s, categories=%s, website=%s,country=%s," \
+                      " city = %s WHERE channel_id = '" + str(channel_id) + "'"
+                print(sql)
+                cursor.execute(sql, data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0

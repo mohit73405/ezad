@@ -56,13 +56,10 @@ class Influencer(Resource):
         website = form_data.get('website')
         country = form_data.get('country')
         city = form_data.get('city')
-
-        columns = ['first_name', 'last_name','phone', 'categories', 'website',
-                   'country','city']
         data=(first_name,last_name,phone,categories,website,country,city)
         try:
             connecsiObj = ConnecsiModel()
-            connecsiObj.update__(table_name='users_influencers',columns=columns,WHERE='WHERE',data=data,compare_column='channel_id',compare_value=str(user_id))
+            connecsiObj.update_inf_details(channel_id=user_id,data=data)
             return {"response" : 1},200
         except Exception as e:
             return {"response": e},500
