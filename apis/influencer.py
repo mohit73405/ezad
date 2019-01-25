@@ -200,3 +200,18 @@ class Influencer(Resource):
             dict_temp = dict(zip(columns, item))
             response_list.append(dict_temp)
         return {'data': response_list}
+
+
+@ns_influencer.route('/addCategoriesToChannel/<string:user_id>/<string:video_cat_id>')
+class Influencer(Resource):
+    def get(self,user_id,video_cat_id):
+        '''add Categories to channel user id '''
+        connecsiObj = ConnecsiModel()
+        columns = ['channel_id', 'video_cat_id']
+        data = [user_id,video_cat_id]
+        response = connecsiObj.insert__(table_name='youtube_channel_ids_video_categories_id',columns=columns,data=data)
+        return response
+
+
+
+
