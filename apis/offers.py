@@ -103,9 +103,6 @@ class Offers(Resource):
         except Exception as e:
             print(e)
 
-
-
-
     @ns_offer.expect(inf_offer_form)
     def put(self, offer_id,user_id):
         ''' Edit offer'''
