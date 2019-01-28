@@ -580,7 +580,16 @@ class ConnecsiModel:
                     conditions.append(" io.channels LIKE '%"+channel_name +"%'")
                 if category_id:
                     conditions.append(" io.video_cat_id LIKE '%"+category_id+"%'")
-
+                if country:
+                    conditions.append(" io.video_cat_id LIKE '%" + category_id + "%'")
+                if arrangements:
+                    conditions.append(" io.video_cat_id LIKE '%"+category_id+"%'")
+                if min_lower and max_upper:
+                    conditions.append(" io.min_lower > " +min_lower+ " AND max_upper < " + max_upper )
+                if currency:
+                    conditions.append(" io.currency LIKE '%"+currency+"%'")
+                if price_lower and price_upper:
+                    conditions.append(" io.budget BETWEEN " +min_lower+ " AND " + max_upper )
                 if conditions:
                     sql += " WHERE "
                     sql += " AND ".join(conditions)
