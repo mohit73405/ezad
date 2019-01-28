@@ -184,13 +184,25 @@ class Offers(Resource):
 
 
 
-@ns_offer.route('/getAllOffers')
+@ns_offer.route('/searchOffers')
 class Offers(Resource):
     def get(self):
-        ''' get All Offers for brands'''
+        ''' Search Offers for brands'''
         try:
+            form_data = request.get_json()
+            channel_name = form_data.get('channel_name')
+            category_id = form_data.get('category_id')
+            country = form_data.get('country')
+            arrangements = form_data.get('arrangements')
+            min_lower = form_data.get('min_lower')
+            max_upper = form_data.get('max_upper')
+            currency = form_data.get('currency')
+            price_lower = form_data.get('price_lower')
+            price_upper = form_data.get('price_upper')
+
             connecsiObj = ConnecsiModel()
-            offer_data = connecsiObj.get_all_offers_for_brands()
+            offer_data = connecsiObj.get_all_offers_for_brands(channel_name,category_id,country,arrangements,min_lower,
+                                                               max_upper,currency,price_lower,price_upper)
             columns = ['offer_id', 'channel_id', 'offer_name', 'from_date', 'to_date', 'budget', 'currency',
                        'channels',
                        'regions',

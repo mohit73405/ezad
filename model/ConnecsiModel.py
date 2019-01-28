@@ -567,14 +567,23 @@ class ConnecsiModel:
             print(e)
 
 
-    def get_all_offers_for_brands(self):
+    def get_all_offers_for_brands(self,channel_name,category_id,country,arrangements,min_lower,max_upper,currency,price_lower,price_upper):
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
-                      " io1.offer_id,io1.channel_id,io1.offer_name, io1.from_date,io1.to_date,io1.budget,io1.currency," \
-                      " io1.channels,io1.regions,io1.min_lower_followers,io1.max_upper_followers,io1.files,io1.video_cat_id," \
-                      " io1.offer_description,io1.arrangements,io1.kpis,io1.no_of_views,io1.no_of_replies" \
-                      " from inf_offers io1" \
+                      " io.offer_id,io.channel_id,io.offer_name, io.from_date,io.to_date,io.budget,io.currency," \
+                      " io.channels,io.regions,io.min_lower_followers,io.max_upper_followers,io.files,io.video_cat_id," \
+                      " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date" \
+                      " FROM inf_offers io"
+                conditions = []
+                if channel_name:
+                    conditions.append(" io.channels LIKE '%"+channel_name +"%'")
+                if category_id:
+                    conditions.append(" io.video_cat_id LIKE '%"+category_id+"%'")
+
+                if conditions:
+                    sql = sql+ " WHERE "
+                    sql = " AND ".join(conditions)
 
                 print(sql)
                 cursor.execute(sql)
