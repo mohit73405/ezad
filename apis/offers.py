@@ -186,7 +186,7 @@ class Offers(Resource):
 
 @ns_offer.route('/searchOffers')
 class Offers(Resource):
-    def get(self):
+    def post(self):
         ''' Search Offers for brands'''
         try:
             form_data = request.get_json()
