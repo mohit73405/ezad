@@ -582,8 +582,8 @@ class ConnecsiModel:
                     conditions.append(" io.video_cat_id LIKE '%"+category_id+"%'")
 
                 if conditions:
-                    sql = sql+ " WHERE "
-                    sql = " AND ".join(conditions)
+                    sql += " WHERE "
+                    sql += " AND ".join(conditions)
 
                 print(sql)
                 cursor.execute(sql)
