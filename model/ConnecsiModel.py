@@ -574,7 +574,8 @@ class ConnecsiModel:
                       " io.offer_id,io.channel_id,io.offer_name, io.from_date,io.to_date,io.budget,io.currency," \
                       " io.channels,io.regions,io.min_lower_followers,io.max_upper_followers,io.files,io.video_cat_id," \
                       " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date" \
-                      " FROM inf_offers io"
+                      " FROM inf_offers io" \
+                      " JOIN users_influencers ui on ui.channel_id = io.channel_id "
                 conditions = []
                 if channel_name:
                     conditions.append(" io.channels LIKE '%"+channel_name +"%'")
