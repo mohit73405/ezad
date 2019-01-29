@@ -583,9 +583,9 @@ class ConnecsiModel:
                 if category_id:
                     conditions.append(" io.video_cat_id LIKE '%"+category_id+"%'")
                 if country:
-                    conditions.append(" io.video_cat_id LIKE '%" + category_id + "%'")
+                    conditions.append(" io.country LIKE '%" + category_id + "%'")
                 if arrangements:
-                    conditions.append(" io.video_cat_id LIKE '%"+category_id+"%'")
+                    conditions.append(" io.arrangements LIKE '%"+category_id+"%'")
                 if min_lower and max_upper:
                     conditions.append(" io.min_lower_followers >= " +min_lower+ " AND io.max_upper_followers <= " + max_upper )
                 if currency:
