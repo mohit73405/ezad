@@ -581,7 +581,7 @@ class ConnecsiModel:
                 if channel_name:
                     conditions.append(" io.channels LIKE '%"+channel_name +"%'")
                 if category_id:
-                    conditions.append(" io.video_cat_id LIKE '"+category_id+"'")
+                    conditions.append(" io.video_cat_id LIKE '%"+category_id+"%'")
                 if country:
                     conditions.append(" io.country LIKE '%" + category_id + "%'")
                 if arrangements:

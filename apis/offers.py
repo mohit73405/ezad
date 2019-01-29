@@ -197,8 +197,8 @@ class Offers(Resource):
             min_lower = form_data.get('min_lower')
             max_upper = form_data.get('max_upper')
             currency = form_data.get('currency')
-            price_lower = form_data.get('price_lower')
-            price_upper = form_data.get('price_upper')
+            price_lower = form_data.get('min_lower_price')
+            price_upper = form_data.get('max_upper_price')
 
             connecsiObj = ConnecsiModel()
             offer_data = connecsiObj.get_all_offers_for_brands(channel_name,category_id,country,arrangements,min_lower,
