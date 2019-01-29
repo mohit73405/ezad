@@ -591,7 +591,7 @@ class ConnecsiModel:
                 if currency:
                     conditions.append(" io.currency LIKE '%"+currency+"%'")
                 if price_lower and price_upper:
-                    conditions.append(" io.budget BETWEEN " +min_lower+ " AND " + max_upper )
+                    conditions.append(" io.budget BETWEEN " +price_lower+ " AND " + price_upper )
                 if conditions:
                     sql += " WHERE "
                     sql += " AND ".join(conditions)
@@ -632,7 +632,7 @@ class ConnecsiModel:
                 if currency:
                     conditions.append(" bc.currency LIKE '%"+currency+"%'")
                 if price_lower and price_upper:
-                    conditions.append(" bc.budget BETWEEN " +min_lower+ " AND " + max_upper )
+                    conditions.append(" bc.budget BETWEEN " +price_lower+ " AND " + price_upper )
                 if conditions:
                     sql += " WHERE "
                     sql += " AND ".join(conditions)
