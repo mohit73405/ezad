@@ -191,7 +191,7 @@ class Offers(Resource):
         try:
             form_data = request.get_json()
             channel_name = form_data.get('channel_name')
-            category_id = form_data.get('category_id')
+            category_id = form_data.get('video_cat')
             country = form_data.get('country')
             arrangements = form_data.get('arrangements')
             min_lower = form_data.get('min_lower')
