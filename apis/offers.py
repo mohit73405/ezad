@@ -208,7 +208,7 @@ class Offers(Resource):
                        'regions',
                        'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id',
                        'offer_description',
-                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date','first_name','last_name','title'
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date','first_name','last_name'
                        ]
             response_list = []
             for item in offer_data:

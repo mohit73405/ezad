@@ -573,7 +573,8 @@ class ConnecsiModel:
                 sql = "SELECT " \
                       " io.offer_id,io.channel_id,io.offer_name, io.from_date,io.to_date,io.budget,io.currency," \
                       " io.channels,io.regions,io.min_lower_followers,io.max_upper_followers,io.files,io.video_cat_id," \
-                      " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date" \
+                      " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date," \
+                      " ui.first_name,ui.last_name" \
                       " FROM inf_offers io" \
                       " JOIN users_influencers ui on ui.channel_id = io.channel_id "
                 conditions = []
