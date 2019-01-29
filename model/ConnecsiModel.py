@@ -620,19 +620,19 @@ class ConnecsiModel:
                       " JOIN users_brands ub on ub.user_id = bc.user_id "
                 conditions = []
                 if channel_name:
-                    conditions.append(" io.channels LIKE '%"+channel_name +"%'")
+                    conditions.append(" bc.channels LIKE '%"+channel_name +"%'")
                 if category_id:
-                    conditions.append(" io.video_cat_id LIKE '"+category_id+"'")
+                    conditions.append(" bc.video_cat_id LIKE '"+category_id+"'")
                 if country:
-                    conditions.append(" io.country LIKE '%" + country + "%'")
+                    conditions.append(" bc.country LIKE '%" + country + "%'")
                 if arrangements:
-                    conditions.append(" io.arrangements LIKE '%"+arrangements+"%'")
+                    conditions.append(" bc.arrangements LIKE '%"+arrangements+"%'")
                 if min_lower and max_upper:
-                    conditions.append(" io.min_lower_followers >= " +min_lower+ " AND io.max_upper_followers <= " + max_upper )
+                    conditions.append(" bc.min_lower_followers >= " +min_lower+ " AND bc.max_upper_followers <= " + max_upper )
                 if currency:
-                    conditions.append(" io.currency LIKE '%"+currency+"%'")
+                    conditions.append(" bc.currency LIKE '%"+currency+"%'")
                 if price_lower and price_upper:
-                    conditions.append(" io.budget BETWEEN " +min_lower+ " AND " + max_upper )
+                    conditions.append(" bc.budget BETWEEN " +min_lower+ " AND " + max_upper )
                 if conditions:
                     sql += " WHERE "
                     sql += " AND ".join(conditions)
