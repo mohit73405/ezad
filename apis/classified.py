@@ -220,3 +220,42 @@ class Classified(Resource):
 
         except Exception as e:
             print(e)
+
+
+
+
+@ns_classified.route('/searchClassifieds')
+class Classified(Resource):
+    def post(self):
+        ''' Search Classifieds for Influencers'''
+        try:
+            form_data = request.get_json()
+            channel_name = form_data.get('channel_name')
+            category_id = form_data.get('video_cat')
+            country = form_data.get('country')
+            arrangements = form_data.get('arrangements')
+            min_lower = form_data.get('min_lower')
+            max_upper = form_data.get('max_upper')
+            currency = form_data.get('currency')
+            price_lower = form_data.get('min_lower_price')
+            price_upper = form_data.get('max_upper_price')
+
+            connecsiObj = ConnecsiModel()
+            offer_data = connecsiObj.get_all_classifieds_for_influencers(channel_name,category_id,country,arrangements,min_lower,
+                                                               max_upper,currency,price_lower,price_upper)
+            columns = ['classified_id', 'user_id', 'classified_name', 'from_date', 'to_date', 'budget', 'currency',
+                       'channels',
+                       'regions',
+                       'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id','target_url',
+                       'classified_description',
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date','first_name','last_name'
+                       ]
+            response_list = []
+            for item in offer_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
+

@@ -608,6 +608,48 @@ class ConnecsiModel:
             print(e)
 
 
+    def get_all_classifieds_for_influencers(self,channel_name,category_id,country,arrangements,min_lower,max_upper,currency,price_lower,price_upper):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT " \
+                      " bc.classified_id,bc.user_id,bc.classified_name, bc.from_date,bc.to_date,bc.budget,bc.currency," \
+                      " bc.channels,bc.regions,bc.min_lower_followers,bc.max_upper_followers,bc.files,bc.video_cat_id,bc.target_url," \
+                      " bc.classified_description,bc.arrangements,bc.kpis,bc.no_of_views,bc.no_of_replies,bc.deleted,bc.posted_date," \
+                      " ub.first_name,ub.last_name" \
+                      " FROM brands_classifieds bc" \
+                      " JOIN users_brands ub on ub.user_id = bc.user_id "
+                conditions = []
+                if channel_name:
+                    conditions.append(" io.channels LIKE '%"+channel_name +"%'")
+                if category_id:
+                    conditions.append(" io.video_cat_id LIKE '"+category_id+"'")
+                if country:
+                    conditions.append(" io.country LIKE '%" + country + "%'")
+                if arrangements:
+                    conditions.append(" io.arrangements LIKE '%"+arrangements+"%'")
+                if min_lower and max_upper:
+                    conditions.append(" io.min_lower_followers >= " +min_lower+ " AND io.max_upper_followers <= " + max_upper )
+                if currency:
+                    conditions.append(" io.currency LIKE '%"+currency+"%'")
+                if price_lower and price_upper:
+                    conditions.append(" io.budget BETWEEN " +min_lower+ " AND " + max_upper )
+                if conditions:
+                    sql += " WHERE "
+                    sql += " AND ".join(conditions)
+
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
+
+
 
     def get_all_classifieds_for_inf(self):
         try:
