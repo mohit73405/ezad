@@ -615,9 +615,10 @@ class ConnecsiModel:
                       " bc.classified_id,bc.user_id,bc.classified_name, bc.from_date,bc.to_date,bc.budget,bc.currency," \
                       " bc.channels,bc.regions,bc.min_lower_followers,bc.max_upper_followers,bc.files,bc.video_cat_id,bc.target_url," \
                       " bc.classified_description,bc.arrangements,bc.kpis,bc.no_of_views,bc.no_of_replies,bc.deleted,bc.posted_date," \
-                      " ub.first_name,ub.last_name" \
+                      " ub.first_name,ub.last_name,bc.video_cat_name" \
                       " FROM brands_classifieds bc" \
-                      " JOIN users_brands ub on ub.user_id = bc.user_id "
+                      " JOIN users_brands ub on ub.user_id = bc.user_id " \
+                      " JOIN youtube_video_categories yvc on yvc.video_cat_id = bc.video_cat_id "
                 conditions = []
                 if channel_name:
                     conditions.append(" bc.channels LIKE '%"+channel_name +"%'")
