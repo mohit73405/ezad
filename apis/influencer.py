@@ -110,12 +110,11 @@ class Influencer(Resource):
         try:
             connecsiObj = ConnecsiModel()
             influencer_campaigns_data = connecsiObj.getAllInfluencerCampaigns(channel_id=str(user_id))
-            # columns = ['channel_id','campaign_id','brand_user_id','campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
-            #            'min_lower_followers', 'max_upper_followers','files', 'target_url',
-            #            'campaign_description',
-            #            'arrangements', 'kpis']
-
-            columns = ['campaign_id','campaign_name','campaign_status','user_id','brand_first_name','brand_last_name','proposal_id','proposal_from_date','proposal_to_date','currency','proposal_price','mapped_youtube_channel_id','mapped_twitter_channel_id','proposal_channels','confirmed','channel_campaign_status']
+            columns = ['campaign_id','campaign_name','campaign_status','user_id','brand_first_name',
+                       'brand_last_name','regions',
+                       'proposal_id','proposal_from_date','proposal_to_date','currency',
+                       'proposal_price','mapped_youtube_channel_id','mapped_twitter_channel_id','proposal_channels',
+                       'confirmed','channel_campaign_status']
             response_list = []
             for item in influencer_campaigns_data:
                 dict_temp = dict(zip(columns, item))
