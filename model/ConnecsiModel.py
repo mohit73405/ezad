@@ -1125,14 +1125,14 @@ class ConnecsiModel:
                 #       " WHERE ccm.status = 'Current Partner' and cp.channel_id = '" + channel_id + "'"
 
                 sql = "SELECT " \
-                      " cp1.campaign_id,bc.campaign_name,cp1.proposal_id,cp1.proposal_from_date, cp1.proposal_to_date,cp1.currency,cp1.proposal_price," \
-                      " chm.youtube_channel_id,chm.twitter_channel_id,cp1.proposal_channels," \
+                      " cp.campaign_id,bc.campaign_name,cp.proposal_id,cp.proposal_from_date, cp.proposal_to_date,cp.currency," \
+                      " cp.proposal_price," \
+                      " chm.youtube_channel_id,chm.twitter_channel_id,cp.proposal_channels," \
                       " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
-                      " LEFT JOIN campaign_proposal cp1 on cp1.channel_id = chm.youtube_channel_id" \
-                      " LEFT JOIN campaign_proposal cp2 on cp2.channel_id = chm.twitter_channel_id" \
-                      " LEFT JOIN channel_campaign_message ccm on ccm.campaign_id=cp1.campaign_id " \
-                      " JOIN brands_campaigns bc on bc.campaign_id = cp1.campaign_id " \
+                      " LEFT JOIN campaign_proposal cp on cp.channel_id = chm.youtube_channel_id or cp.channel_id = chm.twitter_channel_id" \
+                      " LEFT JOIN channel_campaign_message ccm on ccm.campaign_id=cp.campaign_id " \
+                      " JOIN brands_campaigns bc on bc.campaign_id = cp.campaign_id " \
                       " WHERE ccm.status = 'Current Partner ' AND (chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "')" \
 
 
