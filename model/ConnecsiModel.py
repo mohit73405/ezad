@@ -1159,7 +1159,7 @@ class ConnecsiModel:
                       " JOIN channel_campaign_message ccm on ccm.campaign_id=cp.campaign_id " \
                       " JOIN brands_campaigns bc on bc.campaign_id=cp.campaign_id " \
                       " WHERE ccm.status = 'Current Partner ' AND cp.proposal_id = '" + proposal_id + "'"
-                
+
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
