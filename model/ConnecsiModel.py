@@ -1151,7 +1151,7 @@ class ConnecsiModel:
                       " cp.campaign_id,bc.campaign_name,cp.proposal_id,cp.proposal_from_date, cp.proposal_to_date," \
                       " cp.currency,cp.proposal_price," \
                       " cp.proposal_description,cp.proposal_arrangements,cp.proposal_kpis,cp.target_url,cp.ref_link," \
-                      " bc.files,bc.regions," \
+                      " bc.files,bc.regions,bc.video_cat_id," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,cp.proposal_channels," \
                       " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
