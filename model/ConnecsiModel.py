@@ -1156,10 +1156,10 @@ class ConnecsiModel:
                       " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
                       " JOIN campaign_proposal cp on cp.channel_id = chm.youtube_channel_id or cp.channel_id=chm.twitter_channel_id" \
-                      " LEFT JOIN channel_campaign_message ccm on ccm.campaign_id=cp.campaign_id " \
-                      " LEFT JOIN brands_campaigns bc on bc.campaign_id=cp.campaign_id " \
-                      " WHERE ccm.status = 'Current Partner ' AND cp.proposal_id = '" + proposal_id + "'" \
-                      " AND (chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "')"
+                      " JOIN channel_campaign_message ccm on ccm.campaign_id=cp.campaign_id " \
+                      " JOIN brands_campaigns bc on bc.campaign_id=cp.campaign_id " \
+                      " WHERE ccm.status = 'Current Partner ' AND cp.proposal_id = '" + proposal_id + "'"
+                
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
