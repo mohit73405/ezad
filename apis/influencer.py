@@ -132,14 +132,10 @@ class Influencer(Resource):
         try:
             connecsiObj = ConnecsiModel()
             influencer_campaigns_data = connecsiObj.getInfluencerCampaignDetails(channel_id=str(user_id),proposal_id=str(proposal_id))
-            # columns = ['channel_id','campaign_id','brand_user_id','campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
-            #            'min_lower_followers', 'max_upper_followers','files', 'target_url',
-            #            'campaign_description',
-            #            'arrangements', 'kpis']
 
             columns = ['campaign_id','campaign_name','proposal_id','proposal_from_date','proposal_to_date','currency',
                        'proposal_price','proposal_description','proposal_arrangements','proposal_kpis','proposal_target_url',
-                       'proposal_ref_link','campaign_files',
+                       'proposal_ref_link','campaign_files','regions',
                        'mapped_youtube_channel_id','mapped_twitter_channel_id',
                        'proposal_channels','confirmed','channel_campaign_status']
             response_list = []
