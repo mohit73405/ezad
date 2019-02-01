@@ -135,7 +135,7 @@ class Influencer(Resource):
 
             columns = ['campaign_id','campaign_name','proposal_id','proposal_from_date','proposal_to_date','currency',
                        'proposal_price','proposal_description','proposal_arrangements','proposal_kpis','proposal_target_url',
-                       'proposal_ref_link','campaign_files','regions','video_cat_id',
+                       'proposal_ref_link','campaign_files','regions','video_cat_id','video_cat_name',
                        'mapped_youtube_channel_id','mapped_twitter_channel_id',
                        'proposal_channels','confirmed','channel_campaign_status']
             response_list = []
