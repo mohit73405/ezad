@@ -287,6 +287,25 @@ class Campaign(Resource):
         except Exception as e:
             print(e)
 
+
+@ns_campaign.route('/BrandCampaignReport/<string:user_id>/<string:campaign_id>/<string:channel_id>')
+class Campaign(Resource):
+    def get(self, user_id,campaign_id,channel_id):
+        ''' get Brand Campaign Report details  by user id and campaign id and channel_id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            brand_campaign_report_data = connecsiObj.get_brand_campaign_report_by_channel_id(user_id=user_id,campaign_id=campaign_id,channel_id=channel_id)
+            columns = ['brand_campaign_report_id', 'user_id', 'campaign_id', 'revenue_generated','currency','new_users','channel_id','channel']
+            response_list = []
+            for item in brand_campaign_report_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
+
+
 @ns_campaign.route('/BrandCampaignReport/Update/<string:campaign_id>/<string:channel_id>')
 class Campaign(Resource):
     def put(self,campaign_id,channel_id):

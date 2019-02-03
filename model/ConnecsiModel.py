@@ -1094,6 +1094,21 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_brand_campaign_report_by_channel_id(self, user_id,campaign_id,channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT brand_campaign_report_id, user_id, campaign_id, revenue_generated,currency,new_users,channel_id,channel " \
+                      " from brand_campaign_report WHERE user_id  = '"+ str(user_id) +"' AND campaign_id = '"+ str(campaign_id) +"' AND channel_id = '"+ str(channel_id) +"' "
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
 
     def update_brand_campaign_report(self,campaign_id,channel_id,data):
         try:
