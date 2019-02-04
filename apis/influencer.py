@@ -134,7 +134,7 @@ class Influencer(Resource):
             influencer_campaigns_data = connecsiObj.getInfluencerCampaignDetails(channel_id=str(user_id),proposal_id=str(proposal_id))
 
             columns = ['campaign_id','campaign_name','campaign_status','user_id','brand_first_name',
-                       'brand_last_name','regions','profile_pic',
+                       'brand_last_name','regions','profile_pic','email_id',
                        'proposal_id','proposal_from_date','proposal_to_date','currency',
                        'proposal_price','proposal_description','proposal_arrangements','proposal_kpis','proposal_target_url',
                        'proposal_ref_link','campaign_files','regions','video_cat_id','video_cat_name',
