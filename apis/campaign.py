@@ -362,12 +362,13 @@ class Campaign(Resource):
         post_comments = data_json.get('post_comments')
         post_retweets = data_json.get('post_retweets')
         post_remarks = data_json.get('post_remarks')
+        post_shares = data_json.get('post_shares')
 
         data = [campaign_id,proposal_id,user_id,channel_name, date_posted, link_posted,content_type,
-                post_views,post_clicks,post_likes,post_dislikes,post_comments,post_retweets,post_remarks]
+                post_views,post_clicks,post_likes,post_dislikes,post_comments,post_retweets,post_remarks,post_shares]
 
         columns = ['campaign_id','proposal_id','channel_id','channel_name', 'date_posted', 'link_posted', 'content_type',
-                   'post_views','post_clicks','post_likes','post_dislikes','post_comments','post_retweets','post_remarks']
+                   'post_views','post_clicks','post_likes','post_dislikes','post_comments','post_retweets','post_remarks','post_shares']
         connecsiObj = ConnecsiModel()
 
         try:
@@ -386,7 +387,8 @@ class Campaign(Resource):
             inf_campaign_report_data = connecsiObj.get_inf_campaign_report(campaign_id=campaign_id,proposal_id=proposal_id,channel_id=str(user_id))
             columns = ['inf_campaign_report_id','campaign_id', 'proposal_id', 'channel_id', 'channel_name',
                        'date_posted', 'link_posted','content_type',
-                       'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks','post_clicks']
+                       'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks',
+                       'post_clicks','post_shares']
             response_list = []
             for item in inf_campaign_report_data:
                 dict_temp = dict(zip(columns, item))
