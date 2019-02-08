@@ -427,7 +427,7 @@ class Campaign(Resource):
     def put(self,inf_campaign_report_id):
         ''' Edit Influencer Campaign report'''
         data_json = request.get_json()
-        channel_name = data_json.get('channel_name')
+        # channel_name = data_json.get('channel_name')
         date_posted = data_json.get('date_posted')
         link_posted = data_json.get('link_posted')
         content_type = data_json.get('content_type')
@@ -440,10 +440,10 @@ class Campaign(Resource):
         post_clicks = data_json.get('post_clicks')
         post_shares = data_json.get('post_shares')
 
-        data = [channel_name, date_posted, link_posted, content_type,
+        data = [ date_posted, link_posted, content_type,
                 post_views, post_likes, post_dislikes, post_comments, post_retweets, post_remarks,post_clicks,post_shares]
 
-        columns = ['channel_name', 'date_posted', 'link_posted',
+        columns = [ 'date_posted', 'link_posted',
                    'content_type',
                    'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks',
                    'post_clicks','post_shares']
