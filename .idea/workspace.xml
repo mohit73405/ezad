@@ -58,8 +58,8 @@
       <file leaf-file-name="campaign.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/campaign.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="421" column="0" lean-forward="true" selection-start-line="421" selection-start-column="0" selection-end-line="421" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="407" column="12" lean-forward="true" selection-start-line="407" selection-start-column="12" selection-end-line="407" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -841,8 +841,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/campaign.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="421" column="0" lean-forward="true" selection-start-line="421" selection-start-column="0" selection-end-line="421" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="407" column="12" lean-forward="true" selection-start-line="407" selection-start-column="12" selection-end-line="407" selection-end-column="12" />
           <folding />
         </state>
       </provider>

@@ -437,13 +437,16 @@ class Campaign(Resource):
         post_comments = data_json.get('post_comments')
         post_retweets = data_json.get('post_retweets')
         post_remarks = data_json.get('post_remarks')
+        post_clicks = data_json.get('post_clicks')
+        post_shares = data_json.get('post_shares')
 
         data = [channel_name, date_posted, link_posted, content_type,
-                post_views, post_likes, post_dislikes, post_comments, post_retweets, post_remarks]
+                post_views, post_likes, post_dislikes, post_comments, post_retweets, post_remarks,post_clicks,post_shares]
 
         columns = ['channel_name', 'date_posted', 'link_posted',
                    'content_type',
-                   'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks']
+                   'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks',
+                   'post_clicks','post_shares']
         connecsiObj = ConnecsiModel()
 
         try:
