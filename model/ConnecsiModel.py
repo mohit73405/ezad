@@ -1328,10 +1328,16 @@ class ConnecsiModel:
     def get_inf_campaign_report(self, campaign_id,proposal_id,channel_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT * from inf_campaign_report" \
-                      " WHERE channel_id = '" + channel_id + "'" \
-                      " AND campaign_id = '" + campaign_id + "'" \
-                      " AND proposal_id = '" + proposal_id + "'"
+                sql = "SELECT icr.inf_campaign_report_id, icr.campaign_id, icr.proposal_id," \
+                      " icr.channel_id, icr.channel_name,icr.date_posted, icr.link_posted,icr.content_type," \
+                      " icr.post_views, icr.post_likes, icr.post_dislikes, icr.post_comments, icr.post_retweets," \
+                      " icr.post_remarks,icr.post_clicks,icr.post_shares,ycd.subscriberCount_gained,tcd.no_of_followers " \
+                      " from inf_campaign_report icr" \
+                      " JOIN youtube_channel_details ycd on ycd.channel_id = icr.channel_id " \
+                      " JOIN twitter_channel_details tcd on tcd.channel_id = icr.channel_id " \
+                      " WHERE icr.channel_id = '" + channel_id + "'" \
+                      " AND icr.campaign_id = '" + campaign_id + "'" \
+                      " AND icr.proposal_id = '" + proposal_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()

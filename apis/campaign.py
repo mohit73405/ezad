@@ -388,7 +388,7 @@ class Campaign(Resource):
             columns = ['inf_campaign_report_id','campaign_id', 'proposal_id', 'channel_id', 'channel_name',
                        'date_posted', 'link_posted','content_type',
                        'post_views', 'post_likes', 'post_dislikes', 'post_comments', 'post_retweets', 'post_remarks',
-                       'post_clicks','post_shares']
+                       'post_clicks','post_shares','youtube_total_followers','twitter_total_followers']
             response_list = []
             for item in inf_campaign_report_data:
                 dict_temp = dict(zip(columns, item))
