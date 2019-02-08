@@ -1333,8 +1333,8 @@ class ConnecsiModel:
                       " icr.post_views, icr.post_likes, icr.post_dislikes, icr.post_comments, icr.post_retweets," \
                       " icr.post_remarks,icr.post_clicks,icr.post_shares,ycd.subscriberCount_gained,tcd.no_of_followers " \
                       " from inf_campaign_report icr" \
-                      " JOIN youtube_channel_details ycd on ycd.channel_id = icr.channel_id " \
-                      " JOIN twitter_channel_details tcd on tcd.twitter_id = icr.channel_id " \
+                      " LEFT JOIN youtube_channel_details ycd on ycd.channel_id = icr.channel_id " \
+                      " LEFT JOIN twitter_channel_details tcd on tcd.twitter_id = icr.channel_id " \
                       " WHERE icr.channel_id = '" + channel_id + "'" \
                       " AND icr.campaign_id = '" + campaign_id + "'" \
                       " AND icr.proposal_id = '" + proposal_id + "'"
