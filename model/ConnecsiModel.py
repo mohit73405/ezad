@@ -529,7 +529,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT  * from brands_classifieds" \
-                      "  WHERE classified_id = '" + classified_id
+                      "  WHERE classified_id = '" + classified_id +"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
