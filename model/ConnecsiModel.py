@@ -864,6 +864,28 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+    def update_channel_campaign_message_for_negotiations(self, channel_id,message_id,status):
+        try:
+            with self.cnx.cursor() as cursor:
+                print('channel id =',channel_id,type(channel_id))
+                print('message id =', message_id,type(message_id))
+                print('status = ',status,type(status))
+                sql = "UPDATE channel_campaign_message SET status = '"+ status +"' WHERE channel_id = '" + str(channel_id)\
+                      +"' AND status !='Proposal Sent' AND status !='Current Partner' AND message_id = '"+message_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
     def update_channel_status_by_campaign_id(self, channel_id,message_id,status,campaign_id):
         try:
             with self.cnx.cursor() as cursor:
