@@ -343,7 +343,7 @@ class Brand(Resource):
         proposal_arrangements = form_data.get('edit_proposal_arrangements')
         proposal_kpis = form_data.get('edit_proposal_kpis')
         currency = form_data.get('currency')
-        proposal_price = form_data.get('edit_proposal_price')
+        proposal_price = form_data.get('proposal_price')
         ref_link = form_data.get('edit_proposal_ref_link')
         columns = ['proposal_description','proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price',
                    'ref_link']
