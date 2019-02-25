@@ -335,6 +335,24 @@ class Brand(Resource):
         return {'data': response_list}
 
 
+    def put(self,proposal_id):
+        '''Update Proposal '''
+        form_data = request.get_json()
+        proposal_description = form_data.get('edit_proposal_description')
+        proposal_channels = form_data.get('edit_proposal_channels')
+        proposal_arrangements = form_data.get('edit_proposal_arrangements')
+        proposal_kpis = form_data.get('edit_proposal_kpis')
+        currency = form_data.get('currency')
+        proposal_price = form_data.get('edit_proposal_price')
+        ref_link = form_data.get('edit_proposal_ref_link')
+        columns = ['proposal_description','proposal_channels','proposal_arrangements','proposal_kpis','currency','proposal_price',
+                   'ref_link']
+        data = [proposal_description,proposal_channels,proposal_arrangements,proposal_kpis,currency,proposal_price,ref_link]
+        connecsiObj = ConnecsiModel()
+        res =  connecsiObj.update__(table_name='campaign_proposal',columns=columns,data=data,WHERE='WHERE',compare_column='proposal_id',
+                                    compare_value=str(proposal_id))
+        return {'data':res}
+
 @ns_brand.route('/Proposal/get/<string:message_id>/<string:campaign_id>')
 class Brand(Resource):
     def get(self,message_id,campaign_id):
