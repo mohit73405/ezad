@@ -93,6 +93,7 @@ class ConnecsiModel:
                 "t1.total_100video_likes, t1.total_100video_comments,t1.total_100video_shares, " \
                 "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country " \
                 "FROM youtube_channel_details t1 " \
+                "WHERE t1.total_100video_views != 0 " \
                 "ORDER BY t1.subscriberCount_gained DESC LIMIT 10"
                 print(sql)
                 cursor.execute(sql)
