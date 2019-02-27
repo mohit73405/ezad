@@ -85,6 +85,26 @@ class ConnecsiModel:
             print('i m here in model')
             print(e)
 
+    def getTop10YoutubeInfluencers(self):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.subscriberCount_gained, " \
+                "t1.total_100video_views," \
+                "t1.total_100video_likes, t1.total_100video_comments,t1.total_100video_shares, " \
+                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country " \
+                "FROM youtube_channel_details t1 " \
+                "ORDER BY t1.subscriberCount_gained DESC LIMIT 10"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            # self.cnx.close()
+            return data
+
+        except Exception as e:
+            print(e)
 
     def search_twitter_inf(self,offset,sort_order,min_lower='',max_upper='',country='',category_id=''):
         try:
