@@ -159,6 +159,11 @@ class TotalVideos(Resource):
         '''get total videos by channel_id'''
         connecsiObj = ConnecsiModel()
         data = connecsiObj.getTotalVideos(channel_id=channel_id)
-        return {'data' : data}
+        response_list = []
+        columns=['total_videos']
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        return {'data': response_list}
 
 
