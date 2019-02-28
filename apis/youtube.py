@@ -158,7 +158,7 @@ class TotalVideos(Resource):
     def get(self,channel_id):
         '''get total videos by channel_id'''
         connecsiObj = ConnecsiModel()
-        data = connecsiObj.get__(table_name='youtube_channel_ids_video_categories_id',columns=['count(channel_id)'],WHERE='WHERE',compare_column='channel_id',compare_value=str(channel_id))
+        data = connecsiObj.getTotalVideos(channel_id=channel_id)
         return {'data' : data}
 
 

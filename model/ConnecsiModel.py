@@ -107,6 +107,23 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+
+    def getTotalVideos(self,channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT count(channel_id) FROM youtube_channel_ids_video_categories_id WHERE channel_id = '"+channel_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            # self.cnx.close()
+            return data
+
+        except Exception as e:
+            print(e)
+
     def search_twitter_inf(self,offset,sort_order,min_lower='',max_upper='',country='',category_id=''):
         try:
 
