@@ -145,7 +145,7 @@ class Youtube(Resource):
         connecsiObj = ConnecsiModel()
         youtube_inf = connecsiObj.getTop10YoutubeInfluencers()
         columns = ['channel_id', 'title', 'channel_img','subscriberCount_gained','total_100video_views','total_100video_likes',
-                   'total_100video_comments','total_100video_shares','facebook_url', 'insta_url', 'twitter_url']
+                   'total_100video_comments','total_100video_shares','facebook_url', 'insta_url', 'twitter_url','country','total_videos']
         response_list = []
         for item in youtube_inf:
             dict_temp = dict(zip(columns, item))
