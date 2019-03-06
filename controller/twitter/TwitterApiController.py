@@ -108,6 +108,7 @@ class TwitterApiController:
         hashtagsList_string=','.join(hashtagsList)
         print('hastags = ',hashtagsList_string)
 
+        ###################### no of comments##############################
         # no_of_comments_url='https://twitter.com/'+screen_name+'/with_replies'
         # print(no_of_comments_url)
         # page = requests.get(url=no_of_comments_url).content
@@ -122,20 +123,22 @@ class TwitterApiController:
         # print(button)
         # print(span)
         # print(replies_count)
+        ################################################ no of comments #################
+
         columns = ['twitter_id','screen_name','title','description','location','no_of_followers','no_of_likes_recent100',
         'no_of_retweets_recent100','website','twitter_url','hashtags']
         data = [twitter_id,screen_name,title,description,location,no_of_followers,no_of_likes,no_of_retweets,website,twitter_url,hashtagsList_string]
         connecsiObj= ConnecsiModel()
-        try:
-            connecsiObj.insert__(table_name='twitter_channel_details',IGNORE='IGNORE',columns=columns,data=data)
-        except Exception as e:
-            print(e)
-            pass
-        try:
-            connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,'false'])
-        except Exception as e:
-            print(e)
-            pass
+        # try:
+        #     connecsiObj.insert__(table_name='twitter_channel_details',IGNORE='IGNORE',columns=columns,data=data)
+        # except Exception as e:
+        #     print(e)
+        #     pass
+        # try:
+        #     connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,'false'])
+        # except Exception as e:
+        #     print(e)
+        #     pass
 
 
     def get_content_categories(self):

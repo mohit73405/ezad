@@ -120,10 +120,10 @@ class SearchChannels(Resource):
                                                       , category_id=str(category_id), country=str(country),
                                                       sort_order=sort_order, offset=str(offset))
                 columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained',
-                           'subscriberCount_lost', 'business_email', 'total_100video_views',
-                           'total_100video_views_unique', 'total_100video_likes', 'total_100video_dislikes',
+                            'business_email', 'total_100video_views',
+                            'total_100video_likes',
                            'total_100video_comments', 'total_100video_shares',
-                           'facebook_url', 'insta_url', 'twitter_url', 'country']
+                           'facebook_url', 'insta_url','youtube_url', 'twitter_url', 'country']
                 response_list = []
                 for item in data:
                     dict_temp = dict(zip(columns, item))

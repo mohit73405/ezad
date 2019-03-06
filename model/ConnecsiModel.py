@@ -128,7 +128,7 @@ class ConnecsiModel:
         try:
 
             with self.cnx.cursor() as cursor:
-                group_by=" group by t1.channel_id"
+                group_by=" group by t1.twitter_id"
                 # group_by =''
                 category_id_filter = " t2.video_cat_id ="+category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
@@ -139,15 +139,16 @@ class ConnecsiModel:
                 elif sort_order == 'Low To High':
                     order = 'asc'
                 else:order='desc'
-                order_by = " order by t1.subscriberCount_gained "+order + " LIMIT 20 OFFSET " +offset
+                order_by = " order by t1.no_of_followers "+order + " LIMIT 20 OFFSET " +offset
 
-                sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
-                "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
-                "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
-                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country " \
-                "FROM youtube_channel_details t1 " \
-                "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
-                "WHERE t1.subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
+                sql = "SELECT t1.twitter_id,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
+                "t1.business_email, t1.no_of_views_recent100, " \
+                "t1.no_of_likes_recent100, t1.no_of_comments_recent100,t1.no_of_retweets_recent100, " \
+                "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location " \
+                "FROM twitter_channel_details t1 " \
+                "WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
+                # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
                 if category_id and country:
@@ -224,7 +225,7 @@ class ConnecsiModel:
     def search_twitter_inf_get_total_rows(self, sort_order, min_lower='', max_upper='', country='', category_id=''):
         try:
             with self.cnx.cursor() as cursor:
-                group_by = " group by twitter_id"
+                group_by = " group by t1.twitter_id"
                 # group_by =''
                 category_id_filter = " t2.video_cat_id =" + category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
@@ -236,11 +237,12 @@ class ConnecsiModel:
                     order = 'asc'
                 else:
                     order = 'desc'
-                order_by = " order by t3.no_of_followers " + order
+                order_by = " order by t1.no_of_followers " + order
 
-                sql = "SELECT * FROM twitter_channel_details t3 " \
-                      "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
-                      "WHERE t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
+
+                      # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                sql = "SELECT * FROM twitter_channel_details t1 " \
+                      "WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
                 if category_id and country:
