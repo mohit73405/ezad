@@ -130,7 +130,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 group_by=" group by t1.twitter_id"
                 # group_by =''
-                category_id_filter = " t2.video_cat_id ="+category_id
+                category_id_filter = " t2.category_id ="+category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
                 country_filter = " t1.country = '" + country + "'"
                 order='desc'
@@ -146,6 +146,7 @@ class ConnecsiModel:
                 "t1.no_of_likes_recent100, t1.no_of_comments_recent100,t1.no_of_retweets_recent100, " \
                 "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location " \
                 "FROM twitter_channel_details t1 " \
+                "JOIN twitter_id_category_id t2 on t1.twitter_id = t2.twitter_id " \
                 "WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
                 # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
 
@@ -227,7 +228,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 group_by = " group by t1.twitter_id"
                 # group_by =''
-                category_id_filter = " t2.video_cat_id =" + category_id
+                category_id_filter = " t2.category_id =" + category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
                 country_filter = " location = '" + country + "'"
                 order = 'desc'
@@ -242,6 +243,7 @@ class ConnecsiModel:
 
                       # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
                 sql = "SELECT * FROM twitter_channel_details t1 " \
+                      "JOIN twitter_id_category_id t2 on t1.twitter_id = t2.twitter_id " \
                       "WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
