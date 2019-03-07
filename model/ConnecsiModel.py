@@ -230,7 +230,8 @@ class ConnecsiModel:
                 # group_by =''
                 category_id_filter = " t2.category_id =" + category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
-                country_filter = " location = '" + country + "'"
+                # country_filter = " location = '" + country + "'"
+                country_filter = " t1.country = '" + country + "'"
                 order = 'desc'
                 if sort_order == 'High To Low':
                     order = 'desc'
