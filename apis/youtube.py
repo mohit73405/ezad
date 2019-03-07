@@ -119,7 +119,7 @@ class SearchChannels(Resource):
                 data = connecsiObj.search_twitter_inf(min_lower=str(min_lower), max_upper=str(max_upper)
                                                       , category_id=str(category_id), country=str(country),
                                                       sort_order=sort_order, offset=str(offset))
-                columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained',
+                columns = ['channel_id','screen_name','title', 'channel_img', 'desc', 'subscriberCount_gained',
                             'business_email', 'total_100video_views',
                             'total_100video_likes',
                            'total_100video_comments', 'total_100video_shares',

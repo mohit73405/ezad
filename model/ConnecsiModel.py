@@ -141,7 +141,7 @@ class ConnecsiModel:
                 else:order='desc'
                 order_by = " order by t1.no_of_followers "+order + " LIMIT 20 OFFSET " +offset
 
-                sql = "SELECT t1.twitter_id,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
+                sql = "SELECT t1.twitter_id,t1.screen_name,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
                 "t1.business_email, t1.no_of_views_recent100, " \
                 "t1.no_of_likes_recent100, t1.no_of_comments_recent100,t1.no_of_retweets_recent100, " \
                 "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location " \
