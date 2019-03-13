@@ -87,7 +87,7 @@ class YoutubeApiController:
         self.twitter_url=''
         self.insta_url=''
         url = 'https://www.youtube.com/channel/'+channel_id
-        # print(url)
+        print(url)
         page = requests.get(url=url).content
         soup = BeautifulSoup(page,"html.parser")
         # print(soup)
@@ -115,7 +115,7 @@ class YoutubeApiController:
 
 
     def get_video_details(self,video_ids):
-        # print('video ids before splitting =',video_ids)
+        print('video ids before splitting =',video_ids)
         self.total_100video_views = 0
         self.total_100video_likes = 0
         self.total_100video_dislikes = 0
@@ -125,18 +125,18 @@ class YoutubeApiController:
             video_ids = [video_ids[x:x + size] for x in range(0, len(video_ids), size)]
         except:pass
         data = []
-        # print('video ids after spliting = ',video_ids)
+        print('video ids after spliting = ',video_ids)
         # print(type(video_ids))
         if len(video_ids) ==1:
             video_ids = [video_ids]
-            # print(video_ids)
+            print(video_ids)
             # print(type(video_ids))
         for video_id in video_ids:
-            # print(video_id)
+            print(video_id)
             # print(type(video_id))
             video_ids_string = ','.join(video_id)
             url = self.video_details_url + video_ids_string
-            # print(url)
+            print(url)
             # exit()
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
@@ -180,7 +180,7 @@ class YoutubeApiController:
 
 
     def get_latest_video_ids(self,channelId):
-        # print('channel id inside video method = ',channelId)
+        print('channel id inside video method = ',channelId)
         counter = 1
         pageToken = ''
         video_ids = []
@@ -189,7 +189,7 @@ class YoutubeApiController:
             # print(url)
             # exit()
             json_data = self.get_Json_data_Request_Lib(url=url)
-            # print(json_data)
+            print(json_data)
             try:
                 pageToken = json_data['nextPageToken']
             except:pass
@@ -202,7 +202,7 @@ class YoutubeApiController:
             except:pass
             if pageToken == '':
                 break
-        # print('length of video ids = ',len(video_ids))
+        print('length of video ids = ',len(video_ids))
         # exit()
         return video_ids
 
@@ -465,13 +465,6 @@ class YoutubeApiController:
             # print(item[0])
             channelIds.append(item[0])
         # print(channelIds)
-        # exit()
-        # print(len(channelIds))
-        # print(channelIds)
-        # channelIds_string = ','.join(channelIds)
-        # self.channelId = 'UC--FL6OwLFWGIZfLfazY4yA,UC--i2rV5NCxiEIPefr3l-zQ,UC--LAVm36WiCmqQbekV17qQ'
-        # print(self.channelId)
-        # self.get_channel_details()
         # exit()
         for channelId in channelIds:
             myList = []
