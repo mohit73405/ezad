@@ -42,7 +42,7 @@ class TwitterApiController:
                 print(key, ':', value)
         print(len(user_timeline))
 
-    def get_data_by_screen_name(self,channel_id,twitter_url,screen_name):
+    def get_data_by_screen_name(self,channel_id,twitter_url,screen_name,video_categories,country,facebook_url,insta_url,youtube_url):
         twitter_id = ''
         title=''
         description=''
@@ -126,19 +126,26 @@ class TwitterApiController:
         ################################################ no of comments #################
 
         columns = ['twitter_id','screen_name','title','description','location','no_of_followers','no_of_likes_recent100',
-        'no_of_retweets_recent100','website','twitter_url','hashtags']
-        data = [twitter_id,screen_name,title,description,location,no_of_followers,no_of_likes,no_of_retweets,website,twitter_url,hashtagsList_string]
+        'no_of_retweets_recent100','website','twitter_url','hashtags','facebook_url','insta_url','youtube_url','country']
+        data = [twitter_id,screen_name,title,description,location,no_of_followers,no_of_likes,no_of_retweets
+            ,website,twitter_url,hashtagsList_string,facebook_url,insta_url,youtube_url,country]
         connecsiObj= ConnecsiModel()
-        # try:
-        #     connecsiObj.insert__(table_name='twitter_channel_details',IGNORE='IGNORE',columns=columns,data=data)
-        # except Exception as e:
-        #     print(e)
-        #     pass
-        # try:
-        #     connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,'false'])
-        # except Exception as e:
-        #     print(e)
-        #     pass
+        try:
+            connecsiObj.insert__(table_name='twitter_channel_details',IGNORE='IGNORE',columns=columns,data=data)
+        except Exception as e:
+            print(e)
+            pass
+        try:
+            connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,'false'])
+        except Exception as e:
+            print(e)
+            pass
+        for category_id in video_categories:
+            try:
+                connecsiObj.insert__(table_name='twitter_id_category_id',columns=['twitter_id','category_id'],data=[twitter_id,category_id])
+            except Exception as e:
+                print(e)
+                pass
 
 
     def get_content_categories(self):

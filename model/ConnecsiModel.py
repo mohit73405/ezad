@@ -1,5 +1,6 @@
 import pandas as pd
 import pymysql,pymysql.cursors
+# import sshtunnel
 from sshtunnel import SSHTunnelForwarder
 from configparser import ConfigParser
 import os
@@ -23,6 +24,22 @@ class ConnecsiModel:
         #     remote_bind_address=('127.0.0.1', 3306)
         # )
         # self.server.start()
+
+        # sshtunnel.SSH_TIMEOUT = 5.0
+        # sshtunnel.TUNNEL_TIMEOUT = 5.0
+        #
+        # with sshtunnel.SSHTunnelForwarder(
+        #         ('ssh.pythonanywhere.com'),
+        #         ssh_username='your PythonAnywhere username',
+        #         ssh_password='the password you use to log in to the PythonAnywhere website',
+        #         remote_bind_address=(
+        #         'your PythonAnywhere database hostname, eg. yourusername.mysql.pythonanywhere-services.com', 3306)
+        # ) as tunnel:
+        #     connection = mysql.connector.connect(
+        #         user='your PythonAnywhere username', password='your PythonAnywhere database password',
+        #         host='127.0.0.1', port=tunnel.local_bind_port,
+        #         database='your database name, eg yourusername$mydatabase',
+        #     )
 
         self.cnx = pymysql.connect(
             host=host,
@@ -433,6 +450,9 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'inf_campaign_report':
                     cursor.execute(sql, data)
+                elif table_name == 'twitter_id_category_id':
+                    cursor.execute(sql, data)
+
                 self.cnx.commit()
             print("closing cnx")
 
@@ -1523,3 +1543,21 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+
+    def get_youtube_categories_by_channel_id(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT vc.channel_id,vc.video_cat_id from youtube_channel_ids_video_categories_id vc " \
+                      "WHERE vc.channel_id = '"+channel_id+"' GROUP BY vc.video_cat_id"
+
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
