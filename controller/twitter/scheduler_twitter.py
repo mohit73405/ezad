@@ -18,47 +18,53 @@ def get_data_by_screen_name():
     channel_data=modelObj.get__(table_name='youtube_channel_details',columns=columns)
     # print(channel_data)
     # exit()
-    ratelimit_counter = 0
+    # ratelimit_counter = 0
     for item in channel_data:
         channel_id = item[0]
         country = item[2]
         facebook_url = item[3]
         insta_url= item[4]
-        youtube_url = 'www.youtube.com/channel/'+channel_id
+        youtube_url = 'https://www.youtube.com/channel/'+channel_id
         if item[1]:
+            vc_data=''
+            screen_name = ''
+            output=''
             try:
-                screen_name=''
+
                 print(item[1])
                 vc_data = modelObj.get_youtube_categories_by_channel_id(channel_id=channel_id)
                 print(vc_data)
-                video_categories=[]
+            except:pass
+            video_categories=[]
+            try:
                 for vc_item in vc_data:
                     video_categories.append(vc_item[1])
-
-                ratelimit_counter+=1
+            except:pass
+            try:
                 twitter_url = item[1]
                 # output = re.findall('http(.*)', twitter_url)
+            except:pass
+            try:
                 parsed = urllib.parse.urlsplit(twitter_url)
                 path=parsed.path
                 output=path.rsplit('/', 3)
+            except:pass
+            try:
                 screen_name = output[1]
                 print(screen_name)
-                if ratelimit_counter < 37:
-                    conObj = TwitterApiController()
-                    conObj.get_data_by_screen_name(channel_id=channel_id,twitter_url=twitter_url,screen_name=screen_name,video_categories=video_categories
+            except:pass
+
+            try:
+                conObj = TwitterApiController()
+                conObj.get_data_by_screen_name(channel_id=channel_id,twitter_url=twitter_url,screen_name=screen_name,video_categories=video_categories
                                                    ,country=country,facebook_url=facebook_url,insta_url=insta_url,youtube_url=youtube_url)
-                else:
-                    time.sleep(900)
-                    ratelimit_counter = 0
-            except Exception as e:
-                print(e)
-                pass
+            except:pass
 
-                # exit()
         else:
-            data = [channel_id, 'false']
-            modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
-
+            try:
+                data = [channel_id, 'false']
+                modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
+            except:pass
 
 def get_content_categories():
     conObj = TwitterApiController()
