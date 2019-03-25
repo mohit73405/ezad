@@ -190,6 +190,56 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def search_instagram_inf(self, offset, sort_order, min_lower='', max_upper='', country='', category_id=''):
+        try:
+
+            with self.cnx.cursor() as cursor:
+                group_by = " group by t1.insta_id"
+                # group_by =''
+                category_id_filter = " t2.category_id =" + category_id
+                # country_filter = " t3.regionCode = '"+country+"'"
+                country_filter = " t1.country = '" + country + "'"
+                order = 'desc'
+                if sort_order == 'High To Low':
+                    order = 'desc'
+                elif sort_order == 'Low To High':
+                    order = 'asc'
+                else:
+                    order = 'desc'
+                order_by = " order by t1.no_of_followers " + order + " LIMIT 20 OFFSET " + offset
+
+                sql = "SELECT t1.insta_id,t1.username,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
+                      "t1.business_email, t1.no_of_views_recent100, " \
+                      "t1.no_of_likes_recent100, t1.no_of_comments_recent100,t1.no_of_shares_recent100, " \
+                      "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.country " \
+                      "FROM insta_channel_details t1 " \
+                      "JOIN insta_id_category_id t2 on t1.insta_id = t2.insta_id " \
+                      "WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
+                # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+
+                # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
+
+                if category_id and country:
+                    sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + group_by + order_by
+                elif category_id:
+                    sql = sql + ' AND ' + category_id_filter + group_by + order_by
+                elif country:
+                    # sql = sql = sql + group_by
+                    sql = sql + ' AND ' + country_filter + group_by + order_by
+                else:
+                    sql = sql + group_by + order_by
+
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            # self.cnx.close()
+            return data
+        except Exception as e:
+            print(e)
+
 
     def search_youtube_inf_get_total_rows(self, sort_order, min_lower='', max_upper='', country='', category_id=''):
         try:
@@ -289,6 +339,51 @@ class ConnecsiModel:
             print(e)
 
 
+    def search_instagram_inf_get_total_rows(self, sort_order, min_lower='', max_upper='', country='', category_id=''):
+        try:
+            with self.cnx.cursor() as cursor:
+                group_by = " group by t1.insta_id"
+                # group_by =''
+                category_id_filter = " t2.category_id =" + category_id
+                # country_filter = " t3.regionCode = '"+country+"'"
+                # country_filter = " location = '" + country + "'"
+                country_filter = " t1.country = '" + country + "'"
+                order = 'desc'
+                if sort_order == 'High To Low':
+                    order = 'desc'
+                elif sort_order == 'Low To High':
+                    order = 'asc'
+                else:
+                    order = 'desc'
+                order_by = " order by t1.no_of_followers " + order
+
+
+                      # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                sql = "SELECT * FROM insta_channel_details t1 " \
+                      "JOIN insta_id_category_id t2 on t1.insta_id = t2.insta_id " \
+                      "WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
+                # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
+
+                if category_id and country:
+                    sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + group_by + order_by
+                elif category_id:
+                    sql = sql + ' AND ' + category_id_filter + group_by + order_by
+                elif country:
+                    # sql = sql = sql + group_by
+                    sql = sql + ' AND ' + country_filter + group_by + order_by
+                else:
+                    sql = sql + group_by + order_by
+
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            # self.cnx.close()
+            return data
+        except Exception as e:
+            print(e)
 
 
     def get__(self,table_name,columns='',STAR='',WHERE='',compare_column='',compare_value=''):
@@ -451,6 +546,12 @@ class ConnecsiModel:
                 elif table_name == 'inf_campaign_report':
                     cursor.execute(sql, data)
                 elif table_name == 'twitter_id_category_id':
+                    cursor.execute(sql, data)
+                elif table_name == 'insta_channel_details':
+                    cursor.execute(sql, data)
+                elif table_name == 'insta_id_category_id':
+                    cursor.execute(sql, data)
+                elif table_name == 'insta_post_details':
                     cursor.execute(sql, data)
 
                 self.cnx.commit()
