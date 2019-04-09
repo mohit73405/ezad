@@ -482,13 +482,15 @@ class MailBox(Resource):
         new_password=''
         connecsiObj = ConnecsiModel()
 
-        new_password= email_id+'_111'
+        new_password = email_id+'_111'
         password_sha = sha256_crypt.encrypt(str(new_password))
-        columns = ['password']
-        data = (password_sha)
+        # columns = ['password']
+        # data = (password_sha)
         try:
-            connecsiObj.update__(table_name='users_brands', columns=columns, WHERE='WHERE', data=data,
-                                 compare_column='email_id', compare_value=str(email_id))
+            # connecsiObj.update__(table_name='users_brands', columns=columns, WHERE='WHERE', data=data,
+            #                      compare_column='email_id', compare_value=str(email_id))
+            connecsiObj.update_users_brands_password(email_id=email_id,password=password_sha)
+
         except Exception as e:
             print(e)
         to_email_id = email_id

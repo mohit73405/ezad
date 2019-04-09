@@ -1662,3 +1662,20 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+
+
+    def update_users_brands_password(self, email_id,password):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE users_brands SET password = '"+ password +"' WHERE email_id = '"+ email_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
