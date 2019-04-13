@@ -1460,8 +1460,7 @@ class ConnecsiModel:
                       " io1.offer_description,io1.arrangements,io1.kpis,io1.no_of_views,io1.no_of_replies,io1.deleted,io1.posted_date," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,chm.confirmed" \
                       " FROM channels_mapper chm" \
-                      " LEFT JOIN inf_offers io1 on io1.channel_id = chm.youtube_channel_id" \
-                      " LEFT JOIN inf_offers io2 on io2.channel_id = chm.twitter_channel_id" \
+                      " JOIN inf_offers io1 on io1.channel_id = chm.youtube_channel_id OR io1.channel_id=chm.twitter_channel_id" \
                       " WHERE chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "'"
                 print(sql)
                 cursor.execute(sql)
