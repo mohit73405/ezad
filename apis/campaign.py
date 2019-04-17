@@ -202,6 +202,24 @@ class Campaign(Resource):
             print(e)
 
 
+@ns_campaign.route('/channel_status_for_campaign_by_channel_id_and_campaign_id/<string:channel_id>/<string:campaign_id>')
+class Campaign(Resource):
+    def get(self,channel_id,campaign_id):
+        ''' get Channel details and status for campaigns by channel id and campaign id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            channel_campaign_message_status_data=connecsiObj.get_channel_campaign_message_status_by_channel_and_campaign_id(channel_id=channel_id,campaign_id=campaign_id)
+            columns = ['campaign_id', 'campaign_name','message_id','status']
+            response_list = []
+            for item in channel_campaign_message_status_data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+
+        except Exception as e:
+            print(e)
+
+
 @ns_campaign.route('/channel_status_for_campaign_by_campaign_id/<string:campaign_id>')
 class Campaign(Resource):
     def get(self,campaign_id):
