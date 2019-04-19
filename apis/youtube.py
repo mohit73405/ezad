@@ -194,7 +194,7 @@ class Youtube(Resource):
         '''add youtube channel channel_id'''
         try:
             connecsiObj = ConnecsiModel()
-            res = connecsiObj.insert__(data=channel_id, table_name='youtube_channel_ids', columns=['channel_id'],
+            res = connecsiObj.insert__(data=str(channel_id), table_name='youtube_channel_ids', columns=['channel_id'],
                                  IGNORE='IGNORE')
             print(res)
 
