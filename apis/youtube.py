@@ -198,14 +198,12 @@ class Youtube(Resource):
             res = connecsiObj.insert__(data=data, table_name='youtube_channel_ids', columns=['channel_id'],
                                  IGNORE='IGNORE')
             print('res = ',res)
-            return res
-
-            # try:
-            #     from controller.youtube.YoutubeApiController import YoutubeApiController
-            #     conObj = YoutubeApiController()
-            #     conObj.get_data_by_channel_id(channel_id=channel_id)
-            #     return {'message': 'inserted youtube channel id and details'}
-            # except Exception as e :
-            #     return {'message': e}
+            try:
+                from controller.youtube.YoutubeApiController import YoutubeApiController
+                conObj = YoutubeApiController()
+                conObj.get_data_by_channel_id(channel_id=channel_id)
+                return {'message': 'inserted youtube channel id and details'}
+            except Exception as e :
+                return {'message': e}
         except Exception as e :
             return {'message' : e}
