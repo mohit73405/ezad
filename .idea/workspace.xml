@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/campaign.py" afterPath="$PROJECT_DIR$/apis/campaign.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="979" column="57" lean-forward="false" selection-start-line="979" selection-start-column="57" selection-end-line="979" selection-end-column="57" />
+            <state relative-caret-position="231">
+              <caret line="1448" column="24" lean-forward="false" selection-start-line="1448" selection-start-column="24" selection-end-line="1448" selection-end-column="24" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -40,21 +38,9 @@
       <file leaf-file-name="messages.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="486" column="32" lean-forward="false" selection-start-line="486" selection-start-column="32" selection-end-line="486" selection-end-column="32" />
+            <state relative-caret-position="146">
+              <caret line="516" column="28" lean-forward="false" selection-start-line="516" selection-start-column="20" selection-end-line="516" selection-end-column="28" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scheduler_twitter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/twitter/scheduler_twitter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="58" column="36" lean-forward="false" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -69,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="campaign.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="campaign.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/campaign.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="111">
-              <caret line="210" column="61" lean-forward="false" selection-start-line="210" selection-start-column="61" selection-end-line="210" selection-end-column="61" />
+              <caret line="374" column="25" lean-forward="false" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -111,6 +97,16 @@
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="influencer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apis/influencer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="193" column="46" lean-forward="true" selection-start-line="193" selection-start-column="46" selection-end-line="193" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -164,9 +160,10 @@
       <find>addCampaignIdToMessageId</find>
       <find>sea</find>
       <find>ezadteam123</find>
-      <find>Forgot</find>
-      <find>channel_status_for_campaign</find>
       <find>update</find>
+      <find>channel_status_for_campaign</find>
+      <find>Forgot</find>
+      <find>getDetailsByUserId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -637,14 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/influencer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="56" column="34" lean-forward="false" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -835,10 +824,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/messages.py">
+    <entry file="file://$PROJECT_DIR$/apis/offers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="486" column="32" lean-forward="false" selection-start-line="486" selection-start-column="32" selection-end-line="486" selection-end-column="32" />
+        <state relative-caret-position="155">
+          <caret line="68" column="54" lean-forward="false" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -851,29 +840,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/offers.py">
+    <entry file="file://$PROJECT_DIR$/apis/campaign.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="68" column="54" lean-forward="false" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
+        <state relative-caret-position="111">
+          <caret line="374" column="25" lean-forward="false" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/messages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="516" column="28" lean-forward="false" selection-start-line="516" selection-start-column="20" selection-end-line="516" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/influencer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="193" column="46" lean-forward="true" selection-start-line="193" selection-start-column="46" selection-end-line="193" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="979" column="57" lean-forward="false" selection-start-line="979" selection-start-column="57" selection-end-line="979" selection-end-column="57" />
+        <state relative-caret-position="231">
+          <caret line="1448" column="24" lean-forward="false" selection-start-line="1448" selection-start-column="24" selection-end-line="1448" selection-end-column="24" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apis/campaign.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="210" column="61" lean-forward="false" selection-start-line="210" selection-start-column="61" selection-end-line="210" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>

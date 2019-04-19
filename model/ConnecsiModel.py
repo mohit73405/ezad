@@ -1444,9 +1444,9 @@ class ConnecsiModel:
                       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags," \
                       " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(yvc.video_cat_id SEPARATOR ',')" \
                       " FROM channels_mapper chm" \
-                      " LEFT JOIN users_influencers ui on ui.channel_id = chm.youtube_channel_id or ui.channel_id=chm.twitter_channel_id" \
-                      " LEFT JOIN youtube_channel_details ycd on ycd.channel_id = chm.youtube_channel_id" \
-                      " LEFT JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
+                      " JOIN users_influencers ui on ui.channel_id = chm.youtube_channel_id or ui.channel_id=chm.twitter_channel_id" \
+                      " JOIN youtube_channel_details ycd on ycd.channel_id = chm.youtube_channel_id" \
+                      " JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
                       " JOIN youtube_channel_ids_video_categories_id ycivc on ycd.channel_id = ycivc.channel_id" \
                       " JOIN youtube_video_categories yvc on yvc.video_cat_id = ycivc.video_cat_id" \
                       " WHERE ui.channel_id = '" + user_id + "'"
