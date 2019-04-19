@@ -193,11 +193,11 @@ class Youtube(Resource):
     def post(self,channel_id):
         '''add youtube channel channel_id'''
         try:
-            data = [channel_id]
-            connecsiObj = ConnecsiModel()
-            res = connecsiObj.insert__(data=data, table_name='youtube_channel_ids', columns=['channel_id'],
-                                 IGNORE='IGNORE')
-            print('res = ',res)
+            # data = [channel_id]
+            # connecsiObj = ConnecsiModel()
+            # res = connecsiObj.insert__(data=data, table_name='youtube_channel_ids', columns=['channel_id'],
+            #                      IGNORE='IGNORE')
+            # print('res = ',res)
             try:
                 from controller.youtube.YoutubeApiController import YoutubeApiController
                 conObj = YoutubeApiController()
