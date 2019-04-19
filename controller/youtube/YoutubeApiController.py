@@ -511,6 +511,46 @@ class YoutubeApiController:
             #     wr = csv.writer(resultFile, dialect='excel')
             #     wr.writerow(myList)
 
+
+    def get_data_by_channel_id(self,channel_id):
+        # data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UCqbjngYxb_5vLtnTiAO0-Yw',))
+        channelIds = []
+        channelIds.append(channel_id)
+
+        for channelId in channelIds:
+            myList = []
+            # self.YoutubeApiController(channelId=channelId)
+            try:
+                self.channelId=channelId
+                self.get_channel_details()
+                myList.append(channelId)
+                myList.append(self.channelTitle)
+                myList.append(self.channel_thumbnail)
+                myList.append(self.channel_desc)
+                myList.append(self.subscriberCount)
+                myList.append(self.subscriberCount_lost)
+                myList.append(self.business_email)
+                myList.append(self.total_100video_views)
+                myList.append(self.total_100video_views_unique)
+                myList.append(self.total_100video_likes)
+                myList.append(self.total_100video_dislikes)
+                myList.append(self.total_100video_comments)
+                myList.append(self.total_100video_shares)
+                myList.append(self.facebook_url)
+                myList.append(self.insta_url)
+                myList.append(self.twitter_url)
+                myList.append(self.country)
+                # print(myList)
+                # exit()
+                columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
+                           'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
+                           'total_100video_shares','facebook_url','insta_url','twitter_url','country']
+                connecsiObj = ConnecsiModel()
+                connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
+            except:
+                print('Channel details failed to insert for channel_id = ',channelId)
+                pass
+
     def get_data_by_selinium(self):
         # example option: add 'incognito' command line arg to options
         option = webdriver.ChromeOptions()

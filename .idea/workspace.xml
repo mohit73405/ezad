@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/youtube.py" afterPath="$PROJECT_DIR$/apis/youtube.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" afterPath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="1448" column="24" lean-forward="false" selection-start-line="1448" selection-start-column="24" selection-end-line="1448" selection-end-column="24" />
+            <state relative-caret-position="146">
+              <caret line="1443" column="41" lean-forward="false" selection-start-line="1443" selection-start-column="41" selection-end-line="1443" selection-end-column="41" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -55,6 +56,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="scheduler_youtube.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/youtube/scheduler_youtube.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="campaign.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/campaign.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,37 +76,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scheduler_instagram.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/instagram/scheduler_instagram.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="41" column="33" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TwitterApiController.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/twitter/TwitterApiController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="197" column="20" lean-forward="false" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="instagramCon.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/instagram/instagramCon.py">
+      <file leaf-file-name="youtube.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apis/youtube.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="291">
-              <caret line="144" column="30" lean-forward="false" selection-start-line="144" selection-start-column="30" selection-end-line="144" selection-end-column="30" />
+              <caret line="206" column="12" lean-forward="true" selection-start-line="206" selection-start-column="12" selection-end-line="206" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="YoutubeApiController.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/youtube/YoutubeApiController.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="373" column="132" lean-forward="true" selection-start-line="372" selection-start-column="20" selection-end-line="373" selection-end-column="132" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#2280#2301#0" expanded="false" />
+                <element signature="e#2448#2479#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -105,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/apis/influencer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="193" column="46" lean-forward="true" selection-start-line="193" selection-start-column="46" selection-end-line="193" selection-end-column="46" />
+              <caret line="193" column="46" lean-forward="false" selection-start-line="193" selection-start-column="46" selection-end-line="193" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -212,17 +210,17 @@
         <option value="$PROJECT_DIR$/apis/influencer.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
         <option value="$PROJECT_DIR$/controller/youtube/youtubeapicontroller_backup.py" />
-        <option value="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/controller/twitter/TwitterApiController.py" />
         <option value="$PROJECT_DIR$/controller/twitter/scheduler_twitter.py" />
         <option value="$PROJECT_DIR$/controller/instagram/instagramController.py" />
         <option value="$PROJECT_DIR$/controller/instagram/scheduler_instagram.py" />
         <option value="$PROJECT_DIR$/controller/instagram/instagramCon.py" />
-        <option value="$PROJECT_DIR$/apis/youtube.py" />
         <option value="$PROJECT_DIR$/apis/messages.py" />
         <option value="$PROJECT_DIR$/apis/campaign.py" />
         <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
+        <option value="$PROJECT_DIR$/apis/youtube.py" />
       </list>
     </option>
   </component>
@@ -259,6 +257,17 @@
               <item name="connecsiAdminMaterial" type="b2602c69:ProjectViewProjectNode" />
               <item name="connecsiAdminMaterial" type="462c0819:PsiDirectoryNode" />
               <item name="apis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="connecsiAdminMaterial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="connecsiAdminMaterial" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="connecsiAdminMaterial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="connecsiAdminMaterial" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="youtube" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -682,16 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/youtube/scheduler_youtube.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/youtube/youtubeapicontroller_backup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -704,14 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="966" column="0" lean-forward="false" selection-start-line="966" selection-start-column="0" selection-end-line="966" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/youtube/YoutubeApiController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="80" column="20" lean-forward="false" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -747,7 +738,7 @@
         <state relative-caret-position="155">
           <caret line="58" column="36" lean-forward="false" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -769,14 +760,6 @@
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apis/youtube.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="140" column="52" lean-forward="false" selection-start-line="140" selection-start-column="52" selection-end-line="140" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -859,18 +842,45 @@
     <entry file="file://$PROJECT_DIR$/apis/influencer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="193" column="46" lean-forward="true" selection-start-line="193" selection-start-column="46" selection-end-line="193" selection-end-column="46" />
+          <caret line="193" column="46" lean-forward="false" selection-start-line="193" selection-start-column="46" selection-end-line="193" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="1448" column="24" lean-forward="false" selection-start-line="1448" selection-start-column="24" selection-end-line="1448" selection-end-column="24" />
+        <state relative-caret-position="146">
+          <caret line="1443" column="41" lean-forward="false" selection-start-line="1443" selection-start-column="41" selection-end-line="1443" selection-end-column="41" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/youtube/scheduler_youtube.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/youtube/YoutubeApiController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="373" column="132" lean-forward="true" selection-start-line="372" selection-start-column="20" selection-end-line="373" selection-end-column="132" />
+          <folding>
+            <element signature="e#2280#2301#0" expanded="false" />
+            <element signature="e#2448#2479#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/youtube.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="206" column="12" lean-forward="true" selection-start-line="206" selection-start-column="12" selection-end-line="206" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>

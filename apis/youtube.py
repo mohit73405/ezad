@@ -188,3 +188,22 @@ class TotalVideos(Resource):
         return {'data': response_list}
 
 
+@ns_youtube.route('/addYoutubeChannel/<string:channel_id>')
+class Youtube(Resource):
+    def post(self,channel_id):
+        '''add youtube channel channel_id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            res = connecsiObj.insert__(data=channel_id, table_name='youtube_channel_ids', columns=['channel_id'],
+                                 IGNORE='IGNORE')
+            print(res)
+
+            # try:
+            #     from controller.youtube.YoutubeApiController import YoutubeApiController
+            #     conObj = YoutubeApiController()
+            #     conObj.get_data_by_channel_id(channel_id=channel_id)
+            #     return {'message': 'inserted youtube channel id and details'}
+            # except Exception as e :
+            #     return {'message': e}
+        except Exception as e :
+            return {'message' : e}
