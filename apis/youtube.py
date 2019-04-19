@@ -3,6 +3,7 @@ from flask_restplus import Resource, Api, fields, Namespace
 from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
 import datetime
+from controller.youtube.YoutubeApiController import YoutubeApiController
 
 ns_youtube = Namespace('Youtube', description='Youtube Apis')
 
@@ -199,7 +200,7 @@ class Youtube(Resource):
             #                      IGNORE='IGNORE')
             # print('res = ',res)
             try:
-                from controller.youtube.YoutubeApiController import YoutubeApiController
+                # from controller.youtube.YoutubeApiController import YoutubeApiController
                 conObj = YoutubeApiController()
                 conObj.get_data_by_channel_id(channel_id=channel_id)
                 return {'message': 'inserted youtube channel id and details'}
