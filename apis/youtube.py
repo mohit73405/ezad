@@ -201,11 +201,11 @@ class Youtube(Resource):
             # print('res = ',res)
             try:
                 from controller.youtube.YoutubeApiController import YoutubeApiController
-                # conObj = YoutubeApiController()
-                print('hello')
+                conObj = YoutubeApiController()
                 # conObj.get_data_by_channel_id(channel_id=channel_id)
                 return {'message': 'inserted youtube channel id and details'}
             except Exception as e :
+                print('exception = ',e)
                 return {'message': e}
         except Exception as e :
             return {'message' : e}
