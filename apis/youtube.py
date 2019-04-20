@@ -204,7 +204,8 @@ class Youtube(Resource):
                 conObj = YoutubeApiController()
                 print('hello')
                 # conObj.get_data_by_channel_id(channel_id=channel_id)
-                return {'message': 'inserted youtube channel id and details'}
+                # return {'message': 'inserted youtube channel id and details'}
+                return 1
             except Exception as e :
                 return {'message': e}
         except Exception as e :
