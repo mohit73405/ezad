@@ -3,7 +3,7 @@ from flask_restplus import Resource, Api, fields, Namespace
 from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
 import datetime
-# from controller.youtube.YoutubeApiController import YoutubeApiController
+from controller.youtube.YoutubeApiController import YoutubeApiController
 
 ns_youtube = Namespace('Youtube', description='Youtube Apis')
 
@@ -194,15 +194,14 @@ class Youtube(Resource):
     def post(self,channel_id):
         '''add youtube channel channel_id'''
         try:
-            # data = [channel_id]
-            # connecsiObj = ConnecsiModel()
-            # res = connecsiObj.insert__(data=data, table_name='youtube_channel_ids', columns=['channel_id'],
-            #                      IGNORE='IGNORE')
-            # print('res = ',res)
+            data = [channel_id]
+            connecsiObj = ConnecsiModel()
+            res = connecsiObj.insert__(data=data, table_name='youtube_channel_ids', columns=['channel_id'],
+                                 IGNORE='IGNORE')
+            print('res = ',res)
             try:
-                from controller.youtube.YoutubeApiController import YoutubeApiController
                 conObj = YoutubeApiController()
-                # conObj.get_data_by_channel_id(channel_id=channel_id)
+                conObj.get_data_by_channel_id(channel_id=channel_id)
                 return {'message': 'inserted youtube channel id and details'}
             except Exception as e :
                 print('exception = ',e)
