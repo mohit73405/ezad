@@ -189,9 +189,9 @@ class TotalVideos(Resource):
         return {'data': response_list}
 
 
-@ns_youtube.route('/addYoutubeChannel/<string:channel_id>')
+@ns_youtube.route('/addYoutubeChannel/<string:channel_id>/<string:business_email>')
 class Youtube(Resource):
-    def post(self,channel_id):
+    def post(self,channel_id,business_email):
         '''add youtube channel channel_id'''
         try:
             data = [channel_id]
@@ -201,7 +201,7 @@ class Youtube(Resource):
             print('res = ',res)
             try:
                 conObj = YoutubeApiController()
-                conObj.get_data_by_channel_id(channel_id=channel_id)
+                conObj.get_data_by_channel_id(channel_id=channel_id,business_email=business_email)
                 return {'message': 'inserted youtube channel id and details'}
             except Exception as e :
                 print('exception = ',e)

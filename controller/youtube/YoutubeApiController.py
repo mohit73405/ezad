@@ -514,7 +514,7 @@ class YoutubeApiController:
             #     wr.writerow(myList)
 
 
-    def get_data_by_channel_id(self,channel_id):
+    def get_data_by_channel_id(self,channel_id,business_email):
         # data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UCqbjngYxb_5vLtnTiAO0-Yw',))
         print('channel_id = ',channel_id)
 
@@ -533,7 +533,7 @@ class YoutubeApiController:
                 myList.append(self.channel_desc)
                 myList.append(self.subscriberCount)
                 myList.append(self.subscriberCount_lost)
-                myList.append(self.business_email)
+                myList.append(business_email)
                 myList.append(self.total_100video_views)
                 myList.append(self.total_100video_views_unique)
                 myList.append(self.total_100video_likes)
