@@ -5,14 +5,14 @@ from flask_restplus import Resource, Api, fields, Namespace
 from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
 import datetime
-from controller.twitter.TwitterApiController import TwitterApiController
+from controller.twitter_module.TwitterApiController import TwitterApiController
 
 ns_twitter = Namespace('Twitter', description='Twitter Apis')
 
 @ns_twitter.route('/addTwitterChannel/<string:channel_id>/<string:business_email>/<string:youtube_channel_id>')
 class Twitter(Resource):
     def post(self,channel_id,business_email,youtube_channel_id):
-        '''add twitter channel by channel_id'''
+        '''add twitter_module channel by channel_id'''
         modelObj = ConnecsiModel()
         columns = ['channel_id', 'twitter_url', 'country', 'facebook_url', 'insta_url']
         channel_data = modelObj.get__(table_name='youtube_channel_details', columns=columns,WHERE='WHERE'
@@ -31,7 +31,7 @@ class Twitter(Resource):
             screen_name = ''
             output = ''
             try:
-                print('twitter url',item[1])
+                print('twitter_module url',item[1])
                 vc_data = modelObj.get_youtube_categories_by_channel_id(channel_id=youtube_channel_id)
                 print(vc_data)
             except:

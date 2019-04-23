@@ -85,7 +85,7 @@ class Brand(Resource):
             print(channels_mapped_youtube)
             if channels_mapped_youtube:
                 for channels in channels_mapped_youtube:
-                    print('mapped twitter channel = ',channels[1])
+                    print('mapped twitter_module channel = ',channels[1])
                     mapped_twitter_channel=channels[1]
 
             channels_mapped_twitter = connecsiObj.get__(table_name='channels_mapper', STAR='*', WHERE='WHERE',

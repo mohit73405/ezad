@@ -106,7 +106,7 @@ class TwitterApiController:
             except Exception as e:
                 print(e)
                 pass
-            print('twitter id = ',twitter_id)
+            print('twitter_module id = ',twitter_id)
             print('screen name =',screen_name)
             print('title =',title)
             print('description = ',description)
@@ -208,7 +208,7 @@ class TwitterApiController:
         else: time.sleep(30)
 
     def get_content_categories(self):
-        url = 'https://ads-api.twitter.com/4/content_categories'
+        url = 'https://ads-api.twitter_module.com/4/content_categories'
         content_categories = self.get_Json_data_Request_Lib(url=url)
         print(content_categories)
 

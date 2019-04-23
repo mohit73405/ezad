@@ -5,7 +5,7 @@ import schedule #pip install schedule
 import time
 # import sys
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
-from controller.twitter.TwitterApiController import TwitterApiController
+from controller.twitter_module.TwitterApiController import TwitterApiController
 from model.ConnecsiModel import ConnecsiModel
 
 def get_data():

@@ -110,7 +110,7 @@ class YoutubeApiController:
         if insta_url:
             self.insta_url = insta_url[0]
 
-        twitter_string = ['twitter']
+        twitter_string = ['twitter_module']
         twitter_url = [s for s in links if any(xs in s for xs in twitter_string)]
         if twitter_url:
             self.twitter_url = twitter_url[0]
