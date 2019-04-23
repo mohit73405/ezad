@@ -5,7 +5,7 @@ from apis.payments  import ns_payments
 from apis.brand import ns_brand
 from apis.user import ns_user
 from apis.youtube import ns_youtube
-# from apis.twitter import ns_twitter
+from apis.twitter_api import ns_twitter
 from apis.campaign import ns_campaign
 from apis.classified import ns_classified
 from apis.messages import ns_messages
@@ -28,7 +28,7 @@ api.add_namespace(ns_user)
 api.add_namespace(ns_brand)
 api.add_namespace(ns_payments)
 api.add_namespace(ns_youtube)
-# api.add_namespace(ns_twitter)
+api.add_namespace(ns_twitter)
 api.add_namespace(ns_campaign)
 api.add_namespace(ns_classified)
 api.add_namespace(ns_messages)
