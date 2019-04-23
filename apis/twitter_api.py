@@ -10,7 +10,7 @@ from controller.twitter_module.TwitterApiController import TwitterApiController
 ns_twitter = Namespace('Twitter', description='Twitter Apis')
 
 @ns_twitter.route('/addTwitterChannel/<string:channel_id>/<string:business_email>/<string:youtube_channel_id>')
-class Twitter(Resource):
+class Twitter_api(Resource):
     def post(self,channel_id,business_email,youtube_channel_id):
         '''add twitter_module channel by channel_id'''
         modelObj = ConnecsiModel()
