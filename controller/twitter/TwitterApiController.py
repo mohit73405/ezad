@@ -45,13 +45,13 @@ class TwitterApiController:
                 print(key, ':', value)
         print(len(user_timeline))
 
-    def get_data_by_screen_name(self,channel_id,twitter_url,screen_name,video_categories,country,facebook_url,insta_url,youtube_url):
+    def get_data_by_screen_name(self,channel_id,twitter_url,screen_name,video_categories,country,facebook_url,insta_url,youtube_url,business_email=''):
         twitter_id = ''
         title=''
         description=''
         location=''
         no_of_followers=0
-        business_email=''
+        business_email=business_email
         website=''
         no_of_views=0
         no_of_likes=0
@@ -179,9 +179,9 @@ class TwitterApiController:
             ################################################ no of comments #################
 
             columns = ['twitter_id','screen_name','title','description','location','no_of_followers','no_of_likes_recent100',
-            'no_of_retweets_recent100','website','twitter_url','hashtags','facebook_url','insta_url','youtube_url','country','channel_img']
+            'no_of_retweets_recent100','website','twitter_url','hashtags','facebook_url','insta_url','youtube_url','country','channel_img','business_email']
             data = [twitter_id,screen_name,title,description,location,no_of_followers,no_of_likes,no_of_retweets
-                ,website,twitter_url,hashtagsList_string,facebook_url,insta_url,youtube_url,country,channel_img]
+                ,website,twitter_url,hashtagsList_string,facebook_url,insta_url,youtube_url,country,channel_img,business_email]
             connecsiObj= ConnecsiModel()
             try:
                 connecsiObj.insert__(table_name='twitter_channel_details',IGNORE='IGNORE',columns=columns,data=data)
@@ -189,7 +189,11 @@ class TwitterApiController:
                 print(e)
                 pass
             try:
-                connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,'false'])
+                if business_email:
+                    confirmed='true'
+                else:
+                    confirmed='false'
+                connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,confirmed])
             except Exception as e:
                 print(e)
                 pass
