@@ -7,7 +7,7 @@ from passlib.hash import sha256_crypt
 import datetime
 from controller.twitter_module.TwitterApiController import TwitterApiController
 
-ns_twitter = Namespace('Twitter', description='Twitter Apis')
+ns_twitter = Namespace('Twitter api', description='Twitter Apis')
 
 @ns_twitter.route('/addTwitterChannel/<string:channel_id>/<string:business_email>/<string:youtube_channel_id>')
 class Twitter_api(Resource):
