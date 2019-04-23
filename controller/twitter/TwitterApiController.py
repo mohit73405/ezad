@@ -14,7 +14,9 @@ class TwitterApiController:
     def __init__(self):
         self.channelId = ''
         config = ConfigParser()
-        config.read('config.ini')
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        config.read(dir_path + '/config.ini')
+        # config.read('config.ini')
         self.consumer_key = config.get('auth', 'consumer_key')
         self.consumer_secret = config.get('auth','consumer_secret')
         self.access_token = config.get('auth', 'access_token')
