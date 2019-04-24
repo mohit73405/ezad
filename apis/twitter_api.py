@@ -18,7 +18,10 @@ class Twitter_api(Resource):
         channel_data = modelObj.get__(table_name='youtube_channel_details', columns=columns,WHERE='WHERE'
                                       ,compare_column='channel_id',compare_value=str(youtube_channel_id))
 
+        print('channel data = ',channel_data)
+
         for item in channel_data:
+            print('im inside for')
             youtube_channel_id = item[0]
             country = item[2]
             facebook_url = item[3]
@@ -33,18 +36,21 @@ class Twitter_api(Resource):
                 print('twitter  url',item[1])
                 vc_data = modelObj.get_youtube_categories_by_channel_id(channel_id=youtube_channel_id)
                 print(vc_data)
-            except:
+            except Exception as e:
+                print(e)
                 pass
             video_categories = []
             try:
                 for vc_item in vc_data:
                     video_categories.append(vc_item[1])
-            except:
+            except Exception as e:
+                print(e)
                 pass
             try:
                 twitter_url = item[1]
                 # output = re.findall('http(.*)', twitter_url)
-            except:
+            except Exception as e:
+                print(e)
                 pass
 
             try:
@@ -53,6 +59,7 @@ class Twitter_api(Resource):
                                                screen_name=screen_name, video_categories=video_categories
                                                , country=country, facebook_url=facebook_url, insta_url=insta_url,
                                                youtube_url=youtube_url,business_email=business_email)
-            except:
+            except Exception as e:
+                print(e)
                 pass
 
