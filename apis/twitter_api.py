@@ -9,29 +9,28 @@ from controller.twitter_module.TwitterApiController import TwitterApiController
 
 ns_twitter = Namespace('Twitter', description='Twitter Apis')
 
-@ns_twitter.route('/addTwitterChannel/<string:channel_id>/<string:business_email>/<string:youtube_channel_id>')
+@ns_twitter.route('/addTwitterChannel/<string:screen_name>/<string:business_email>/<string:youtube_channel_id>')
 class Twitter_api(Resource):
-    def post(self,channel_id,business_email,youtube_channel_id):
-        '''add twitter_module channel by channel_id'''
+    def post(self,screen_name,business_email,youtube_channel_id):
+        '''add twitter_module channel by screen_name'''
         modelObj = ConnecsiModel()
         columns = ['channel_id', 'twitter_url', 'country', 'facebook_url', 'insta_url']
         channel_data = modelObj.get__(table_name='youtube_channel_details', columns=columns,WHERE='WHERE'
                                       ,compare_column='channel_id',compare_value=str(youtube_channel_id))
-        # print(channel_data)
-        # exit()
-        # ratelimit_counter = 0
+
         for item in channel_data:
             youtube_channel_id = item[0]
             country = item[2]
             facebook_url = item[3]
             insta_url = item[4]
             youtube_url = 'https://www.youtube.com/channel/' + youtube_channel_id
+            twitter_url = item[1]
 
             vc_data = ''
-            screen_name = ''
+            screen_name = screen_name
             output = ''
             try:
-                print('twitter_module url',item[1])
+                print('twitter  url',item[1])
                 vc_data = modelObj.get_youtube_categories_by_channel_id(channel_id=youtube_channel_id)
                 print(vc_data)
             except:
@@ -45,17 +44,6 @@ class Twitter_api(Resource):
             try:
                 twitter_url = item[1]
                 # output = re.findall('http(.*)', twitter_url)
-            except:
-                pass
-            try:
-                parsed = urllib.parse.urlsplit(twitter_url)
-                path = parsed.path
-                output = path.rsplit('/', 3)
-            except:
-                pass
-            try:
-                screen_name = output[1]
-                print(screen_name)
             except:
                 pass
 
