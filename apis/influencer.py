@@ -205,7 +205,7 @@ class Influencer(Resource):
         '''add Categories to channel user id '''
         connecsiObj = ConnecsiModel()
         columns = ['channel_id', 'video_cat_id']
-        data = [user_id,video_cat_id]
+        data = [(user_id,video_cat_id)]
         response = connecsiObj.insert__(table_name='youtube_channel_ids_video_categories_id',columns=columns,data=data)
         return response
 
