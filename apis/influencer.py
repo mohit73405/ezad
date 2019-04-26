@@ -171,7 +171,7 @@ class Influencer(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['youtube_channel_id','twitter_channel_id','confirmed']
 
-        data = connecsiObj.get__(table_name='channels_mapper',columns=columns,compare_column='youtube_channel_id',compare_value=channel_id)
+        data = connecsiObj.get__(table_name='channels_mapper',WHERE='WHERE',columns=columns,compare_column='youtube_channel_id',compare_value=channel_id)
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))
