@@ -204,9 +204,13 @@ class Influencer(Resource):
     def get(self,user_id,video_cat_id):
         '''add Categories to channel user id '''
         connecsiObj = ConnecsiModel()
-        columns = ['channel_id', 'video_cat_id']
-        data = [(user_id,video_cat_id)]
-        response = connecsiObj.insert__(table_name='youtube_channel_ids_video_categories_id',columns=columns,data=data)
+        response = connecsiObj.insert_categories_to_youtube_channel(channel_id=user_id,video_cat_id=video_cat_id)
+        return response
+
+    def delete(self,user_id,video_cat_id):
+        '''remove Category from youtube channel user id '''
+        connecsiObj = ConnecsiModel()
+        response = connecsiObj.delete_category_from_youtube_channel(channel_id=user_id,video_cat_id=video_cat_id)
         return response
 
 
@@ -215,9 +219,11 @@ class Influencer(Resource):
     def get(self,twitter_id,category_id):
         '''add Categories to twitter channel by twitter id '''
         connecsiObj = ConnecsiModel()
-        columns = ['twitter_id', 'category_id']
-        data = [twitter_id,category_id]
-        response = connecsiObj.insert__(table_name='twitter_id_category_id',columns=columns,data=data)
+        response = connecsiObj.insert_categories_to_twitter_channel(twitter_id=twitter_id, category_id=category_id)
         return response
 
-
+    def delete(self,twitter_id,category_id):
+        '''remove Category from twitter channel twitter id '''
+        connecsiObj = ConnecsiModel()
+        response = connecsiObj.delete_category_from_twitter_channel(twitter_id=twitter_id,category_id=category_id)
+        return response

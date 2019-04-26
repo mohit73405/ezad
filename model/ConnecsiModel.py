@@ -1696,3 +1696,72 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+    def insert_categories_to_youtube_channel(self, channel_id, video_cat_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "INSERT INTO youtube_channel_ids_video_categories_id(channel_id, video_cat_id) SELECT * FROM " \
+                      "(SELECT '"+channel_id+"', '"+video_cat_id+"') AS tmp WHERE NOT EXISTS(SELECT channel_id,video_cat_id FROM youtube_channel_ids_video_categories_id" \
+                      " WHERE channel_id = '"+channel_id+"' AND video_cat_id = '"+video_cat_id+"') LIMIT 1;"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def delete_category_from_youtube_channel(self, channel_id,video_cat_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "Delete from  youtube_channel_ids_video_categories_id  WHERE channel_id = '" + channel_id + "'" + " AND video_cat_id = '" + video_cat_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+
+
+    def insert_categories_to_twitter_channel(self, twitter_id, category_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "INSERT INTO twitter_id_category_id(twitter_id, category_id) SELECT * FROM " \
+                      "(SELECT '"+twitter_id+"', '"+category_id+"') AS tmp WHERE NOT EXISTS(SELECT twitter_id,category_id FROM twitter_id_category_id" \
+                      " WHERE twitter_id = '"+twitter_id+"' AND category_id = '"+category_id+"') LIMIT 1;"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def delete_category_from_twitter_channel(self, twitter_id,category_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "Delete from  twitter_id_category_id  WHERE twitter_id = '" + twitter_id + "'" + " AND category_id = '" + category_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
