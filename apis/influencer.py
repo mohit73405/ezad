@@ -210,5 +210,14 @@ class Influencer(Resource):
         return response
 
 
+@ns_influencer.route('/addCategoriesToTwitterChannel/<string:twitter_id>/<string:category_id>')
+class Influencer(Resource):
+    def get(self,twitter_id,category_id):
+        '''add Categories to twitter channel by twitter id '''
+        connecsiObj = ConnecsiModel()
+        columns = ['twitter_id', 'category_id']
+        data = [twitter_id,category_id]
+        response = connecsiObj.insert__(table_name='twitter_id_category_id',columns=columns,data=data)
+        return response
 
 
