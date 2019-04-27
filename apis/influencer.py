@@ -60,6 +60,7 @@ class Influencer(Resource):
         try:
             connecsiObj = ConnecsiModel()
             connecsiObj.update_inf_details(channel_id=user_id,data=data)
+            connecsiObj.update_youtube_inf_country(channel_id=user_id,country=country)
             return {"response" : 1},200
         except Exception as e:
             return {"response": e},500

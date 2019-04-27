@@ -1662,6 +1662,21 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def update_youtube_inf_country(self, channel_id, country):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE youtube_channel_details SET country = '"+country+"' WHERE channel_id = '" + str(channel_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
 
 
     def get_youtube_categories_by_channel_id(self, channel_id):
