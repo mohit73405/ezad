@@ -1449,7 +1449,7 @@ class ConnecsiModel:
                       " JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
                       " JOIN youtube_channel_ids_video_categories_id ycivc on ycd.channel_id = ycivc.channel_id" \
                       " JOIN youtube_video_categories yvc on yvc.video_cat_id = ycivc.video_cat_id" \
-                      " WHERE ui.channel_id = '" + user_id + "'"
+                      " WHERE ycd.channel_id = '" + user_id + "'"
 
 
                 # sql = " select ui1.first_name as youtube_first_name,ui2.first_name as twitter_first_name,chm.youtube_channel_id," \
