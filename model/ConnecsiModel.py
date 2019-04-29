@@ -1443,13 +1443,13 @@ class ConnecsiModel:
                       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
                       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags," \
                       " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(yvc.video_cat_id SEPARATOR ',')" \
-                      " FROM channels_mapper chm" \
-                      " JOIN users_influencers ui on ui.channel_id = chm.youtube_channel_id or ui.channel_id=chm.twitter_channel_id" \
-                      " JOIN youtube_channel_details ycd on ycd.channel_id = chm.youtube_channel_id" \
-                      " JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
-                      " JOIN youtube_channel_ids_video_categories_id ycivc on ycd.channel_id = ycivc.channel_id or chm.youtube_channel_id = ycivc.channel_id" \
-                      " JOIN youtube_video_categories yvc on yvc.video_cat_id = ycivc.video_cat_id" \
-                      " WHERE ui.channel_id = '" + user_id + "' and ycd.channel_id = '"+user_id+"' and chm.youtube_channel_id= '"+user_id+"'"
+                      " FROM youtube_channel_details ycd" \
+                      " left join users_influencers ui on ycd.channel_id = ui.channel_id" \
+                      " join youtube_channel_ids_video_categories_id ycivci on ycivci.channel_id = ycd.channel_id" \
+                      " join youtube_video_categories yvc on yvc.video_cat_id = ycivci.video_cat_id" \
+                      " left join channels_mapper chm on chm.youtube_channel_id = ycd.channel_id" \
+                      " left join twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
+                      " WHERE ycd.channel_id = '"+user_id+"'"
 
 
                 # sql = " select ui1.first_name as youtube_first_name,ui2.first_name as twitter_first_name,chm.youtube_channel_id," \
