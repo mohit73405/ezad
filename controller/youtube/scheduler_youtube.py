@@ -15,6 +15,7 @@ print(sys.path)
 
 try:
     from controller.youtube.YoutubeApiController import YoutubeApiController
+    conObj = YoutubeApiController()
 except Exception as e:
     print(e)
 
@@ -28,7 +29,7 @@ def get_video_cat_ids():
     conObj.get_all_video_categories()
 
 def get_channel_ids():
-    conObj = YoutubeApiController()
+    # conObj = YoutubeApiController()
     # conObj.get_all_channel_ids()
     conObj.get_all_channel_ids_new()
 
