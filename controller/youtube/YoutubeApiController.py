@@ -368,8 +368,10 @@ class YoutubeApiController:
                         pageToken = json_data['nextPageToken']
                     except:
                         pass
+                    try:
+                        items = json_data['items']
+                    except: pass
 
-                    items = json_data['items']
                     print('length items = ',len(items))
                     if len(items) == 0:
                         print(channel_ids)
@@ -391,7 +393,10 @@ class YoutubeApiController:
                         print('channel url = ',channel_url)
 
                         json_stats = self.get_Json_data_Request_Lib(url=channel_url)
-                        items1 = json_stats['items']
+                        try:
+                            items1 = json_stats['items']
+                        except:pass
+
                         for item1 in items1:
                             try:
                                 subscriberCount = item1['statistics']['subscriberCount']
