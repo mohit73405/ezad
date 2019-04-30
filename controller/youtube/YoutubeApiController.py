@@ -341,7 +341,7 @@ class YoutubeApiController:
 
 
     def get_all_channel_ids_new(self):
-        priority_country_list = ['US','IN']
+        priority_country_list = ['US']
         keywords = ['cosmetics']
         order='videoCount'
 
@@ -403,10 +403,10 @@ class YoutubeApiController:
                                 subscriberCount = item1['statistics']['subscriberCount']
                                 print(subscriberCount)
                                 print('query = ',q)
-                                if int(subscriberCount) >= 10000:
+                                if int(subscriberCount) >= 5000:
                                     channel_ids.append(channel_id)
                                 else:
-                                    print('subscriber Count is less than 10000')
+                                    print('subscriber Count is less than 5000')
                             except:pass
 
                     # counter = counter + 1
