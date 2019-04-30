@@ -342,7 +342,7 @@ class YoutubeApiController:
 
     def get_all_channel_ids_new(self):
         priority_country_list = ['US', 'PL', 'DE', 'NL', 'IN']
-        keywords = ['automobiles%20in%20usa','Gaming%20in%20USA','Fashion%20in%20USA','Fitness%20in%20USA','Sports%20in%20USA','Lifestyle%20in%20USA']
+        keywords = ['gaming%20usa','gaming%20india','gaming%20poland']
 
 
         # query=["Gaming%20in%20USA", 'Fashion%20in%20USA', 'Fitness%20in%20USA','Sports%20in%20USA', 'Lifestyle%20in%20USA',]
@@ -358,7 +358,7 @@ class YoutubeApiController:
             channel_ids=[]
             while len(channel_ids) < 10000:
                 print('length of channels ids = ', len(channel_ids))
-                url = self.get_channel_ids_url + '&maxResults=50&pageToken=' + pageToken +'&q='+q
+                url = self.get_channel_ids_url + '&maxResults=50&pageToken=' + pageToken +'&q='+q+'&regionCode=US'
                 print('search url = ',url)
                 # time.sleep(10)
                 json_data = self.get_Json_data_Request_Lib(url=url)
