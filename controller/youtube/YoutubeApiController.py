@@ -354,8 +354,8 @@ class YoutubeApiController:
         for q in keywords:
             # counter = 1
             print(q)
-            pageToken = ''
             for regionCode in priority_country_list:
+                pageToken = ''
                 channel_ids=[]
                 while len(channel_ids) < 10000:
                     print('length of channels ids = ', len(channel_ids))
