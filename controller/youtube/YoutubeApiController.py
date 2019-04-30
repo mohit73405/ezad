@@ -342,7 +342,7 @@ class YoutubeApiController:
 
     def get_all_channel_ids_new(self):
         priority_country_list = ['US', 'PL', 'DE', 'NL', 'IN']
-        keywords = ['']
+        keywords = ['most%20popular%20videos']
 
 
         # query=["Gaming%20in%20USA", 'Fashion%20in%20USA', 'Fitness%20in%20USA','Sports%20in%20USA', 'Lifestyle%20in%20USA',]
@@ -355,54 +355,55 @@ class YoutubeApiController:
             # counter = 1
             print(q)
             pageToken = ''
-            channel_ids=[]
-            while len(channel_ids) < 10000:
-                print('length of channels ids = ', len(channel_ids))
-                url = self.get_channel_ids_url + '&maxResults=50&pageToken=' + pageToken +'&q='+q+'&regionCode=US'
-                print('search url = ',url)
-                # time.sleep(10)
-                json_data = self.get_Json_data_Request_Lib(url=url)
+            for regionCode in priority_country_list:
+                channel_ids=[]
+                while len(channel_ids) < 10000:
+                    print('length of channels ids = ', len(channel_ids))
+                    url = self.get_channel_ids_url + '&maxResults=50&pageToken=' + pageToken +'&q='+q+'&regionCode='+regionCode
+                    print('search url = ',url)
+                    # time.sleep(10)
+                    json_data = self.get_Json_data_Request_Lib(url=url)
 
-                try:
-                    pageToken = json_data['nextPageToken']
-                except:
-                    pass
-
-                items = json_data['items']
-                print('length items = ',len(items))
-                if len(items) == 0:
-                    print(channel_ids)
-                    print(len(channel_ids))
-                    connecsiObj = ConnecsiModel()
-                    connecsiObj.insert__(data=channel_ids, table_name='youtube_channel_ids', columns=['channel_id'],IGNORE='IGNORE')
-                    # connecsiObj.insert__(table_name='youtube_channel_ids_regioncode',columns=['channel_id','regionCode'],data=data)
-                    break
-                print(type(items))
-                # exit()
-                print("i m outside")
-                for item in items:
-                    print("i m in for loop")
                     try:
-                        channel_id = item['id']['channelId']
-                        print(channel_id)
-                    except:pass
-                    channel_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&key=' + self.api_key + '&id=' + channel_id
-                    print('channel url = ',channel_url)
+                        pageToken = json_data['nextPageToken']
+                    except:
+                        pass
 
-                    json_stats = self.get_Json_data_Request_Lib(url=channel_url)
-                    items1 = json_stats['items']
-                    for item1 in items1:
+                    items = json_data['items']
+                    print('length items = ',len(items))
+                    if len(items) == 0:
+                        print(channel_ids)
+                        print(len(channel_ids))
+                        connecsiObj = ConnecsiModel()
+                        connecsiObj.insert__(data=channel_ids, table_name='youtube_channel_ids', columns=['channel_id'],IGNORE='IGNORE')
+                        # connecsiObj.insert__(table_name='youtube_channel_ids_regioncode',columns=['channel_id','regionCode'],data=data)
+                        break
+                    print(type(items))
+                    # exit()
+                    print("i m outside")
+                    for item in items:
+                        print("i m in for loop")
                         try:
-                            subscriberCount = item1['statistics']['subscriberCount']
-                            print(subscriberCount)
-                            print('query = ',q)
-                            if int(subscriberCount) >= 10000:
-                                channel_ids.append(channel_id)
-                            else:
-                                print('subscriber Count is less than 10000')
+                            channel_id = item['id']['channelId']
+                            print(channel_id)
                         except:pass
+                        channel_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&key=' + self.api_key + '&id=' + channel_id
+                        print('channel url = ',channel_url)
 
-                # counter = counter + 1
+                        json_stats = self.get_Json_data_Request_Lib(url=channel_url)
+                        items1 = json_stats['items']
+                        for item1 in items1:
+                            try:
+                                subscriberCount = item1['statistics']['subscriberCount']
+                                print(subscriberCount)
+                                print('query = ',q)
+                                if int(subscriberCount) >= 10000:
+                                    channel_ids.append(channel_id)
+                                else:
+                                    print('subscriber Count is less than 10000')
+                            except:pass
+
+                    # counter = counter + 1
 
 
 
