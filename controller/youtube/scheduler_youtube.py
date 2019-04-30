@@ -1,12 +1,15 @@
 import schedule #pip install schedule
 import time
 import sys
+import os
 print(sys.path)
-# exit()
+cdir = os.getcwd()
+print(cdir)
+
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
-mypath = '/home/Connecsi/backend/ezad/controller'
-if mypath not in sys.path:
-   sys.path.append(mypath)
+mypath = cdir
+if cdir not in sys.path:
+   sys.path.append(cdir)
 
 print(sys.path)
 
