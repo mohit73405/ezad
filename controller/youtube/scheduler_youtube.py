@@ -4,6 +4,9 @@ import sys
 print(sys.path)
 # exit()
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
+mypath = '/home/Connecsi/backend/ezad/controller'
+if mypath not in sys.path:
+    sys.path.append(mypath)
 from controller.youtube.YoutubeApiController import YoutubeApiController
 
 
