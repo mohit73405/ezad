@@ -342,7 +342,7 @@ class YoutubeApiController:
 
     def get_all_channel_ids_new(self):
         priority_country_list = ['US','IN']
-        keywords = ['most%20subscribed%20channels']
+        keywords = ['cosmetics']
         order='videoCount'
 
 
