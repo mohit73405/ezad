@@ -7,10 +7,11 @@ cdir = os.getcwd()
 print(cdir)
 
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
-mypath = cdir
+mypath = "/home/Connecsi/backend/ezad"
 if cdir not in sys.path:
    sys.path.append(cdir)
-
+if mypath not in sys.path:
+   sys.path.append(mypath)
 print(sys.path)
 
 try:
