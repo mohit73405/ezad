@@ -553,6 +553,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'insta_post_details':
                     cursor.execute(sql, data)
+                elif table_name == 'youtube_channels_history':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")
@@ -1772,6 +1774,55 @@ class ConnecsiModel:
                 sql = "Delete from  twitter_id_category_id  WHERE twitter_id = '" + twitter_id + "'" + " AND category_id = '" + category_id + "'"
                 print(sql)
                 cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def insert_update_youtube_details(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                print(data)
+                sql = "INSERT INTO youtube_channel_details (channel_id, title, channel_img, " \
+                      "`desc`, subscriberCount_gained, subscriberCount_lost," \
+                      "business_email,total_100video_views, total_100video_views_unique, " \
+                      "total_100video_likes,total_100video_dislikes, total_100video_comments," \
+                      "total_100video_shares, facebook_url, insta_url, twitter_url, country)" \
+                      " VALUES('{d[0]}','{d[1]}','{d[2]}','{d[3]}',{d[4]},{d[5]},'{d[6]}',{d[7]},{d[8]},{d[9]},{d[10]},{d[11]},{d[12]},'{d[13]}','{d[14]}','{d[15]}','{d[16]}')" \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " title = VALUES(title), channel_img=VALUES(channel_img),`desc`=VALUES(`desc`),subscriberCount_gained=VALUES(subscriberCount_gained)," \
+                      "subscriberCount_lost=VALUES(subscriberCount_lost),business_email=VALUES(business_email),total_100video_views=VALUES(total_100video_views),total_100video_views_unique=VALUES(total_100video_views_unique)," \
+                      " total_100video_likes=VALUES(total_100video_likes),total_100video_dislikes=VALUES(total_100video_dislikes), total_100video_comments=VALUES(total_100video_comments)," \
+                      "total_100video_shares=VALUES(total_100video_shares), facebook_url=VALUES(facebook_url),insta_url=VALUES(insta_url),twitter_url=VALUES(twitter_url),country=VALUES(country)".format(d=data)
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+
+
+
+    def insert_update_youtube_ids_video_cat_ids(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                print(data)
+                sql = "INSERT INTO youtube_channel_ids_video_categories_id (channel_id, video_id, video_cat_id) " \
+                      " VALUES(%s,%s,%s)" \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " channel_id = VALUES(channel_id), video_cat_id=VALUES(video_cat_id)"
+                print(sql)
+                cursor.executemany(sql,data)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")

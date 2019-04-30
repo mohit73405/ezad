@@ -161,7 +161,8 @@ class YoutubeApiController:
                 except:pass
         try:
             connecsiObj = ConnecsiModel()
-            connecsiObj.insert__(table_name='youtube_channel_ids_video_categories_id',data=data,columns=['channel_id','video_id','video_cat_id'])
+            # connecsiObj.insert__(table_name='youtube_channel_ids_video_categories_id',data=data,columns=['channel_id','video_id','video_cat_id'])
+            connecsiObj.insert_update_youtube_ids_video_cat_ids(data=data)
         except:pass
                 # facebook_url = re.findall('http://facebook\.*.*',description)
                 # if facebook_url:
@@ -350,12 +351,12 @@ class YoutubeApiController:
                "Gaming%20in%20NETHERLANDS", 'Fashion%20in%20NETHERLANDS', 'Fitness%20in%20NETHERLANDS', 'Sports%20in%20NETHERLANDS','Lifestyle%20in%20NETHERLANDS',
                "Gaming%20in%20INDIA", 'Fashion%20in%20INDIA', 'Fitness%20in%20INDIA', 'Sports%20in%20INDIA','Lifestyle%20in%20INDIA']
 
-        for q in query:
+        for q in keywords:
             # counter = 1
             print(q)
             pageToken = ''
             channel_ids=[]
-            while len(channel_ids) < 1000:
+            while len(channel_ids) < 10000:
                 print('length of channels ids = ', len(channel_ids))
                 url = self.get_channel_ids_url + '&maxResults=50&pageToken=' + pageToken +'&q='+q
                 print('search url = ',url)
@@ -458,10 +459,10 @@ class YoutubeApiController:
 
     def get_data(self):
         obj = ConnecsiModel()
-        data = obj.get__(table_name='youtube_channel_ids',STAR='*')
+        # data = obj.get__(table_name='youtube_channel_ids',STAR='*')
         # print(data)
         # exit()
-        # data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UCqbjngYxb_5vLtnTiAO0-Yw',))
+        data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UC-lHJZR3Gqxm24_Vd_AJ5Yw',))
         channelIds = []
         for item in data:
             # print(item[0])
@@ -477,6 +478,7 @@ class YoutubeApiController:
         # exit()
         for channelId in channelIds:
             myList = []
+            historyList=[]
             # self.YoutubeApiController(channelId=channelId)
             try:
                 self.channelId=channelId
@@ -498,13 +500,30 @@ class YoutubeApiController:
                 myList.append(self.insta_url)
                 myList.append(self.twitter_url)
                 myList.append(self.country)
+
+                historyList.append(channelId)
+                historyList.append(int(self.subscriberCount))
+                historyList.append(self.subscriberCount_lost)
+                historyList.append(self.total_100video_views)
+                historyList.append(self.total_100video_views_unique)
+                historyList.append(self.total_100video_likes)
+                historyList.append(self.total_100video_dislikes)
+                historyList.append(self.total_100video_comments)
+                historyList.append(self.total_100video_shares)
+
                 # print(myList)
                 # exit()
-                columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
-                           'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
-                           'total_100video_shares','facebook_url','insta_url','twitter_url','country']
+                # columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
+                #            'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
+                #            'total_100video_shares','facebook_url','insta_url','twitter_url','country']
                 connecsiObj = ConnecsiModel()
-                connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
+                # connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
+                connecsiObj.insert_update_youtube_details(data=myList)
+                columns = ['channel_id','subscriberCount_gained','subscriberCount_lost',
+                           'total_100video_views','total_100video_views_unique','total_100video_likes',
+                           'total_100video_dislikes','total_100video_comments',
+                           'total_100video_shares']
+                connecsiObj.insert__(table_name='youtube_channels_history',columns=columns,data=historyList)
             except:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass

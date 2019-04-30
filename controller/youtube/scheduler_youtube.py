@@ -39,9 +39,10 @@ def get_business_email():
 
 # get_channel_ids_from_socialblade()
 # update_channel_data()
-# get_channel_ids()
 
-get_channel_details()
+get_channel_ids()
+
+# get_channel_details()
 
 
 
