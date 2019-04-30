@@ -10,8 +10,10 @@ if mypath not in sys.path:
 
 print(sys.path)
 
-from controller.youtube.YoutubeApiController import YoutubeApiController
-
+try:
+    from controller.youtube.YoutubeApiController import YoutubeApiController
+except Exception as e:
+    print(e)
 
 
 def get_regionCodes():
