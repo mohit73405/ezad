@@ -341,9 +341,9 @@ class YoutubeApiController:
 
 
     def get_all_channel_ids_new(self):
-        priority_country_list = ['US']
-        keywords = ['makeup%20tutorials','beauty%20tutorials','cartoons','animation','film']
-        order='viewCount'
+        priority_country_list = ['US','IN']
+        keywords = ['mobiles','cars','bikes','sports','football','cricket','news','latest%20news']
+        order='videoCount'
 
 
         # query=["Gaming%20in%20USA", 'Fashion%20in%20USA', 'Fitness%20in%20USA','Sports%20in%20USA', 'Lifestyle%20in%20USA',]
