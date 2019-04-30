@@ -342,7 +342,7 @@ class YoutubeApiController:
 
     def get_all_channel_ids_new(self):
         priority_country_list = ['US', 'PL', 'DE', 'NL', 'IN']
-        keywords = ['gaming%20usa','gaming%20india','gaming%20poland']
+        keywords = ['']
 
 
         # query=["Gaming%20in%20USA", 'Fashion%20in%20USA', 'Fitness%20in%20USA','Sports%20in%20USA', 'Lifestyle%20in%20USA',]
