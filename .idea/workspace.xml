@@ -62,8 +62,8 @@
       <file leaf-file-name="YoutubeApiController.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller/youtube/YoutubeApiController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="345" column="26" lean-forward="true" selection-start-line="345" selection-start-column="26" selection-end-line="345" selection-end-column="26" />
+            <state relative-caret-position="102">
+              <caret line="344" column="42" lean-forward="true" selection-start-line="344" selection-start-column="42" selection-end-line="344" selection-end-column="42" />
               <folding>
                 <element signature="e#21#31#0" expanded="true" />
                 <element signature="e#2559#2590#0" expanded="false" />
@@ -847,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/youtube/YoutubeApiController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="345" column="26" lean-forward="true" selection-start-line="345" selection-start-column="26" selection-end-line="345" selection-end-column="26" />
+        <state relative-caret-position="102">
+          <caret line="344" column="42" lean-forward="true" selection-start-line="344" selection-start-column="42" selection-end-line="344" selection-end-column="42" />
           <folding>
             <element signature="e#21#31#0" expanded="true" />
             <element signature="e#2559#2590#0" expanded="false" />
