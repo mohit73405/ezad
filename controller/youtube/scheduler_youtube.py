@@ -6,8 +6,12 @@ print(sys.path)
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
 mypath = '/home/Connecsi/backend/ezad/controller'
 if mypath not in sys.path:
-    sys.path.append(mypath)
+   sys.path.append(mypath)
+
+print(sys.path)
+
 from controller.youtube.YoutubeApiController import YoutubeApiController
+
 
 
 def get_regionCodes():
