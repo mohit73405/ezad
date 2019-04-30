@@ -341,8 +341,21 @@ class YoutubeApiController:
 
 
     def get_all_channel_ids_new(self):
+        keyword_string=''
+        middle_string='%20in%20'
+        keywords = []
         priority_country_list = ['US']
-        keywords = ['cosmetics']
+        modelObj = ConnecsiModel()
+        region_codes = modelObj.get__(table_name='youtube_region_codes',STAR='*')
+        video_categories = modelObj.get__(table_name='youtube_video_categories',STAR='*')
+        for cat in video_categories:
+            for country in region_codes:
+                keyword_string=cat[1]+middle_string+country[1]
+                keywords.append(keyword_string)
+                # print(keywords)
+                # print(cat[1]+middle_string+country[1])
+        # print(keywords)
+        # exit()
         order='videoCount'
 
 
