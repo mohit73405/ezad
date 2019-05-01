@@ -211,12 +211,13 @@ class YoutubeApiController:
 
 
     def get_channel_ids_from_socialblade(self):
-
-        country_code = ['af','al','dz','as','ad','ao','ai','ag','ar','am','aw','au','at','az','bs','bh','bd',
+        done_country_code=['af','al','dz','as','ad','ao','ai','ag','ar','am','aw','au','at','az','bs','bh','bd',
                         'bb','by','be','bz','bj','bm','bt','bo','bl','ba','bw','br','bc','bn','bg','bf','bi',
                         'kh','cm','ca','ic','cv','ky','cf','td','cd','cl','cn','ci', 'cs', 'co', 'cc', 'cg',
                         'ck', 'cr', 'ct', 'hr', 'cu', 'cb', 'cy', 'cz', 'dk', 'dj', 'dm', 'do', 'tm', 'ec', 'eg',
-                        'sv', 'gq', 'er', 'ee', 'et', 'fa', 'fo', 'fj', 'fi', 'fr', 'gf', 'pf', 'fs', 'ga', 'gm',
+                        'sv', 'gq', 'er',]
+
+        country_code = ['ee', 'et', 'fa', 'fo', 'fj', 'fi', 'fr', 'gf', 'pf', 'fs', 'ga', 'gm',
                         'ge', 'de', 'gh', 'gi', 'gb', 'gr', 'gl', 'gd', 'gp', 'gu', 'gt', 'gn', 'gy', 'ht', 'hw',
                         'hn', 'hk', 'hu', 'is','in','id', 'ir', 'iq', 'ie', 'im', 'il', 'it', 'jm', 'jp', 'jo',
                         'kz', 'ke', 'ki', 'kp', 'kr', 'kw', 'kg', 'la', 'lv', 'lb', 'ls', 'lr', 'ly', 'li', 'lt',
