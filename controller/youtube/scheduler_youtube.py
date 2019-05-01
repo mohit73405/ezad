@@ -51,10 +51,10 @@ def get_business_email():
     conObj = YoutubeApiController()
     conObj.get_data_by_selinium()
 
-# get_channel_ids_from_socialblade()
+get_channel_ids_from_socialblade()
 # update_channel_data()
 
-get_channel_ids()
+# get_channel_ids()
 
 # get_channel_details()
 

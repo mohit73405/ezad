@@ -211,79 +211,101 @@ class YoutubeApiController:
 
 
     def get_channel_ids_from_socialblade(self):
-        all_hrefs = []
-        youtube_usernames = []
-        youtube_channel_id = []
-        youtube_usernames_2 = []
-        channel_ids=[]
+
+        country_code = ['af','al','dz','as','ad','ao','ai','ag','ar','am','aw','au','at','az','bs','bh','bd',
+                        'bb','by','be','bz','bj','bm','bt','bo','bl','ba','bw','br','bc','bn','bg','bf','bi',
+                        'kh','cm','ca','ic','cv','ky','cf','td','cd','cl','cn','ci', 'cs', 'co', 'cc', 'cg',
+                        'ck', 'cr', 'ct', 'hr', 'cu', 'cb', 'cy', 'cz', 'dk', 'dj', 'dm', 'do', 'tm', 'ec', 'eg',
+                        'sv', 'gq', 'er', 'ee', 'et', 'fa', 'fo', 'fj', 'fi', 'fr', 'gf', 'pf', 'fs', 'ga', 'gm',
+                        'ge', 'de', 'gh', 'gi', 'gb', 'gr', 'gl', 'gd', 'gp', 'gu', 'gt', 'gn', 'gy', 'ht', 'hw',
+                        'hn', 'hk', 'hu', 'is','in','id', 'ir', 'iq', 'ie', 'im', 'il', 'it', 'jm', 'jp', 'jo',
+                        'kz', 'ke', 'ki', 'kp', 'kr', 'kw', 'kg', 'la', 'lv', 'lb', 'ls', 'lr', 'ly', 'li', 'lt',
+                        'lu', 'mo', 'mk', 'mg', 'my', 'mw', 'mv', 'ml', 'mt', 'mh', 'mq', 'mr', 'mu', 'me', 'mx',
+                        'mi', 'md', 'mc', 'mn', 'ms', 'ma', 'mz', 'mm', 'na', 'nu', 'np', 'an', 'nl', 'nv', 'nc',
+                        'nz', 'ni', 'ne', 'ng', 'nw', 'nf', 'no', 'om', 'pk', 'pw', 'ps', 'pa', 'pg', 'py', 'pe',
+                        'ph', 'po', 'pl', 'pt', 'pr', 'qa', 'me', 'rs', 're', 'ro', 'ru', 'rw', 'nt', 'eu', 'he',
+                        'kn', 'lc', 'mb', 'pm', 'vc', 'sp', 'so', 'as', 'sm', 'st', 'sa', 'sn', 'sc', 'sl', 'sg',
+                        'sk', 'si', 'sb', 'oi', 'za', 'es', 'lk', 'sd', 'sr', 'sz', 'se', 'ch', 'sy', 'ta', 'tw',
+                        'tj', 'tz', 'th', 'tg', 'tk', 'to', 'tt', 'tn', 'tr', 'tu', 'tc', 'tv', 'ug', 'ua', 'ae',
+                        'gb', 'us', 'uy', 'uz', 'vu', 'vs', 've', 'vn', 'vb', 'va', 'wk', 'wf', 'ye', 'zr', 'zm',
+                        'zw'
+                        ]
         social_blade_url = 'https://socialblade.com/youtube/top/5000'
-        print(social_blade_url)
-        page = requests.get(url=social_blade_url).content
-        soup = BeautifulSoup(page, "html.parser")
+        for code in country_code:
+            all_hrefs = []
+            youtube_usernames = []
+            youtube_channel_id = []
+            youtube_usernames_2 = []
+            channel_ids = []
 
-        for a in soup.find_all('a', href=True):
-            # print("Found the URL:", a['href'])
-            all_hrefs.append(a['href'])
-
-        for item in all_hrefs:
-            # print(item)
-            # print(type(item))
-            m = re.search("(/youtube/c/)(.*)", item)
-            if m:
-                usernames = re.sub('\xa0', '', m.group(2))
-                usernames = usernames.replace('\\', '')
-                # usernames = m.group(2).encode('utf-8')
-                youtube_usernames.append(usernames)
-
-
-            m1  = re.search("(/youtube/channel/)(.*)",item)
-            if m1:
-                youtube_channel_id.append(m1.group(2))
-
-            m2 = re.search("(/youtube/user/)(.*)", item)
-            if m2:
-                youtube_usernames_2.append(m2.group(2))
-
-
-        print(youtube_usernames)
-        print(len(youtube_usernames))
-        print(youtube_channel_id)
-        print(len(youtube_channel_id))
-        print(youtube_usernames_2)
-        print(len(youtube_usernames_2))
-
-        for username in youtube_usernames:
-            social_blade_channel_url = 'https://socialblade.com/youtube/c/'+username
-            print(social_blade_channel_url)
-            page = requests.get(url=social_blade_channel_url).content
+            social_blade_countries_url = 'https://socialblade.com/youtube/top/country/'+code
+            # print(social_blade_url)
+            print(social_blade_countries_url)
+            page = requests.get(url=social_blade_countries_url).content
             soup = BeautifulSoup(page, "html.parser")
+
             for a in soup.find_all('a', href=True):
-                m3 = re.search("(https://youtube.com/channel/)(.*)", a['href'])
-                if m3:
-                    channel_ids.append(m3.group(2))
+                # print("Found the URL:", a['href'])
+                all_hrefs.append(a['href'])
+
+            for item in all_hrefs:
+                # print(item)
+                # print(type(item))
+                m = re.search("(/youtube/c/)(.*)", item)
+                if m:
+                    usernames = re.sub('\xa0', '', m.group(2))
+                    usernames = usernames.replace('\\', '')
+                    # usernames = m.group(2).encode('utf-8')
+                    youtube_usernames.append(usernames)
+
+
+                m1  = re.search("(/youtube/channel/)(.*)",item)
+                if m1:
+                    youtube_channel_id.append(m1.group(2))
+
+                m2 = re.search("(/youtube/user/)(.*)", item)
+                if m2:
+                    youtube_usernames_2.append(m2.group(2))
+
+
+            print(youtube_usernames)
+            print(len(youtube_usernames))
+            print(youtube_channel_id)
+            print(len(youtube_channel_id))
+            print(youtube_usernames_2)
+            print(len(youtube_usernames_2))
+
+            for username in youtube_usernames:
+                social_blade_channel_url = 'https://socialblade.com/youtube/c/'+username
+                print(social_blade_channel_url)
+                page = requests.get(url=social_blade_channel_url).content
+                soup = BeautifulSoup(page, "html.parser")
+                for a in soup.find_all('a', href=True):
+                    m3 = re.search("(https://youtube.com/channel/)(.*)", a['href'])
+                    if m3:
+                        channel_ids.append(m3.group(2))
+                print(len(channel_ids))
+
+
+            for username in youtube_usernames_2:
+                social_blade_user_url = 'https://socialblade.com/youtube/user/' + username
+                print(social_blade_user_url)
+                page = requests.get(url=social_blade_user_url).content
+                soup = BeautifulSoup(page, "html.parser")
+                for a in soup.find_all('a', href=True):
+                    m3 = re.search("(https://youtube.com/channel/)(.*)", a['href'])
+                    if m3:
+                        channel_ids.append(m3.group(2))
+                print(len(channel_ids))
+
+            print(channel_ids)
             print(len(channel_ids))
-
-
-        for username in youtube_usernames_2:
-            social_blade_user_url = 'https://socialblade.com/youtube/user/' + username
-            print(social_blade_user_url)
-            page = requests.get(url=social_blade_user_url).content
-            soup = BeautifulSoup(page, "html.parser")
-            for a in soup.find_all('a', href=True):
-                m3 = re.search("(https://youtube.com/channel/)(.*)", a['href'])
-                if m3:
-                    channel_ids.append(m3.group(2))
-            print(len(channel_ids))
-
-        print(channel_ids)
-        print(len(channel_ids))
-        mergerd_channel_ids = channel_ids+youtube_channel_id
-        print(mergerd_channel_ids)
-        print(len(mergerd_channel_ids))
-
-        connecsiObj = ConnecsiModel()
-        connecsiObj.insert__(data=mergerd_channel_ids, table_name='youtube_channel_ids', columns=['channel_id'],
-                             IGNORE='IGNORE')
+            mergerd_channel_ids = channel_ids+youtube_channel_id
+            print(mergerd_channel_ids)
+            print(len(mergerd_channel_ids))
+            connecsiObj = ConnecsiModel()
+            connecsiObj.insert__(data=mergerd_channel_ids, table_name='youtube_channel_ids', columns=['channel_id'],
+                                 IGNORE='IGNORE')
 
 
 

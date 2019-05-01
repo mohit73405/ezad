@@ -3,8 +3,12 @@ import urllib.parse
 
 import schedule #pip install schedule
 import time
-# import sys
+import sys
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
+mypath = "/home/Connecsi/backend/ezad"
+if mypath not in sys.path:
+   sys.path.append(mypath)
+
 from controller.twitter_module.TwitterApiController import TwitterApiController
 from model.ConnecsiModel import ConnecsiModel
 
