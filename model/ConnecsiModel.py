@@ -1,3 +1,5 @@
+import uuid
+
 import pandas as pd
 import pymysql,pymysql.cursors
 # import sshtunnel
@@ -1717,8 +1719,9 @@ class ConnecsiModel:
     def insert_categories_to_youtube_channel(self, channel_id, video_cat_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "INSERT INTO youtube_channel_ids_video_categories_id(channel_id, video_cat_id) SELECT * FROM " \
-                      "(SELECT '"+channel_id+"', '"+video_cat_id+"') AS tmp WHERE NOT EXISTS(SELECT channel_id,video_cat_id FROM youtube_channel_ids_video_categories_id" \
+                video_id = lowercase_str = uuid.uuid4().hex
+                sql = "INSERT INTO youtube_channel_ids_video_categories_id(channel_id, video_cat_id,video_id) SELECT * FROM " \
+                      "(SELECT '"+channel_id+"', '"+video_cat_id+"', '"+video_id+"') AS tmp WHERE NOT EXISTS(SELECT channel_id,video_cat_id FROM youtube_channel_ids_video_categories_id" \
                       " WHERE channel_id = '"+channel_id+"' AND video_cat_id = '"+video_cat_id+"') LIMIT 1;"
                 print(sql)
                 cursor.execute(sql)
