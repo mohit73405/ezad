@@ -717,7 +717,7 @@ class ConnecsiModel:
                       " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,chm.confirmed" \
                       " FROM inf_offers io" \
-                      " JOIN channels_mapper chm on io.channel_id = chm.youtube_channel_id " \
+                      " LEFT JOIN channels_mapper chm on io.channel_id = chm.youtube_channel_id " \
                       " WHERE io.offer_id='" +offer_id+ "'"
                      # (chm.youtube_channel_id = '" + user_id + "' OR chm.twitter_channel_id = '" + user_id + "')" \
                 print(sql)
