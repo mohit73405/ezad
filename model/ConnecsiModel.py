@@ -716,8 +716,8 @@ class ConnecsiModel:
                       " io.channels,io.regions,io.min_lower_followers,io.max_upper_followers,io.files,io.video_cat_id," \
                       " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,chm.confirmed" \
-                      " FROM channels_mapper chm" \
-                      " LEFT JOIN inf_offers io on io.channel_id = chm.youtube_channel_id or io.channel_id = chm.twitter_channel_id" \
+                      " FROM inf_offers io" \
+                      " JOIN channels_mapper chm on io.channel_id = chm.youtube_channel_id " \
                       " WHERE io.offer_id='" +offer_id+ "'"
                      # (chm.youtube_channel_id = '" + user_id + "' OR chm.twitter_channel_id = '" + user_id + "')" \
                 print(sql)
