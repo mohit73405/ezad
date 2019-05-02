@@ -1475,13 +1475,13 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
-                      " io1.offer_id,io1.channel_id,io1.offer_name, io1.from_date,io1.to_date,io1.budget,io1.currency," \
-                      " io1.channels,io1.regions,io1.min_lower_followers,io1.max_upper_followers,io1.files,io1.video_cat_id," \
-                      " io1.offer_description,io1.arrangements,io1.kpis,io1.no_of_views,io1.no_of_replies,io1.deleted,io1.posted_date," \
+                      " io.offer_id,io.channel_id,io.offer_name, io.from_date,io.to_date,io.budget,io.currency," \
+                      " io.channels,io.regions,io.min_lower_followers,io.max_upper_followers,io.files,io.video_cat_id," \
+                      " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date," \
                       " chm.youtube_channel_id,chm.twitter_channel_id,chm.confirmed" \
-                      " FROM channels_mapper chm" \
-                      " JOIN inf_offers io1 on io1.channel_id = chm.youtube_channel_id OR io1.channel_id=chm.twitter_channel_id" \
-                      " WHERE chm.youtube_channel_id = '" + channel_id + "' OR chm.twitter_channel_id = '" + channel_id + "'"
+                      " FROM inf_offers io " \
+                      " LEFT JOIN channels_mapper chm on io.channel_id = chm.youtube_channel_id " \
+                      " WHERE io.channel_id = '" + channel_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
