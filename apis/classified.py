@@ -248,7 +248,7 @@ class Classified(Resource):
                        'regions',
                        'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id','target_url',
                        'classified_description',
-                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date','first_name','last_name','video_cat_name'
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date','first_name','last_name','email_id','video_cat_name'
                        ]
             response_list = []
             for item in offer_data:
