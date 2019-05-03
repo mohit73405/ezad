@@ -526,8 +526,8 @@ class YoutubeApiController:
         for item in channel_ids_not_done:
             # print(item)
             channelIds.append(item)
-        print(channelIds)
-        exit()
+        # print(channelIds)
+        # exit()
         # print(len(channelIds))
         # print(channelIds)
         # channelIds_string = ','.join(channelIds)
