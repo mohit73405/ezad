@@ -511,23 +511,23 @@ class YoutubeApiController:
         channel_ids_done = []
         total_channel_ids = []
         channel_ids_not_done = []
-        for item in data_done:
-            channel_ids_done.append(item[0])
-        for item in data:
-            total_channel_ids.append(item[0])
-        for item in total_channel_ids:
-            if item not in channel_ids_done:
-                channel_ids_not_done.append(item)
-        # print(channel_ids_done)
-        # print(total_channel_ids)
-        # print(channel_ids_not_done)
+        for item2 in data_done:
+            channel_ids_done.append(item2[0])
+        for item3 in data:
+            total_channel_ids.append(item3[0])
+        for item4 in total_channel_ids:
+            if item4 not in channel_ids_done:
+                channel_ids_not_done.append(item4)
+        print(len(total_channel_ids))
+        print(len(channel_ids_done))
+        print(len(channel_ids_not_done))
         # exit()
         channelIds = []
         for item in channel_ids_not_done:
-            # print(item[0])
+            # print(item)
             channelIds.append(item)
-        # print(channelIds)
-        # exit()
+        print(channelIds)
+        exit()
         # print(len(channelIds))
         # print(channelIds)
         # channelIds_string = ','.join(channelIds)
