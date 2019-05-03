@@ -503,11 +503,24 @@ class YoutubeApiController:
     def get_data(self):
         obj = ConnecsiModel()
         data = obj.get__(table_name='youtube_channel_ids',STAR='*')
+        data_done = obj.get__(table_name='youtube_channel_details', columns=['channel_id'])
         # print(data)
         # exit()
-        # data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UC-lHJZR3Gqxm24_Vd_AJ5Yw',))
-        channelIds = []
+        # data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UC--1uJmdPz1DhoNcYEDN6Cw',))
+        # exit()
+        channel_ids_done = []
+        total_channel_ids = []
+        channel_ids_not_done = []
+        for item in data_done:
+            channel_ids_done.append(item[0])
         for item in data:
+            total_channel_ids.append(item[0])
+        for item in total_channel_ids:
+            if item not in channel_ids_done:
+                channel_ids_not_done.append(item)
+
+        channelIds = []
+        for item in channel_ids_not_done:
             # print(item[0])
             channelIds.append(item[0])
         # print(channelIds)
