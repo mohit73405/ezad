@@ -506,7 +506,7 @@ class YoutubeApiController:
         data_done = obj.get__(table_name='youtube_channel_details', columns=['channel_id'])
         # print(data)
         # exit()
-        # data=(('UCsUF5-qBO_oZVMQJPl6JxAw',),('UC--1uJmdPz1DhoNcYEDN6Cw',))
+        # channel_ids_not_done=(('UC--3c8RqSfAqYBdDjIG3UNA',))
         # exit()
         channel_ids_done = []
         total_channel_ids = []

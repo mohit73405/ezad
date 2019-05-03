@@ -1790,12 +1790,12 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 print(data)
-                sql = "INSERT INTO youtube_channel_details (channel_id, title, channel_img, " \
-                      "`desc`, subscriberCount_gained, subscriberCount_lost," \
-                      "business_email,total_100video_views, total_100video_views_unique, " \
-                      "total_100video_likes,total_100video_dislikes, total_100video_comments," \
-                      "total_100video_shares, facebook_url, insta_url, twitter_url, country)" \
-                      " VALUES('{d[0]}','{d[1]}','{d[2]}','{d[3]}',{d[4]},{d[5]},'{d[6]}',{d[7]},{d[8]},{d[9]},{d[10]},{d[11]},{d[12]},'{d[13]}','{d[14]}','{d[15]}','{d[16]}')" \
+                sql = 'INSERT INTO youtube_channel_details (channel_id, title, channel_img, ' \
+                      '`desc`, subscriberCount_gained, subscriberCount_lost,' \
+                      'business_email,total_100video_views, total_100video_views_unique, ' \
+                      'total_100video_likes,total_100video_dislikes, total_100video_comments,' \
+                      'total_100video_shares, facebook_url, insta_url, twitter_url, country)' \
+                      ' VALUES("{d[0]}","{d[1]}","{d[2]}","{d[3]}",{d[4]},{d[5]},"{d[6]}",{d[7]},{d[8]},{d[9]},{d[10]},{d[11]},{d[12]},"{d[13]}","{d[14]}","{d[15]}","{d[16]}")' \
                       " ON DUPLICATE KEY UPDATE " \
                       " title = VALUES(title), channel_img=VALUES(channel_img),`desc`=VALUES(`desc`),subscriberCount_gained=VALUES(subscriberCount_gained)," \
                       "subscriberCount_lost=VALUES(subscriberCount_lost),business_email=VALUES(business_email),total_100video_views=VALUES(total_100video_views),total_100video_views_unique=VALUES(total_100video_views_unique)," \
