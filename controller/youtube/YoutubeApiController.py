@@ -502,25 +502,25 @@ class YoutubeApiController:
 
     def get_data(self):
         obj = ConnecsiModel()
-        data = obj.get__(table_name='youtube_channel_ids',STAR='*')
-        data_done = obj.get__(table_name='youtube_channel_details', columns=['channel_id'])
+        # data = obj.get__(table_name='youtube_channel_ids',STAR='*')
+        # data_done = obj.get__(table_name='youtube_channel_details', columns=['channel_id'])
         # print(data)
         # exit()
-        # channel_ids_not_done=(('UC--3c8RqSfAqYBdDjIG3UNA',))
+        channel_ids_not_done=(('UC_g8bBdDgWXSANdrY2Xd3cw',))
         # exit()
-        channel_ids_done = []
-        total_channel_ids = []
-        channel_ids_not_done = []
-        for item2 in data_done:
-            channel_ids_done.append(item2[0])
-        for item3 in data:
-            total_channel_ids.append(item3[0])
-        for item4 in total_channel_ids:
-            if item4 not in channel_ids_done:
-                channel_ids_not_done.append(item4)
-        print(len(total_channel_ids))
-        print(len(channel_ids_done))
-        print(len(channel_ids_not_done))
+        # channel_ids_done = []
+        # total_channel_ids = []
+        # channel_ids_not_done = []
+        # for item2 in data_done:
+        #     channel_ids_done.append(item2[0])
+        # for item3 in data:
+        #     total_channel_ids.append(item3[0])
+        # for item4 in total_channel_ids:
+        #     if item4 not in channel_ids_done:
+        #         channel_ids_not_done.append(item4)
+        # print(len(total_channel_ids))
+        # print(len(channel_ids_done))
+        # print(len(channel_ids_not_done))
         # exit()
         channelIds = []
         for item in channel_ids_not_done:
