@@ -609,6 +609,8 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+
+
     def get_conversations_by_message_id(self,message_id):
         try:
             with self.cnx.cursor() as cursor:
@@ -1834,3 +1836,20 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+    def get_messages_by_to_email_id(self,to_email_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'messages'
+                sql = "SELECT  message_id,user_id,channel_id,from_email_id,to_email_id,date from " + table_name + " WHERE to_email_id = '" + to_email_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/offers.py" afterPath="$PROJECT_DIR$/apis/offers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" afterPath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="743" column="69" lean-forward="false" selection-start-line="743" selection-start-column="69" selection-end-line="743" selection-end-column="69" />
+            <state relative-caret-position="111">
+              <caret line="1840" column="27" lean-forward="false" selection-start-line="1840" selection-start-column="27" selection-end-line="1840" selection-end-column="27" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -32,6 +31,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="138">
               <caret line="243" column="61" lean-forward="true" selection-start-line="243" selection-start-column="61" selection-end-line="243" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apis/messages.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="537" column="31" lean-forward="false" selection-start-line="537" selection-start-column="31" selection-end-line="537" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -76,8 +85,8 @@
       <file leaf-file-name="offers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/offers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="203" column="56" lean-forward="true" selection-start-line="203" selection-start-column="56" selection-end-line="203" selection-end-column="56" />
+            <state relative-caret-position="102">
+              <caret line="186" column="32" lean-forward="true" selection-start-line="186" selection-start-column="32" selection-end-line="186" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -129,7 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logo</find>
       <find>section</find>
       <find>exception occured</find>
       <find>contain</find>
@@ -159,6 +167,7 @@
       <find>getDetailsByUserId</find>
       <find>searchCha</find>
       <find>search</find>
+      <find>get_mess</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -202,7 +211,6 @@
         <option value="$PROJECT_DIR$/controller/instagram/instagramController.py" />
         <option value="$PROJECT_DIR$/controller/instagram/scheduler_instagram.py" />
         <option value="$PROJECT_DIR$/controller/instagram/instagramCon.py" />
-        <option value="$PROJECT_DIR$/apis/messages.py" />
         <option value="$PROJECT_DIR$/apis/campaign.py" />
         <option value="$PROJECT_DIR$/apis/youtube.py" />
         <option value="$PROJECT_DIR$/controller/twitter/__init__.py" />
@@ -218,6 +226,7 @@
         <option value="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
         <option value="$PROJECT_DIR$/apis/offers.py" />
         <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/apis/messages.py" />
       </list>
     </option>
   </component>
@@ -676,14 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/messages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="516" column="28" lean-forward="false" selection-start-line="516" selection-start-column="20" selection-end-line="516" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -877,19 +878,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/offers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="203" column="56" lean-forward="true" selection-start-line="203" selection-start-column="56" selection-end-line="203" selection-end-column="56" />
+        <state relative-caret-position="102">
+          <caret line="186" column="32" lean-forward="true" selection-start-line="186" selection-start-column="32" selection-end-line="186" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="743" column="69" lean-forward="false" selection-start-line="743" selection-start-column="69" selection-end-line="743" selection-end-column="69" />
+        <state relative-caret-position="111">
+          <caret line="1840" column="27" lean-forward="false" selection-start-line="1840" selection-start-column="27" selection-end-line="1840" selection-end-column="27" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/messages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="537" column="31" lean-forward="false" selection-start-line="537" selection-start-column="31" selection-end-line="537" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -387,6 +387,9 @@ class MailBox(Resource):
 
 
 
+
+
+
 @ns_messages.route('/uploadMessageFiles/<string:message_id>')
 class MailBox(Resource):
     def post(self,message_id):
@@ -523,3 +526,22 @@ class MailBox(Resource):
         # Login Credentials for sending the mail
         server.login(msg['From'], password)
         server.sendmail(msg['From'], [msg['To']], msg.as_string())
+
+
+
+@ns_messages.route('/getMessagesByToEmailId/<string:to_email_id>')
+class MailBox(Resource):
+    def get(self,to_email_id):
+        ''' Get all messages by to_email_id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_messages_by_to_email_id(to_email_id=str(to_email_id))
+            print(data)
+            columns = ['message_id','user_id', 'channel_id', 'from_email_id', 'to_email_id','date']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
