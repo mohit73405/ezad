@@ -1053,9 +1053,10 @@ class ConnecsiModel:
                 # print(sql)
                 res = cursor.execute(select_sql)
                 print(res)
-                # if res == 1:
-                #    cursor.execute(update_sql)
-                # else:cursor.execute(insert_sql)
+                if res == 1:
+                   cursor.execute(update_sql)
+                else:
+                    cursor.execute(insert_sql)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")
