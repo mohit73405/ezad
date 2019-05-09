@@ -560,11 +560,9 @@ class MailBox(Resource):
             pass
         try:
             connecsiObj = ConnecsiModel()
-            connecsiObj.update__(table_name='youtube_channel_details',data=[email_id],columns=['business_email'],WHERE='WHERE'
-                                 ,compare_column='channel_id',compare_value=str(channel_id))
-            connecsiObj.update__(table_name='messages',data=[email_id],columns=['to_email_id'],WHERE='WHERE',
-                                 compare_column='message_id',compare_value=message_id)
-            return {'data': 1},200
+            res = connecsiObj.update_youtube_email(channel_id=channel_id,business_email=email_id)
+            res = connecsiObj.update_messages_to_email_id(message_id=message_id,to_email_id=email_id)
+            return {'data': res},200
         except Exception as e:
             return {"response": e}, 500
 

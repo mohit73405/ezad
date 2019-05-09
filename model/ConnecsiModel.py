@@ -947,6 +947,35 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def update_youtube_email(self, channel_id,business_email):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE youtube_channel_details SET business_email = '"+ business_email +"' WHERE channel_id = '"+ channel_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def update_messages_to_email_id(self, message_id,to_email_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE messages SET to_email_id = '"+ to_email_id +"' WHERE message_id = '"+ message_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
 
     def get_youtube_inf_list(self, campaign_id):
         try:
