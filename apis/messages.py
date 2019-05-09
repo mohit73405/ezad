@@ -549,32 +549,50 @@ class MailBox(Resource):
             return {"response": e}, 500
 
 
-# @ns_messages.route('/update_and_send_email_youtube/<channel_id>/<message_id>/<email_id>/<subject>/<message>')
-# class MailBox(Resource):
-#     def get(self,channel_id,message_id,email_id,subject,message):
-#         ''' update and send email of youtube channel'''
-#         try:
-#             connecsiObj = ConnecsiModel()
-#
-#             return {'data': response_list}
-#         except Exception as e:
-#             return {"response": e}, 500
+@ns_messages.route('/update_and_send_email_youtube/<channel_id>/<message_id>/<email_id>/<subject>/<message>')
+class MailBox(Resource):
+    def get(self,channel_id,message_id,email_id,subject,message):
+        ''' update and send email of youtube channel'''
+        try:
+            self.send_mail(subject=subject,to_email_id=email_id)
+        except Exception as e:
+            print(e)
+            pass
+        try:
+            connecsiObj = ConnecsiModel()
+            connecsiObj.update__(table_name='youtube_channel_details',data=[email_id],columns=['business_email'],WHERE='WHERE'
+                                 ,compare_column='channel_id',compare_value=str(channel_id))
+            connecsiObj.update__(table_name='messages',data=[email_id],columns=['to_email_id'],WHERE='WHERE',
+                                 compare_column='message_id',compare_value=message_id)
+            return {'data': 1},200
+        except Exception as e:
+            return {"response": e}, 500
 
 
-    # def send_mail(self,subject,to_email_id,message):
-    #     email_content = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Connecsi</title></head><body>' \
-    #                     +message+ \
-    #                     '</body></html>'
-    #     msg = email.message.Message()
-    #     msg['Subject'] = subject
-    #     msg['From'] = 'business@connecsi.com'
-    #     msg['To'] = to_email_id
-    #     password = "Ezadteam"
-    #     msg.add_header('Content-Type', 'text/html')
-    #     msg.set_payload(email_content)
-    #
-    #     server = smtplib.SMTP('smtp.gmail.com: 587')
-    #     server.starttls()
-    #     # Login Credentials for sending the mail
-    #     server.login(msg['From'], password)
-    #     server.sendmail(msg['From'], [msg['To']], msg.as_string())
+    def send_mail(self,subject,to_email_id):
+        email_content = """
+        <html>
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+           <title>Connecsi</title>
+        </head>
+        <body>
+        Connecsi User wants to connect with you...
+        Please login to view the full message...
+        <a href="#">Login</a>
+        </body>
+        </html>
+        """
+        msg = email.message.Message()
+        msg['Subject'] = subject
+        msg['From'] = 'business@connecsi.com'
+        msg['To'] = to_email_id
+        password = "Ezadteam"
+        msg.add_header('Content-Type', 'text/html')
+        msg.set_payload(email_content)
+
+        server = smtplib.SMTP('smtp.gmail.com: 587')
+        server.starttls()
+        # Login Credentials for sending the mail
+        server.login(msg['From'], password)
+        server.sendmail(msg['From'], [msg['To']], msg.as_string())
