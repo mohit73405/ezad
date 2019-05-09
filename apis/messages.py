@@ -539,7 +539,7 @@ class MailBox(Resource):
             connecsiObj = ConnecsiModel()
             data = connecsiObj.get_messages_by_to_email_id(to_email_id=str(to_email_id))
             print(data)
-            columns = ['message_id','user_id', 'channel_id', 'from_email_id', 'to_email_id','date']
+            columns = ['message_id','user_id', 'channel_id', 'from_email_id', 'to_email_id','date','subject','message']
             response_list = []
             for item in data:
                 dict_temp = dict(zip(columns, item))
@@ -547,3 +547,34 @@ class MailBox(Resource):
             return {'data': response_list}
         except Exception as e:
             return {"response": e}, 500
+
+
+# @ns_messages.route('/update_and_send_email_youtube/<channel_id>/<message_id>/<email_id>/<subject>/<message>')
+# class MailBox(Resource):
+#     def get(self,channel_id,message_id,email_id,subject,message):
+#         ''' update and send email of youtube channel'''
+#         try:
+#             connecsiObj = ConnecsiModel()
+#
+#             return {'data': response_list}
+#         except Exception as e:
+#             return {"response": e}, 500
+
+
+    # def send_mail(self,subject,to_email_id,message):
+    #     email_content = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Connecsi</title></head><body>' \
+    #                     +message+ \
+    #                     '</body></html>'
+    #     msg = email.message.Message()
+    #     msg['Subject'] = subject
+    #     msg['From'] = 'business@connecsi.com'
+    #     msg['To'] = to_email_id
+    #     password = "Ezadteam"
+    #     msg.add_header('Content-Type', 'text/html')
+    #     msg.set_payload(email_content)
+    #
+    #     server = smtplib.SMTP('smtp.gmail.com: 587')
+    #     server.starttls()
+    #     # Login Credentials for sending the mail
+    #     server.login(msg['From'], password)
+    #     server.sendmail(msg['From'], [msg['To']], msg.as_string())
