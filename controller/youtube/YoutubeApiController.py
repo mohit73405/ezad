@@ -28,7 +28,8 @@ class YoutubeApiController:
         self.video_cat_url= 'https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&key='+self.api_key+'&regionCode=US'
         self.channel_details_url = config.get('instance', 'channel_details_url')
         self.get_channel_ids_url = 'https://www.googleapis.com/youtube/v3/search?part=id&type=channel&key='+self.api_key
-        self.latest_video_ids_url= 'https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&type=video&key='+self.api_key
+        # self.latest_video_ids_url= 'https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&type=video&key='+self.api_key
+        self.latest_video_ids_url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&key=' + self.api_key
         self.video_details_url = 'https://www.googleapis.com/youtube/v3/videos?key=' + self.api_key + '&part=snippet,statistics&id='
         self.channel_thumbnail=''
         self.channelTitle=''
@@ -58,7 +59,7 @@ class YoutubeApiController:
     def get_channel_details(self):
         self.country=''
         url = self.channel_details_url+self.channelId+'&key='+self.api_key
-        # print(url)
+        print('CHANNEL URL = ',url)
         channel_data = self.get_Json_data_Request_Lib(url=url)
         # print(channel_data)
         # exit()
@@ -74,8 +75,15 @@ class YoutubeApiController:
             # print(self.channel_desc)
             # exit()
             self.subscriberCount = channel_data['items'][0]['statistics']['subscriberCount']
+            playlist_id=''
+            try:
+                playlist_id = channel_data['items'][0]['contentDetails']['relatedPlaylists']['uploads']
+                print('playlist id = ',playlist_id)
+            except Exception as e:
+                print(e)
+                pass
             # print('channel id before getting videos data = ',self.channelId)
-            video_ids = self.get_latest_video_ids(channelId=self.channelId)
+            video_ids = self.get_latest_video_ids(playlist_id=playlist_id)
             self.get_video_details(video_ids=video_ids)
             # print('channel id before social media = ',self.channelId)
             self.get_social_media_url(channel_id=self.channelId)
@@ -138,7 +146,7 @@ class YoutubeApiController:
             # print(type(video_id))
             video_ids_string = ','.join(video_id)
             url = self.video_details_url + video_ids_string
-            # print(url)
+            print('VIDEO DETAILS URL =',url)
             # exit()
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
@@ -182,14 +190,15 @@ class YoutubeApiController:
 
 
 
-    def get_latest_video_ids(self,channelId):
+    def get_latest_video_ids(self,playlist_id):
         # print('channel id inside video method = ',channelId)
         counter = 1
         pageToken = ''
         video_ids = []
         while counter <= 2 :
-            url=self.latest_video_ids_url+'&maxResults=50'+'&pageToken='+pageToken+'&channelId='+str(channelId)
-            # print(url)
+            # url=self.latest_video_ids_url+'&maxResults=50'+'&pageToken='+pageToken+'&channelId='+str(channelId)
+            url=self.latest_video_ids_url+'&maxResults=50'+'&pageToken='+pageToken+'&playlistId='+str(playlist_id)
+            print('LATEST VIDEO IDS URL = ',url)
             # exit()
             json_data = self.get_Json_data_Request_Lib(url=url)
             # print(json_data)
@@ -201,7 +210,8 @@ class YoutubeApiController:
                 # print(items)
                 counter = counter+1
                 for item in items:
-                    video_ids.append(item['id']['videoId'])
+                    # print(item)
+                    video_ids.append(item['contentDetails']['videoId'])
             except:pass
             if pageToken == '':
                 break
@@ -506,7 +516,7 @@ class YoutubeApiController:
         # data_done = obj.get__(table_name='youtube_channel_details', columns=['channel_id'])
         # print(data)
         # exit()
-        # channel_ids_not_done=(('UC_g8bBdDgWXSANdrY2Xd3cw',))
+        # channel_ids_not_done=(('UC-lHJZR3Gqxm24_Vd_AJ5Yw',),('UC-lHJZR3Gqxm24_Vd_AJ5Yw',))
         # exit()
         # channel_ids_done = []
         # total_channel_ids = []
@@ -524,9 +534,10 @@ class YoutubeApiController:
         # exit()
         channelIds = []
         for item in data:
-            print(item[0])
+            # print(item[0])
             channelIds.append(item[0])
         # print(channelIds)
+
         # exit()
         # print(len(channelIds))
         # print(channelIds)
@@ -587,6 +598,8 @@ class YoutubeApiController:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass
 
+            time.sleep(3)
+            print('sleeping 3 seconds')
             # with open("output.csv", 'a') as resultFile:
             #     wr = csv.writer(resultFile, dialect='excel')
             #     wr.writerow(myList)
