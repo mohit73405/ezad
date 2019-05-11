@@ -1833,7 +1833,7 @@ class ConnecsiModel:
     def insert_update_youtube_details(self, data):
         try:
             with self.cnx.cursor() as cursor:
-                print(data)
+                # print(data)
                 sql = 'INSERT INTO youtube_channel_details (channel_id, title, channel_img, ' \
                       '`desc`, subscriberCount_gained, subscriberCount_lost,' \
                       'business_email,total_100video_views, total_100video_views_unique, ' \
@@ -1863,7 +1863,7 @@ class ConnecsiModel:
     def insert_update_youtube_ids_video_cat_ids(self, data):
         try:
             with self.cnx.cursor() as cursor:
-                print(data)
+                # print(data)
                 sql = "INSERT INTO youtube_channel_ids_video_categories_id (channel_id, video_id, video_cat_id) " \
                       " VALUES(%s,%s,%s)" \
                       " ON DUPLICATE KEY UPDATE " \

@@ -516,7 +516,7 @@ class YoutubeApiController:
         # data_done = obj.get__(table_name='youtube_channel_details', columns=['channel_id'])
         # print(data)
         # exit()
-        # channel_ids_not_done=(('UC-lHJZR3Gqxm24_Vd_AJ5Yw',),('UC-lHJZR3Gqxm24_Vd_AJ5Yw',))
+        # data=(('UC-lHJZR3Gqxm24_Vd_AJ5Yw',),('UC-lHJZR3Gqxm24_Vd_AJ5Yw',))
         # exit()
         # channel_ids_done = []
         # total_channel_ids = []
@@ -546,6 +546,7 @@ class YoutubeApiController:
         # print(self.channelId)
         # self.get_channel_details()
         # exit()
+        counter=1
         for channelId in channelIds:
             myList = []
             historyList=[]
@@ -600,6 +601,9 @@ class YoutubeApiController:
 
             time.sleep(3)
             print('sleeping 3 seconds')
+            print('NO OF IDS DONE = ',counter)
+            print('LAST UPDATED CHANNEL ID = ',channelId ,'WITH INDEX',counter)
+            counter +=1
             # with open("output.csv", 'a') as resultFile:
             #     wr = csv.writer(resultFile, dialect='excel')
             #     wr.writerow(myList)
