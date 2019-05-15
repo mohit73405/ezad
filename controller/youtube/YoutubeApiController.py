@@ -513,29 +513,30 @@ class YoutubeApiController:
     def get_data(self):
         obj = ConnecsiModel()
         data = obj.get__(table_name='youtube_channel_ids',STAR='*')
-        # data_done = obj.get__(table_name='youtube_channel_details', columns=['channel_id'])
+        data_done = obj.get__(table_name='youtube_channel_ids_done', STAR='*')
         # print(data)
         # exit()
-        # data=(('UC-lHJZR3Gqxm24_Vd_AJ5Yw',),('UC-lHJZR3Gqxm24_Vd_AJ5Yw',))
+        # data=(('UC-lHJZR3Gqxm24_Vd_AJ5Yw',),('UCfX-uO8iDdJRgFR2lrBWsYA',))
         # exit()
-        # channel_ids_done = []
-        # total_channel_ids = []
-        # channel_ids_not_done = []
-        # for item2 in data_done:
-        #     channel_ids_done.append(item2[0])
-        # for item3 in data:
-        #     total_channel_ids.append(item3[0])
-        # for item4 in total_channel_ids:
-        #     if item4 not in channel_ids_done:
-        #         channel_ids_not_done.append(item4)
-        # print(len(total_channel_ids))
-        # print(len(channel_ids_done))
-        # print(len(channel_ids_not_done))
+        channel_ids_done = []
+        total_channel_ids = []
+        channel_ids_not_done = []
+        for item2 in data_done:
+            channel_ids_done.append(item2[0])
+        for item3 in data:
+            total_channel_ids.append(item3[0])
+        for item4 in total_channel_ids:
+            if item4 not in channel_ids_done:
+                channel_ids_not_done.append(item4)
+        print('TOTAL IDS = ',len(total_channel_ids))
+        print('DONE = ',len(channel_ids_done))
+        print('NOT DONE =',len(channel_ids_not_done))
         # exit()
         channelIds = []
-        for item in data:
+        for item in channel_ids_not_done:
             # print(item[0])
-            channelIds.append(item[0])
+            channelIds.append(item)
+
         counter=1
         for channelId in channelIds:
             myList = []
@@ -593,6 +594,7 @@ class YoutubeApiController:
             # print('sleeping 3 seconds')
             print('NO OF IDS DONE = ',counter)
             print('LAST UPDATED CHANNEL ID = ',channelId ,'WITH INDEX',counter)
+            obj.insert__(table_name='youtube_channel_ids_done',columns=['channel_id'],data=[channelId],IGNORE='IGNORE')
             counter +=1
             # with open("output.csv", 'a') as resultFile:
             #     wr = csv.writer(resultFile, dialect='excel')

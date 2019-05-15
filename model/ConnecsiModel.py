@@ -557,6 +557,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'youtube_channels_history':
                     cursor.execute(sql, data)
+                elif table_name == 'youtube_channel_ids_done':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")
