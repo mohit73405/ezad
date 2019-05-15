@@ -118,7 +118,7 @@ class YoutubeApiController:
         if insta_url:
             self.insta_url = insta_url[0]
 
-        twitter_string = ['twitter_module']
+        twitter_string = ['twitter']
         twitter_url = [s for s in links if any(xs in s for xs in twitter_string)]
         if twitter_url:
             self.twitter_url = twitter_url[0]
@@ -536,16 +536,6 @@ class YoutubeApiController:
         for item in data:
             # print(item[0])
             channelIds.append(item[0])
-        # print(channelIds)
-
-        # exit()
-        # print(len(channelIds))
-        # print(channelIds)
-        # channelIds_string = ','.join(channelIds)
-        # self.channelId = 'UC--FL6OwLFWGIZfLfazY4yA,UC--i2rV5NCxiEIPefr3l-zQ,UC--LAVm36WiCmqQbekV17qQ'
-        # print(self.channelId)
-        # self.get_channel_details()
-        # exit()
         counter=1
         for channelId in channelIds:
             myList = []
@@ -599,8 +589,8 @@ class YoutubeApiController:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass
 
-            time.sleep(3)
-            print('sleeping 3 seconds')
+            # time.sleep(3)
+            # print('sleeping 3 seconds')
             print('NO OF IDS DONE = ',counter)
             print('LAST UPDATED CHANNEL ID = ',channelId ,'WITH INDEX',counter)
             counter +=1
