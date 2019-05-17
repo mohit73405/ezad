@@ -324,8 +324,17 @@ class MailBox(Resource):
 
 
     def send_mail(self,subject,to_email_id,message):
-        email_content = message
-
+        email_content = """
+        <html>
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+           <title>Connecsi</title>
+        </head>
+        <body>
+        """+ message +"""
+        </body>
+        </html>
+        """
         msg = email.message.Message()
         msg['Subject'] = subject
         msg['From'] = 'business@connecsi.com'
