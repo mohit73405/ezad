@@ -314,7 +314,7 @@ class MailBox(Resource):
         print(data)
         result=0
         try:
-            self.send_mail(subject=subject,to_email_id=to_email_id)
+            self.send_mail(subject=subject,to_email_id=to_email_id,message=message)
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
             return {'response': result},200
@@ -323,7 +323,7 @@ class MailBox(Resource):
             return {'response': result},500
 
 
-    def send_mail(self,subject,to_email_id):
+    def send_mail(self,subject,to_email_id,message):
         email_content = """
         <html>
         <head>
@@ -331,9 +331,7 @@ class MailBox(Resource):
            <title>Connecsi</title>
         </head>
         <body>
-        Welcome To Connecsi
-        Thank you
-        Connesi Team
+        """+ message +"""
         </body>
         </html>
         """
