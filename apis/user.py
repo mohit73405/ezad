@@ -27,7 +27,7 @@ class Login(Resource):
         data = connecsiObj.get_user_by_email_id(table_name='users_brands', email_id=email)
         # print(data)
         if data != None:
-            if sha256_crypt.verify(password, data[4]):
+            if sha256_crypt.verify(password, data[1]):
                 # session['logged_in'] = True
                 # session['email_id'] = email
                 # session['first_name'] = data[1]
@@ -36,7 +36,7 @@ class Login(Resource):
                 # session['company_name'] = data[5]
                 # session['user_id'] = data[0]
                 # print(session['user_id'])
-                return {'user_id': data[0]},200
+                return {'user_id': data[0],'confirmed_email':data[2]},200
             else:
                 error = 'Invalid login'
                 return {'error': error},404

@@ -436,7 +436,7 @@ class ConnecsiModel:
     def get_user_by_email_id(self,email_id,table_name):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT  * from " + table_name + " WHERE email_id = '" + email_id + "' "
+                sql = "SELECT user_id,password,confirmed_email from " + table_name + " WHERE email_id = '" + email_id + "' "
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchone()
