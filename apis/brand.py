@@ -373,13 +373,13 @@ class Brand(Resource):
 
 
 
-@ns_brand.route('/Confirm_email/<string:user_id>')
+@ns_brand.route('/Confirm_email/<string:email_id>')
 class Brand(Resource):
-    def post(self,user_id):
-        '''confirm brands email by user id this endpoint sets given email id  = confirmed'''
+    def post(self,email_id):
+        '''confirm brands email by email id, this endpoint sets given email id  = confirmed'''
         try:
             connecsiObj = ConnecsiModel()
-            connecsiObj.confirm_brands_email(user_id=str(user_id),confirmed='confirmed')
+            connecsiObj.confirm_brands_email(email_id=str(email_id),confirmed='confirmed')
             result=1
             return {'response': result}, 201
         except:

@@ -106,7 +106,7 @@ class TwitterApiController:
             except Exception as e:
                 print(e)
                 pass
-            print('twitter_module id = ',twitter_id)
+            print('twitter id = ',twitter_id)
             print('screen name =',screen_name)
             print('title =',title)
             print('description = ',description)
@@ -180,13 +180,21 @@ class TwitterApiController:
             # print(replies_count)
             ################################################ no of comments #################
 
-            columns = ['twitter_id','screen_name','title','description','location','no_of_followers','no_of_likes_recent100',
-            'no_of_retweets_recent100','website','twitter_url','hashtags','facebook_url','insta_url','youtube_url','country','channel_img','business_email']
+            # columns = ['twitter_id','screen_name','title','description','location','no_of_followers','no_of_likes_recent100',
+            # 'no_of_retweets_recent100','website','twitter_url','hashtags','facebook_url','insta_url','youtube_url','country','channel_img','business_email']
+
             data = [twitter_id,screen_name,title,description,location,no_of_followers,no_of_likes,no_of_retweets
                 ,website,twitter_url,hashtagsList_string,facebook_url,insta_url,youtube_url,country,channel_img,business_email]
             connecsiObj= ConnecsiModel()
             try:
-                connecsiObj.insert__(table_name='twitter_channel_details',IGNORE='IGNORE',columns=columns,data=data)
+                connecsiObj.insert_update_twitter_details(data=data)
+            except Exception as e:
+                print(e)
+                pass
+            try:
+                history_columns = ['twitter_id', 'no_of_followers', 'no_of_likes_recent100', 'no_of_retweets_recent100']
+                history_data=[twitter_id,no_of_followers,no_of_likes,no_of_retweets]
+                connecsiObj.insert__(table_name='twitter_channels_history',columns=history_columns,data=history_data)
             except Exception as e:
                 print(e)
                 pass
@@ -195,13 +203,15 @@ class TwitterApiController:
                     confirmed='true'
                 else:
                     confirmed='false'
-                connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,confirmed])
+                # connecsiObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','twitter_channel_id','confirmed'],data=[channel_id,twitter_id,confirmed])
+                connecsiObj.insert_into_channels_mapper(youtube_channel_id=channel_id,twitter_channel_id=twitter_id,confirmed=confirmed)
             except Exception as e:
                 print(e)
                 pass
             for category_id in video_categories:
                 try:
-                    connecsiObj.insert__(table_name='twitter_id_category_id',columns=['twitter_id','category_id'],data=[twitter_id,category_id])
+                    # connecsiObj.insert__(table_name='twitter_id_category_id',columns=['twitter_id','category_id'],data=[twitter_id,category_id])
+                    connecsiObj.insert_categories_to_twitter_channel(twitter_id=twitter_id,category_id=category_id)
                 except Exception as e:
                     print(e)
                     pass

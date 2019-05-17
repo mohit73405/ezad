@@ -1316,11 +1316,11 @@ class ConnecsiModel:
             print(e)
             return 0
 
-    def confirm_brands_email(self,user_id,confirmed):
+    def confirm_brands_email(self,email_id,confirmed):
         try:
             with self.cnx.cursor() as cursor:
 
-                sql = "UPDATE users_brands SET confirmed_email = '" + str(confirmed) + "' WHERE user_id = '"+ str(user_id) +"'"
+                sql = "UPDATE users_brands SET confirmed_email = '" + str(confirmed) + "' WHERE email_id = '"+ str(email_id) +"'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
@@ -1816,6 +1816,25 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def insert_into_channels_mapper(self,youtube_channel_id='',twitter_channel_id='',confirmed=''):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = " INSERT INTO channels_mapper(youtube_channel_id, twitter_channel_id,confirmed) SELECT * FROM " \
+                      "(SELECT '"+youtube_channel_id+"', '"+twitter_channel_id+"', '"+confirmed+"') AS tmp " \
+                      " WHERE NOT EXISTS(SELECT youtube_channel_id,twitter_channel_id,confirmed FROM channels_mapper" \
+                      " WHERE youtube_channel_id = '"+youtube_channel_id+"' AND twitter_channel_id = '"+twitter_channel_id+"' " \
+                      " AND confirmed = '"+confirmed+"') LIMIT 1;"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
 
     def delete_category_from_twitter_channel(self, twitter_id,category_id):
         try:
@@ -1847,6 +1866,44 @@ class ConnecsiModel:
                       "subscriberCount_lost=VALUES(subscriberCount_lost),business_email=VALUES(business_email),total_100video_views=VALUES(total_100video_views),total_100video_views_unique=VALUES(total_100video_views_unique)," \
                       " total_100video_likes=VALUES(total_100video_likes),total_100video_dislikes=VALUES(total_100video_dislikes), total_100video_comments=VALUES(total_100video_comments)," \
                       "total_100video_shares=VALUES(total_100video_shares), facebook_url=VALUES(facebook_url),insta_url=VALUES(insta_url),twitter_url=VALUES(twitter_url),country=VALUES(country)".format(d=data)
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def insert_update_twitter_details(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                # 'twitter_id', 'screen_name', 'title', 'description', 'location', 'no_of_followers', 'no_of_likes_recent100',
+                # 'no_of_retweets_recent100', 'website', 'twitter_url', 'hashtags', 'facebook_url', 'insta_url', 'youtube_url', \
+                # 'country', 'channel_img', 'business_email'
+                sql = 'INSERT INTO twitter_channel_details (twitter_id, screen_name, title, ' \
+                      '`description`, location, no_of_followers,' \
+                      'no_of_likes_recent100,no_of_retweets_recent100, website, ' \
+                      'twitter_url,hashtags, facebook_url,' \
+                      'insta_url, youtube_url, country, channel_img, business_email)' \
+                      ' VALUES("{d[0]}","{d[1]}","{d[2]}","{d[3]}","{d[4]}",{d[5]},{d[6]},{d[7]},"{d[8]}","{d[9]}","{d[10]}","{d[11]}"' \
+                      ' ,"{d[12]}","{d[13]}","{d[14]}","{d[15]}","{d[16]}")' \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " screen_name = VALUES(screen_name), title=VALUES(title),`description`=VALUES(`description`)," \
+                      " location=VALUES(location)," \
+                      " no_of_followers=VALUES(no_of_followers),no_of_likes_recent100=VALUES(no_of_likes_recent100)," \
+                      " no_of_retweets_recent100=VALUES(no_of_retweets_recent100)," \
+                      " website=VALUES(website)," \
+                      " twitter_url=VALUES(twitter_url)," \
+                      " hashtags=VALUES(hashtags), " \
+                      " facebook_url=VALUES(facebook_url)," \
+                      " insta_url=VALUES(insta_url)," \
+                      " youtube_url=VALUES(youtube_url),country=VALUES(country),channel_img=VALUES(channel_img)," \
+                      " business_email=VALUES(business_email)".format(d=data)
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
