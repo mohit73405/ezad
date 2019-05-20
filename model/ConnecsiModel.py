@@ -110,8 +110,9 @@ class ConnecsiModel:
                 sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.subscriberCount_gained, " \
                 "t1.total_100video_views," \
                 "t1.total_100video_likes, t1.total_100video_comments,t1.total_100video_shares, " \
-                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country " \
+                "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country,count(t2.channel_id) " \
                 "FROM youtube_channel_details t1 " \
+                "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
                 "WHERE t1.total_100video_views != 0 " \
                 "ORDER BY t1.subscriberCount_gained DESC LIMIT 10"
                 print(sql)
