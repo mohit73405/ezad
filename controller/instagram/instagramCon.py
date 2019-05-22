@@ -137,36 +137,52 @@ class InstgramScrapper:
             # self.insta_post_data.append(post_data)
             self.insert_insta_post_data(post_data=post_data)
         self.insert_insta_data(data=self.insta_data)
+        insta_history_data=[]
+        insta_history_data.append(page_metrics['id'])
+        insta_history_data.append(page_metrics['edge_followed_by']['count'])
+        self.insert_insta_history_data(data=insta_history_data)
+
         try:
             connecsiObj = ConnecsiModel()
-            connecsiObj.insert__(table_name='channels_mapper',
-                                 columns=['youtube_channel_id', 'insta_channel_id', 'confirmed'],
-                                 data=[self.channel_id, page_metrics['id'], 'false'])
+            # connecsiObj.insert__(table_name='channels_mapper',
+            #                      columns=['youtube_channel_id', 'insta_channel_id', 'confirmed'],
+            #                      data=[self.channel_id, page_metrics['id'], 'false'])
+            connecsiObj.insert_insta_id_into_channels_mapper(youtube_channel_id=self.channel_id,insta_channel_id=page_metrics['id']
+                                                             ,confirmed='false')
         except Exception as e:
             print(e)
             pass
-        self.insert_insta_categories(video_categories=self.video_categories,insta_id=page_metrics['id'])
-
+        try:
+            self.insert_insta_categories(video_categories=self.video_categories,insta_id=page_metrics['id'])
+        except Exception as e:
+            print(e)
+            pass
 
     def insert_insta_data(self,data):
         modelObj = ConnecsiModel()
-        columns=['youtube_url','twitter_url','insta_url','facebook_url','country',
-                 'insta_id','username','title','business_category_name','channel_img','description','no_of_followers']
-        modelObj.insert__(table_name='insta_channel_details',columns=columns,data=data)
+        # columns=['youtube_url','twitter_url','insta_url','facebook_url','country',
+        #          'insta_id','username','title','business_category_name','channel_img','description','no_of_followers']
+        modelObj.insert_update_insta_details(data=data)
+
+    def insert_insta_history_data(self, data):
+        modelObj = ConnecsiModel()
+        columns = ['insta_id', 'no_of_followers']
+        modelObj.insert__(table_name='insta_channels_history', columns=columns, data=data)
 
     def insert_insta_categories(self,video_categories,insta_id):
-        modelObj = ConnecsiModel()
         for category_id in video_categories:
-            data = []
-            data.append(insta_id)
-            data.append(category_id)
-            columns=['insta_id','category_id']
-            modelObj.insert__(table_name='insta_id_category_id',columns=columns,data=data)
+            # data = []
+            # data.append(insta_id)
+            # data.append(category_id)
+            # columns=['insta_id','category_id']
+            # modelObj.insert__(table_name='insta_id_category_id',columns=columns,data=data)
+            modelObj = ConnecsiModel()
+            modelObj.insert_categories_to_insta_channel(insta_id=insta_id,category_id=category_id)
 
     def insert_insta_post_data(self,post_data):
         modelObj = ConnecsiModel()
-        columns=['insta_id','post_id','post_time','insta_hashtags','no_of_post_likes','no_of_post_comments']
-        modelObj.insert__(table_name='insta_post_details',columns=columns,data=post_data)
+        # columns=['insta_id','post_id','post_time','insta_hashtags','no_of_post_likes','no_of_post_comments']
+        modelObj.insert_update_insta_post_details(data=post_data)
 
 # insta_url='https://www.instagram.com/blowek5'
 # instagram = InstgramScrapper(url=insta_url)

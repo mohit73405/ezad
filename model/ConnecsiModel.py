@@ -560,6 +560,14 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'youtube_channel_ids_done':
                     cursor.execute(sql, data)
+                elif table_name == 'youtube_channel_ids_done_for_twitter':
+                    cursor.execute(sql, data)
+                elif table_name == 'twitter_channels_history':
+                    cursor.execute(sql, data)
+                elif table_name == 'youtube_channel_ids_done_for_instagram':
+                    cursor.execute(sql, data)
+                elif table_name == 'insta_channels_history':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")
@@ -1817,6 +1825,24 @@ class ConnecsiModel:
             print(e)
             return 0
 
+
+    def insert_categories_to_insta_channel(self, insta_id, category_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "INSERT INTO insta_id_category_id(insta_id, category_id) SELECT * FROM " \
+                      "(SELECT '"+insta_id+"', '"+category_id+"') AS tmp WHERE NOT EXISTS(SELECT insta_id,category_id FROM insta_id_category_id" \
+                      " WHERE insta_id = '"+insta_id+"' AND category_id = '"+category_id+"') LIMIT 1;"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
     def insert_into_channels_mapper(self,youtube_channel_id='',twitter_channel_id='',confirmed=''):
         try:
             with self.cnx.cursor() as cursor:
@@ -1824,6 +1850,25 @@ class ConnecsiModel:
                       "(SELECT '"+youtube_channel_id+"', '"+twitter_channel_id+"', '"+confirmed+"') AS tmp " \
                       " WHERE NOT EXISTS(SELECT youtube_channel_id,twitter_channel_id,confirmed FROM channels_mapper" \
                       " WHERE youtube_channel_id = '"+youtube_channel_id+"' AND twitter_channel_id = '"+twitter_channel_id+"' " \
+                      " AND confirmed = '"+confirmed+"') LIMIT 1;"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def insert_insta_id_into_channels_mapper(self,youtube_channel_id='',insta_channel_id='',confirmed=''):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = " INSERT INTO channels_mapper(youtube_channel_id, insta_channel_id,confirmed) SELECT * FROM " \
+                      "(SELECT '"+youtube_channel_id+"', '"+insta_channel_id+"', '"+confirmed+"') AS tmp " \
+                      " WHERE NOT EXISTS(SELECT youtube_channel_id,insta_channel_id,confirmed FROM channels_mapper" \
+                      " WHERE youtube_channel_id = '"+youtube_channel_id+"' AND insta_channel_id = '"+insta_channel_id+"' " \
                       " AND confirmed = '"+confirmed+"') LIMIT 1;"
                 print(sql)
                 cursor.execute(sql)
@@ -1915,6 +1960,64 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+
+    def insert_update_insta_details(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # columns = ['youtube_url', 'twitter_url', 'insta_url', 'facebook_url', 'country',
+                #            'insta_id', 'username', 'title', 'business_category_name', 'channel_img', 'description',
+                #            'no_of_followers']
+                sql = 'INSERT INTO insta_channel_details ( youtube_url, twitter_url, insta_url, ' \
+                      '`facebook_url`, country, insta_id,' \
+                      'username,title, business_category_name, ' \
+                      'channel_img,description, no_of_followers )' \
+                      ' VALUES("{d[0]}","{d[1]}","{d[2]}","{d[3]}","{d[4]}",{d[5]},"{d[6]}","{d[7]}","{d[8]}","{d[9]}",' \
+                      ' "{d[10]}",{d[11]})' \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " youtube_url = VALUES(youtube_url), twitter_url=VALUES(twitter_url),`insta_url`=VALUES(`insta_url`)," \
+                      " facebook_url=VALUES(facebook_url)," \
+                      " country=VALUES(country),username=VALUES(username)," \
+                      " title=VALUES(title)," \
+                      " business_category_name=VALUES(business_category_name)," \
+                      " channel_img=VALUES(channel_img)," \
+                      " description=VALUES(description), " \
+                      " no_of_followers=VALUES(no_of_followers)".format(d=data)
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def insert_update_insta_post_details(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # columns = ['insta_id', 'post_id', 'post_time', 'insta_hashtags', 'no_of_post_likes',
+                #            'no_of_post_comments']
+                sql = 'INSERT INTO insta_post_details ( insta_id, post_id, post_time, ' \
+                      ' insta_hashtags, no_of_post_likes, no_of_post_comments ) ' \
+                      ' VALUES("{d[0]}","{d[1]}","{d[2]}","{d[3]}",{d[4]},{d[5]})' \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " insta_hashtags = VALUES(insta_hashtags), no_of_post_likes=VALUES(no_of_post_likes)," \
+                      " no_of_post_comments=VALUES(no_of_post_comments)".format(d=data)
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
 
 
 

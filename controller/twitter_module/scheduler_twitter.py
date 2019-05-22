@@ -20,10 +20,28 @@ def get_data_by_screen_name():
     modelObj = ConnecsiModel()
     columns=['channel_id','twitter_url','country','facebook_url','insta_url']
     channel_data=modelObj.get__(table_name='youtube_channel_details',columns=columns)
-    # print(channel_data)
+    data_done = modelObj.get__(table_name='youtube_channel_ids_done_for_twitter', STAR='*')
+    # data=(('UC-lHJZR3Gqxm24_Vd_AJ5Yw',),('UCfX-uO8iDdJRgFR2lrBWsYA',))
+    # exit()
+    channel_ids_done = []
+    # total_channel_ids = []
+    channel_ids_not_done = []
+    for item2 in data_done:
+        channel_ids_done.append(item2[0])
+    # for item3 in channel_data:
+    #     total_channel_ids.append(item3[0])
+    for item4 in channel_data:
+        if item4[0] not in channel_ids_done:
+            channel_ids_not_done.append(item4)
+    # print('TOTAL IDS = ', len(total_channel_ids))
+    print('DONE = ', len(channel_ids_done))
+    print('NOT DONE =', len(channel_ids_not_done))
+    # print(total_channel_ids)
+    # print(channel_ids_done)
+    # print(channel_ids_not_done)
     # exit()
     # ratelimit_counter = 0
-    for item in channel_data:
+    for item in channel_ids_not_done:
         channel_id = item[0]
         country = item[2]
         facebook_url = item[3]
@@ -66,9 +84,12 @@ def get_data_by_screen_name():
 
         else:
             try:
-                data = [channel_id, 'false']
-                modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
+                # data = [channel_id, 'false']
+                # modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
+                modelObj.insert_into_channels_mapper(youtube_channel_id=channel_id,confirmed='false')
             except:pass
+        modelObj.insert__(table_name='youtube_channel_ids_done_for_twitter',columns=['channel_id'],IGNORE='IGNORE',data=[channel_id])
+
 
 def get_content_categories():
     conObj = TwitterApiController()

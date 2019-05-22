@@ -3,8 +3,12 @@ import urllib.parse
 
 import schedule #pip install schedule
 import time
-# import sys
+import sys
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
+mypath = "/home/Connecsi/backend/ezad"
+if mypath not in sys.path:
+   sys.path.append(mypath)
+
 from controller.instagram.instagramCon import InstgramScrapper
 from model.ConnecsiModel import ConnecsiModel
 
@@ -13,10 +17,19 @@ def get_data_by_insta_url():
     modelObj = ConnecsiModel()
     columns=['channel_id','insta_url','country','facebook_url','twitter_url']
     channel_data=modelObj.get__(table_name='youtube_channel_details',columns=columns)
-    # print(channel_data)
-    # exit()
-    # ratelimit_counter = 0
-    for item in channel_data:
+    data_done = modelObj.get__(table_name='youtube_channel_ids_done_for_instagram', STAR='*')
+    channel_ids_done = []
+    channel_ids_not_done = []
+    for item2 in data_done:
+        channel_ids_done.append(item2[0])
+    for item4 in channel_data:
+        if item4[0] not in channel_ids_done:
+            channel_ids_not_done.append(item4)
+    print('DONE = ', len(channel_ids_done))
+    print('NOT DONE =', len(channel_ids_not_done))
+    print(channel_ids_not_done)
+
+    for item in channel_ids_not_done:
         channel_id = item[0]
         insta_url = item[1]
         country = item[2]
@@ -51,6 +64,8 @@ def get_data_by_insta_url():
                 data = [channel_id, 'false']
                 # modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
             except:pass
+        modelObj.insert__(table_name='youtube_channel_ids_done_for_instagram', columns=['channel_id'], IGNORE='IGNORE',
+                          data=[channel_id])
 
 get_data_by_insta_url()
 

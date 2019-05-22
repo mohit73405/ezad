@@ -134,6 +134,7 @@ class TwitterApiController:
                     pass
                 try:
                     no_of_likes  += status_dict['favorite_count']
+                    # print(no_of_likes)
                 except Exception as e:
                     print(e)
                     pass
