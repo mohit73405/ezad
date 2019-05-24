@@ -213,7 +213,7 @@ class ConnecsiModel:
 
                 sql = "SELECT t1.insta_id,t1.username,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
                       "t1.business_email, t1.no_of_views_recent100, " \
-                      "sum(t3.no_of_post_likes) as int(total_100video_likes), sum(t3.no_of_post_comments) as total_100video_comments,t1.no_of_shares_recent100, " \
+                      "CAST(SUM(t3.no_of_post_likes) AS SIGNED) total_100video_likes, sum(t3.no_of_post_comments) as total_100video_comments,t1.no_of_shares_recent100, " \
                       "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.country " \
                       "FROM insta_channel_details t1 " \
                       "JOIN insta_id_category_id t2 on t1.insta_id = t2.insta_id " \
