@@ -111,7 +111,7 @@ class SearchChannels(Resource):
                 # print(response_list)
                 return {'data':response_list}
 
-            elif channel == 'twitter_module' or channel == 'Twitter':
+            elif channel == 'twitter' or channel == 'Twitter':
                 total_rows = connecsiObj.search_twitter_inf_get_total_rows(min_lower=str(min_lower),
                                                                            max_upper=str(max_upper)
                                                                            , category_id=str(category_id),
