@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/youtube.py" afterPath="$PROJECT_DIR$/apis/youtube.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/instagram/scheduler_instagram.py" afterPath="$PROJECT_DIR$/controller/instagram/scheduler_instagram.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="335" column="8" lean-forward="true" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="8" />
+            <state relative-caret-position="68">
+              <caret line="1864" column="34" lean-forward="true" selection-start-line="1864" selection-start-column="34" selection-end-line="1864" selection-end-column="34" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -38,8 +39,8 @@
       <file leaf-file-name="youtube.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/youtube.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="114" column="66" lean-forward="false" selection-start-line="114" selection-start-column="66" selection-end-line="114" selection-end-column="66" />
+            <state relative-caret-position="136">
+              <caret line="119" column="49" lean-forward="true" selection-start-line="119" selection-start-column="49" selection-end-line="119" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -55,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scheduler_instagram.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scheduler_instagram.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller/instagram/scheduler_instagram.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="53" column="33" lean-forward="true" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+            <state relative-caret-position="17">
+              <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -71,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/controller/twitter_module/scheduler_twitter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
-              <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
+              <caret line="80" column="38" lean-forward="false" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -82,8 +83,8 @@
       <file leaf-file-name="instagramCon.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/instagram/instagramCon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="164" column="35" lean-forward="false" selection-start-line="164" selection-start-column="35" selection-end-line="164" selection-end-column="35" />
+            <state relative-caret-position="115">
+              <caret line="155" column="17" lean-forward="false" selection-start-line="155" selection-start-column="17" selection-end-line="155" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -105,8 +106,8 @@
       <file leaf-file-name="TwitterApiController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/twitter_module/TwitterApiController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="206" column="8" lean-forward="true" selection-start-line="206" selection-start-column="8" selection-end-line="206" selection-end-column="8" />
+            <state relative-caret-position="126">
+              <caret line="205" column="37" lean-forward="true" selection-start-line="205" selection-start-column="37" selection-end-line="205" selection-end-column="37" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -155,8 +156,8 @@
       <find>update</find>
       <find>sentWe</find>
       <find>add</find>
-      <find>SET NAME</find>
       <find>totalVI</find>
+      <find>SET NAME</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -211,11 +212,11 @@
         <option value="$PROJECT_DIR$/apis/user.py" />
         <option value="$PROJECT_DIR$/apis/messages.py" />
         <option value="$PROJECT_DIR$/controller/twitter_module/scheduler_twitter.py" />
-        <option value="$PROJECT_DIR$/controller/twitter_module/TwitterApiController.py" />
-        <option value="$PROJECT_DIR$/controller/instagram/scheduler_instagram.py" />
         <option value="$PROJECT_DIR$/controller/instagram/instagramCon.py" />
         <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/youtube.py" />
+        <option value="$PROJECT_DIR$/controller/twitter_module/TwitterApiController.py" />
+        <option value="$PROJECT_DIR$/controller/instagram/scheduler_instagram.py" />
       </list>
     </option>
   </component>
@@ -256,7 +257,7 @@
               <item name="connecsiAdminMaterial" type="b2602c69:ProjectViewProjectNode" />
               <item name="connecsiAdminMaterial" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="youtube" type="462c0819:PsiDirectoryNode" />
+              <item name="twitter_module" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -297,7 +298,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scheduler_instagram">
+  <component name="RunManager" selected="Python.scheduler_twitter">
     <configuration name="connecsi_latest" type="Python.Ipnb" factoryName="Jupyter Notebook">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -409,8 +410,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.scheduler_instagram" />
-        <item index="1" class="java.lang.String" itemvalue="Python.scheduler_twitter" />
+        <item index="0" class="java.lang.String" itemvalue="Python.scheduler_twitter" />
+        <item index="1" class="java.lang.String" itemvalue="Python.scheduler_instagram" />
         <item index="2" class="java.lang.String" itemvalue="Python.scheduler_update_youtube_data" />
         <item index="3" class="java.lang.String" itemvalue="Python.scheduler_youtube" />
         <item index="4" class="java.lang.String" itemvalue="Python.instagramCon" />
@@ -808,58 +809,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/twitter_module/scheduler_twitter.py">
+    <entry file="file://$PROJECT_DIR$/apis/youtube.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="119" column="49" lean-forward="true" selection-start-line="119" selection-start-column="49" selection-end-line="119" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/twitter_module/TwitterApiController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="206" column="8" lean-forward="true" selection-start-line="206" selection-start-column="8" selection-end-line="206" selection-end-column="8" />
+        <state relative-caret-position="126">
+          <caret line="205" column="37" lean-forward="true" selection-start-line="205" selection-start-column="37" selection-end-line="205" selection-end-column="37" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/instagram/scheduler_instagram.py">
+    <entry file="file://$PROJECT_DIR$/controller/twitter_module/scheduler_twitter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="53" column="33" lean-forward="true" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+        <state relative-caret-position="160">
+          <caret line="80" column="38" lean-forward="false" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/instagram/instagramCon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="164" column="35" lean-forward="false" selection-start-line="164" selection-start-column="35" selection-end-line="164" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apis/youtube.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="114" column="66" lean-forward="false" selection-start-line="114" selection-start-column="66" selection-end-line="114" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="335" column="8" lean-forward="true" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="8" />
+        <state relative-caret-position="68">
+          <caret line="1864" column="34" lean-forward="true" selection-start-line="1864" selection-start-column="34" selection-end-line="1864" selection-end-column="34" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/instagram/instagramCon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="155" column="17" lean-forward="false" selection-start-line="155" selection-start-column="17" selection-end-line="155" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/instagram/scheduler_instagram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

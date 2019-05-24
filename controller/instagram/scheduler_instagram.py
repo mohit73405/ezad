@@ -27,7 +27,7 @@ def get_data_by_insta_url():
             channel_ids_not_done.append(item4)
     print('DONE = ', len(channel_ids_done))
     print('NOT DONE =', len(channel_ids_not_done))
-    print(channel_ids_not_done)
+    # print(channel_ids_not_done)
 
     for item in channel_ids_not_done:
         channel_id = item[0]
@@ -40,7 +40,7 @@ def get_data_by_insta_url():
             vc_data=''
             try:
                 vc_data = modelObj.get_youtube_categories_by_channel_id(channel_id=channel_id)
-                print(vc_data)
+                # print(vc_data)
             except:pass
             video_categories=[]
             try:
