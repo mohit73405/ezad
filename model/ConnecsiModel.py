@@ -217,7 +217,7 @@ class ConnecsiModel:
                       "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.country " \
                       "FROM insta_channel_details t1 " \
                       "JOIN insta_id_category_id t2 on t1.insta_id = t2.insta_id " \
-                      " JOIN insta_post_details on t1.insta_id = t3.insta_id" \
+                      " JOIN insta_post_details t3 on t1.insta_id = t3.insta_id " \
                       "WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
                 # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
 
