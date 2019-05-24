@@ -149,12 +149,12 @@ class SearchChannels(Resource):
                            'total_100video_comments', 'total_100video_shares',
                            'facebook_url', 'insta_url','youtube_url', 'twitter_url', 'country']
                 response_list = []
-                for item in data:
-                    dict_temp = dict(zip(columns, item))
-                    dict_temp.update({'total_rows': total_no_of_rows})
-                    response_list.append(dict_temp)
-                print(response_list)
-                return {'data': response_list}
+                # for item in data:
+                #     dict_temp = dict(zip(columns, item))
+                #     dict_temp.update({'total_rows': total_no_of_rows})
+                #     response_list.append(dict_temp)
+                # print(response_list)
+                return {'data': data}
         except Exception as e:
             print('i  m in exception ')
             print(e)
