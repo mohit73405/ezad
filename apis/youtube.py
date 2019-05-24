@@ -139,7 +139,7 @@ class SearchChannels(Resource):
                                                                            , category_id=str(category_id),
                                                                            country=str(country), sort_order=sort_order)
                 total_no_of_rows = len(total_rows)
-                print(total_no_of_rows)
+                # print(total_no_of_rows)
                 data = connecsiObj.search_instagram_inf(min_lower=str(min_lower), max_upper=str(max_upper)
                                                       , category_id=str(category_id), country=str(country),
                                                       sort_order=sort_order, offset=str(offset))
@@ -149,12 +149,12 @@ class SearchChannels(Resource):
                            'total_100video_comments', 'total_100video_shares',
                            'facebook_url', 'insta_url','youtube_url', 'twitter_url', 'country']
                 response_list = []
-                # for item in data:
-                #     dict_temp = dict(zip(columns, item))
-                #     dict_temp.update({'total_rows': total_no_of_rows})
-                #     response_list.append(dict_temp)
-                # print(response_list)
-                return {'data': data}
+                for item in data:
+                    dict_temp = dict(zip(columns, item))
+                    dict_temp.update({'total_rows': total_no_of_rows})
+                    response_list.append(dict_temp)
+                print(response_list)
+                return {'data': response_list}
         except Exception as e:
             print('i  m in exception ')
             print(e)
