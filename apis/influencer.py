@@ -187,7 +187,7 @@ class Influencer(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['first_name', 'last_name', 'business_email', 'phone',
                    'categories','website', 'country', 'city', 'channel_id',
-                   'mapped_youtube_channel_id', 'mapped_twitter_channel_id',
+                   'mapped_youtube_channel_id', 'mapped_twitter_channel_id','mapped_insta_channel_id',
                    'confirmed','title','channel_img','youtube_country','facebook_url','twitter_url','insta_url',
                    'twitter_business_email','twitter_screen_name','twitter_title','twitter_channel_img','twitter_hashtags',
                    'youtube_video_cat','youtube_video_cat_id']

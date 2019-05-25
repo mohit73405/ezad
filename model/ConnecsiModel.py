@@ -1498,7 +1498,7 @@ class ConnecsiModel:
                       " ui.first_name ,ui.last_name ,ui.business_email," \
                       " ui.phone ,ui.categories , ui.website , ui.country ," \
                       " ui.city ,ui.channel_id," \
-                      " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id," \
+                      " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id,chm.insta_channel_id as mapped_insta_channel_id," \
                       " chm.confirmed," \
                       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
                       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags," \
