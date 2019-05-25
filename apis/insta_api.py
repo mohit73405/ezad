@@ -9,9 +9,10 @@ from controller.instagram.instagramCon import InstgramScrapper
 
 ns_insta = Namespace('Insta', description='Insta Apis')
 
-@ns_insta.route('/addInstagramChannel/<string:instagram_url>/<string:business_email>/<string:youtube_channel_id>')
+@ns_insta.route('/addInstagramChannel/<string:instagram_username>/<string:business_email>/<string:youtube_channel_id>')
 class Insta_api(Resource):
-    def post(self,instagram_url,business_email,youtube_channel_id):
+    def post(self,instagram_username,business_email,youtube_channel_id):
+        instagram_url = 'https://www.instagram.com/' + instagram_username
         '''add Instagram channel by insta url'''
         modelObj = ConnecsiModel()
         columns = ['channel_id', 'twitter_url', 'country', 'facebook_url', 'insta_url']
