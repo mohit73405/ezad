@@ -1509,7 +1509,7 @@ class ConnecsiModel:
                       " join youtube_video_categories yvc on yvc.video_cat_id = ycivci.video_cat_id" \
                       " left join channels_mapper chm on chm.youtube_channel_id = ycd.channel_id" \
                       " left join twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
-                      " JOIN insta_channel_details icd on icd.insta_id = chm.insta_id " \
+                      " JOIN insta_channel_details icd on icd.insta_id = chm.insta_channel_id " \
                       " WHERE ycd.channel_id = '"+user_id+"'"
 
 
