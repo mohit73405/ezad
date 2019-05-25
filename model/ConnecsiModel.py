@@ -1971,15 +1971,15 @@ class ConnecsiModel:
                 #            'insta_id', 'username', 'title', 'business_category_name', 'channel_img', 'description',
                 #            'no_of_followers']
                 sql = 'INSERT INTO insta_channel_details ( youtube_url, twitter_url, insta_url, ' \
-                      '`facebook_url`, country, insta_id,' \
+                      '`facebook_url`, country,business_email, insta_id,' \
                       'username,title, business_category_name, ' \
                       'channel_img,description, no_of_followers )' \
-                      ' VALUES("{d[0]}","{d[1]}","{d[2]}","{d[3]}","{d[4]}",{d[5]},"{d[6]}","{d[7]}","{d[8]}","{d[9]}",' \
-                      ' "{d[10]}",{d[11]})' \
+                      ' VALUES("{d[0]}","{d[1]}","{d[2]}","{d[3]}","{d[4]}","{d[5]}",{d[6]},"{d[7]}","{d[8]}","{d[9]}","{d[10]}",' \
+                      ' "{d[11]}",{d[12]})' \
                       " ON DUPLICATE KEY UPDATE " \
                       " youtube_url = VALUES(youtube_url), twitter_url=VALUES(twitter_url),`insta_url`=VALUES(`insta_url`)," \
                       " facebook_url=VALUES(facebook_url)," \
-                      " country=VALUES(country),username=VALUES(username)," \
+                      " country=VALUES(country),business_email=VALUES(business_email),username=VALUES(username)," \
                       " title=VALUES(title)," \
                       " business_category_name=VALUES(business_category_name)," \
                       " channel_img=VALUES(channel_img)," \

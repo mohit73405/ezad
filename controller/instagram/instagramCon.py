@@ -16,7 +16,7 @@ USER_AGENTS = ["Mozilla/5.0 (Windows NT 5.1; rv:41.0) Gecko/20100101 Firefox/41.
                ]
 
 class InstgramScrapper:
-    def __init__(self, url,channel_id,twitter_url,video_categories,country,facebook_url,insta_url,youtube_url,user_agents=None):
+    def __init__(self, url,channel_id,twitter_url,video_categories,country,facebook_url,insta_url,youtube_url,user_agents=None,business_email=''):
         self.url = url
         self.user_agents = user_agents
         self.insta_data=[]
@@ -26,6 +26,7 @@ class InstgramScrapper:
         self.insta_data.append(insta_url)
         self.insta_data.append(facebook_url)
         self.insta_data.append(country)
+        self.insta_data.append(business_email)
         self.video_categories = video_categories
         self.channel_id = channel_id
 
@@ -180,6 +181,7 @@ class InstgramScrapper:
             modelObj.insert_categories_to_insta_channel(insta_id=insta_id,category_id=category_id)
 
     def insert_insta_post_data(self,post_data):
+        print('POST DATA',post_data)
         modelObj = ConnecsiModel()
         # columns=['insta_id','post_id','post_time','insta_hashtags','no_of_post_likes','no_of_post_comments']
         modelObj.insert_update_insta_post_details(data=post_data)
