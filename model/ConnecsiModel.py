@@ -1501,7 +1501,7 @@ class ConnecsiModel:
                       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id,chm.insta_channel_id as mapped_insta_channel_id," \
                       " chm.confirmed," \
                       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
-                      " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags," \
+                      " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username," \
                       " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(yvc.video_cat_id SEPARATOR ',')" \
                       " FROM youtube_channel_details ycd" \
                       " left join users_influencers ui on ycd.channel_id = ui.channel_id" \
@@ -1509,6 +1509,7 @@ class ConnecsiModel:
                       " join youtube_video_categories yvc on yvc.video_cat_id = ycivci.video_cat_id" \
                       " left join channels_mapper chm on chm.youtube_channel_id = ycd.channel_id" \
                       " left join twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
+                      " JOIN insta_channel_details icd on icd.insta_id = chm.insta_id " \
                       " WHERE ycd.channel_id = '"+user_id+"'"
 
 
