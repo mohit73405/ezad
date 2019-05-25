@@ -52,7 +52,7 @@ class Insta_api(Resource):
 
             try:
                 conObj = InstgramScrapper(url=instagram_url,channel_id=youtube_channel_id,twitter_url=twitter_url,video_categories=video_categories
-                                          ,country=country,facebook_url=facebook_url,insta_url=instagram_url,youtube_url=youtube_url)
+                                          ,country=country,facebook_url=facebook_url,insta_url=instagram_url,youtube_url=youtube_url,business_email=business_email)
                 conObj.set_insta_data()
 
             except Exception as e:
