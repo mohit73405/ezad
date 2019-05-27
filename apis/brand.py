@@ -84,7 +84,13 @@ class Brand(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['user_id','first_name','last_name','company_name','email_id','role']
         data = connecsiObj.get__(table_name='users_brands',columns=columns)
-        return {'data':data},200
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list},200
+        # return {'data':data},200
 
 @ns_brand.route('/<string:user_id>')
 class Brand(Resource):
