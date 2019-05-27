@@ -92,6 +92,19 @@ class Brand(Resource):
         return {'data': response_list},200
         # return {'data':data},200
 
+@ns_brand.route('/influencerList')
+class Brand(Resource):
+    def get(self):
+        '''List of all Influencer'''
+        connecsiObj = ConnecsiModel()
+        columns = ['channel_id','first_name','last_name','business_email']
+        data = connecsiObj.get__(table_name='users_influencers',columns=columns)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        return {'data': response_list},200
+
 @ns_brand.route('/<string:user_id>')
 class Brand(Resource):
     def get(self,user_id):
