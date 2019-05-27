@@ -637,7 +637,8 @@ class YoutubeApiController:
                            'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
                            'total_100video_shares','facebook_url','insta_url','twitter_url','country']
                 connecsiObj = ConnecsiModel()
-                connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
+                connecsiObj.insert_update_youtube_details(data=myList)
+                # connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
             except:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass
