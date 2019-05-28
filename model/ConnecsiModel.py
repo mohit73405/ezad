@@ -1520,7 +1520,7 @@ class ConnecsiModel:
                       " chm.confirmed," \
                       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
                       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username," \
-                      " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(yvc.video_cat_id SEPARATOR ',')" \
+                      " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(ycivci.video_cat_id SEPARATOR ',')" \
                       " FROM users_influencers ui " \
                       " JOIN channels_mapper chm ON ui.channel_id = chm.youtube_channel_id " \
                       " JOIN insta_channel_details icd ON icd.insta_id = chm.insta_channel_id " \
