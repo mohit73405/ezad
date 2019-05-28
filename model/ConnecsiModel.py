@@ -1528,7 +1528,8 @@ class ConnecsiModel:
                       " JOIN channels_mapper chm on chm.youtube_channel_id = ui.channel_id" \
                       " JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
                       " JOIN insta_channel_details icd on icd.insta_id = chm.insta_channel_id " \
-                      " WHERE ui.channel_id = '" + user_id + "'"
+                      " WHERE ui.channel_id = '" + user_id + "'" \
+                      " OR ycd.channel_id = '"+user_id+"'"
 
                 print(sql)
                 cursor.execute(sql)
