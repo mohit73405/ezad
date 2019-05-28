@@ -1523,7 +1523,7 @@ class ConnecsiModel:
                       " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(yvc.video_cat_id SEPARATOR ',')" \
                       " FROM users_influencers ui " \
                       " JOIN youtube_channel_details ycd on ycd.channel_id = ui.channel_id" \
-                      " JOIN youtube_channel_ids_video_categories_id ycivci on ycivci.channel_id = ui.channel_id" \
+                      " JOIN youtube_channel_ids_video_categories_id ycivci on ycivci.channel_id = ycd.channel_id" \
                       " JOIN youtube_video_categories yvc on yvc.video_cat_id = ycivci.video_cat_id" \
                       " JOIN channels_mapper chm on chm.youtube_channel_id = ui.channel_id" \
                       " JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
