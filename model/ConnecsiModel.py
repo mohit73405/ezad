@@ -1494,6 +1494,24 @@ class ConnecsiModel:
     def get_inf_and_channel_details(self, user_id):
         try:
             with self.cnx.cursor() as cursor:
+                # sql = "SELECT " \
+                #       " ui.first_name ,ui.last_name ,ui.business_email," \
+                #       " ui.phone ,ui.categories , ui.website , ui.country ," \
+                #       " ui.city ,ui.channel_id," \
+                #       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id,chm.insta_channel_id as mapped_insta_channel_id," \
+                #       " chm.confirmed," \
+                #       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
+                #       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username," \
+                #       " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(yvc.video_cat_id SEPARATOR ',')" \
+                #       " FROM youtube_channel_details ycd" \
+                #       " left join users_influencers ui on ycd.channel_id = ui.channel_id" \
+                #       " join youtube_channel_ids_video_categories_id ycivci on ycivci.channel_id = ycd.channel_id" \
+                #       " join youtube_video_categories yvc on yvc.video_cat_id = ycivci.video_cat_id" \
+                #       " left join channels_mapper chm on chm.youtube_channel_id = ycd.channel_id" \
+                #       " left join twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
+                #       " JOIN insta_channel_details icd on icd.insta_id = chm.insta_channel_id " \
+                #       " WHERE ycd.channel_id = '"+user_id+"'"
+
                 sql = "SELECT " \
                       " ui.first_name ,ui.last_name ,ui.business_email," \
                       " ui.phone ,ui.categories , ui.website , ui.country ," \
@@ -1503,22 +1521,15 @@ class ConnecsiModel:
                       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
                       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username," \
                       " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(yvc.video_cat_id SEPARATOR ',')" \
-                      " FROM youtube_channel_details ycd" \
-                      " left join users_influencers ui on ycd.channel_id = ui.channel_id" \
-                      " join youtube_channel_ids_video_categories_id ycivci on ycivci.channel_id = ycd.channel_id" \
-                      " join youtube_video_categories yvc on yvc.video_cat_id = ycivci.video_cat_id" \
-                      " left join channels_mapper chm on chm.youtube_channel_id = ycd.channel_id" \
-                      " left join twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
+                      " FROM users_influencers ui " \
+                      " JOIN youtube_channel_details ycd on ycd.channel_id = ui.channel_id" \
+                      " JOIN youtube_channel_ids_video_categories_id ycivci on ycivci.channel_id = ui.channel_id" \
+                      " JOIN youtube_video_categories yvc on yvc.video_cat_id = ycivci.video_cat_id" \
+                      " JOIN channels_mapper chm on chm.youtube_channel_id = ui.channel_id" \
+                      " JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
                       " JOIN insta_channel_details icd on icd.insta_id = chm.insta_channel_id " \
-                      " WHERE ycd.channel_id = '"+user_id+"'"
+                      " WHERE ui.channel_id = '" + user_id + "'"
 
-
-                # sql = " select ui1.first_name as youtube_first_name,ui2.first_name as twitter_first_name,chm.youtube_channel_id," \
-                #       " chm.twitter_channel_id " \
-                #       " FROM channels_mapper chm " \
-                #       " LEFT JOIN users_influencers ui1 on ui1.channel_id = chm.youtube_channel_id " \
-                #       " LEFT JOIN users_influencers ui2 on ui2.channel_id = chm.twitter_channel_id " \
-                #       " WHERE ui1.channel_id = '"+ user_id +"' or ui2.channel_id = '"+ user_id +"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
