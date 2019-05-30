@@ -1526,7 +1526,7 @@ class ConnecsiModel:
                       " LEFT JOIN insta_channel_details icd ON icd.insta_id = chm.insta_channel_id " \
                       " LEFT JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
                       " LEFT JOIN youtube_channel_details ycd ON ui.channel_id = ycd.channel_id " \
-                      " JOIN youtube_channel_ids_video_categories_id ycivci ON ycivci.channel_id = ui.channel_id " \
+                      " LEFT JOIN youtube_channel_ids_video_categories_id ycivci ON ycivci.channel_id = ui.channel_id " \
                       " JOIN youtube_video_categories yvc ON yvc.video_cat_id = ycivci.video_cat_id " \
                       " WHERE ui.channel_id = '"+user_id+"'"
 
