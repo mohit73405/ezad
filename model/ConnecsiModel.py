@@ -1924,7 +1924,7 @@ class ConnecsiModel:
                       " title = VALUES(title), channel_img=VALUES(channel_img),`desc`=VALUES(`desc`),subscriberCount_gained=COALESCE(subscriberCount_gained,VALUES(subscriberCount_gained))," \
                       "subscriberCount_lost=VALUES(subscriberCount_lost),business_email=COALESCE(business_email,VALUES(business_email)),total_100video_views=VALUES(total_100video_views),total_100video_views_unique=VALUES(total_100video_views_unique)," \
                       " total_100video_likes=VALUES(total_100video_likes),total_100video_dislikes=VALUES(total_100video_dislikes), total_100video_comments=VALUES(total_100video_comments)," \
-                      "total_100video_shares=VALUES(total_100video_shares), facebook_url=VALUES(facebook_url),insta_url=VALUES(insta_url),twitter_url=VALUES(twitter_url),country=COALESCE(country,VALUES(country))".format(d=data)
+                      "total_100video_shares=VALUES(total_100video_shares), facebook_url=COALESCE(facebook_url,VALUES(facebook_url)),insta_url=COALESCE(insta_url,VALUES(insta_url)),twitter_url=COALESCE(twitter_url,VALUES(twitter_url)),country=COALESCE(country,VALUES(country))".format(d=data)
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
