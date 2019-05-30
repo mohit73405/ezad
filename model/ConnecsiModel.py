@@ -1522,11 +1522,11 @@ class ConnecsiModel:
                       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username," \
                       " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(ycivci.video_cat_id SEPARATOR ',')" \
                       " FROM users_influencers ui " \
-                      " JOIN channels_mapper chm ON ui.channel_id = chm.youtube_channel_id " \
+                      " LEFT JOIN channels_mapper chm ON ui.channel_id = chm.youtube_channel_id " \
                       " LEFT JOIN insta_channel_details icd ON icd.insta_id = chm.insta_channel_id " \
                       " LEFT JOIN twitter_channel_details tcd on tcd.twitter_id = chm.twitter_channel_id" \
                       " LEFT JOIN youtube_channel_details ycd ON ui.channel_id = ycd.channel_id " \
-                      " LEFT JOIN youtube_channel_ids_video_categories_id ycivci ON ycivci.channel_id = ui.channel_id " \
+                      " JOIN youtube_channel_ids_video_categories_id ycivci ON ycivci.channel_id = ui.channel_id " \
                       " JOIN youtube_video_categories yvc ON yvc.video_cat_id = ycivci.video_cat_id " \
                       " WHERE ui.channel_id = '"+user_id+"'"
 
