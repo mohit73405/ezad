@@ -251,12 +251,12 @@ class Brand(Resource):
             return {"response": e}, 500
 
 
-@ns_brand.route('/addYotubeInfToCampaignList/<string:channel_id>/<string:campaign_id>')
+@ns_brand.route('/addInfToCampaignList/<string:channel_id>/<string:campaign_id>/<string:channel_name>')
 class Brand(Resource):
-    def post(self,channel_id,campaign_id):
-        '''add Youtube influencer to Campaign list'''
-        columns = ['channel_id', 'campaign_id','status']
-        data = [channel_id, campaign_id,'Added']
+    def post(self,channel_id,campaign_id,channel_name):
+        '''add Any influencer to Campaign list'''
+        columns = ['channel_id', 'campaign_id','status','channel_name']
+        data = [channel_id, campaign_id,'Added',channel_name]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
