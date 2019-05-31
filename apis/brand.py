@@ -150,12 +150,12 @@ class Brand(Resource):
             return {"response": e},500
 
 
-@ns_brand.route('/addToFavList/<string:channel_id>/<string:user_id>')
+@ns_brand.route('/addToFavList/<string:channel_id>/<string:user_id>/<string:channel_name>')
 class Brand(Resource):
-    def post(self,channel_id,user_id):
+    def post(self,channel_id,user_id,channel_name):
         '''add influencer to fav list'''
-        columns = ['channel_id', 'user_id', 'alert_followers', 'alert_views', 'alert_likes', 'alert_comments']
-        data = [channel_id, user_id, '', '', '', '']
+        columns = ['channel_id', 'user_id', 'alert_followers', 'alert_views', 'alert_likes', 'alert_comments','channel_name']
+        data = [channel_id, user_id, '', '', '', '',channel_name]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
