@@ -26,10 +26,11 @@ brand_update_profile_pic = ns_brand.model('Brand update profile pic', {
 })
 brand_create_alert_form = ns_brand.model('Brand create alert form', {
     'channel_id' : fields.String(required=True, description='Channel ID'),
-    'alert_followers' : fields.String(required=False, description='Alert Followers'),
-    'alert_views' : fields.String(required=False, description='Alert Views'),
-    'alert_likes' : fields.String(required=False, description='Alert Likes'),
-    'alert_comments' : fields.String(required=False, description='Alert Comments')
+    'channel_name' : fields.String(required=False, description='Channel Name'),
+    'alert_followers' : fields.Integer(required=False, description='Alert Followers'),
+    'alert_views' : fields.Integer(required=False, description='Alert Views'),
+    'alert_likes' : fields.Integer(required=False, description='Alert Likes'),
+    'alert_comments' : fields.Integer(required=False, description='Alert Comments')
 })
 
 
@@ -233,7 +234,7 @@ class Brand(Resource):
 
 @ns_brand.route('/createInfluencerAlerts/<string:user_id>')
 class Brand(Resource):
-    @ns_brand.expect(brand_create_alert_form)
+    # @ns_brand.expect(brand_create_alert_form)
     def put(self,user_id):
         '''Create alerts for Fav Influencer'''
         form_data = request.get_json()
