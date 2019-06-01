@@ -892,7 +892,7 @@ class ConnecsiModel:
                       ",ycd.total_100video_views,ycd.total_100video_views_unique,ycd.total_100video_likes,ycd.total_100video_dislikes," \
                       "ycd.total_100video_comments,ycd.total_100video_shares,ycd.facebook_url,ycd.insta_url,ycd.twitter_url," \
                       "bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments " \
-                      " FROM brands_inf_fav_list bi JOIN youtube_channel_details ycd on bi.channel_id = ycd.channel_id" \
+                      " FROM brands_inf_fav_list bi LEFT JOIN youtube_channel_details ycd on bi.channel_id = ycd.channel_id" \
                       " WHERE bi.user_id = '"+user_id +"'"
                 print(sql)
                 cursor.execute(sql)
