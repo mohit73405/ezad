@@ -242,10 +242,11 @@ class Brand(Resource):
         alert_views = form_data.get('alert_views')
         alert_likes = form_data.get('alert_likes')
         alert_comments = form_data.get('alert_comments')
+        channel_name = form_data.get('channel_name')
         try:
             connecsiObj = ConnecsiModel()
             connecsiObj.create_alert_for_fav_influencer(user_id=user_id,channel_id=channel_id,alert_followers=alert_followers
-                                                        ,alert_views=alert_views,alert_likes=alert_likes,alert_comments=alert_comments)
+                                                        ,alert_views=alert_views,alert_likes=alert_likes,alert_comments=alert_comments,channel_name=channel_name)
             return {"response": 1}, 200
         except Exception as e:
             return {"response": e}, 500

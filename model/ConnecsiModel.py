@@ -904,10 +904,10 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
-    def create_alert_for_fav_influencer(self, user_id,channel_id,alert_followers,alert_views,alert_likes,alert_comments):
+    def create_alert_for_fav_influencer(self, user_id,channel_id,alert_followers,alert_views,alert_likes,alert_comments,channel_name):
 
-        columns = ['user_id', 'channel_id', 'alert_followers', 'alert_views', 'alert_likes', 'alert_comments']
-        data = (user_id, channel_id, alert_followers, alert_views, alert_likes, alert_comments)
+        columns = ['user_id', 'channel_id', 'alert_followers', 'alert_views', 'alert_likes', 'alert_comments','channel_name']
+        data = (user_id, channel_id, alert_followers, alert_views, alert_likes, alert_comments,channel_name)
 
         fav_inf_list = self.get_fav_inf_list(user_id=user_id)
         present = 0
