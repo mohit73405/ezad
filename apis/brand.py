@@ -210,6 +210,36 @@ class Brand(Resource):
                 response_list.append(dict_temp)
             # print(response_list)
             return {'data': response_list}
+        if channel_name == 'twitter':
+            columns = ['channel_id', 'screen_name', 'title', 'channel_img', 'desc', 'subscriberCount_gained',
+                       'business_email', 'total_100video_views',
+                       'total_100video_likes',
+                       'total_100video_comments', 'total_100video_shares',
+                       'facebook_url', 'insta_url', 'youtube_url', 'twitter_url', 'country',
+                       'alert_followers','alert_views','alert_likes','alert_comments','channel_name']
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_fav_inf_list_by_channel_name(user_id=user_id,channel_name=channel_name)
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            # print(response_list)
+            return {'data': response_list}
+        if channel_name == 'instagram':
+            columns = ['channel_id', 'username','title', 'channel_img', 'desc', 'subscriberCount_gained',
+                            'business_email', 'total_100video_views',
+                            'total_100video_likes',
+                           'total_100video_comments', 'total_100video_shares',
+                           'facebook_url', 'insta_url','youtube_url', 'twitter_url', 'country',
+                       'alert_followers','alert_views','alert_likes','alert_comments','channel_name']
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_fav_inf_list_by_channel_name(user_id=user_id,channel_name=channel_name)
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            # print(response_list)
+            return {'data': response_list}
 
 
 @ns_brand.route('/changePassword/<string:user_id>')

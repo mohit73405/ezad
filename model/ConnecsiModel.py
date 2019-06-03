@@ -914,7 +914,26 @@ class ConnecsiModel:
                           " FROM brands_inf_fav_list bi " \
                           " LEFT JOIN youtube_channel_details t1 ON bi.channel_id = t1.channel_id " \
                           " WHERE bi.user_id = '"+user_id +"' AND bi.channel_name ='"+channel_name+"'"
-
+                if channel_name == 'twitter':
+                    sql = "SELECT bi.channel_id," \
+                          "t1.screen_name, t1.title, t1.channel_img, t1.description, t1.no_of_followers," \
+                          "t1.business_email, t1.no_of_views_recent100, " \
+                          "t1.no_of_likes_recent100, t1.no_of_comments_recent100, t1.no_of_retweets_recent100, " \
+                          "t1.facebook_url, t1.insta_url, t1.youtube_url, t1.twitter_url, t1.location,bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments,bi.channel_name " \
+                          " FROM brands_inf_fav_list bi " \
+                          " LEFT JOIN twitter_channel_details t1 ON bi.channel_id = t1.twitter_id " \
+                          " WHERE bi.user_id = '" + user_id + "' AND bi.channel_name ='" + channel_name + "'"
+                if channel_name == 'instagram':
+                    sql = "SELECT bi.channel_id," \
+                          "t1.username,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
+                          "t1.business_email, t1.no_of_views_recent100, " \
+                          "CAST(SUM(t3.no_of_post_likes) AS SIGNED) total_100video_likes, CAST(SUM(t3.no_of_post_comments) AS SIGNED) total_100video_comments,t1.no_of_shares_recent100, " \
+                          "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.country, " \
+                          "bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments,bi.channel_name " \
+                          " FROM brands_inf_fav_list bi " \
+                          " LEFT JOIN insta_channel_details t1 ON bi.channel_id = t1.insta_id " \
+                          " JOIN insta_post_details t3 on t1.insta_id = t3.insta_id " \
+                          " WHERE bi.user_id = '" + user_id + "' AND bi.channel_name ='" + channel_name + "'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
