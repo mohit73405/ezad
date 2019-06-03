@@ -888,11 +888,8 @@ class ConnecsiModel:
     def get_fav_inf_list(self, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT bi.channel_id,ycd.title,ycd.channel_img,ycd.desc,ycd.subscriberCount_gained,ycd.subscriberCount_lost,ycd.business_email" \
-                      ",ycd.total_100video_views,ycd.total_100video_views_unique,ycd.total_100video_likes,ycd.total_100video_dislikes," \
-                      "ycd.total_100video_comments,ycd.total_100video_shares,ycd.facebook_url,ycd.insta_url,ycd.twitter_url," \
-                      "bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments " \
-                      " FROM brands_inf_fav_list bi JOIN youtube_channel_details ycd on bi.channel_id = ycd.channel_id" \
+                sql = "SELECT bi.channel_id,bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments,bi.channel_name " \
+                      " FROM brands_inf_fav_list bi " \
                       " WHERE bi.user_id = '"+user_id +"'"
                 print(sql)
                 cursor.execute(sql)
@@ -903,6 +900,7 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
 
     def create_alert_for_fav_influencer(self, user_id,channel_id,alert_followers,alert_views,alert_likes,alert_comments,channel_name):
 
