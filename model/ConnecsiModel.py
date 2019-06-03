@@ -932,7 +932,7 @@ class ConnecsiModel:
                           "bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments,bi.channel_name " \
                           " FROM brands_inf_fav_list bi " \
                           " LEFT JOIN insta_channel_details t1 ON bi.channel_id = t1.insta_id " \
-                          " JOIN insta_post_details t3 on t1.insta_id = t3.insta_id " \
+                          " LEFT JOIN insta_post_details t3 on t1.insta_id = t3.insta_id " \
                           " WHERE bi.user_id = '" + user_id + "' AND bi.channel_name ='" + channel_name + "'"
                 print(sql)
                 cursor.execute(sql)
