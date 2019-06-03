@@ -910,7 +910,7 @@ class ConnecsiModel:
                           "t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
                           "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
                           "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
-                          "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.countrybi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments,bi.channel_name " \
+                          "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country,bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments,bi.channel_name " \
                           " FROM brands_inf_fav_list bi " \
                           " LEFT JOIN youtube_channel_details t1 ON bi.channel_id = t1.channel_id " \
                           " WHERE bi.user_id = '"+user_id +"' AND bi.channel_name ='"+channel_name+"'"
