@@ -54,7 +54,7 @@ class Insta_api(Resource):
                 conObj = InstgramScrapper(url=instagram_url,channel_id=youtube_channel_id,twitter_url=twitter_url,video_categories=video_categories
                                           ,country=country,facebook_url=facebook_url,insta_url=instagram_url,youtube_url=youtube_url,business_email=business_email)
                 conObj.set_insta_data()
-
+                modelObj.update_insta_url_in_youtube_channel_details(insta_url=instagram_url,youtube_channel_id=youtube_channel_id)
             except Exception as e:
                 print(e)
                 pass

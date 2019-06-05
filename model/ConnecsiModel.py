@@ -2131,3 +2131,21 @@ class ConnecsiModel:
 
         except Exception as e:
             print(e)
+
+
+    def update_insta_url_in_youtube_channel_details(self,insta_url,youtube_channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE youtube_channel_details SET insta_url = '" + str(insta_url) + "' WHERE channel_id = '" \
+                      + str(youtube_channel_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
