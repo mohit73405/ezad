@@ -12,8 +12,8 @@ ns_insta = Namespace('Insta', description='Insta Apis')
 @ns_insta.route('/addInstagramChannel/<string:instagram_username>/<string:business_email>/<string:youtube_channel_id>')
 class Insta_api(Resource):
     def post(self,instagram_username,business_email,youtube_channel_id):
+        """add Instagram channel by insta url"""
         instagram_url = 'https://www.instagram.com/' + instagram_username
-        '''add Instagram channel by insta url'''
         modelObj = ConnecsiModel()
         columns = ['channel_id', 'twitter_url', 'country', 'facebook_url', 'insta_url']
         channel_data = modelObj.get__(table_name='youtube_channel_details', columns=columns,WHERE='WHERE'
