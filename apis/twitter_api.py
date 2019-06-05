@@ -27,7 +27,7 @@ class Twitter_api(Resource):
             facebook_url = item[3]
             insta_url = item[4]
             youtube_url = 'https://www.youtube.com/channel/' + youtube_channel_id
-            twitter_url = item[1]
+
 
             vc_data = ''
             screen_name = screen_name
@@ -46,19 +46,15 @@ class Twitter_api(Resource):
             except Exception as e:
                 print(e)
                 pass
-            try:
-                twitter_url = item[1]
+            twitter_url = 'https://www.twitter.com/' + screen_name
                 # output = re.findall('http(.*)', twitter_url)
-            except Exception as e:
-                print(e)
-                pass
-
             try:
                 conObj = TwitterApiController()
                 conObj.get_data_by_screen_name(channel_id=youtube_channel_id, twitter_url=twitter_url,
                                                screen_name=screen_name, video_categories=video_categories
                                                , country=country, facebook_url=facebook_url, insta_url=insta_url,
                                                youtube_url=youtube_url,business_email=business_email)
+                modelObj.update_twitter_url_in_youtube_channel_details(twitter_url=twitter_url,youtube_channel_id=youtube_channel_id)
             except Exception as e:
                 print(e)
                 pass
