@@ -199,12 +199,11 @@ class Influencer(Resource):
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))
+            for item in data_categories:
+                dict_temp_categories = dict(zip(columns_categories, item))
+                dict_temp.update(dict_temp_categories)
             response_list.append(dict_temp)
-        for item in data_categories:
-            dict_temp = dict(zip(columns_categories, item))
-            response_list.append(dict_temp)
-        print('categories =',data_categories)
-
+            
         return {'data': response_list}
 
 
