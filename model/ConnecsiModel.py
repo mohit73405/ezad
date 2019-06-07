@@ -1561,17 +1561,32 @@ class ConnecsiModel:
                       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id,chm.insta_channel_id as mapped_insta_channel_id," \
                       " chm.confirmed," \
                       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
-                      " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username," \
-                      " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(ycivci.video_cat_id SEPARATOR ',')" \
+                      " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username " \
                       " FROM  channels_mapper chm " \
                       " LEFT JOIN users_influencers ui ON ui.channel_id = chm.youtube_channel_id " \
                       " LEFT JOIN insta_channel_details icd ON icd.insta_id = chm.insta_channel_id " \
                       " LEFT JOIN twitter_channel_details tcd ON tcd.twitter_id = chm.twitter_channel_id" \
                       " LEFT JOIN youtube_channel_details ycd ON chm.youtube_channel_id = ycd.channel_id " \
-                      " JOIN youtube_channel_ids_video_categories_id ycivci ON ycivci.channel_id = ui.channel_id " \
-                      " JOIN youtube_video_categories yvc ON yvc.video_cat_id = ycivci.video_cat_id " \
                       " WHERE ui.channel_id = '"+user_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
 
+    def get_youtube_cetegories_id_and_name(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "SELECT " \
+                      " GROUP_CONCAT(yvc.video_cat_name SEPARATOR ','),GROUP_CONCAT(ycivci.video_cat_id SEPARATOR ',')" \
+                      " FROM  youtube_channel_ids_video_categories_id ycivci " \
+                      " JOIN youtube_video_categories yvc ON yvc.video_cat_id = ycivci.video_cat_id " \
+                      " WHERE ycivci.channel_id = '"+user_id+"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()

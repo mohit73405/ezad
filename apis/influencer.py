@@ -190,10 +190,11 @@ class Influencer(Resource):
                    'mapped_youtube_channel_id', 'mapped_twitter_channel_id','mapped_insta_channel_id',
                    'confirmed','title','channel_img','youtube_country','facebook_url','twitter_url','insta_url',
                    'twitter_business_email','twitter_screen_name','twitter_title','twitter_channel_img',
-                   'twitter_hashtags','insta_username',
-                   'youtube_video_cat','youtube_video_cat_id']
-
+                   'twitter_hashtags','insta_username']
         data = connecsiObj.get_inf_and_channel_details(user_id=str(user_id))
+        columns_categories=['youtube_video_cat','youtube_video_cat_id']
+        data_categories = connecsiObj.get_youtube_cetegories_id_and_name(user_id=user_id)
+        print('categories =',data_categories)
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))
