@@ -192,13 +192,19 @@ class Influencer(Resource):
                    'twitter_business_email','twitter_screen_name','twitter_title','twitter_channel_img',
                    'twitter_hashtags','insta_username']
         data = connecsiObj.get_inf_and_channel_details(user_id=str(user_id))
+
         columns_categories=['youtube_video_cat','youtube_video_cat_id']
         data_categories = connecsiObj.get_youtube_cetegories_id_and_name(user_id=user_id)
-        print('categories =',data_categories)
+
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))
             response_list.append(dict_temp)
+        for item in data_categories:
+            dict_temp = dict(zip(columns_categories, item))
+            response_list.append(dict_temp)
+        print('categories =',data_categories)
+
         return {'data': response_list}
 
 
