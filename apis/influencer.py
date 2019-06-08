@@ -203,7 +203,12 @@ class Influencer(Resource):
                 dict_temp_categories = dict(zip(columns_categories, item))
                 dict_temp.update(dict_temp_categories)
             response_list.append(dict_temp)
-            
+        new_dict={}
+        for item in response_list:
+            for k,v in item.items():
+                if v is not None:
+                   new_dict.update({k:v})
+        print(new_dict)            
         return {'data': response_list}
 
 
