@@ -208,7 +208,8 @@ class Influencer(Resource):
             for k,v in item.items():
                 if v is not None:
                    new_dict.update({k:v})
-        print(new_dict)            
+        print(new_dict)
+        response_list.append(new_dict)
         return {'data': response_list}
 
 
