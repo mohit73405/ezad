@@ -208,9 +208,10 @@ class Influencer(Resource):
             for k,v in item.items():
                 if v is not None:
                    new_dict.update({k:v})
-        print(new_dict)
-        response_list.append(new_dict)
-        return {'data': response_list}
+        # print(new_dict)
+        new_response_list=[]
+        new_response_list.append(new_dict)
+        return {'data': new_response_list}
 
 
 @ns_influencer.route('/addCategoriesToChannel/<string:user_id>/<string:video_cat_id>')
