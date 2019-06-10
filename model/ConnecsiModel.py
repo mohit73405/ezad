@@ -816,6 +816,7 @@ class ConnecsiModel:
                     conditions.append(" bc.currency LIKE '%"+currency+"%'")
                 if price_lower and price_upper:
                     conditions.append(" bc.budget BETWEEN " +price_lower+ " AND " + price_upper )
+                conditions.append(" bc.deleted != 'true' OR bc.deleted is NULL ")
                 if conditions:
                     sql += " WHERE "
                     sql += " AND ".join(conditions)
