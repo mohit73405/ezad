@@ -19,6 +19,7 @@ class History(Resource):
                                           ,compare_column='channel_id',compare_value=str(channel_id))
             response_list = []
             response_columns = ['channel_id','no_of_followers','date_time']
+            print(channel_history_data)
             for item in channel_history_data:
                 dict_temp = dict(zip(response_columns, item))
                 response_list.append(dict_temp)
