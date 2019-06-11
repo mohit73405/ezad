@@ -14,12 +14,15 @@ class History(Resource):
         """get no of followers history by channel name and id"""
         modelObj = ConnecsiModel()
         if channel_name == 'youtube':
-            columns = ['channel_id', 'subscriberCount_gained', 'total_100video_views']
+            columns = ['channel_id', 'subscriberCount_gained', 'inserted_date']
             channel_history_data = modelObj.get__(table_name='youtube_channels_history', columns=columns,WHERE='WHERE'
                                           ,compare_column='channel_id',compare_value=str(channel_id))
             response_list = []
             response_columns = ['channel_id','no_of_followers','date_time']
             print(channel_history_data)
+            for item in channel_history_data:
+                string_date = item[2].strftime("%Y-%b-%d")
+                item[2] = string_date
             for item in channel_history_data:
                 dict_temp = dict(zip(response_columns, item))
                 response_list.append(dict_temp)
