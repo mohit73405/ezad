@@ -1120,6 +1120,22 @@ class ConnecsiModel:
             print(e)
 
 
+    def get_campaigns_added_to_message_by_channel_id(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT * FROM brands_campaigns bc" \
+                      " Left JOIN channel_campaign_message ccm on bc.campaign_id = ccm.campaign_id" \
+                      " WHERE ccm.channel_id = '"+ channel_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
     def get_campaigns_added_to_message_by_message_id_and_channel_id(self, message_id,channel_id):
         try:
             with self.cnx.cursor() as cursor:
