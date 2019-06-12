@@ -385,7 +385,7 @@ class MailBox(Resource):
         except Exception as e:
             return {"response": e}, 500
 
-@ns_messages.route('/getCampaignsAddedToMessageByMessageIdAndChannelId/<string:message_id>/<string:channel_id')
+@ns_messages.route('/getCampaignsAddedToMessageByMessageIdAndChannelId/<string:message_id>/<string:channel_id>')
 class MailBox(Resource):
     def get(self,message_id,channel_id):
         ''' Get campaigns added to message by  message id and channel id'''

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="406" column="78" lean-forward="false" selection-start-line="406" selection-start-column="78" selection-end-line="406" selection-end-column="78" />
+            <state relative-caret-position="523">
+              <caret line="415" column="99" lean-forward="true" selection-start-line="415" selection-start-column="99" selection-end-line="415" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -874,8 +873,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="406" column="78" lean-forward="false" selection-start-line="406" selection-start-column="78" selection-end-line="406" selection-end-column="78" />
+        <state relative-caret-position="523">
+          <caret line="415" column="99" lean-forward="true" selection-start-line="415" selection-start-column="99" selection-end-line="415" selection-end-column="99" />
           <folding />
         </state>
       </provider>
