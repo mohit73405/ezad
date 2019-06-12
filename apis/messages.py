@@ -385,6 +385,25 @@ class MailBox(Resource):
         except Exception as e:
             return {"response": e}, 500
 
+@ns_messages.route('/getCampaignsAddedToMessageByMessageIdAndChannelId/<string:message_id>/<string:channel_id')
+class MailBox(Resource):
+    def get(self,message_id,channel_id):
+        ''' Get campaigns added to message by  message id and channel id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_campaigns_added_to_message_by_message_id_and_channel_id(message_id=str(message_id),channel_id=str(channel_id))
+            print(data)
+            columns = ['campaign_id','user_id', 'campaign_name', 'from_date', 'to_date', 'budget', 'currency', 'channels',
+                       'regions','min_lower_followers','max_upper_followers','files','video_cat_id'
+                       ,'target_url','campaign_description','arrangements','kpis','is_classified_post','deleted','campaign_status','channel_id','campaign_id','message_id','status']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
+
 
 
 
