@@ -75,7 +75,7 @@ class MailBox(Resource):
                 data = connecsiObj.get_messages_by_email_id_and_user_type(email_id=str(email_id),user_type=user_type)
                 print(data)
                 columns = ['message_id','from_email_id', 'to_email_id','channel_id', 'date', 'subject', 'message', 'user_id', 'user_type',
-                       'deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id']
+                       'deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id','read']
                 response_list = []
                 for item in data:
                     dict_temp = dict(zip(columns, item))
@@ -89,7 +89,7 @@ class MailBox(Resource):
                 data = connecsiObj.get_messages_by_email_id_and_user_type(email_id=str(email_id),user_type=user_type)
                 print(data)
                 columns = ['message_id','from_email_id', 'to_email_id','channel_id', 'date', 'subject', 'message', 'user_id', 'user_type',
-                       'deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id']
+                       'deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id','read']
                 response_list = []
                 for item in data:
                     dict_temp = dict(zip(columns, item))
