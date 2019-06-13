@@ -1509,7 +1509,7 @@ class ConnecsiModel:
                       " cp.currency,cp.proposal_price," \
                       " cp.proposal_description,cp.proposal_arrangements,cp.proposal_kpis,cp.target_url,cp.ref_link," \
                       " bc.files,bc.regions,bc.video_cat_id,yvc.video_cat_name," \
-                      " chm.youtube_channel_id,chm.twitter_channel_id,cp.proposal_channels," \
+                      " chm.youtube_channel_id,chm.twitter_channel_id,chm.insta_channel_id,cp.proposal_channels," \
                       " chm.confirmed, ccm.status " \
                       " FROM channels_mapper chm" \
                       " JOIN campaign_proposal cp on cp.channel_id = chm.youtube_channel_id or cp.channel_id=chm.twitter_channel_id" \
