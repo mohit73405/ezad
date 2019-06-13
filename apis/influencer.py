@@ -260,3 +260,18 @@ class Influencer(Resource):
         connecsiObj = ConnecsiModel()
         response = connecsiObj.delete_category_from_twitter_channel(twitter_id=twitter_id,category_id=category_id)
         return response
+
+
+@ns_influencer.route('/addCategoriesToInstaChannel/<string:insta_id>/<string:category_id>')
+class Influencer(Resource):
+    def get(self,insta_id,category_id):
+        '''add Categories to insta channel by insta id '''
+        connecsiObj = ConnecsiModel()
+        response = connecsiObj.insert_categories_to_insta_channel(insta_id=insta_id, category_id=category_id)
+        return response
+
+    def delete(self,insta_id,category_id):
+        '''remove Category from insta channel insta id '''
+        connecsiObj = ConnecsiModel()
+        response = connecsiObj.delete_category_from_insta_channel(insta_id=insta_id,category_id=category_id)
+        return response

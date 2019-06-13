@@ -2002,6 +2002,21 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def delete_category_from_insta_channel(self, insta_id,category_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "Delete from  insta_id_category_id  WHERE insta_id = '" + insta_id + "'" + " AND category_id = '" + category_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
     def insert_update_youtube_details(self, data):
         try:
             with self.cnx.cursor() as cursor:
