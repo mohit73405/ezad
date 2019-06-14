@@ -197,7 +197,7 @@ class ConnecsiModel:
         try:
 
             with self.cnx.cursor() as cursor:
-                group_by = " group by t1.insta_id"
+                group_by = " group by t3.insta_id"
                 # group_by =''
                 category_id_filter = " t2.category_id =" + category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
