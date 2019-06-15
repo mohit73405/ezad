@@ -197,11 +197,11 @@ class ConnecsiModel:
         try:
 
             with self.cnx.cursor() as cursor:
-                group_by = " group by t3.insta_id"
+                # group_by = " group by t3.insta_id"
                 # group_by =''
-                category_id_filter = " t2.category_id =" + category_id
+                category_id_filter = " ic.category_id =" + category_id
                 # country_filter = " t3.regionCode = '"+country+"'"
-                country_filter = " t1.country = '" + country + "'"
+                country_filter = " icd.country = '" + country + "'"
                 order = 'desc'
                 if sort_order == 'High To Low':
                     order = 'desc'
@@ -209,7 +209,7 @@ class ConnecsiModel:
                     order = 'asc'
                 else:
                     order = 'desc'
-                order_by = " order by t1.no_of_followers " + order + " LIMIT 20 OFFSET " + offset
+                # order_by = " order by t1.no_of_followers " + order + " LIMIT 20 OFFSET " + offset
 
                 sql = "SELECT t1.insta_id,t1.username,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
                       "t1.business_email, t1.no_of_views_recent100, " \
@@ -220,23 +220,23 @@ class ConnecsiModel:
                       " icd.no_of_shares_recent100," \
                       " icd.facebook_url,icd.insta_url,icd.youtube_url,icd.twitter_url,icd.country " \
                       " FROM insta_channel_details icd " \
-                      " JOIN insta_id_category_id ic on icd.insta_id = ic.insta_id group by ic.insta_id) as t1 " \
-                      " JOIN insta_post_details t3 on t1.insta_id = t3.insta_id" \
-                      " WHERE t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper
+                      " JOIN insta_id_category_id ic on icd.insta_id = ic.insta_id " \
+                      " WHERE (t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper + ") " \
 
-                # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                join =" group by ic.insta_id) as t1 " \
+                      " JOIN insta_post_details t3 on t1.insta_id = t3.insta_id group by t3.insta_id " \
+                      " order by t1.no_of_followers " + order + " LIMIT 20 OFFSET " + offset
 
-                # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
                 if category_id and country:
-                    sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + group_by + order_by
+                    sql = sql + ' AND ' + category_id_filter + ' AND ' + country_filter + join
                 elif category_id:
-                    sql = sql + ' AND ' + category_id_filter + group_by + order_by
+                    sql = sql + ' AND ' + category_id_filter + join
                 elif country:
                     # sql = sql = sql + group_by
-                    sql = sql + ' AND ' + country_filter + group_by + order_by
+                    sql = sql + ' AND ' + country_filter + join
                 else:
-                    sql = sql + group_by + order_by
+                    sql = sql + join
 
                 print(sql)
                 cursor.execute(sql)
