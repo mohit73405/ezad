@@ -143,6 +143,7 @@ class SearchChannels(Resource):
                 data = connecsiObj.search_instagram_inf(min_lower=str(min_lower), max_upper=str(max_upper)
                                                       , category_id=str(category_id), country=str(country),
                                                       sort_order=sort_order, offset=str(offset))
+                print(data)
                 columns = ['channel_id','username','title', 'channel_img', 'desc', 'subscriberCount_gained',
                             'business_email', 'total_100video_views',
                             'total_100video_likes',
