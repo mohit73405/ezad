@@ -221,7 +221,7 @@ class ConnecsiModel:
                       " icd.facebook_url,icd.insta_url,icd.youtube_url,icd.twitter_url,icd.country " \
                       " FROM insta_channel_details icd " \
                       " JOIN insta_id_category_id ic on icd.insta_id = ic.insta_id " \
-                      " WHERE (t1.no_of_followers BETWEEN " + min_lower + " AND " + max_upper + ") " \
+                      " WHERE (icd.no_of_followers BETWEEN " + min_lower + " AND " + max_upper + ") " \
 
                 join =" group by ic.insta_id) as t1 " \
                       " JOIN insta_post_details t3 on t1.insta_id = t3.insta_id group by t3.insta_id " \
