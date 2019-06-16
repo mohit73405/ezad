@@ -78,7 +78,7 @@ class Insta_api(Resource):
         self.user_agents = None
         try:
             insta_data_dict = self.get_insta_data()
-            print(insta_data_dict)
+            # print(insta_data_dict)
             return insta_data_dict
         except Exception as e:
             print(e)
@@ -92,8 +92,8 @@ class Insta_api(Resource):
         page_data = {}
         post_list = []
         page_metrics = self.page_metrics()
-        for key, value in page_metrics.items():
-            print(key, ':', value)
+        # for key, value in page_metrics.items():
+        #     print(key, ':', value)
         page_data.update({'insta_id':page_metrics['id']})
         page_data.update({'username':page_metrics['username']})
         page_data.update({'title':page_metrics['full_name']})
