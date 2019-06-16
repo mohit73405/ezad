@@ -1,5 +1,9 @@
+import re
 import urllib.parse
-
+from random import choice
+import json
+import requests
+from bs4 import BeautifulSoup
 from flask import Flask, request, session
 from flask_restplus import Resource, Api, fields, Namespace
 from model.ConnecsiModel import ConnecsiModel
@@ -8,6 +12,11 @@ import datetime
 from controller.instagram.instagramCon import InstgramScrapper
 
 ns_insta = Namespace('Insta', description='Insta Apis')
+USER_AGENTS = ["Mozilla/5.0 (Windows NT 5.1; rv:41.0) Gecko/20100101 Firefox/41.0",
+                   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9",
+                   "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1",
+                   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"
+                   ]
 
 @ns_insta.route('/addInstagramChannel/<string:instagram_username>/<string:business_email>/<string:youtube_channel_id>')
 class Insta_api(Resource):
@@ -59,3 +68,128 @@ class Insta_api(Resource):
                 print(e)
                 pass
 
+@ns_insta.route('/getInstagramChannel/<string:instagram_username>')
+class Insta_api(Resource):
+    def get(self,instagram_username):
+        """get Instagram channel by insta url"""
+
+        instagram_url = 'https://www.instagram.com/' + instagram_username
+        self.url = instagram_url
+        self.user_agents = None
+        try:
+            insta_data_dict = self.get_insta_data()
+            print(insta_data_dict)
+            return insta_data_dict
+        except Exception as e:
+            print(e)
+            pass
+            return {'error':e}
+
+
+    def get_insta_data(self):
+        insta_data={}
+        page_data = []
+        page_metrics = self.page_metrics()
+        # for key, value in page_metrics.items():
+        #     print(key, ':', value)
+        page_data.append(page_metrics['id'])
+        page_data.append(page_metrics['username'])
+        page_data.append(page_metrics['full_name'])
+        page_data.append(page_metrics['business_category_name'])
+        page_data.append(page_metrics['profile_pic_url_hd'])
+        page_data.append(page_metrics['biography'])
+        page_data.append(page_metrics['edge_followed_by']['count'])
+
+        for item in page_metrics['edge_owner_to_timeline_media']['edges']:
+            post_data = []
+            post_data.append(page_metrics['id'])
+            post_data.append(item['node']['id'])
+            post_data.append(datetime.fromtimestamp(item['node']['taken_at_timestamp']).strftime('%Y-%m-%d %H:%M:%S'))
+            hastag_list = []
+            for text in item['node']['edge_media_to_caption']['edges']:
+                 for tag in re.findall(r'[#@][^\s#@]+', text['node']['text']):
+                     hastag_list.append(tag)
+            hashtag_string = ','.join(hastag_list)
+            # print(item)
+            # print('string = ',hashtag_string)
+            post_data.append(hashtag_string)
+            post_data.append(item['node']['edge_liked_by']['count'])
+            post_data.append(item['node']['edge_media_to_comment']['count'])
+
+            # self.insert_insta_post_data(post_data=post_data)
+        insta_data.update({'page_data':page_data})
+        insta_data.update({'post_data': post_data})
+
+        return insta_data
+        # self.insert_insta_data(data=self.insta_data)
+
+    def __random_agent(self):
+        if self.user_agents and isinstance(self.user_agents, list):
+            return choice(self.user_agents)
+        return choice(USER_AGENTS)
+
+    def __request_url(self):
+        try:
+            response = requests.get(
+                self.url,
+                headers={'User-Agent': self.__random_agent()})
+            response.raise_for_status()
+        except requests.HTTPError:
+            raise requests.HTTPError('Received non-200 status code.')
+        except requests.RequestException:
+            raise requests.RequestException
+        else:
+            return response.text
+
+    @staticmethod
+    def extract_json(html):
+        soup = BeautifulSoup(html, 'html.parser')
+        body = soup.find('body')
+        script_tag = body.find('script')
+        raw_string = script_tag.text.strip().replace('window._sharedData =', '').replace(';', '')
+        return json.loads(raw_string)
+
+    def page_metrics1(self):
+        results = {}
+        try:
+            response = self.__request_url()
+            json_data = self.extract_json(response)
+            metrics = json_data['entry_data']['ProfilePage'][0]['graphql']['user']
+        except Exception as e:
+            raise e
+        else:
+            for key, value in metrics.items():
+                if key != 'edge_owner_to_timeline_media':
+                    if value and isinstance(value, dict):
+                        value = value['count']
+                        results[key] = value
+        return results
+
+
+    def page_metrics(self):
+        metrics=''
+        try:
+            response = self.__request_url()
+            json_data = self.extract_json(response)
+            metrics = json_data['entry_data']['ProfilePage'][0]['graphql']['user']
+        except Exception as e:
+            print(e)
+            pass
+        return metrics
+
+
+    def post_metrics(self):
+        results = []
+        try:
+            response = self.__request_url()
+            json_data = self.extract_json(response)
+            metrics = json_data['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media'][
+                'edges']
+        except Exception as e:
+            raise e
+        else:
+            for node in metrics:
+                node = node.get('node')
+                if node and isinstance(node, dict):
+                    results.append(node)
+        return results
