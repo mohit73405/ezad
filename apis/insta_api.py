@@ -87,24 +87,26 @@ class Insta_api(Resource):
 
 
     def get_insta_data(self):
+        insta_data_list = []
         insta_data={}
-        page_data = []
+        page_data = {}
+        post_list = []
         page_metrics = self.page_metrics()
         # for key, value in page_metrics.items():
         #     print(key, ':', value)
-        page_data.append(page_metrics['id'])
-        page_data.append(page_metrics['username'])
-        page_data.append(page_metrics['full_name'])
-        page_data.append(page_metrics['business_category_name'])
-        page_data.append(page_metrics['profile_pic_url_hd'])
-        page_data.append(page_metrics['biography'])
-        page_data.append(page_metrics['edge_followed_by']['count'])
+        page_data.update({'insta_id':page_metrics['id']})
+        page_data.update({'username':page_metrics['username']})
+        page_data.update({'title':page_metrics['full_name']})
+        page_data.update({'business_category_name':page_metrics['business_category_name']})
+        page_data.update({'channel_img':page_metrics['profile_pic_url_hd']})
+        page_data.update({'description':page_metrics['biography']})
+        page_data.update({'no_of_followers':page_metrics['edge_followed_by']['count']})
 
         for item in page_metrics['edge_owner_to_timeline_media']['edges']:
-            post_data = []
-            post_data.append(page_metrics['id'])
-            post_data.append(item['node']['id'])
-            post_data.append(datetime.fromtimestamp(item['node']['taken_at_timestamp']).strftime('%Y-%m-%d %H:%M:%S'))
+            post_data = {}
+            post_data.update({'insta_id':page_metrics['id']})
+            post_data.update({'post_id':item['node']['id']})
+            post_data.update({'post_time':datetime.fromtimestamp(item['node']['taken_at_timestamp']).strftime('%Y-%m-%d %H:%M:%S')})
             hastag_list = []
             for text in item['node']['edge_media_to_caption']['edges']:
                  for tag in re.findall(r'[#@][^\s#@]+', text['node']['text']):
@@ -112,15 +114,15 @@ class Insta_api(Resource):
             hashtag_string = ','.join(hastag_list)
             # print(item)
             # print('string = ',hashtag_string)
-            post_data.append(hashtag_string)
-            post_data.append(item['node']['edge_liked_by']['count'])
-            post_data.append(item['node']['edge_media_to_comment']['count'])
-
+            post_data.update({'insta_hashtags':hashtag_string})
+            post_data.update({'no_of_post_likes':item['node']['edge_liked_by']['count']})
+            post_data.update({'no_of_post_comments':item['node']['edge_media_to_comment']['count']})
+            post_list.append(post_data)
             # self.insert_insta_post_data(post_data=post_data)
         insta_data.update({'page_data':page_data})
-        insta_data.update({'post_data': post_data})
-
-        return insta_data
+        insta_data.update({'post_data': post_list})
+        insta_data_list.append(insta_data)
+        return insta_data_list
         # self.insert_insta_data(data=self.insta_data)
 
     def __random_agent(self):
