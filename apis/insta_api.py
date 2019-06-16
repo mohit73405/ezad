@@ -106,7 +106,7 @@ class Insta_api(Resource):
             post_data = {}
             post_data.update({'insta_id':page_metrics['id']})
             post_data.update({'post_id':item['node']['id']})
-            post_data.update({'post_time':datetime.fromtimestamp(item['node']['taken_at_timestamp']).strftime('%Y-%m-%d %H:%M:%S')})
+            post_data.update({'post_time':datetime.datetime.fromtimestamp(item['node']['taken_at_timestamp']).strftime('%Y-%m-%d %H:%M:%S')})
             hastag_list = []
             for text in item['node']['edge_media_to_caption']['edges']:
                  for tag in re.findall(r'[#@][^\s#@]+', text['node']['text']):
