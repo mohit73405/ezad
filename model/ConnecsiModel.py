@@ -2240,7 +2240,7 @@ class ConnecsiModel:
     def mark_message_as_read(self, message_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "UPDATE messages SET read = 'true' WHERE message_id = '" + message_id + "'"
+                sql = "UPDATE messages SET `read` = 'true' WHERE message_id = '" + message_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
