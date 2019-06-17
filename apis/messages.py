@@ -629,3 +629,15 @@ class MailBox(Resource):
         # Login Credentials for sending the mail
         server.login(msg['From'], password)
         server.sendmail(msg['From'], [msg['To']], msg.as_string())
+
+
+@ns_messages.route('/update_message_as_read/<message_id>')
+class MailBox(Resource):
+    def get(self,message_id):
+        ''' update message as read'''
+        try:
+            connecsiObj = ConnecsiModel()
+            res = connecsiObj.mark_message_as_read(message_id=message_id)
+            return {'data': res},200
+        except Exception as e:
+            return {"response": e}, 500
