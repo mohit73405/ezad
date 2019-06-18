@@ -663,12 +663,15 @@ class ConnecsiModel:
     def get_all_unread_messages_by_to_email_id(self,to_email_id):
         try:
             with self.cnx.cursor() as cursor:
+                total_unread_messages = 0
                 table_name1 = 'messages'
                 sql1 = "SELECT  count(*) from " + table_name1 + " WHERE `read` = 'false' AND " \
                       " to_email_id = '" + to_email_id  + "'"
                 print(sql1)
                 cursor.execute(sql1)
                 data1 = cursor.fetchone()
+                for item1 in data1:
+                    total_unread_messages = total_unread_messages+item1
                 print('data1 = ',data1)
                 table_name2 = 'conversations'
                 sql2 = "SELECT  count(*) from " + table_name2 + " WHERE `read` = 'false' AND " \
@@ -676,11 +679,15 @@ class ConnecsiModel:
                 print(sql2)
                 cursor.execute(sql2)
                 data2 = cursor.fetchone()
+                for item2 in data2:
+                    total_unread_messages = total_unread_messages+item2
                 print('data2= ',data2)
                 # print(result)
+                result = {'total_unread_messages':total_unread_messages}
+
             print("closing cnx")
             cursor.close()
-            return data1
+            return result
 
         except Exception as e:
             print(e)

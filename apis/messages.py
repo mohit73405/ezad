@@ -676,11 +676,11 @@ class MailBox(Resource):
             print(data)
             # columns = ['conv_id','message_id', 'date', 'from_email_id', 'to_email_id', 'subject', 'message', 'user_id',
             #            'user_type','deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id','read']
-            columns=['total_unread_messages']
-            response_list = []
-            for item in data:
-                dict_temp = dict(zip(columns, item))
-                response_list.append(dict_temp)
-            return {'data': response_list}
+            # columns=['total_unread_messages']
+            # response_list = []
+            # for item in data:
+            #     dict_temp = dict(zip(columns, item))
+            #     response_list.append(dict_temp)
+            return data
         except Exception as e:
-            return {"response": e}, 500
+            return {"error": e}, 500
