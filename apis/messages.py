@@ -641,3 +641,15 @@ class MailBox(Resource):
             return {'data': res},200
         except Exception as e:
             return {"response": e}, 500
+
+@ns_messages.route('/update_message_as_unread/<message_id>')
+class MailBox(Resource):
+    def get(self,message_id):
+        ''' update message as unread'''
+        try:
+            connecsiObj = ConnecsiModel()
+            res = connecsiObj.mark_message_as_unread(message_id=message_id)
+            return {'data': res},200
+        except Exception as e:
+            return {"response": e}, 500
+        
