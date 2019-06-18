@@ -660,6 +660,31 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_all_unread_messages_by_to_email_id(self,to_email_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name1 = 'messages'
+                sql1 = "SELECT  count(*) from " + table_name1 + " WHERE `read` = 'false' AND " \
+                      " to_email_id = '" + to_email_id  + "'"
+                print(sql1)
+                cursor.execute(sql1)
+                data1 = cursor.fetchall()
+                print('data1 = ',data1)
+                table_name2 = 'conversations'
+                sql2 = "SELECT  count(*) from " + table_name2 + " WHERE `read` = 'false' AND " \
+                                                        " conv_to_email_id = '" + to_email_id + "'"
+                print(sql2)
+                cursor.execute(sql2)
+                data2 = cursor.fetchall()
+                print('data2= ',data2)
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data1
+
+        except Exception as e:
+            print(e)
+
     def get_conversations_by_from_email_id(self,from_email_id):
         try:
             with self.cnx.cursor() as cursor:

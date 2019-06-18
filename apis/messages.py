@@ -664,3 +664,23 @@ class MailBox(Resource):
             return {'data': res},200
         except Exception as e:
             return {"response": e}, 500
+
+
+@ns_messages.route('/getAllUnreadMessages/<string:to_email_id>')
+class MailBox(Resource):
+    def get(self,to_email_id):
+        ''' Get all unread messages by to_email_id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_all_unread_messages_by_to_email_id(to_email_id=str(to_email_id))
+            print(data)
+            # columns = ['conv_id','message_id', 'date', 'from_email_id', 'to_email_id', 'subject', 'message', 'user_id',
+            #            'user_type','deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id','read']
+            columns=['total_unread_messages']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
