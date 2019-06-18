@@ -92,8 +92,8 @@ class Insta_api(Resource):
         page_data = {}
         post_list = []
         page_metrics = self.page_metrics()
-        # for key, value in page_metrics.items():
-        #     print(key, ':', value)
+        for key, value in page_metrics.items():
+            print(key, ':', value)
         page_data.update({'insta_id':page_metrics['id']})
         page_data.update({'username':page_metrics['username']})
         page_data.update({'title':page_metrics['full_name']})
