@@ -647,8 +647,10 @@ class ConnecsiModel:
     def get_conversations_by_to_email_id(self,to_email_id):
         try:
             with self.cnx.cursor() as cursor:
-                table_name = 'conversations'
-                sql = "SELECT  * from " + table_name + " WHERE conv_to_email_id = '" + to_email_id  + "' GROUP BY message_id order by conv_id DESC"
+                # table_name = 'conversations'
+                sql = "SELECT  * from(SELECT * FROM " \
+                      " conversations WHERE conv_to_email_id = '" + to_email_id + "' ORDER BY conv_id DESC) as t1" \
+                      " GROUP BY t1.message_id "
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
