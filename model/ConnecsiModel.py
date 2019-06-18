@@ -2252,6 +2252,21 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def mark_conversation_as_read(self, conv_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE conversations SET `read` = 'true' WHERE conv_id = '" + conv_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
     def mark_message_as_unread(self, message_id):
         try:
             with self.cnx.cursor() as cursor:
