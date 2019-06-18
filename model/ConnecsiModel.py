@@ -668,14 +668,14 @@ class ConnecsiModel:
                       " to_email_id = '" + to_email_id  + "'"
                 print(sql1)
                 cursor.execute(sql1)
-                data1 = cursor.fetchall()
+                data1 = cursor.fetchone()
                 print('data1 = ',data1)
                 table_name2 = 'conversations'
                 sql2 = "SELECT  count(*) from " + table_name2 + " WHERE `read` = 'false' AND " \
                                                         " conv_to_email_id = '" + to_email_id + "'"
                 print(sql2)
                 cursor.execute(sql2)
-                data2 = cursor.fetchall()
+                data2 = cursor.fetchone()
                 print('data2= ',data2)
                 # print(result)
             print("closing cnx")
