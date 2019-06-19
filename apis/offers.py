@@ -70,7 +70,7 @@ class Offers(Resource):
             columns = ['offer_id','channel_id','offer_name', 'from_date', 'to_date', 'budget', 'currency', 'channels', 'regions',
                        'min_lower_followers', 'max_upper_followers','files', 'video_cat_id',
                        'offer_description',
-                       'arrangements', 'kpis','no_of_views','no_of_replies','deleted','posted_date','mapped_yotube_channel_id','mapped_twitter_channel_id','confirmed']
+                       'arrangements', 'kpis','no_of_views','no_of_replies','deleted','posted_date']
             response_list = []
             for item in all_classifieds_data:
                 dict_temp = dict(zip(columns, item))
