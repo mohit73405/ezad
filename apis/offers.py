@@ -92,8 +92,7 @@ class Offers(Resource):
                        'regions',
                        'min_lower_followers', 'max_upper_followers', 'files', 'video_cat_id',
                        'offer_description',
-                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date', 'mapped_yotube_channel_id',
-                       'mapped_twitter_channel_id', 'confirmed']
+                       'arrangements', 'kpis', 'no_of_views', 'no_of_replies','deleted','posted_date']
             response_list = []
             for item in offer_data:
                 dict_temp = dict(zip(columns, item))

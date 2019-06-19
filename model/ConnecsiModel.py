@@ -767,11 +767,10 @@ class ConnecsiModel:
                 sql = "SELECT " \
                       " io.offer_id,io.channel_id,io.offer_name, io.from_date,io.to_date,io.budget,io.currency," \
                       " io.channels,io.regions,io.min_lower_followers,io.max_upper_followers,io.files,io.video_cat_id," \
-                      " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date," \
-                      " chm.youtube_channel_id,chm.twitter_channel_id,chm.confirmed" \
+                      " io.offer_description,io.arrangements,io.kpis,io.no_of_views,io.no_of_replies,io.deleted,io.posted_date " \
                       " FROM inf_offers io" \
-                      " LEFT JOIN channels_mapper chm on io.channel_id = chm.youtube_channel_id " \
                       " WHERE io.offer_id='" +offer_id+ "'"
+                     # " LEFT JOIN channels_mapper chm on io.channel_id = chm.youtube_channel_id " \
                      # (chm.youtube_channel_id = '" + user_id + "' OR chm.twitter_channel_id = '" + user_id + "')" \
                 print(sql)
                 cursor.execute(sql)
