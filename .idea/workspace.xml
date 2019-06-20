@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="" />
+    <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +16,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="770" column="45" lean-forward="true" selection-start-line="770" selection-start-column="45" selection-end-line="770" selection-end-column="45" />
+            <state relative-caret-position="481">
+              <caret line="913" column="129" lean-forward="false" selection-start-line="913" selection-start-column="129" selection-end-line="913" selection-end-column="129" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -38,8 +40,8 @@
       <file leaf-file-name="messages.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="666" column="0" lean-forward="true" selection-start-line="666" selection-start-column="0" selection-end-line="666" selection-end-column="0" />
+            <state relative-caret-position="268">
+              <caret line="278" column="54" lean-forward="true" selection-start-line="278" selection-start-column="54" selection-end-line="278" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -92,8 +94,8 @@
       <file leaf-file-name="offers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/offers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="89" column="74" lean-forward="false" selection-start-line="89" selection-start-column="74" selection-end-line="89" selection-end-column="74" />
+            <state relative-caret-position="362">
+              <caret line="146" column="19" lean-forward="true" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -132,7 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>concat</find>
       <find>concar</find>
       <find>getCampaignsAddedToMessage</find>
       <find>delete</find>
@@ -162,6 +163,7 @@
       <find>getMyCampaigns</find>
       <find>conversations</find>
       <find>InfluencerCampaignReport</find>
+      <find>conversations/de</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -762,7 +764,7 @@
         <state relative-caret-position="408">
           <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -806,14 +808,6 @@
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apis/messages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="666" column="0" lean-forward="true" selection-start-line="666" selection-start-column="0" selection-end-line="666" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -871,16 +865,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/offers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="89" column="74" lean-forward="false" selection-start-line="89" selection-start-column="74" selection-end-line="89" selection-end-column="74" />
+        <state relative-caret-position="362">
+          <caret line="146" column="19" lean-forward="true" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/messages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="278" column="54" lean-forward="true" selection-start-line="278" selection-start-column="54" selection-end-line="278" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="770" column="45" lean-forward="true" selection-start-line="770" selection-start-column="45" selection-end-line="770" selection-end-column="45" />
+        <state relative-caret-position="481">
+          <caret line="913" column="129" lean-forward="false" selection-start-line="913" selection-start-column="129" selection-end-line="913" selection-end-column="129" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

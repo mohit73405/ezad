@@ -896,7 +896,7 @@ class ConnecsiModel:
     def delete_message_from_conversation(self, message_id,conv_id, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "UPDATE conversations SET deleted = 'true', deleted_from_user_id = CONCAT(IFNULL(deleted_from_user_id,''), ',"+ user_id +"') WHERE message_id = '" + message_id + "' AND conv_id = '" + conv_id + "'"
+                sql = "UPDATE conversations SET deleted = 'true', deleted_from_user_id = CONCAT(IFNULL(deleted_from_user_id,''), ',' ,'"+ user_id +"') WHERE message_id = '" + message_id + "' AND conv_id = '" + conv_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
@@ -911,7 +911,7 @@ class ConnecsiModel:
     def delete_message_from_messages(self, message_id, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "UPDATE messages SET deleted = 'true', deleted_from_user_id = CONCAT(IFNULL(deleted_from_user_id,''), ',"+ user_id +"') WHERE message_id = '" + message_id + "'"
+                sql = "UPDATE messages SET deleted = 'true', deleted_from_user_id = CONCAT(IFNULL(deleted_from_user_id,''), ',' ,'"+ user_id +"') WHERE message_id = '" + message_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
