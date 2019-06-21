@@ -267,6 +267,23 @@ class MailBox(Resource):
         except Exception as e:
             return {"response": e}, 500
 
+@ns_messages.route('/getSentMessages/<string:from_email_id>')
+class MailBox(Resource):
+    def get(self,from_email_id):
+        ''' Get sent messages by from email id'''
+        try:
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_messages_by_from_email_id(from_email_id=str(from_email_id))
+            print(data)
+            columns = ['message_id', 'from_email_id', 'to_email_id', 'channel_id', 'date', 'subject', 'message', 'user_id',
+                       'user_type','deleted','deleted_from_bin','deleted_from_user_id','deleted_from_bin_user_id','read']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+        except Exception as e:
+            return {"response": e}, 500
 
 
 
