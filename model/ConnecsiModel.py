@@ -696,7 +696,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 table_name = 'conversations'
-                sql = "SELECT  * from " + table_name + " WHERE conv_from_email_id = '" + from_email_id  + "' GROUP BY message_id DESC"
+                sql = "SELECT  * from " + table_name + " WHERE conv_from_email_id = '" + from_email_id  + "' ORDER BY conv_id DESC"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
