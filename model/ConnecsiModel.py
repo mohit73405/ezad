@@ -1749,7 +1749,7 @@ class ConnecsiModel:
                 sql = "SELECT icr.inf_campaign_report_id, icr.campaign_id, icr.proposal_id," \
                       " icr.channel_id, icr.channel_name,icr.date_posted, icr.link_posted,icr.content_type," \
                       " icr.post_views, icr.post_likes, icr.post_dislikes, icr.post_comments, icr.post_retweets," \
-                      " icr.post_remarks,icr.post_clicks,icr.post_shares,ycd.subscriberCount_gained,tcd.no_of_followers" \
+                      " icr.post_remarks,icr.post_clicks,icr.post_shares,ycd.subscriberCount_gained,tcd.no_of_followers," \
                       " icd.no_of_followers " \
                       " from inf_campaign_report icr" \
                       " LEFT JOIN youtube_channel_details ycd on ycd.channel_id = icr.channel_id " \
