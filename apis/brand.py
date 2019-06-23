@@ -319,7 +319,7 @@ class Brand(Resource):
 class Brand(Resource):
     def get(self,campaign_id):
         '''get all Youtube influencer list by campaign_id'''
-        columns = ['channel_id', 'title', 'channel_img','business_email','ref_link','proposal_channels','proposal_price','channel_name']
+        columns = ['channel_id', 'title', 'channel_img','business_email','ref_link','proposal_channels','proposal_price','channel_name','proposal_id']
         connecsiObj = ConnecsiModel()
         data = connecsiObj.get_youtube_inf_list(campaign_id=campaign_id)
         response_list = []
