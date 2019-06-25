@@ -210,3 +210,26 @@ class Youtube(Resource):
                 return {'message': e}
         except Exception as e :
             return {'message' : e}
+
+
+
+@ns_youtube.route('/getChannelDetailsByChannelId/<string:channel_id>')
+class Youtube(Resource):
+    def get(self,channel_id):
+        ''' get channel detail by channel id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained', 'subscriberCount_lost',
+                   'business_email', 'total_100video_views',
+                   'total_100video_views_unique', 'total_100video_likes', 'total_100video_dislikes',
+                   'total_100video_comments', 'total_100video_shares',
+                   'facebook_url', 'insta_url', 'twitter_url', 'country']
+        channel_details = connecsiObj.get__(table_name='youtube_channel_details', STAR='*',columns=columns,WHERE='WHERE',compare_column='channel_id',compare_value=channel_id)
+        print(channel_details)
+
+        response_list = []
+        for item in channel_details:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+
+        print(response_list)
+        return {'data': response_list}
