@@ -58,10 +58,10 @@ class MailBox(Resource):
                 channel_id = channel_id.split('@')
                 channel_id = channel_id[0]
                 connecsiObj.update_channel_campaign_message(campaign_id=campaign_id,channel_id=str(channel_id),message_id=str(message_id),status='Contacted')
-            if channel_id:
-                channel_id = channel_id.split('@')
-                channel_id = channel_id[0]
-                connecsiObj.update_channel_campaign_message(channel_id=str(channel_id),message_id=str(message_id),status='Contacted')
+            # elif channel_id:
+            #     channel_id = channel_id.split('@')
+            #     channel_id = channel_id[0]
+            #     connecsiObj.update_channel_campaign_message(channel_id=str(channel_id),message_id=str(message_id),status='Contacted')
             return {'response': result},200
         except Exception as e:
             print(e)

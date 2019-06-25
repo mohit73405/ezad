@@ -1212,15 +1212,32 @@ class ConnecsiModel:
                 print('channel id =',channel_id,type(channel_id))
                 print('message id =', message_id,type(message_id))
                 print('status = ',status,type(status))
+                select_sql=''
+                update_sql=''
+                insert_sql=''
+                # if campaign_id:
                 select_sql = "SELECT 1 FROM channel_campaign_message WHERE channel_id ='"+channel_id+"'" \
-                      "    AND campaign_id ='"+campaign_id+"'"
+                             " AND campaign_id ='"+campaign_id+"'"
 
-                update_sql = "UPDATE channel_campaign_message SET message_id = "+ str(message_id) +", " \
-                      "status = '"+ status +"' WHERE channel_id = '" + str(channel_id)\
-                      +"' AND status !='Proposal Sent' AND status !='Current Partner' AND campaign_id = '"+campaign_id+"'"
+                update_sql = "UPDATE channel_campaign_message SET message_id = " + str(message_id) + ", " \
+                             "status = '" + status + "' WHERE channel_id = '" + str(channel_id) \
+                             + "' AND status !='Proposal Sent' AND status !='Current Partner' AND campaign_id = '" + campaign_id + "'"
 
                 insert_sql = "INSERT INTO channel_campaign_message(channel_id,campaign_id,message_id,status)" \
-                             " VALUES('"+channel_id+"',"+campaign_id+","+message_id+",'"+status+"')"
+                             " VALUES('" + channel_id + "'," + campaign_id + "," + message_id + ",'" + status + "')"
+
+                # else:
+                #     select_sql = "SELECT 1 FROM channel_campaign_message WHERE channel_id ='" + channel_id + "'" \
+                #                  " AND message_id ='" + message_id + "'"
+                #
+                #     update_sql = "UPDATE channel_campaign_message SET message_id = " + str(message_id) + ", " \
+                #                  "status = '" + status + "' WHERE channel_id = '" + str(channel_id) \
+                #              + "' AND status !='Proposal Sent' AND status !='Current Partner' AND campaign_id = '" + campaign_id + "'"
+                #
+                #     insert_sql = "INSERT INTO channel_campaign_message(channel_id,campaign_id,message_id,status)" \
+                #                  " VALUES('" + channel_id + "'," + campaign_id + "," + message_id + ",'" + status + "')"
+
+
 
                 # print(sql)
                 res = cursor.execute(select_sql)
