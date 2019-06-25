@@ -151,6 +151,20 @@ class Brand(Resource):
             return {"response": e},500
 
 
+@ns_brand.route('/<string:email_id>')
+class Brand(Resource):
+    def get(self,email_id):
+        '''Brand details by email_id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id', 'first_name', 'last_name', 'company_name', 'email_id', 'role','phone','position','url','country'
+                   ,'no_of_employees','city','monthly_budget','business_sector','facebook_url','twitter_url',
+                   'insta_url','youtube_url','profile_pic','confirmed_email']
+        data = connecsiObj.get__(table_name='users_brands',columns=columns,WHERE='WHERE',compare_column='email_id',compare_value=str(email_id))
+        response_dict = dict(zip(columns, data[0]))
+        print(response_dict)
+        return {'data':response_dict},200
+
+
 @ns_brand.route('/addToFavList/<string:channel_id>/<string:user_id>/<string:channel_name>')
 class Brand(Resource):
     def post(self,channel_id,user_id,channel_name):
