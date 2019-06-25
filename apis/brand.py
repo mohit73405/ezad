@@ -151,7 +151,7 @@ class Brand(Resource):
             return {"response": e},500
 
 
-@ns_brand.route('/<string:email_id>')
+@ns_brand.route('/getDetailsByEmailId/<string:email_id>')
 class Brand(Resource):
     def get(self,email_id):
         '''Brand details by email_id'''
