@@ -223,7 +223,7 @@ class Youtube(Resource):
                    'total_100video_views_unique', 'total_100video_likes', 'total_100video_dislikes',
                    'total_100video_comments', 'total_100video_shares',
                    'facebook_url', 'insta_url', 'twitter_url', 'country']
-        channel_details = connecsiObj.get__(table_name='youtube_channel_details', STAR='*',columns=columns,WHERE='WHERE',compare_column='channel_id',compare_value=channel_id)
+        channel_details = connecsiObj.get__(table_name='youtube_channel_details',columns=columns,WHERE='WHERE',compare_column='channel_id',compare_value=channel_id)
         print(channel_details)
 
         response_list = []
