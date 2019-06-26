@@ -1354,6 +1354,21 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_inf_details_by_email_id(self, email_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT ui.first_name, ui.last_name, ui.business_email,ui.channel_id,ycd.channel_img" \
+                      " FROM users_influencers ui JOIN youtube_channel_details ycd ON ui.channel_id = ycd.channel_id" \
+                      " WHERE ui.business_email = '"+email_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
 
     def get_proposal(self, proposal_id):
         try:
