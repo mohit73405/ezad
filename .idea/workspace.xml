@@ -68,8 +68,8 @@
       <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+            <state relative-caret-position="185">
+              <caret line="55" column="4806" lean-forward="false" selection-start-line="55" selection-start-column="4806" selection-end-line="55" selection-end-column="4806" />
               <folding />
             </state>
           </provider>
@@ -130,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sea</find>
       <find>ezadteam123</find>
       <find>channel_status_for_campaign</find>
       <find>Forgot</find>
@@ -160,6 +159,7 @@
       <find>if channel_id and campaign_id:</find>
       <find>Contacted</find>
       <find>conversat</find>
+      <find>https://www.connecsi.live/</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -866,8 +866,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+        <state relative-caret-position="185">
+          <caret line="55" column="4806" lean-forward="false" selection-start-line="55" selection-start-column="4806" selection-end-line="55" selection-end-column="4806" />
           <folding />
         </state>
       </provider>
