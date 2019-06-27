@@ -380,12 +380,14 @@ class MailBox(Resource):
 class MailBox(Resource):
     def post(self,message_id,campaign_id,channel_id):
         '''add campaign id to message'''
-        columns=['channel_id','message_id','campaign_id','status']
-        data=(channel_id,message_id,campaign_id,'Negotiations')
+        # columns=['channel_id','message_id','campaign_id','status']
+        # data=(channel_id,message_id,campaign_id,'Negotiations')
         connecsiObj = ConnecsiModel()
         result=0
         try:
-            connecsiObj.insert__(table_name='channel_campaign_message',columns=columns,data=data)
+            # connecsiObj.insert__(table_name='channel_campaign_message',columns=columns,data=data)
+            connecsiObj.update_channel_campaign_message(channel_id=channel_id,message_id=message_id,status='Negotiations'
+                                                        ,campaign_id=campaign_id)
             result=1
             return {'response': result}, 200
         except Exception as e:

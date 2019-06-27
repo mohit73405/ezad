@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +16,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="1258" column="46" lean-forward="false" selection-start-line="1258" selection-start-column="46" selection-end-line="1258" selection-end-column="46" />
+            <state relative-caret-position="64">
+              <caret line="1208" column="32" lean-forward="true" selection-start-line="1208" selection-start-column="32" selection-end-line="1208" selection-end-column="32" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -69,8 +68,8 @@
       <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="148" column="43" lean-forward="true" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
+            <state relative-caret-position="289">
+              <caret line="386" column="12" lean-forward="true" selection-start-line="386" selection-start-column="12" selection-end-line="386" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -131,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>channel_status_for_campaign</find>
       <find>Forgot</find>
       <find>getDetailsByUserId</find>
       <find>get_mess</find>
@@ -161,6 +159,7 @@
       <find>conversat</find>
       <find>getDetails</find>
       <find>https://www.connecsi.live/</find>
+      <find>addCampaignIdToMessageId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -857,8 +856,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="1258" column="46" lean-forward="false" selection-start-line="1258" selection-start-column="46" selection-end-line="1258" selection-end-column="46" />
+        <state relative-caret-position="64">
+          <caret line="1208" column="32" lean-forward="true" selection-start-line="1208" selection-start-column="32" selection-end-line="1208" selection-end-column="32" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -867,8 +866,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="148" column="43" lean-forward="true" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
+        <state relative-caret-position="289">
+          <caret line="386" column="12" lean-forward="true" selection-start-line="386" selection-start-column="12" selection-end-line="386" selection-end-column="12" />
           <folding />
         </state>
       </provider>
