@@ -189,7 +189,7 @@ class Influencer(Resource):
     def get(self,channel_id):
         '''get all mapped channels by channel id'''
         connecsiObj = ConnecsiModel()
-        columns = ['youtube_channel_id','twitter_channel_id','confirmed']
+        columns = ['youtube_channel_id','twitter_channel_id','insta_channel_id','confirmed']
 
         data = connecsiObj.get__(table_name='channels_mapper',WHERE='WHERE',columns=columns,compare_column='youtube_channel_id',compare_value=channel_id)
         response_list = []
