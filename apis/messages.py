@@ -144,6 +144,14 @@ class MailBox(Resource):
         subject = form_data.get('subject')
         message = form_data.get('message')
         channel_id = form_data.get('channel_id')
+        if '@' in channel_id:
+            channel_id_list=channel_id.split('@')
+            channel_id = channel_id_list[0]
+        campaign_id = ''
+        try:
+            campaign_id = form_data.get('campaign_id')
+        except:
+            pass
 
         columns = ['message_id','conv_from_email_id', 'conv_to_email_id', 'conv_date', 'conv_subject', 'conv_message', 'user_id', 'user_type']
         data = [message_id,from_email_id, to_email_id, str(date), subject, message, user_id, user_type]
@@ -153,8 +161,8 @@ class MailBox(Resource):
             self.send_mail(subject=subject, to_email_id=to_email_id)
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
-            if channel_id:
-                connecsiObj.update_channel_campaign_message_for_negotiations(channel_id=str(channel_id),message_id=str(message_id),status='Negotiations')
+            if channel_id and campaign_id:
+                connecsiObj.update_channel_campaign_message_for_negotiations(channel_id=str(channel_id),message_id=str(message_id),status='Negotiations',campaign_id=campaign_id)
             return {'response': result}, 200
         except Exception as e:
             print(e)

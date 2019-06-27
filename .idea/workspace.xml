@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/influencer.py" afterPath="$PROJECT_DIR$/apis/influencer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +17,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="1361" column="63" lean-forward="false" selection-start-line="1361" selection-start-column="63" selection-end-line="1361" selection-end-column="63" />
+            <state relative-caret-position="185">
+              <caret line="1258" column="46" lean-forward="false" selection-start-line="1258" selection-start-column="46" selection-end-line="1258" selection-end-column="46" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -46,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="influencer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="influencer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/influencer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="202">
@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="messages.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="55" column="4806" lean-forward="false" selection-start-line="55" selection-start-column="4806" selection-end-line="55" selection-end-column="4806" />
+            <state relative-caret-position="238">
+              <caret line="148" column="43" lean-forward="true" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -159,8 +159,8 @@
       <find>if channel_id and campaign_id:</find>
       <find>Contacted</find>
       <find>conversat</find>
-      <find>https://www.connecsi.live/</find>
       <find>getDetails</find>
+      <find>https://www.connecsi.live/</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,9 +217,9 @@
         <option value="$PROJECT_DIR$/apis/campaign.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
         <option value="$PROJECT_DIR$/apis/youtube.py" />
-        <option value="$PROJECT_DIR$/apis/messages.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/influencer.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/apis/messages.py" />
       </list>
     </option>
   </component>
@@ -847,28 +847,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/messages.py">
+    <entry file="file://$PROJECT_DIR$/apis/influencer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="55" column="4806" lean-forward="false" selection-start-line="55" selection-start-column="4806" selection-end-line="55" selection-end-column="4806" />
+        <state relative-caret-position="202">
+          <caret line="180" column="1" lean-forward="true" selection-start-line="180" selection-start-column="1" selection-end-line="180" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="1361" column="63" lean-forward="false" selection-start-line="1361" selection-start-column="63" selection-end-line="1361" selection-end-column="63" />
+        <state relative-caret-position="185">
+          <caret line="1258" column="46" lean-forward="false" selection-start-line="1258" selection-start-column="46" selection-end-line="1258" selection-end-column="46" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/influencer.py">
+    <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="180" column="1" lean-forward="true" selection-start-line="180" selection-start-column="1" selection-end-line="180" selection-end-column="1" />
+        <state relative-caret-position="238">
+          <caret line="148" column="43" lean-forward="true" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
           <folding />
         </state>
       </provider>
