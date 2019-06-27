@@ -196,7 +196,16 @@ class Influencer(Resource):
         for item in data:
             dict_temp = dict(zip(columns, item))
             response_list.append(dict_temp)
-        return {'data': response_list}
+        new_dict = {}
+        for item in response_list:
+            for k, v in item.items():
+                if v is not None:
+                    new_dict.update({k: v})
+        # print(new_dict)
+        new_response_list = []
+        new_response_list.append(new_dict)
+        return {'data': new_response_list}
+        # return {'data': response_list}
 
 
 @ns_influencer.route('/getDetailsByUserId/<string:user_id>')
