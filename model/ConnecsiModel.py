@@ -1929,7 +1929,36 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def update_twitter_inf_country(self, twitter_id, country):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE twitter_channel_details SET country = '"+country+"', location='"+country+"' WHERE twitter_id = '" + str(twitter_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
 
+
+    def update_insta_inf_country(self, insta_id, country):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE insta_channel_details SET country = '"+country+"' WHERE insta_id = '" + str(insta_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
 
     def get_youtube_categories_by_channel_id(self, channel_id):
         try:

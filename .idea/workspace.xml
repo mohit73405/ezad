@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" afterPath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/influencer.py" afterPath="$PROJECT_DIR$/apis/influencer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,8 +17,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="2125" column="8" lean-forward="false" selection-start-line="2125" selection-start-column="8" selection-end-line="2125" selection-end-column="8" />
+            <state relative-caret-position="523">
+              <caret line="1698" column="8" lean-forward="true" selection-start-line="1698" selection-start-column="8" selection-end-line="1698" selection-end-column="8" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -35,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="influencer.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="influencer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/influencer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="249" column="53" lean-forward="false" selection-start-line="249" selection-start-column="53" selection-end-line="249" selection-end-column="53" />
+            <state relative-caret-position="441">
+              <caret line="308" column="0" lean-forward="true" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -55,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YoutubeApiController.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="YoutubeApiController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/youtube/YoutubeApiController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="648" column="8" lean-forward="true" selection-start-line="648" selection-start-column="8" selection-end-line="648" selection-end-column="8" />
+            <state relative-caret-position="158">
+              <caret line="72" column="8" lean-forward="true" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
               <folding>
                 <element signature="e#2705#2736#0" expanded="false" />
               </folding>
@@ -158,8 +159,8 @@
       <find>https://www.connecsi.live/</find>
       <find>addCampaignIdToMessageId</find>
       <find>add</find>
-      <find>addC</find>
       <find>addyoutu</find>
+      <find>addC</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,12 +214,12 @@
         <option value="$PROJECT_DIR$/apis/campaign.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
         <option value="$PROJECT_DIR$/apis/messages.py" />
-        <option value="$PROJECT_DIR$/apis/influencer.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/controller/twitter_module/scheduler_twitter.py" />
         <option value="$PROJECT_DIR$/controller/instagram/scheduler_instagram.py" />
         <option value="$PROJECT_DIR$/apis/youtube.py" />
         <option value="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/apis/influencer.py" />
       </list>
     </option>
   </component>
@@ -836,24 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/influencer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="249" column="53" lean-forward="false" selection-start-line="249" selection-start-column="53" selection-end-line="249" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="2125" column="8" lean-forward="false" selection-start-line="2125" selection-start-column="8" selection-end-line="2125" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apis/youtube.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -864,11 +847,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/youtube/YoutubeApiController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="648" column="8" lean-forward="true" selection-start-line="648" selection-start-column="8" selection-end-line="648" selection-end-column="8" />
+        <state relative-caret-position="158">
+          <caret line="72" column="8" lean-forward="true" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
           <folding>
             <element signature="e#2705#2736#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="1698" column="8" lean-forward="true" selection-start-line="1698" selection-start-column="8" selection-end-line="1698" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/influencer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="308" column="0" lean-forward="true" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -285,3 +285,24 @@ class Influencer(Resource):
         connecsiObj = ConnecsiModel()
         response = connecsiObj.delete_category_from_insta_channel(insta_id=insta_id,category_id=category_id)
         return response
+
+
+
+@ns_influencer.route('/updateCountryToTwitterChannel/<string:twitter_id>/<string:country>')
+class Influencer(Resource):
+    def get(self,twitter_id,country):
+        '''update country to twitter channel by twitter id '''
+        connecsiObj = ConnecsiModel()
+        response = connecsiObj.update_twitter_inf_country(twitter_id=twitter_id, country=country)
+        return response
+
+
+@ns_influencer.route('/updateCountryToInstaChannel/<string:insta_id>/<string:country>')
+class Influencer(Resource):
+    def get(self,insta_id,country):
+        '''update country to insta channel by insta id '''
+        connecsiObj = ConnecsiModel()
+        response = connecsiObj.update_insta_inf_country(insta_id=insta_id, country=country)
+        return response
+
+
