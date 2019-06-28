@@ -194,7 +194,7 @@ class TotalVideos(Resource):
 @ns_youtube.route('/addYoutubeChannel/<string:channel_id>/<string:business_email>')
 class Youtube(Resource):
     def post(self,channel_id,business_email):
-        '''add youtube channel channel_id'''
+        '''add youtube channel details by channel_id'''
         try:
             data = [channel_id]
             connecsiObj = ConnecsiModel()

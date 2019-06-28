@@ -632,7 +632,7 @@ class YoutubeApiController:
                 myList.append(self.insta_url)
                 myList.append(self.twitter_url)
                 myList.append(self.country)
-                # print(myList)
+                print(myList)
                 # exit()
                 columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
                            'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
