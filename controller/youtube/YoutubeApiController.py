@@ -34,7 +34,7 @@ class YoutubeApiController:
         self.channel_thumbnail=''
         self.channelTitle=''
         self.channel_desc=''
-        self.subscriberCount=''
+        self.subscriberCount=0
         self.subscriberCount_lost=0
         self.total_100video_views = 0
         self.total_100video_views_unique = 0
