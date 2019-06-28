@@ -202,6 +202,11 @@ class Youtube(Resource):
                                  IGNORE='IGNORE')
             print('res = ',res)
             try:
+                connecsiObj.insert_youtube_id_into_channels_mapper(youtube_channel_id=channel_id,confirmed='true')
+            except Exception as e:
+                print(e)
+                return {'message' : e}
+            try:
                 conObj = YoutubeApiController()
                 conObj.get_data_by_channel_id(channel_id=channel_id,business_email=business_email)
                 return {'message': 'inserted youtube channel id and details'}

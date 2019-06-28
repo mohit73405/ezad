@@ -586,6 +586,7 @@ class YoutubeApiController:
                            'total_100video_dislikes','total_100video_comments',
                            'total_100video_shares']
                 connecsiObj.insert__(table_name='youtube_channels_history',columns=columns,data=historyList)
+                connecsiObj.insert_youtube_id_into_channels_mapper(youtube_channel_id=channelId,confirmed='true')
             except:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass

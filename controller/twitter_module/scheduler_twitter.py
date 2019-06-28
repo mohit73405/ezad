@@ -101,7 +101,8 @@ def get_data_by_screen_name():
                 print('DONT HAVE TWITTER URL = ',channel_id)
                 # data = [channel_id, 'false']
                 # modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
-                modelObj.insert_into_channels_mapper(youtube_channel_id=channel_id,confirmed='false')
+                # modelObj.insert_into_channels_mapper(youtube_channel_id=channel_id,confirmed='false')
+                modelObj.insert_youtube_id_into_channels_mapper(youtube_channel_id=channel_id,confirmed='true')
             except Exception as e:
                 print(e)
                 pass

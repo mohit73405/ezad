@@ -2074,6 +2074,24 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def insert_youtube_id_into_channels_mapper(self,youtube_channel_id='',confirmed=''):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = " INSERT INTO channels_mapper(youtube_channel_id,confirmed) SELECT * FROM " \
+                      "(SELECT '"+youtube_channel_id+"', '"+confirmed+"') AS tmp " \
+                      " WHERE NOT EXISTS(SELECT youtube_channel_id,confirmed FROM channels_mapper" \
+                      " WHERE youtube_channel_id = '"+youtube_channel_id+"'" \
+                      " AND confirmed = '"+confirmed+"') LIMIT 1;"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
 
     def delete_category_from_twitter_channel(self, twitter_id,category_id):
         try:

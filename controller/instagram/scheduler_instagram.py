@@ -63,6 +63,7 @@ def get_data_by_insta_url():
             try:
                 data = [channel_id, 'false']
                 # modelObj.insert__(table_name='channels_mapper',columns=['youtube_channel_id','confirmed'],data=data)
+                modelObj.insert_youtube_id_into_channels_mapper(youtube_channel_id=channel_id,confirmed='true')
             except:pass
         modelObj.insert__(table_name='youtube_channel_ids_done_for_instagram', columns=['channel_id'], IGNORE='IGNORE',
                           data=[channel_id])
