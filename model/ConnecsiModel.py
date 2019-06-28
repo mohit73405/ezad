@@ -1569,7 +1569,8 @@ class ConnecsiModel:
                       " JOIN channel_campaign_message ccm on ccm.campaign_id=cp.campaign_id " \
                       " JOIN brands_campaigns bc on bc.campaign_id = cp.campaign_id " \
                       " JOIN users_brands ub on ub.user_id = bc.user_id " \
-                      " WHERE ccm.status = 'Current Partner ' AND cp.channel_id = '"+channel_id+"'"
+                      " WHERE ccm.status = 'Current Partner ' AND cp.channel_id = '"+channel_id+"'" \
+                      " GROUP BY cp.campaign_id "
 
                 print(sql)
                 cursor.execute(sql)
