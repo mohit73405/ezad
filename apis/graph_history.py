@@ -18,7 +18,7 @@ class History(Resource):
             channel_history_data = modelObj.get__(table_name='youtube_channels_history', columns=columns,WHERE='WHERE'
                                           ,compare_column='channel_id',compare_value=str(channel_id))
             response_list = []
-            response_columns = ['channel_id','no_of_followers','date_time']
+            response_columns = ['channel_id','no_of_followers','timestamp']
             print(channel_history_data)
             channel_history_data = list(channel_history_data)
             print(channel_history_data)
@@ -26,8 +26,8 @@ class History(Resource):
                 temp_list = []
                 temp_list.append(item[0])
                 temp_list.append(item[1])
-                string_date = item[2].strftime("%Y-%b-%d")
-                temp_list.append(string_date)
+                timestamp = datetime.datetime.timestamp(item[2])
+                temp_list.append(timestamp)
             for item1 in channel_history_data:
                 dict_temp = dict(zip(response_columns, item1))
                 response_list.append(dict_temp)
