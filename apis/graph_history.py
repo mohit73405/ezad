@@ -20,12 +20,14 @@ class History(Resource):
             response_list = []
             response_columns = ['channel_id','no_of_followers','date_time']
             print(channel_history_data)
-            for item in channel_history_data:
-                list(item)
-                print(item)
-                item[2] = item[2].strftime("%Y-%b-%d")
-                dict_temp = dict(zip(response_columns, item))
-                response_list.append(dict_temp)
+            channel_history_data = list(channel_history_data)
+            print(channel_history_data)
+            # for item in channel_history_data:
+            #     list(item)
+            #     print(item)
+            #     item[2] = item[2].strftime("%Y-%b-%d")
+            #     dict_temp = dict(zip(response_columns, item))
+            #     response_list.append(dict_temp)
             # for item in channel_history_data:
             #     dict_temp = dict(zip(response_columns, item))
             #     response_list.append(dict_temp)
