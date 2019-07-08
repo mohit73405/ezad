@@ -28,9 +28,10 @@ class History(Resource):
                 temp_list.append(item[1])
                 timestamp = datetime.datetime.timestamp(item[2])
                 temp_list.append(timestamp)
-            for item1 in channel_history_data:
-                dict_temp = dict(zip(response_columns, item1))
-                response_list.append(dict_temp)
+                print('temp list = ',temp_list)
+            # for item1 in channel_history_data:
+            #     dict_temp = dict(zip(response_columns, item1))
+            #     response_list.append(dict_temp)
             return {'data': response_list}
 
 
