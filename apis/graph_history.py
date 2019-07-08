@@ -22,15 +22,15 @@ class History(Resource):
             print(channel_history_data)
             channel_history_data = list(channel_history_data)
             print(channel_history_data)
-            # for item in channel_history_data:
-            #     list(item)
-            #     print(item)
-            #     item[2] = item[2].strftime("%Y-%b-%d")
-            #     dict_temp = dict(zip(response_columns, item))
-            #     response_list.append(dict_temp)
-            # for item in channel_history_data:
-            #     dict_temp = dict(zip(response_columns, item))
-            #     response_list.append(dict_temp)
+            for item in channel_history_data:
+                temp_list = []
+                temp_list.append(item[0])
+                temp_list.append(item[1])
+                string_date = item[2].strftime("%Y-%b-%d")
+                temp_list.append(string_date)
+            for item1 in channel_history_data:
+                dict_temp = dict(zip(response_columns, item1))
+                response_list.append(dict_temp)
             return {'data': response_list}
 
 
