@@ -99,7 +99,8 @@ class Brand(Resource):
         '''List of all Influencer'''
         connecsiObj = ConnecsiModel()
         columns = ['channel_id','first_name','last_name','business_email']
-        data = connecsiObj.get__(table_name='users_influencers',columns=columns)
+        # data = connecsiObj.get__(table_name='users_influencers',columns=columns)
+        data = connecsiObj.get_influencer_list()
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))

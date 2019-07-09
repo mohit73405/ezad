@@ -2412,3 +2412,20 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+    def get_influencer_list(self):
+        try:
+            with self.cnx.cursor() as cursor:
+                table_name = 'users_influencers'
+                sql = "SELECT channel_id,first_name,last_name,business_email FROM " + table_name + " ORDER BY inserted_date DESC "
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+
+        except Exception as e:
+            print(e)
