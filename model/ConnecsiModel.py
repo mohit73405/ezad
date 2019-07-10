@@ -127,6 +127,50 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    # def getTop10TwitterInfluencers(self):
+    #     try:
+    #         with self.cnx.cursor() as cursor:
+    #             sql = "SELECT t1.twitter_id,t1.screen_name,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
+    #             "t1.business_email, t1.no_of_views_recent100, " \
+    #             "t1.no_of_likes_recent100, t1.no_of_comments_recent100,t1.no_of_retweets_recent100, " \
+    #             "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location " \
+    #             "FROM (select * from twitter_channel_details WHERE total_100video_views != 0  ORDER BY no_of_followers DESC LIMIT 10 ) as t1 " \
+    #             # "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id GROUP BY t2.channel_id"
+    #             print(sql)
+    #             cursor.execute(sql)
+    #             data = cursor.fetchall()
+    #             # print(result)
+    #         print("closing cnx")
+    #         cursor.close()
+    #         # self.cnx.close()
+    #         return data
+    #
+    #     except Exception as e:
+    #         print(e)
+
+    # def getTop10InstaInfluencers(self):
+    #     try:
+    #         with self.cnx.cursor() as cursor:
+    #             sql = "SELECT t1.channel_id,t1.title, t1.channel_img, t1.subscriberCount_gained, " \
+    #             "t1.total_100video_views," \
+    #             "t1.total_100video_likes, t1.total_100video_comments,t1.total_100video_shares, " \
+    #             "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country,count(t2.channel_id) " \
+    #             "FROM (select * from youtube_channel_details WHERE total_100video_views != 0  ORDER BY subscriberCount_gained DESC LIMIT 10 ) as t1 " \
+    #             "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id GROUP BY t2.channel_id"
+    #             print(sql)
+    #             cursor.execute(sql)
+    #             data = cursor.fetchall()
+    #             # print(result)
+    #         print("closing cnx")
+    #         cursor.close()
+    #         # self.cnx.close()
+    #         return data
+    #
+    #     except Exception as e:
+    #         print(e)
+
+
+
 
     def getTotalVideos(self,channel_id):
         try:
