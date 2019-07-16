@@ -2473,3 +2473,39 @@ class ConnecsiModel:
 
         except Exception as e:
             print(e)
+
+
+    def get_users_brands_google_analytics_credentials(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT ub_ga.user_id, ub_ga.access_token, ub_ga.refresh_token,ub_ga.expires_in,ub_ga.scope,ub_ga.token_type" \
+                      " FROM users_brands_google_analytics_credentials ub_ga " \
+                      " WHERE ub_ga.user_id = '"+user_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+    def insert_update_users_brands_google_analytics_credentials(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = "INSERT INTO users_brands_google_analytics_credentials (user_id, access_token, refresh_token expires_in,scope,token_type) " \
+                      " VALUES(%s,%s,%s,%s,%s,%s)" \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " access_token = VALUES(access_token), refresh_token=VALUES(refresh_token),expires_in=VALUES(expires_in),scope=VALUES(scope),token_type=VALUES(token_type) "
+                print(sql)
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0

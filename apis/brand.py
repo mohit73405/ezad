@@ -468,3 +468,33 @@ class Brand(Resource):
         except:
             result=0
             return {'response': result}, 500
+
+
+@ns_brand.route('/brandsGoogleAnalyticsCredentials/<string:user_id>')
+class BrandsGoogleAnalyticsCredentials(Resource):
+    def post(self,user_id):
+        '''Add or update google analytics credentials for brands'''
+        post_data = request.get_json()
+        access_token = post_data.get('access_token')
+        refresh_token = post_data.get('refresh_token')
+        expires_in = post_data.get('expires_in')
+        scope = post_data.get('scope')
+        token_type = post_data.get('token_type')
+
+        data = [user_id,access_token, refresh_token,expires_in,scope,token_type]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert_update_users_brands_google_analytics_credentials(data=data)
+            return {'response': result}, 201
+        except:
+            return {'response': result}, 500
+
+    def get(self,user_id):
+        '''GET Brands-google analytics credentials by user_id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id', 'access_token', 'refresh_token', 'expires_in', 'scope', 'token_type']
+        data = connecsiObj.get_users_brands_google_analytics_credentials(user_id=user_id)
+        response_dict = dict(zip(columns, data[0]))
+        print(response_dict)
+        return {'data':response_dict},200
