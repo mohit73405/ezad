@@ -470,7 +470,7 @@ class Brand(Resource):
             return {'response': result}, 500
 
 
-@ns_brand.route('/brandsGoogleAnalyticsCredentials/<string:user_id>')
+@ns_brand.route('/brandsGoogleAnalyticsCredentials/<int:user_id>')
 class BrandsGoogleAnalyticsCredentials(Resource):
     def post(self,user_id):
         '''Add or update google analytics credentials for brands'''
