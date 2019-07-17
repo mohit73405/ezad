@@ -470,7 +470,7 @@ class Brand(Resource):
             return {'response': result}, 500
 
 
-@ns_brand.route('/brandsGoogleAnalyticsCredentials/<int:user_id>')
+@ns_brand.route('/brandsGoogleAnalyticsCredentials/<string:user_id>')
 class BrandsGoogleAnalyticsCredentials(Resource):
     def post(self,user_id):
         '''Add or update google analytics credentials for brands'''
@@ -481,7 +481,7 @@ class BrandsGoogleAnalyticsCredentials(Resource):
         scope = post_data.get('scope')
         token_type = post_data.get('token_type')
 
-        data = [user_id,access_token, refresh_token,expires_in,scope,token_type]
+        data = [int(user_id),access_token, refresh_token,expires_in,scope,token_type]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
