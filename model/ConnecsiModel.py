@@ -2495,7 +2495,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 # print(data)
-                sql = "INSERT INTO users_brands_google_analytics_credentials (user_id, access_token, refresh_token expires_in,scope,token_type) " \
+                sql = "INSERT INTO users_brands_google_analytics_credentials (user_id, access_token, refresh_token, expires_in,scope,token_type) " \
                       " VALUES(%s,%s,%s,%s,%s,%s)" \
                       " ON DUPLICATE KEY UPDATE " \
                       " access_token = VALUES(access_token), refresh_token=VALUES(refresh_token),expires_in=VALUES(expires_in),scope=VALUES(scope),token_type=VALUES(token_type) "
