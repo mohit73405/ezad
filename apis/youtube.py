@@ -237,7 +237,8 @@ class Youtube(Resource):
             for item in channel_data_json['items']:
                 print(item)
                 response_dict = {}
-                channel_id = item['snippet']['channel_id']
+                channel_id = item['snippet']['channelId']
+                print(channel_id)
                 channel_ids.append(channel_id)
                 channel_thumbnail = item['snippet']['thumbnails']['medium']['url']
                 channelTitle = item['snippet']['title']
