@@ -226,13 +226,16 @@ class Youtube(Resource):
             returns a list of channel ids , title and channel img
         '''
         try:
+            print(search_query)
             response_list = []
             channel_ids=[]
             api_key = 'AIzaSyDAwoNaRbQYSl7J_Ll2fztqwT1Gg1ZEMzU'
             search_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&order=viewCount&q='+search_query+'&type=channel&key='+api_key
+            print(search_url)
             channel_data = requests.get(url=search_url)
             channel_data_json = channel_data.json()
             for item in channel_data_json['items']:
+                print(item)
                 response_dict = {}
                 channel_id = item[0]['snippet']['channel_id']
                 channel_ids.append(channel_id)
