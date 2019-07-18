@@ -237,10 +237,10 @@ class Youtube(Resource):
             for item in channel_data_json['items']:
                 print(item)
                 response_dict = {}
-                channel_id = item[0]['snippet']['channel_id']
+                channel_id = item['snippet']['channel_id']
                 channel_ids.append(channel_id)
-                channel_thumbnail = item[0]['snippet']['thumbnails']['medium']['url']
-                channelTitle = item[0]['snippet']['title']
+                channel_thumbnail = item['snippet']['thumbnails']['medium']['url']
+                channelTitle = item['snippet']['title']
                 response_dict.update({'channel_id':channel_id})
                 response_dict.update({'title': channelTitle})
                 response_dict.update({'channel_img': channel_thumbnail})
