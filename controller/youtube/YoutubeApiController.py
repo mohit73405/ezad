@@ -318,9 +318,6 @@ class YoutubeApiController:
             connecsiObj.insert__(data=mergerd_channel_ids, table_name='youtube_channel_ids', columns=['channel_id'],
                                  IGNORE='IGNORE')
 
-
-
-
     def get_all_channel_ids(self):
         connecsiObj = ConnecsiModel()
         regionCodes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
@@ -456,18 +453,6 @@ class YoutubeApiController:
                             except:pass
 
                     # counter = counter + 1
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

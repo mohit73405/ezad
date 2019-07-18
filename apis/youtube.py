@@ -4,6 +4,7 @@ from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
 import datetime
 from controller.youtube.YoutubeApiController import YoutubeApiController
+import requests
 
 ns_youtube = Namespace('Youtube', description='Youtube Apis')
 
@@ -210,6 +211,78 @@ class Youtube(Resource):
                 conObj = YoutubeApiController()
                 conObj.get_data_by_channel_id(channel_id=channel_id,business_email=business_email)
                 return {'message': 'inserted youtube channel id and details'}
+            except Exception as e :
+                print('exception = ',e)
+                return {'message': e}
+        except Exception as e :
+            return {'message' : e}
+
+
+
+@ns_youtube.route('/getYoutubeChannelSnippetFromYoutubeSearchApi/<string:search_query>')
+class Youtube(Resource):
+    def get(self,search_query):
+        ''' Get youtube channel snippet from youtube Search api
+            returns a list of channel ids , title and channel img
+        '''
+        try:
+            response_list = []
+            channel_ids=[]
+            api_key = 'AIzaSyDAwoNaRbQYSl7J_Ll2fztqwT1Gg1ZEMzU'
+            search_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&order=viewCount&q='+search_query+'&type=channel&key='+api_key
+            channel_data = requests.get(url=search_url)
+            channel_data_json = channel_data.json()
+            for item in channel_data_json['items']:
+                response_dict = {}
+                channel_id = item[0]['snippet']['channel_id']
+                channel_ids.append(channel_id)
+                channel_thumbnail = item[0]['snippet']['thumbnails']['medium']['url']
+                channelTitle = item[0]['snippet']['title']
+                response_dict.update({'channel_id':channel_id})
+                response_dict.update({'title': channelTitle})
+                response_dict.update({'channel_img': channel_thumbnail})
+                response_list.append(response_dict)
+            connecsiObj = ConnecsiModel()
+            connecsiObj.insert__(table_name='youtube_channel_ids',data=channel_ids,columns=['channel_id'],IGNORE='IGNORE')
+            return response_list
+        except Exception as e:
+            print('exception = ',e)
+            return {'message': e}
+
+@ns_youtube.route('/getYoutubeChannelDetailsFromYoutubeApi/<string:channel_id>')
+class Youtube(Resource):
+    def get(self,channel_id):
+        ''' Get youtube channel details by channel_id from youtube api'''
+        try:
+            data = [channel_id]
+            connecsiObj = ConnecsiModel()
+            res = connecsiObj.insert__(data=data, table_name='youtube_channel_ids', columns=['channel_id'],
+                                 IGNORE='IGNORE')
+            print('res = ',res)
+            try:
+                connecsiObj.insert_youtube_id_into_channels_mapper(youtube_channel_id=channel_id,confirmed='true')
+            except Exception as e:
+                print(e)
+                return {'message' : e}
+            try:
+                conObj = YoutubeApiController()
+                conObj.get_data_by_channel_id(channel_id=channel_id,business_email='')
+                connecsiObj = ConnecsiModel()
+                columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained', 'subscriberCount_lost',
+                           'business_email', 'total_100video_views',
+                           'total_100video_views_unique', 'total_100video_likes', 'total_100video_dislikes',
+                           'total_100video_comments', 'total_100video_shares',
+                           'facebook_url', 'insta_url', 'twitter_url', 'country']
+                channel_details = connecsiObj.get__(table_name='youtube_channel_details', columns=columns, WHERE='WHERE',
+                                                    compare_column='channel_id', compare_value=channel_id)
+                print(channel_details)
+
+                response_list = []
+                for item in channel_details:
+                    dict_temp = dict(zip(columns, item))
+                    response_list.append(dict_temp)
+                print(response_list)
+                return {'data': response_list}
             except Exception as e :
                 print('exception = ',e)
                 return {'message': e}
