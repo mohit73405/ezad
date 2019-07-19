@@ -244,13 +244,10 @@ class TwitterApiController:
         return results
 
     def search_only_users(self,raw_query):
-        # raw_query = 'q='+raw_query+'&result_type=recent&since=2014-07-19&count=100'
-        results = self.api.GetUsersSearch(term=raw_query,count=2)
+        results = self.api.GetUsersSearch(term=raw_query)
         print('results = ',results)
-
         response_list = []
         for user in results:
-            # print(user.__dict__.items())
             for attr, value in user.__dict__.items():
                 if attr == '_json':
                     # print(attr,':', value)
@@ -261,12 +258,5 @@ class TwitterApiController:
                         'screen_name':value['screen_name']
                     }
                     print(resp_dict)
-        #     # response_list.append(resp_dict)
-        #     print('item = ',item)
-            # [q = "to:$tweeterusername", sinceId = $tweetId]
+                    response_list.append(resp_dict)
         return response_list
-    # def get_reply_count(self,screen_name,tweet_id):
-    #     query = "to:"+screen_name+"&sinceId="+str(tweet_id)
-    #     results = self.api.GetSearch(raw_query=query)
-    #     for item in results:
-    #         print(item)
