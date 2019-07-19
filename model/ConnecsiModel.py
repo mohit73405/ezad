@@ -2509,3 +2509,39 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+    def get_users_influencers_youtube_analytics_credentials(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT ui_ya.channel_id, ui_ya.access_token, ui_ya.refresh_token,ui_ya.expires_in,ui_ya.scope,ui_ya.token_type" \
+                      " FROM users_influencers_youtube_analytics_credentials ui_ya " \
+                      " WHERE ui_ya.channel_id = '"+user_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+    def insert_update_users_influencers_youtube_analytics_credentials(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = "INSERT INTO users_influencers_youtube_analytics_credentials (channel_id, access_token, refresh_token, expires_in,scope,token_type) " \
+                      " VALUES(%s,%s,%s,%s,%s,%s)" \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " access_token = VALUES(access_token), refresh_token=VALUES(refresh_token),expires_in=VALUES(expires_in),scope=VALUES(scope),token_type=VALUES(token_type) "
+                print(sql)
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+

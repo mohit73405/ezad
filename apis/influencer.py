@@ -306,3 +306,33 @@ class Influencer(Resource):
         return response
 
 
+
+@ns_influencer.route('/influencerYoutubeAnalyticsCredentials/<string:user_id>')
+class InfluencerYoutubeAnalyticsCredentials(Resource):
+    def post(self,user_id):
+        '''Add or update youtube analytics credentials for influencer'''
+        post_data = request.get_json()
+        access_token = post_data.get('access_token')
+        refresh_token = post_data.get('refresh_token')
+        expires_in = post_data.get('expires_in')
+        scope = post_data.get('scope')
+        token_type = post_data.get('token_type')
+
+        data = [str(user_id),access_token, refresh_token,expires_in,scope,token_type]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert_update_users_influencers_youtube_analytics_credentials(data=data)
+            return {'response': result}, 201
+        except:
+            return {'response': result}, 500
+
+    def get(self,user_id):
+        '''GET Influencer-youtube analytics credentials by user_id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['channel_id', 'access_token', 'refresh_token', 'expires_in', 'scope', 'token_type']
+        data = connecsiObj.get_users_influencers_youtube_analytics_credentials(user_id=user_id)
+        response_dict = dict(zip(columns, data[0]))
+        print(response_dict)
+        return {'data':response_dict},200
+
