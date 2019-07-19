@@ -2021,6 +2021,21 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_youtube_video_categories_id_and_name_by_channel_id(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT vc.channel_id,vc.video_cat_id,yvc.video_cat_name,count(vc.video_cat_id) as category_count from youtube_channel_ids_video_categories_id vc JOIN youtube_video_categories yvc on vc.video_cat_id = yvc.video_cat_id " \
+                      " WHERE vc.channel_id = '"+channel_id+"' group by vc.video_cat_id"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
 
 
     def update_users_brands_password(self, email_id,password):

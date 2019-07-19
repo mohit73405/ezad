@@ -315,3 +315,21 @@ class Youtube(Resource):
 
         print(response_list)
         return {'data': response_list}
+
+
+
+@ns_youtube.route('/getVideoCategoriesByChannelId/<string:channel_id>')
+class VideoCategories(Resource):
+    def get(self,channel_id):
+        ''' get video categories by video cat id '''
+        connecsiObj = ConnecsiModel()
+        video_categories = connecsiObj.get_youtube_video_categories_id_and_name_by_channel_id(channel_id=channel_id)
+        print(video_categories)
+        columns = ['channel_id','video_cat_id','video_cat_name','category_count']
+        response_list = []
+        for item in video_categories:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+
+        print(response_list)
+        return {'data': response_list}
