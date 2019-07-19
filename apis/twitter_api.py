@@ -72,8 +72,9 @@ class Twitter_api(Resource):
         try:
 
             conObj = TwitterApiController()
-            results = conObj.search_only_users(raw_query=search_query)
-            return results
+            data = conObj.search_only_users(raw_query=search_query)
+            # print(results)
+            return data
         except Exception as e:
             print(e)
             return e
