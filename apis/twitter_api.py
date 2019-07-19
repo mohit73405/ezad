@@ -70,6 +70,7 @@ class Twitter_api(Resource):
         modelObj = ConnecsiModel()
         # output = re.findall('http(.*)', twitter_url)
         try:
+
             conObj = TwitterApiController()
             results = conObj.search_only_users(raw_query=search_query)
             return results
