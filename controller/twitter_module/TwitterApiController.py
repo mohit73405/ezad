@@ -245,16 +245,17 @@ class TwitterApiController:
 
     def search_only_users(self,raw_query):
         # raw_query = 'q='+raw_query+'&result_type=recent&since=2014-07-19&count=100'
-        results = self.api.GetUsersSearch(term=raw_query)
+        results = self.api.GetUsersSearch(term=raw_query,count=2)
         response_list = []
         for item in results:
-            resp_dict = {
-                'twitter_id':item['id_str'],
-                'channel_img':item['profile_image_url_https'],
-                'title':item['name']
-            }
-            print(resp_dict)
-            response_list.append(resp_dict)
+            # resp_dict = {
+            #     'twitter_id':item['id_str'],
+            #     'channel_img':item['profile_image_url_https'],
+            #     'title':item['name']
+            # }
+            # print(resp_dict)
+            # response_list.append(resp_dict)
+            print(item)
             # [q = "to:$tweeterusername", sinceId = $tweetId]
         return response_list
     # def get_reply_count(self,screen_name,tweet_id):
