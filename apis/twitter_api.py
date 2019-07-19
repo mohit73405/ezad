@@ -59,3 +59,22 @@ class Twitter_api(Resource):
                 print(e)
                 pass
 
+
+
+
+
+@ns_twitter.route('/getTwitterChannelsFromTwitterSearchApi/<string:search_query>')
+class Twitter_api(Resource):
+    def get(self,search_query):
+        '''search twitter channel by search query'''
+        modelObj = ConnecsiModel()
+        # output = re.findall('http(.*)', twitter_url)
+        try:
+            conObj = TwitterApiController()
+            results = conObj.search_only_users(raw_query=search_query)
+            return results
+        except Exception as e:
+            print(e)
+            return e
+
+
