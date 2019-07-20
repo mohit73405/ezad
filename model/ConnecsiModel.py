@@ -3,6 +3,7 @@ import uuid
 import pandas as pd
 import pymysql,pymysql.cursors
 # import sshtunnel
+import time
 from sshtunnel import SSHTunnelForwarder
 from configparser import ConfigParser
 import os
@@ -70,7 +71,7 @@ class ConnecsiModel:
                     order = 'asc'
                 else:order='desc'
                 order_by = " order by t1.subscriberCount_gained "+order + " LIMIT 20 OFFSET " +offset
-
+                start_time = time.time()
                 sql = "SELECT DISTINCT t1.channel_id ,t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
                 "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
                 "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
@@ -89,11 +90,12 @@ class ConnecsiModel:
                     sql = sql+ ' AND '+country_filter  + order_by
                 else: sql = sql + order_by
 
-                print(sql)
+                # print(sql)
 
                 cursor.execute(sql)
                 data = cursor.fetchall()
-
+                end_time = time.time()
+                print('seconds took to run this sql ' + sql + ' = ', end_time - start_time)
             print("closing cnx")
             cursor.close()
             self.cnx.close()
@@ -310,7 +312,7 @@ class ConnecsiModel:
                 else:
                     order = 'desc'
                 order_by = " order by t1.subscriberCount_gained " + order
-
+                start_time = time.time()
                 sql = "SELECT distinct(t1.channel_id) FROM youtube_channel_details t1 " \
                       "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
                       "WHERE t1.subscriberCount_gained != 0 AND t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
@@ -330,9 +332,11 @@ class ConnecsiModel:
                     # sql = sql + group_by + order_by
                     sql = sql + order_by
 
-                print(sql)
+                # print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
+                end_time = time.time()
+                print('seconds took to run this sql '+sql+ ' = ' ,end_time-start_time)
                 # print(result)
             print("closing cnx")
             cursor.close()
