@@ -95,6 +95,13 @@ def get_data_by_screen_name():
             except Exception as e:
                 print(e)
                 pass
+            try:
+                modelObj.insert__(table_name='youtube_channel_ids_done_for_twitter', columns=['channel_id'],
+                                  IGNORE='IGNORE', data=[channel_id])
+            except Exception as e:
+                print(e)
+                pass
+            print('INSERTING INTO DONE TABLE = ',channel_id)
 
         else:
             try:
@@ -106,12 +113,14 @@ def get_data_by_screen_name():
             except Exception as e:
                 print(e)
                 pass
-        print('INSERTING INTO DONE TABLE = ',channel_id)
-        try:
-            modelObj.insert__(table_name='youtube_channel_ids_done_for_twitter',columns=['channel_id'],IGNORE='IGNORE',data=[channel_id])
-        except Exception as e:
-            print(e)
-            pass
+            try:
+                modelObj.insert__(table_name='youtube_channel_ids_done_for_twitter', columns=['channel_id'],
+                                  IGNORE='IGNORE', data=[channel_id])
+            except Exception as e:
+                print(e)
+                pass
+            print('INSERTING INTO DONE TABLE = ',channel_id)
+
 
 
 def get_content_categories():

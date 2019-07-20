@@ -2560,3 +2560,22 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def get_twitter_channel_details_by_screen_name(self, screen_name):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT t1.twitter_id,t1.screen_name,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
+                      "t1.business_email, t1.no_of_views_recent100, " \
+                      "t1.no_of_likes_recent100, t1.no_of_comments_recent100,t1.no_of_retweets_recent100, " \
+                      "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location " \
+                      "FROM twitter_channel_details t1 " \
+                      "JOIN twitter_id_category_id t2 on t1.twitter_id = t2.twitter_id " \
+                      "WHERE t1.screen_name BETWEEN " + screen_name +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)

@@ -27,8 +27,6 @@ class Twitter_api(Resource):
             facebook_url = item[3]
             insta_url = item[4]
             youtube_url = 'https://www.youtube.com/channel/' + youtube_channel_id
-
-
             vc_data = ''
             screen_name = screen_name
             output = ''
@@ -79,4 +77,35 @@ class Twitter_api(Resource):
             print(e)
             return e
 
+@ns_twitter.route('/getTwitterChannelsDetailsFromConnecsi/<string:screen_name>')
+class Twitter_api(Resource):
+    def get(self,screen_name):
+        '''get twitter channel by screen name'''
 
+        try:
+            conObj = TwitterApiController()
+            twitter_url = 'https://www.twitter.com/' + screen_name
+            conObj.get_data_by_screen_name(channel_id='', twitter_url=twitter_url,
+                                           screen_name=screen_name, video_categories=[]
+                                           , country='', facebook_url='', insta_url='',
+                                           youtube_url='', business_email='')
+        except Exception as e:
+            print(e)
+            return e
+        try:
+            modelObj = ConnecsiModel()
+            data = modelObj.get_twitter_channel_details_by_screen_name(screen_name=screen_name)
+            columns = ['channel_id', 'screen_name', 'title', 'channel_img', 'desc', 'subscriberCount_gained',
+                       'business_email', 'total_100video_views',
+                       'total_100video_likes',
+                       'total_100video_comments', 'total_100video_shares',
+                       'facebook_url', 'insta_url', 'youtube_url', 'twitter_url', 'country']
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            # print(response_list)
+            return {'data': response_list}
+        except Exception as e:
+            print(e)
+            return e

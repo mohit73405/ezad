@@ -102,7 +102,7 @@ class TwitterApiController:
                 print(e)
                 pass
             try:
-                channel_img = user_data_dict['profile_image_url']
+                channel_img = user_data_dict['profile_image_url_https']
             except Exception as e:
                 print(e)
                 pass
