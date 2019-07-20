@@ -2569,7 +2569,7 @@ class ConnecsiModel:
                       "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location " \
                       "FROM twitter_channel_details t1 " \
                       "JOIN twitter_id_category_id t2 on t1.twitter_id = t2.twitter_id " \
-                      "WHERE t1.screen_name BETWEEN " + screen_name +"'"
+                      "WHERE t1.screen_name = '"+ screen_name +"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
