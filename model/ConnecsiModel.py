@@ -59,6 +59,9 @@ class ConnecsiModel:
         try:
 
             with self.cnx.cursor() as cursor:
+                category_id_join = ''
+                if category_id:
+                    category_id_join = ' JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id '
                 # group_by=" group by t1.channel_id"
                 # group_by =''
                 category_id_filter = " t2.video_cat_id ="+category_id
@@ -76,8 +79,7 @@ class ConnecsiModel:
                 "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
                 "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
                 "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country " \
-                "FROM youtube_channel_details t1 " \
-                "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                "FROM youtube_channel_details t1 "+category_id_join+ \
                 "WHERE t1.subscriberCount_gained != 0 AND  t1.subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
@@ -299,6 +301,9 @@ class ConnecsiModel:
     def search_youtube_inf_get_total_rows(self, sort_order, min_lower='', max_upper='', country='', category_id=''):
         try:
             with self.cnx.cursor() as cursor:
+                category_id_join = ''
+                if category_id:
+                    category_id_join = ' JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id '
                 # group_by = " group by t1.channel_id"
                 # group_by =''
                 category_id_filter = " t2.video_cat_id =" + category_id
@@ -313,8 +318,7 @@ class ConnecsiModel:
                     order = 'desc'
                 order_by = " order by t1.subscriberCount_gained " + order
                 start_time = time.time()
-                sql = "SELECT distinct(t1.channel_id) FROM youtube_channel_details t1 " \
-                      "JOIN youtube_channel_ids_video_categories_id t2 on t1.channel_id = t2.channel_id " \
+                sql = "SELECT distinct(t1.channel_id) FROM youtube_channel_details t1 "+category_id_join+ \
                       "WHERE t1.subscriberCount_gained != 0 AND t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
