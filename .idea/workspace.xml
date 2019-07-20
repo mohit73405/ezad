@@ -17,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="262">
-              <caret line="2571" column="44" lean-forward="true" selection-start-line="2571" selection-start-column="44" selection-end-line="2571" selection-end-column="44" />
+              <caret line="2570" column="68" lean-forward="false" selection-start-line="2570" selection-start-column="68" selection-end-line="2570" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -854,7 +854,7 @@
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
-          <caret line="2571" column="44" lean-forward="true" selection-start-line="2571" selection-start-column="44" selection-end-line="2571" selection-end-column="44" />
+          <caret line="2570" column="68" lean-forward="false" selection-start-line="2570" selection-start-column="68" selection-end-line="2570" selection-end-column="68" />
           <folding />
         </state>
       </provider>
