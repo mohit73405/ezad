@@ -78,6 +78,14 @@ class Insta_api(Resource):
         self.user_agents = None
         try:
             insta_data_dict = self.get_insta_data()
+            try:
+                conObj = InstgramScrapper(url=instagram_url,channel_id='',twitter_url='',video_categories=[]
+                                          ,country='',facebook_url='',insta_url=instagram_url,youtube_url='',business_email='')
+                conObj.set_insta_data()
+                # modelObj.update_insta_url_in_youtube_channel_details(insta_url=instagram_url,youtube_channel_id=youtube_channel_id)
+            except Exception as e:
+                print(e)
+                pass
             # print(insta_data_dict)
             return insta_data_dict
         except Exception as e:
