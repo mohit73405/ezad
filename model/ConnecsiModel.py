@@ -2568,6 +2568,43 @@ class ConnecsiModel:
             print(e)
             return 0
 
+
+    def insert_update_users_influencers_twitter_analytics_credentials(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = "INSERT INTO users_influencers_twitter_analytics_credentials (twitter_id, access_token, access_token_secret, screen_name) " \
+                      " VALUES(%s,%s,%s,%s)" \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " access_token = VALUES(access_token), access_token_secret=VALUES(access_token_secret) "
+                print(sql)
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def get_users_influencers_twitter_analytics_credentials(self, twitter_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT ui_ta.twitter_id, ui_ta.access_token, ui_ta.access_token_secret,ui_ta.screen_name " \
+                      " FROM users_influencers_twitter_analytics_credentials ui_ta " \
+                      " WHERE ui_ta.twitter_id = '"+twitter_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+
     def get_twitter_channel_details_by_screen_name(self, screen_name):
         try:
             with self.cnx.cursor() as cursor:

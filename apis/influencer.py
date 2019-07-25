@@ -336,3 +336,30 @@ class InfluencerYoutubeAnalyticsCredentials(Resource):
         print(response_dict)
         return {'data':response_dict},200
 
+@ns_influencer.route('/influencerTwitterAnalyticsCredentials/<string:twitter_id>')
+class InfluencerTwitterAnalyticsCredentials(Resource):
+    def post(self,twitter_id):
+        '''Add or update twitter analytics credentials for influencer'''
+        post_data = request.get_json()
+        access_token = post_data.get('access_token')
+        access_token_secret = post_data.get('access_token_secret')
+        screen_name = post_data.get('screen_name')
+
+        data = [str(twitter_id),access_token, access_token_secret,screen_name]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert_update_users_influencers_twitter_analytics_credentials(data=data)
+            return {'response': result}, 201
+        except:
+            return {'response': result}, 500
+
+    def get(self,twitter_id):
+        '''GET Influencer-twitter analytics credentials by twitter_id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['twitter_id', 'access_token', 'access_token_secret','screen_name']
+        data = connecsiObj.get_users_influencers_twitter_analytics_credentials(twitter_id=twitter_id)
+        response_dict = dict(zip(columns, data[0]))
+        print(response_dict)
+        return {'data':response_dict},200
+
