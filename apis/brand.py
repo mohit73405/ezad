@@ -498,3 +498,70 @@ class BrandsGoogleAnalyticsCredentials(Resource):
         response_dict = dict(zip(columns, data[0]))
         print(response_dict)
         return {'data':response_dict},200
+
+
+
+
+@ns_brand.route('/updatePackageDetails/<string:user_id>')
+class updatePackageDetails(Resource):
+    def post(self,user_id):
+        '''Add or update subscription package details for brands'''
+        post_data = request.get_json()
+        package_name = post_data.get('package_name')
+        p_created_date = post_data.get('p_created_date')
+        p_expiry_date = post_data.get('p_expiry_date')
+
+
+        data = [int(user_id),package_name, p_created_date,p_expiry_date]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert_update_users_brands_subscription_package_details(data=data)
+            return {'response': result}, 201
+        except:
+            return {'response': result}, 500
+
+
+@ns_brand.route('/subscriptionFeatureDetails/<string:user_id>')
+class subscriptionFeatureDetails(Resource):
+    def post(self,user_id):
+        '''Add or update subscription package details for brands'''
+        post_data = request.get_json()
+        feature_name = post_data.get('feature_name')
+        units = post_data.get('units')
+        price = post_data.get('price')
+
+
+        data = [int(user_id),feature_name, units,price]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert_subscription_feature_details(data=data)
+            return {'response': result}, 200
+        except:
+            return {'response': result}, 500
+
+    def put(self,user_id):
+        post_data = request.get_json()
+        units = post_data.get('units')
+        price = post_data.get('price')
+        result=0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.update_subscription_feature_details(user_id=user_id,units=units,price=price)
+            return {'response': result}, 200
+        except:
+            return {'response': result}, 500
+
+
+
+@ns_brand.route('/subscriptionPackageDetails/<string:user_id>')
+class subscriptionPackageDetails(Resource):
+    def get(self,user_id):
+        '''GET Brands-subcription package details by user_id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id', 'package_name', 'p_created_date', 'p_expiry_date','feature_name','units','price']
+        data = connecsiObj.get_users_brands_subscription_package_with_feature_details(user_id=user_id)
+        response_dict = dict(zip(columns, data[0]))
+        print(response_dict)
+        return {'data':response_dict},200

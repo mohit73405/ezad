@@ -2625,3 +2625,76 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+
+    def insert_update_users_brands_subscription_package_details(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = "INSERT INTO subscriptions_package_for_brands (user_id, package_name, p_created_date, p_expiry_date) " \
+                      " VALUES(%s,%s,%s,%s)" \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " package_name = VALUES(package_name), p_created_date=VALUES(p_created_date),p_expiry_date=VALUES(p_expiry_date) "
+                print(sql)
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+
+    def get_users_brands_subscription_package_with_feature_details(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT t1.user_id,t1.package_name,t1.p_created_date,t1.p_expiry_date,t2.feature_name,t2.units,t2.price " \
+                      " FROM subscriptions_package_for_brands t1 JOIN subscriptions_for_brands t2 on t1.user_id = t2.user_id " \
+                      " WHERE t1.user_id = '"+user_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def insert_subscription_feature_details(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price) " \
+                      " VALUES(%s,%s,%s,%s)"
+                print(sql)
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def update_subscription_feature_details(self, user_id,feature_name,units,price):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = "UPDATE subscriptions_for_brands SET units="+units+", price="+price+" WHERE user_id = "+user_id+" AND feature_name = '"+feature_name+"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
