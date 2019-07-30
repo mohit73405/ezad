@@ -2678,7 +2678,7 @@ class ConnecsiModel:
                 str_units = str(data[2])
                 str_price = str(data[3])
                 sql = " INSERT INTO subscriptions_for_brands(user_id,feature_name, units, price,customized_feature) SELECT * FROM " \
-                      "(SELECT '" + str_user_id + "' , '" + data[1] + "', '" + str_units + "', '" + str_price + "', '" + data[4] + "') AS tmp " \
+                      "(SELECT user_id,feature_name, units, price,customized_feature ) AS tmp " \
                       " WHERE NOT EXISTS(SELECT user_id,feature_name FROM subscriptions_for_brands" \
                       " WHERE user_id = '" + str_user_id + "' AND feature_name = '" + data[1] + "') LIMIT 1 "
                 # sql = "INSERT INTO youtube_channel_ids_video_categories_id(channel_id, video_cat_id,video_id) SELECT * FROM " \
