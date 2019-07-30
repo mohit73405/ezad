@@ -2666,27 +2666,21 @@ class ConnecsiModel:
             return 0
 
 
-    def insert_subscription_feature_details(self, data):
+    def insert_update_subscription_feature_details(self, data):
         try:
             with self.cnx.cursor() as cursor:
                 print(data)
-                # sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature) " \
-                #       " VALUES(%s,%s,%s,%s,%s)"
-                print(data[0],type(data[0]))
-                print(data[1],type(data[1]))
-                str_user_id = str(data[0])
-                str_units = str(data[2])
-                str_price = str(data[3])
-                sql = " INSERT INTO subscriptions_for_brands(user_id,feature_name, units, price,customized_feature) SELECT * FROM " \
-                      "(SELECT user_id,feature_name, units, price,customized_feature ) AS tmp " \
-                      " WHERE NOT EXISTS(SELECT user_id,feature_name FROM subscriptions_for_brands" \
-                      " WHERE user_id = '" + str_user_id + "' AND feature_name = '" + data[1] + "') LIMIT 1 "
-                # sql = "INSERT INTO youtube_channel_ids_video_categories_id(channel_id, video_cat_id,video_id) SELECT * FROM " \
-                #       "(SELECT '" + channel_id + "', '" + video_cat_id + "', '" + video_id + "') AS tmp WHERE NOT EXISTS(SELECT channel_id,video_cat_id FROM youtube_channel_ids_video_categories_id" \
-                #       " WHERE channel_id = '" + channel_id + "' AND video_cat_id = '" + video_cat_id + "') LIMIT 1;"
-                #
-                print(sql)
-                cursor.execute(sql)
+                insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature) " \
+                      " VALUES(%s,%s,%s,%s,%s)"
+                select_sql = "SELECT 1 from subscriptions_for_brands where user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
+                update_sql = "UPDATE subscriptions_for_brands SET units="+data[2]+" ,price= "+data[3]+" , customized_feature='"+data[4]+"'" \
+                             " WHERE user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
+
+                res = cursor.execute(select_sql)
+                if res == 1:
+                    cursor.execute(update_sql)
+                else:
+                    cursor.execute(insert_sql)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")

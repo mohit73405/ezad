@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/brand.py" afterPath="$PROJECT_DIR$/apis/brand.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="2683" column="47" lean-forward="true" selection-start-line="2683" selection-start-column="47" selection-end-line="2683" selection-end-column="47" />
+            <state relative-caret-position="109">
+              <caret line="2668" column="42" lean-forward="true" selection-start-line="2668" selection-start-column="42" selection-end-line="2668" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -45,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="brand.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="563" column="48" lean-forward="true" selection-start-line="563" selection-start-column="48" selection-end-line="563" selection-end-column="48" />
+            <state relative-caret-position="34">
+              <caret line="543" column="0" lean-forward="false" selection-start-line="543" selection-start-column="0" selection-end-line="543" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -221,8 +222,8 @@
         <option value="$PROJECT_DIR$/apis/twitter_api.py" />
         <option value="$PROJECT_DIR$/apis/insta_api.py" />
         <option value="$PROJECT_DIR$/apis/influencer.py" />
-        <option value="$PROJECT_DIR$/apis/brand.py" />
         <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
+        <option value="$PROJECT_DIR$/apis/brand.py" />
       </list>
     </option>
   </component>
@@ -867,21 +868,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/brand.py">
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="563" column="48" lean-forward="true" selection-start-line="563" selection-start-column="48" selection-end-line="563" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="109">
+          <caret line="2668" column="42" lean-forward="true" selection-start-line="2668" selection-start-column="42" selection-end-line="2668" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+    <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="2683" column="47" lean-forward="true" selection-start-line="2683" selection-start-column="47" selection-end-line="2683" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="34">
+          <caret line="543" column="0" lean-forward="false" selection-start-line="543" selection-start-column="0" selection-end-line="543" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

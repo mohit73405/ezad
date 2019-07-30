@@ -561,25 +561,25 @@ class subscriptionFeatureDetails(Resource):
         result = 0
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.insert_subscription_feature_details(data=data)
+            result = connecsiObj.insert_update_subscription_feature_details(data=data)
             return {'response': result}, 200
         except:
             return {'response': result}, 500
 
-    @ns_brand.expect(sub_feature_form)
-    def put(self,user_id):
-        post_data = request.get_json()
-        feature_name = post_data.get('feature_name')
-        units = post_data.get('units')
-        price = post_data.get('price')
-        customized_feature = post_data.get('customized_feature')
-        result=0
-        try:
-            connecsiObj = ConnecsiModel()
-            result = connecsiObj.update_subscription_feature_details(user_id=user_id,feature_name=feature_name,units=units,price=price,customized_feature=customized_feature)
-            return {'response': result}, 201
-        except:
-            return {'response': result}, 500
+    # @ns_brand.expect(sub_feature_form)
+    # def put(self,user_id):
+    #     post_data = request.get_json()
+    #     feature_name = post_data.get('feature_name')
+    #     units = post_data.get('units')
+    #     price = post_data.get('price')
+    #     customized_feature = post_data.get('customized_feature')
+    #     result=0
+    #     try:
+    #         connecsiObj = ConnecsiModel()
+    #         result = connecsiObj.update_subscription_feature_details(user_id=user_id,feature_name=feature_name,units=units,price=price,customized_feature=customized_feature)
+    #         return {'response': result}, 201
+    #     except:
+    #         return {'response': result}, 500
 
 
 
