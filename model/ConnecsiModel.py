@@ -2652,7 +2652,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT t1.user_id,t1.package_name,t1.p_created_date,t1.p_expiry_date,t2.feature_name,t2.units,t2.price " \
-                      " FROM subscriptions_package_for_brands t1 JOIN subscriptions_for_brands t2 on t1.user_id = t2.user_id " \
+                      " FROM subscriptions_package_for_brands t1 LEFT JOIN subscriptions_for_brands t2 on t1.user_id = t2.user_id " \
                       " WHERE t1.user_id = '"+user_id+"'"
                 print(sql)
                 cursor.execute(sql)
