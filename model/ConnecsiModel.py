@@ -2672,11 +2672,11 @@ class ConnecsiModel:
                 print(data)
                 # sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature) " \
                 #       " VALUES(%s,%s,%s,%s,%s)"
-                
+
                 sql = " INSERT INTO subscriptions_for_brands(user_id,feature_name, units, price,customized_feature) SELECT * FROM " \
-                      "(SELECT '" + data[0] + "' , " + data[1] + " , " + data[2] + " , " + data[3] + " , " + data[4] + ") AS tmp " \
-                      " WHERE NOT EXISTS(SELECT user_id,feature_name,units, price,customized_feature FROM subscriptions_for_brands" \
-                      " WHERE user_id = '" + data[0] + "' AND feature_name = " + data[1] + ") LIMIT 1 "
+                      "(SELECT '" + str(data[0]) + "' , " + data[1] + ") AS tmp " \
+                      " WHERE NOT EXISTS(SELECT user_id,feature_name FROM subscriptions_for_brands" \
+                      " WHERE user_id = " + data[0] + " AND feature_name = '" + data[1] + "') LIMIT 1 "
                 print(sql)
                 cursor.execute(sql,data)
                 self.cnx.commit()
