@@ -544,7 +544,7 @@ sub_feature_form = ns_brand.model('sub feature Details', {
 class subscriptionFeatureDetails(Resource):
     @ns_brand.expect(sub_feature_form)
     def post(self,user_id):
-        '''Add or update subscription package details for brands
+        '''Add or update subscription feature details for brands
            required parameter : feature name (string) example(create campaign) must be unique
            required parameter : units (integer) example(integer)
            required parameter : price (integer) example(integer)
