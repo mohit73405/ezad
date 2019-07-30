@@ -2671,6 +2671,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 print(data)
                 data_tuple = tuple(data)
+                print(type(data_tuple))
                 insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature) " \
                       " VALUES(%s,%s,%s,%s,%s)"
                 select_sql = "SELECT 1 from subscriptions_for_brands where user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
