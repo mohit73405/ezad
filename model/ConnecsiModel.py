@@ -2673,9 +2673,9 @@ class ConnecsiModel:
                 data_tuple = tuple(data)
                 print(type(data_tuple))
 
-                select_sql = "SELECT 1 from subscriptions_for_brands where user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
-                update_sql = "UPDATE subscriptions_for_brands SET units="+data[2]+" ,price= "+data[3]+" , customized_feature='"+data[4]+"'" \
-                             " WHERE user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
+                select_sql = "SELECT 1 from subscriptions_for_brands where user_id ='"+data[0]+"' and feature_name = '"+data[1]+"'"
+                update_sql = "UPDATE subscriptions_for_brands SET units='"+data[2]+"' ,price= '"+data[3]+"' , customized_feature='"+data[4]+"'" \
+                             " WHERE user_id ='"+data[0]+"' and feature_name = '"+data[1]+"'"
 
                 res = cursor.execute(select_sql)
                 print(res)
