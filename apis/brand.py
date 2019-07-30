@@ -535,7 +535,9 @@ class updatePackageDetails(Resource):
 sub_feature_form = ns_brand.model('sub feature Details', {
     'feature_name' : fields.String(required=True, description='Feature Name'),
     'units' : fields.Integer(required=True, description='Units'),
-    'price' : fields.Integer(required=True, description='price')
+    'price' : fields.Integer(required=True, description='price'),
+    'customized_feature' : fields.String(required=True, description='customized feature'),
+
 })
 
 @ns_brand.route('/subscriptionFeatureDetails/<string:user_id>')
@@ -546,14 +548,16 @@ class subscriptionFeatureDetails(Resource):
            required parameter : feature name (string) example(create campaign) must be unique
            required parameter : units (integer) example(integer)
            required parameter : price (integer) example(integer)
+           required parameter : customized feature (string) example(Yes/No)
         '''
         post_data = request.get_json()
         feature_name = post_data.get('feature_name')
         units = post_data.get('units')
         price = post_data.get('price')
+        customized_feature = post_data.get('customized_feature')
 
 
-        data = [int(user_id),feature_name, units,price]
+        data = [int(user_id),feature_name, units,price,customized_feature]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
@@ -583,7 +587,7 @@ class subscriptionPackageDetails(Resource):
     def get(self,user_id):
         '''GET Brands-subcription package details by user_id'''
         connecsiObj = ConnecsiModel()
-        columns = ['user_id', 'package_name', 'p_created_date', 'p_expiry_date','feature_name','units','price']
+        columns = ['user_id', 'package_name', 'p_created_date', 'p_expiry_date','feature_name','units','price','customized_feature']
         data = connecsiObj.get_users_brands_subscription_package_with_feature_details(user_id=user_id)
         data_list = []
         for item in data:
@@ -597,6 +601,7 @@ class subscriptionPackageDetails(Resource):
             temp_list.append(item[4])
             temp_list.append(item[5])
             temp_list.append(item[6])
+            temp_list.append(item[7])
             data_list.append(temp_list)
         response_list=[]
         for item1 in data_list:

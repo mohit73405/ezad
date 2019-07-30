@@ -2651,7 +2651,7 @@ class ConnecsiModel:
     def get_users_brands_subscription_package_with_feature_details(self, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT t1.user_id,t1.package_name,t1.p_created_date,t1.p_expiry_date,t2.feature_name,t2.units,t2.price " \
+                sql = "SELECT t1.user_id,t1.package_name,t1.p_created_date,t1.p_expiry_date,t2.feature_name,t2.units,t2.price,t2.customized_feature " \
                       " FROM subscriptions_package_for_brands t1 LEFT JOIN subscriptions_for_brands t2 on t1.user_id = t2.user_id " \
                       " WHERE t1.user_id = '"+user_id+"'"
                 print(sql)
@@ -2670,8 +2670,8 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 # print(data)
-                sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price) " \
-                      " VALUES(%s,%s,%s,%s)"
+                sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature) " \
+                      " VALUES(%s,%s,%s,%s,%s)"
                 print(sql)
                 cursor.execute(sql,data)
                 self.cnx.commit()
@@ -2683,11 +2683,11 @@ class ConnecsiModel:
             print(e)
             return 0
 
-    def update_subscription_feature_details(self, user_id,feature_name,units,price):
+    def update_subscription_feature_details(self, user_id,feature_name,units,price,customized_feature):
         try:
             with self.cnx.cursor() as cursor:
                 # print(data)
-                sql = "UPDATE subscriptions_for_brands SET units="+units+", price="+price+" WHERE user_id = "+user_id+" AND feature_name = '"+feature_name+"'"
+                sql = "UPDATE subscriptions_for_brands SET units="+units+", price="+price+" , customized_feature= '"+customized_feature+"' WHERE user_id = "+user_id+" AND feature_name = '"+feature_name+"'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
