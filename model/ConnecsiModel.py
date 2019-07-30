@@ -2680,7 +2680,7 @@ class ConnecsiModel:
                 if res == 1:
                     cursor.execute(update_sql)
                 else:
-                    cursor.execute(insert_sql)
+                    cursor.execute(insert_sql,data)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")
