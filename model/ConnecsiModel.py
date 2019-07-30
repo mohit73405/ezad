@@ -2672,16 +2672,18 @@ class ConnecsiModel:
                 print(data)
                 data_tuple = tuple(data)
                 print(type(data_tuple))
-                insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature)" \
-                             " VALUES("+data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[4]+")"
+
                 select_sql = "SELECT 1 from subscriptions_for_brands where user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
                 update_sql = "UPDATE subscriptions_for_brands SET units="+data[2]+" ,price= "+data[3]+" , customized_feature='"+data[4]+"'" \
                              " WHERE user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
 
                 res = cursor.execute(select_sql)
+                print(res)
                 if res == 1:
                     cursor.execute(update_sql)
                 else:
+                    insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature)" \
+                                 " VALUES(" + data[0] + "," + data[1] + "," + data[2] + "," + data[3] + "," + data[4] + ")"
                     print(insert_sql)
                     cursor.execute(insert_sql)
                 self.cnx.commit()
