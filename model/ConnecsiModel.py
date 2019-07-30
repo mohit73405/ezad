@@ -2672,7 +2672,8 @@ class ConnecsiModel:
                 print(data)
                 # sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature) " \
                 #       " VALUES(%s,%s,%s,%s,%s)"
-
+                print(data[0],type(data[0]))
+                print(data[1],type(data[1]))
                 sql = " INSERT INTO subscriptions_for_brands(user_id,feature_name, units, price,customized_feature) SELECT * FROM " \
                       "(SELECT '" + str(data[0]) + "' , " + data[1] + ") AS tmp " \
                       " WHERE NOT EXISTS(SELECT user_id,feature_name FROM subscriptions_for_brands" \
