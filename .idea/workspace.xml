@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/brand.py" afterPath="$PROJECT_DIR$/apis/brand.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,8 +16,8 @@
       <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="2686" column="8" lean-forward="true" selection-start-line="2686" selection-start-column="8" selection-end-line="2686" selection-end-column="8" />
+            <state relative-caret-position="126">
+              <caret line="2675" column="69" lean-forward="false" selection-start-line="2675" selection-start-column="69" selection-end-line="2675" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -221,8 +221,8 @@
         <option value="$PROJECT_DIR$/apis/twitter_api.py" />
         <option value="$PROJECT_DIR$/apis/insta_api.py" />
         <option value="$PROJECT_DIR$/apis/influencer.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
       </list>
     </option>
   </component>
@@ -879,8 +879,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="2686" column="8" lean-forward="true" selection-start-line="2686" selection-start-column="8" selection-end-line="2686" selection-end-column="8" />
+        <state relative-caret-position="126">
+          <caret line="2675" column="69" lean-forward="false" selection-start-line="2675" selection-start-column="69" selection-end-line="2675" selection-end-column="69" />
           <folding />
         </state>
       </provider>
