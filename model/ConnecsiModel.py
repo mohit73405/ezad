@@ -2670,8 +2670,9 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 print(data)
+                data_tuple = tuple(data)
                 insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature) " \
-                      " VALUES('%s',%s,'%s','%s',%s)"
+                      " VALUES(%s,%s,%s,%s,%s)"
                 select_sql = "SELECT 1 from subscriptions_for_brands where user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
                 update_sql = "UPDATE subscriptions_for_brands SET units="+data[2]+" ,price= "+data[3]+" , customized_feature='"+data[4]+"'" \
                              " WHERE user_id ="+data[0]+" and feature_name = '"+data[1]+"'"
@@ -2680,7 +2681,7 @@ class ConnecsiModel:
                 if res == 1:
                     cursor.execute(update_sql)
                 else:
-                    cursor.execute(insert_sql,data)
+                    cursor.execute(insert_sql,data_tuple)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")
