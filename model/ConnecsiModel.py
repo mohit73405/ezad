@@ -2686,7 +2686,7 @@ class ConnecsiModel:
                 #       " WHERE channel_id = '" + channel_id + "' AND video_cat_id = '" + video_cat_id + "') LIMIT 1;"
                 #
                 print(sql)
-                cursor.execute(sql,data)
+                cursor.execute(sql)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")
