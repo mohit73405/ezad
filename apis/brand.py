@@ -510,7 +510,11 @@ package_form = ns_brand.model('Package Details', {
 class updatePackageDetails(Resource):
     @ns_brand.expect(package_form)
     def post(self,user_id):
-        '''Add or update subscription package details for brands'''
+        '''Add or update subscription package details for brands
+           required parameter : package name (string) example(Free/Basic/Professional/Enterprise)
+           required parameter : created date (string) example(date in timestamp in seconds)
+           required parameter : expiry date (string) example(date in timestamp in seconds)
+        '''
         post_data = request.get_json()
         package_name = post_data.get('package_name')
 
@@ -528,11 +532,21 @@ class updatePackageDetails(Resource):
         except:
             return {'response': result}, 500
 
+sub_feature_form = ns_brand.model('sub feature Details', {
+    'feature_name' : fields.String(required=True, description='Feature Name'),
+    'units' : fields.Integer(required=True, description='Units'),
+    'price' : fields.Integer(required=True, description='price')
+})
 
 @ns_brand.route('/subscriptionFeatureDetails/<string:user_id>')
 class subscriptionFeatureDetails(Resource):
+    @ns_brand.expect(sub_feature_form)
     def post(self,user_id):
-        '''Add or update subscription package details for brands'''
+        '''Add or update subscription package details for brands
+           required parameter : feature name (string) example(create campaign) must be unique
+           required parameter : units (integer) example(integer)
+           required parameter : price (integer) example(integer)
+        '''
         post_data = request.get_json()
         feature_name = post_data.get('feature_name')
         units = post_data.get('units')
@@ -548,14 +562,16 @@ class subscriptionFeatureDetails(Resource):
         except:
             return {'response': result}, 500
 
+    @ns_brand.expect(sub_feature_form)
     def put(self,user_id):
         post_data = request.get_json()
+        feature_name = post_data.get('feature_name')
         units = post_data.get('units')
         price = post_data.get('price')
         result=0
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.update_subscription_feature_details(user_id=user_id,units=units,price=price)
+            result = connecsiObj.update_subscription_feature_details(user_id=user_id,feature_name=feature_name,units=units,price=price)
             return {'response': result}, 200
         except:
             return {'response': result}, 500
@@ -569,6 +585,22 @@ class subscriptionPackageDetails(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['user_id', 'package_name', 'p_created_date', 'p_expiry_date','feature_name','units','price']
         data = connecsiObj.get_users_brands_subscription_package_with_feature_details(user_id=user_id)
-        response_dict = dict(zip(columns, data[0]))
-        print(response_dict)
-        return {'data':response_dict},200
+        data_list = []
+        for item in data:
+            temp_list = []
+            temp_list.append(item[0])
+            temp_list.append(item[1])
+            created_date_timestamp = datetime.datetime.timestamp(item[2])
+            temp_list.append(created_date_timestamp)
+            expiry_date_timestamp = datetime.datetime.timestamp(item[3])
+            temp_list.append(expiry_date_timestamp)
+            temp_list.append(item[4])
+            temp_list.append(item[5])
+            temp_list.append(item[6])
+            data_list.append(temp_list)
+        response_list=[]
+        for item1 in data_list:
+            dict_temp = dict(zip(columns, item1))
+            response_list.append(dict_temp)
+        return {'data': response_list}
+
