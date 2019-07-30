@@ -577,7 +577,7 @@ class subscriptionFeatureDetails(Resource):
         try:
             connecsiObj = ConnecsiModel()
             result = connecsiObj.update_subscription_feature_details(user_id=user_id,feature_name=feature_name,units=units,price=price,customized_feature=customized_feature)
-            return {'response': result}, 200
+            return {'response': result}, 201
         except:
             return {'response': result}, 500
 
