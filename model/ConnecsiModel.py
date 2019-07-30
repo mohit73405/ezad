@@ -2679,8 +2679,12 @@ class ConnecsiModel:
                 str_price = str(data[3])
                 sql = " INSERT INTO subscriptions_for_brands(user_id,feature_name, units, price,customized_feature) SELECT * FROM " \
                       "(SELECT '" + str_user_id + "' , '" + data[1] + "', '" + str_units + "', '" + str_price + "', '" + data[4] + "') AS tmp " \
-                      " WHERE NOT EXISTS(SELECT user_id,feature_name, units, price,customized_feature FROM subscriptions_for_brands" \
+                      " WHERE NOT EXISTS(SELECT user_id,feature_name FROM subscriptions_for_brands" \
                       " WHERE user_id = '" + str_user_id + "' AND feature_name = '" + data[1] + "') LIMIT 1 "
+                # sql = "INSERT INTO youtube_channel_ids_video_categories_id(channel_id, video_cat_id,video_id) SELECT * FROM " \
+                #       "(SELECT '" + channel_id + "', '" + video_cat_id + "', '" + video_id + "') AS tmp WHERE NOT EXISTS(SELECT channel_id,video_cat_id FROM youtube_channel_ids_video_categories_id" \
+                #       " WHERE channel_id = '" + channel_id + "' AND video_cat_id = '" + video_cat_id + "') LIMIT 1;"
+                #
                 print(sql)
                 cursor.execute(sql,data)
                 self.cnx.commit()
