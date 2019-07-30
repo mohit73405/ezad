@@ -572,10 +572,11 @@ class subscriptionFeatureDetails(Resource):
         feature_name = post_data.get('feature_name')
         units = post_data.get('units')
         price = post_data.get('price')
+        customized_feature = post_data.get('customized_feature')
         result=0
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.update_subscription_feature_details(user_id=user_id,feature_name=feature_name,units=units,price=price)
+            result = connecsiObj.update_subscription_feature_details(user_id=user_id,feature_name=feature_name,units=units,price=price,customized_feature=customized_feature)
             return {'response': result}, 200
         except:
             return {'response': result}, 500
