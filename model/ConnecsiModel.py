@@ -2674,10 +2674,11 @@ class ConnecsiModel:
                 #       " VALUES(%s,%s,%s,%s,%s)"
                 print(data[0],type(data[0]))
                 print(data[1],type(data[1]))
+                str_user_id = str(data[0])
                 sql = " INSERT INTO subscriptions_for_brands(user_id,feature_name, units, price,customized_feature) SELECT * FROM " \
-                      "(SELECT '" + str(data[0]) + "' , " + data[1] + ") AS tmp " \
+                      "(SELECT '" + str_user_id + "' , " + data[1] + ") AS tmp " \
                       " WHERE NOT EXISTS(SELECT user_id,feature_name FROM subscriptions_for_brands" \
-                      " WHERE user_id = " + data[0] + " AND feature_name = '" + data[1] + "') LIMIT 1 "
+                      " WHERE user_id = " + str_user_id + " AND feature_name = '" + data[1] + "') LIMIT 1 "
                 print(sql)
                 cursor.execute(sql,data)
                 self.cnx.commit()
