@@ -557,7 +557,7 @@ class subscriptionFeatureDetails(Resource):
         customized_feature = post_data.get('customized_feature')
 
 
-        data = [user_id,feature_name, units,price,customized_feature]
+        data = [int(user_id),feature_name, units,price,customized_feature]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
