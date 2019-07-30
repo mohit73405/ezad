@@ -500,19 +500,26 @@ class BrandsGoogleAnalyticsCredentials(Resource):
         return {'data':response_dict},200
 
 
-
+package_form = ns_brand.model('Package Details', {
+    'package_name' : fields.String(required=True, description='Package Name'),
+    'p_created_date' : fields.String(required=True, description='created date in timestamp format'),
+    'p_expiry_date' : fields.String(required=True, description='expiry date')
+})
 
 @ns_brand.route('/updatePackageDetails/<string:user_id>')
 class updatePackageDetails(Resource):
+    @ns_brand.expect(package_form)
     def post(self,user_id):
         '''Add or update subscription package details for brands'''
         post_data = request.get_json()
         package_name = post_data.get('package_name')
-        p_created_date = post_data.get('p_created_date')
-        p_expiry_date = post_data.get('p_expiry_date')
 
+        p_created_date_timestamp = post_data.get('p_created_date')
+        p_created_date_object = datetime.datetime.fromtimestamp(p_created_date_timestamp)
+        p_expiry_date_timestamp = post_data.get('p_expiry_date')
+        p_expiry_date_object = datetime.datetime.fromtimestamp(p_expiry_date_timestamp)
 
-        data = [int(user_id),package_name, p_created_date,p_expiry_date]
+        data = [int(user_id),package_name, p_created_date_object,p_expiry_date_object]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
