@@ -2683,7 +2683,7 @@ class ConnecsiModel:
                     cursor.execute(update_sql)
                 else:
                     insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature)" \
-                                 " VALUES(" + data[0] + "," + data[1] + "," + data[2] + "," + data[3] + "," + data[4] + ")"
+                                 " VALUES(" + data[0] + ",'" + data[1] + "'," + data[2] + "," + data[3] + ",'" + data[4] + "')"
                     print(insert_sql)
                     cursor.execute(insert_sql)
                 self.cnx.commit()
