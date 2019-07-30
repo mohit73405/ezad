@@ -515,9 +515,9 @@ class updatePackageDetails(Resource):
         package_name = post_data.get('package_name')
 
         p_created_date_timestamp = post_data.get('p_created_date')
-        p_created_date_object = datetime.datetime.fromtimestamp(p_created_date_timestamp)
+        p_created_date_object = datetime.datetime.fromtimestamp(int(p_created_date_timestamp))
         p_expiry_date_timestamp = post_data.get('p_expiry_date')
-        p_expiry_date_object = datetime.datetime.fromtimestamp(p_expiry_date_timestamp)
+        p_expiry_date_object = datetime.datetime.fromtimestamp(int(p_expiry_date_timestamp))
 
         data = [int(user_id),package_name, p_created_date_object,p_expiry_date_object]
         result = 0
