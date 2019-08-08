@@ -2710,3 +2710,39 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+
+    def reinitiateClassifiedAd(self,classified_id,user_id,posted_date):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE brands_classifieds SET posted_date = '" + str(posted_date) + "' WHERE classified_id = '"\
+                      + str(classified_id) + "' AND user_id = '" + str(user_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def reinitiateOffer(self,offer_id,channel_id,posted_date):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "UPDATE inf_offers SET posted_date = '" + str(posted_date) + "' WHERE offer_id = '"\
+                      + str(offer_id) + "' AND channel_id = '" + str(channel_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0

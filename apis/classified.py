@@ -259,3 +259,19 @@ class Classified(Resource):
         except Exception as e:
             print(e)
 
+
+
+@ns_classified.route('/reinitiateClassifiedAd/<string:classified_id>/<string:user_id>')
+class Classified(Resource):
+    def put(self,classified_id,user_id):
+        posted_date = datetime.date.today()
+        posted_date = datetime.date.strftime(posted_date, '%Y-%m-%d')
+        try:
+            connecsiObj=ConnecsiModel()
+            connecsiObj.reinitiateClassifiedAd(classified_id,user_id,posted_date)
+            res = 1
+            return {'response': res},201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res},500

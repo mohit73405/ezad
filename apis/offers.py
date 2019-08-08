@@ -220,3 +220,19 @@ class Offers(Resource):
             print(e)
 
 
+
+
+@ns_offer.route('/reinitiateOffer/<string:offer_id>/<string:channel_id>')
+class Classified(Resource):
+    def put(self,offer_id,channel_id):
+        posted_date = datetime.date.today()
+        posted_date = datetime.date.strftime(posted_date, '%Y-%m-%d')
+        try:
+            connecsiObj=ConnecsiModel()
+            connecsiObj.reinitiateOffer(offer_id=offer_id,channel_id=channel_id,posted_date=posted_date)
+            res = 1
+            return {'response': res},201
+        except Exception as e:
+            print(e)
+            res = 0
+            return {'response': res},500
