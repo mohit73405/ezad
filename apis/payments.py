@@ -33,8 +33,8 @@ class BrandPayments(Resource):
 
     def get(self,user_id):
         connecsiObj = ConnecsiModel()
-        data_tuple = connecsiObj.get__(table_name='users_brands_payments',STAR='*',WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
-        columns = ["invoice_id", "date", "email_id", "amount", "description","customer_id","receipt_url"]
+        columns = ["invoice_id", "date", "email_id", "amount", "description", "customer_id", "receipt_url"]
+        data_tuple = connecsiObj.get__(table_name='users_brands_payments',columns=columns,WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
         response_list = []
         for item in data_tuple:
             dict_temp = dict(zip(columns, item))
