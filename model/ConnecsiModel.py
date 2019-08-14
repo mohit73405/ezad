@@ -626,6 +626,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'insta_channels_history':
                     cursor.execute(sql, data)
+                elif table_name == 'users_brands_payments':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")

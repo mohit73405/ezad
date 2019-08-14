@@ -28,8 +28,7 @@ class BrandPayments(Resource):
         date = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
         email_id = data_tuple[0][1]
         data = [user_id, date, email_id, amount, description,customer_id,receipt_url]
-        res = connecsiObj.insert__(table_name='users_brands_payments',
-                             columns=['user_id', 'date', 'email_id', 'amount', 'description','customer_id','receipt_url'], data=data)
+        res = connecsiObj.insert__(table_name='users_brands_payments',columns=['user_id', 'date', 'email_id', 'amount', 'description','customer_id','receipt_url'], data=data)
         return {'response': res },201
 
     def get(self,user_id):
