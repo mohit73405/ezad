@@ -71,7 +71,7 @@ class MailBox(Resource):
             #     channel_id = channel_id.split('@')
             #     channel_id = channel_id[0]
             #     connecsiObj.update_channel_campaign_message(channel_id=str(channel_id),message_id=str(message_id),status='Contacted')
-            return {'response': result},200
+            return {'response': 1},200
         except Exception as e:
             print(e)
             return {'response': result},500
@@ -163,7 +163,7 @@ class MailBox(Resource):
             result = connecsiObj.insert__(table_name='conversations', columns=columns, data=data, IGNORE='IGNORE')
             if channel_id and campaign_id:
                 connecsiObj.update_channel_campaign_message_for_negotiations(channel_id=str(channel_id),message_id=str(message_id),status='Negotiations',campaign_id=campaign_id)
-            return {'response': result}, 200
+            return {'response': 1}, 200
         except Exception as e:
             print(e)
             return {'response': result}, 500
@@ -343,7 +343,7 @@ class MailBox(Resource):
             self.send_mail(subject=subject,to_email_id=to_email_id,message=message)
             connecsiObj = ConnecsiModel()
             result = connecsiObj.insert__(table_name='messages',columns=columns,data=data,IGNORE='IGNORE')
-            return {'response': result},200
+            return {'response': 1},200
         except Exception as e:
             print(e)
             return {'response': result},500
@@ -388,8 +388,8 @@ class MailBox(Resource):
             # connecsiObj.insert__(table_name='channel_campaign_message',columns=columns,data=data)
             connecsiObj.update_channel_campaign_message(channel_id=channel_id,message_id=message_id,status='Negotiations'
                                                         ,campaign_id=campaign_id)
-            result=1
-            return {'response': result}, 200
+
+            return {'response': 1}, 200
         except Exception as e:
             print(e)
             return {'response': result}, 500
@@ -471,8 +471,8 @@ class MailBox(Resource):
         result=0
         try:
             connecsiObj.insert__(table_name='user_channel_message_files',columns=columns,data=data)
-            result=1
-            return {'response': result}, 200
+
+            return {'response': 1}, 200
         except Exception as e:
             print(e)
             return {'response': result}, 500
