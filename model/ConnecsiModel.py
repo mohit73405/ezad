@@ -2667,6 +2667,23 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def get_subscription_feature_autofill_proposal_details(self, user_id,proposal_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT t1.user_id,t1.proposal_id,t1.auto_or_manual" \
+                      " FROM subscription_feature_autofill_proposal t1" \
+                      " WHERE t1.user_id = '"+user_id+"' AND t1.proposal_id = "+proposal_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+            return 0
+
 
     def insert_update_subscription_feature_details(self, data):
         try:
@@ -2695,6 +2712,35 @@ class ConnecsiModel:
                 return 1
         except Exception as e:
             print('i m here exception',e)
+            return 0
+
+    def insert_autofill_proposal_subscription_feature(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                print(data)
+                data_tuple = tuple(data)
+                print(type(data_tuple))
+
+                select_sql = "SELECT 1 from subscription_feature_autofill_proposal where user_id ='" + data[
+                    0] + "' and proposal_id = '" + data[1] + "'"
+                update_sql = "UPDATE subscription_feature_autofill_proposal SET auto_or_manual='" + data[2] + "'" \
+                             " WHERE user_id ='" + data[0] + "' and proposal_id = '" + data[1] + "'"
+                res = cursor.execute(select_sql)
+                print(res)
+                if res == 1:
+                    cursor.execute(update_sql)
+                else:
+                    insert_sql = "INSERT INTO subscription_feature_autofill_proposal (user_id, proposal_id, auto_or_manual)" \
+                                 " VALUES(" + data[0] + "," + data[1] + "," + data[2] + "')"
+                    print(insert_sql)
+                    cursor.execute(insert_sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print('i m here exception', e)
             return 0
 
     def update_subscription_feature_details(self, user_id,feature_name,units,price,customized_feature):

@@ -536,7 +536,8 @@ sub_feature_form = ns_brand.model('sub feature Details', {
     'feature_name' : fields.String(required=True, description='Feature Name'),
     'units' : fields.Integer(required=True, description='Units'),
     'price' : fields.Integer(required=True, description='price'),
-    'customized_feature' : fields.String(required=True, description='customized feature'),
+    'customized_feature' : fields.String(required=True, description='customized feature')
+
 
 })
 
@@ -549,13 +550,13 @@ class subscriptionFeatureDetails(Resource):
            required parameter : units (integer) example(integer)
            required parameter : price (integer) example(integer)
            required parameter : customized feature (string) example(Yes/No)
+
         '''
         post_data = request.get_json()
         feature_name = post_data.get('feature_name')
         units = post_data.get('units')
         price = post_data.get('price')
         customized_feature = post_data.get('customized_feature')
-
 
         data = [str(user_id),feature_name, str(units),str(price),customized_feature]
         result = 0
@@ -607,6 +608,41 @@ class subscriptionPackageDetails(Resource):
         response_list=[]
         for item1 in data_list:
             dict_temp = dict(zip(columns, item1))
+            response_list.append(dict_temp)
+        return {'data': response_list}
+
+
+
+
+auto_fill_proposal_form = ns_brand.model('autofill proposal feature Details', {
+    'auto_or_manual' : fields.String(required=True, description='Auto or manual')
+})
+@ns_brand.route('/subscriptionAutoFillProposal/<string:user_id>/<string:proposal_id>')
+class subscriptionAutoFillProposal(Resource):
+    @ns_brand.expect(auto_fill_proposal_form)
+    def post(self,user_id,proposal_id):
+        '''Add autofill proposal subscription feature details for brands
+        required parameter : auto_or_manual (string) example:(auto/manual)
+        '''
+        post_data = request.get_json()
+        auto_or_manual = post_data.get('auto_or_manual')
+        data = [str(user_id),proposal_id, auto_or_manual]
+        try:
+            connecsiObj = ConnecsiModel()
+            res = connecsiObj.insert_autofill_proposal_subscription_feature(data=data)
+            result=1
+            return {'response': result}, 200
+        except:
+            result=0
+            return {'response': result}, 500
+
+    def get(self,user_id,proposal_id):
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id', 'proposal_id', 'auto_or_manual']
+        data = connecsiObj.get_subscription_feature_autofill_proposal_details(user_id=user_id,proposal_id=proposal_id)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
             response_list.append(dict_temp)
         return {'data': response_list}
 
