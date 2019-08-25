@@ -640,6 +640,7 @@ class subscriptionAutoFillProposal(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['user_id', 'proposal_id', 'auto_or_manual']
         data = connecsiObj.get_subscription_feature_autofill_proposal_details(user_id=user_id,proposal_id=proposal_id)
+        print(data)
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))
