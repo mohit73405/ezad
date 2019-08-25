@@ -2672,7 +2672,7 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT t1.user_id,t1.proposal_id,t1.auto_or_manual" \
                       " FROM subscription_feature_autofill_proposal t1" \
-                      " WHERE t1.user_id = '"+user_id+"' AND t1.proposal_id = "+proposal_id+"'"
+                      " WHERE t1.user_id = '"+user_id+"' AND t1.proposal_id = '"+proposal_id+"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
