@@ -2731,7 +2731,7 @@ class ConnecsiModel:
                     cursor.execute(update_sql)
                 else:
                     insert_sql = "INSERT INTO subscription_feature_autofill_proposal (user_id, proposal_id, auto_or_manual)" \
-                                 " VALUES(" + data[0] + "," + data[1] + "," + data[2] + "')"
+                                 " VALUES(" + data[0] + "," + data[1] + ",'" + data[2] + "')"
                     print(insert_sql)
                     cursor.execute(insert_sql)
                 self.cnx.commit()

@@ -626,10 +626,10 @@ class subscriptionAutoFillProposal(Resource):
         '''
         post_data = request.get_json()
         auto_or_manual = post_data.get('auto_or_manual')
-        data = [str(user_id),proposal_id, auto_or_manual]
+        data = [user_id,proposal_id, auto_or_manual]
         try:
             connecsiObj = ConnecsiModel()
-            res = connecsiObj.insert_autofill_proposal_subscription_feature(data=data)
+            connecsiObj.insert_autofill_proposal_subscription_feature(data=data)
             result=1
             return {'response': result}, 200
         except:
