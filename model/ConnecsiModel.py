@@ -590,6 +590,7 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'campaign_proposal':
                     cursor.execute(sql, data)
+                    inserted_id = cursor.lastrowid
                 elif table_name == 'user_channel_message_files':
                     cursor.execute(sql, data)
                 elif table_name == 'user_channel_message_agreements':
