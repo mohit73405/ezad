@@ -503,7 +503,8 @@ class BrandsGoogleAnalyticsCredentials(Resource):
 package_form = ns_brand.model('Package Details', {
     'package_name' : fields.String(required=True, description='Package Name'),
     'p_created_date' : fields.String(required=True, description='created date in timestamp format'),
-    'p_expiry_date' : fields.String(required=True, description='expiry date')
+    'p_expiry_date' : fields.String(required=True, description='expiry date'),
+    'base_package' : fields.String(required=True, description='base package')
 })
 
 @ns_brand.route('/updatePackageDetails/<string:user_id>')
@@ -514,6 +515,7 @@ class updatePackageDetails(Resource):
            required parameter : package name (string) example(Free/Basic/Professional/Enterprise)
            required parameter : created date (string) example(date in timestamp in seconds)
            required parameter : expiry date (string) example(date in timestamp in seconds)
+           required parameter : base_package (string) example(Free/Basic/Professional/Enterprise)
         '''
         post_data = request.get_json()
         package_name = post_data.get('package_name')
@@ -523,7 +525,9 @@ class updatePackageDetails(Resource):
         p_expiry_date_timestamp = post_data.get('p_expiry_date')
         p_expiry_date_object = datetime.datetime.fromtimestamp(int(p_expiry_date_timestamp))
 
-        data = [int(user_id),package_name, p_created_date_object,p_expiry_date_object]
+        base_package = post_data.get('base_package')
+
+        data = [int(user_id),package_name, p_created_date_object,p_expiry_date_object,base_package]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
@@ -532,13 +536,15 @@ class updatePackageDetails(Resource):
         except:
             return {'response': result}, 500
 
+
+
 sub_feature_form = ns_brand.model('sub feature Details', {
     'feature_name' : fields.String(required=True, description='Feature Name'),
     'units' : fields.Integer(required=True, description='Units'),
     'price' : fields.Integer(required=True, description='price'),
-    'customized_feature' : fields.String(required=True, description='customized feature')
-
-
+    'customized_feature' : fields.String(required=True, description='customized feature'),
+    'added_units' : fields.Integer(required=True, description='Added Units'),
+    'base_units' : fields.Integer(required=True, description='Base Units')
 })
 
 @ns_brand.route('/subscriptionFeatureDetails/<string:user_id>')
@@ -550,15 +556,19 @@ class subscriptionFeatureDetails(Resource):
            required parameter : units (integer) example(integer)
            required parameter : price (integer) example(integer)
            required parameter : customized feature (string) example(Yes/No)
-
+           required parameter : added_units (integer) example(integer)
+           required parameter : base_units (integer) example(integer)
         '''
         post_data = request.get_json()
         feature_name = post_data.get('feature_name')
         units = post_data.get('units')
         price = post_data.get('price')
         customized_feature = post_data.get('customized_feature')
+        added_units = post_data.get('added_units')
+        base_units = post_data.get('base_units')
 
-        data = [str(user_id),feature_name, str(units),str(price),customized_feature]
+
+        data = [str(user_id),feature_name, str(units),str(price),customized_feature,added_units,base_units]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
@@ -589,7 +599,8 @@ class subscriptionPackageDetails(Resource):
     def get(self,user_id):
         '''GET Brands-subcription package details by user_id'''
         connecsiObj = ConnecsiModel()
-        columns = ['user_id', 'package_name', 'p_created_date', 'p_expiry_date','feature_name','units','price','customized_feature']
+        columns = ['user_id', 'package_name', 'p_created_date', 'p_expiry_date','feature_name',
+                   'units','price','customized_feature','base_package','added_units','base_units']
         data = connecsiObj.get_users_brands_subscription_package_with_feature_details(user_id=user_id)
         data_list = []
         for item in data:
@@ -604,6 +615,8 @@ class subscriptionPackageDetails(Resource):
             temp_list.append(item[5])
             temp_list.append(item[6])
             temp_list.append(item[7])
+            temp_list.append(item[8])
+            temp_list.append(item[9])
             data_list.append(temp_list)
         response_list=[]
         for item1 in data_list:

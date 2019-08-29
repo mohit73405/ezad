@@ -2634,10 +2634,10 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 # print(data)
-                sql = "INSERT INTO subscriptions_package_for_brands (user_id, package_name, p_created_date, p_expiry_date) " \
-                      " VALUES(%s,%s,%s,%s)" \
+                sql = "INSERT INTO subscriptions_package_for_brands (user_id, package_name, p_created_date, p_expiry_date,base_package) " \
+                      " VALUES(%s,%s,%s,%s,%s)" \
                       " ON DUPLICATE KEY UPDATE " \
-                      " package_name = VALUES(package_name), p_created_date=VALUES(p_created_date),p_expiry_date=VALUES(p_expiry_date) "
+                      " package_name = VALUES(package_name), p_created_date=VALUES(p_created_date),p_expiry_date=VALUES(p_expiry_date),base_package = VALUES(base_package) "
                 print(sql)
                 cursor.execute(sql,data)
                 self.cnx.commit()
@@ -2654,7 +2654,7 @@ class ConnecsiModel:
     def get_users_brands_subscription_package_with_feature_details(self, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT t1.user_id,t1.package_name,t1.p_created_date,t1.p_expiry_date,t2.feature_name,t2.units,t2.price,t2.customized_feature " \
+                sql = "SELECT t1.user_id,t1.package_name,t1.p_created_date,t1.p_expiry_date,t2.feature_name,t2.units,t2.price,t2.customized_feature,t1.base_package,t2.added_units,t2.base_units " \
                       " FROM subscriptions_package_for_brands t1 LEFT JOIN subscriptions_for_brands t2 on t1.user_id = t2.user_id " \
                       " WHERE t1.user_id = '"+user_id+"'"
                 print(sql)
@@ -2695,15 +2695,15 @@ class ConnecsiModel:
 
                 select_sql = "SELECT 1 from subscriptions_for_brands where user_id ='"+data[0]+"' and feature_name = '"+data[1]+"'"
                 update_sql = "UPDATE subscriptions_for_brands SET units='"+data[2]+"' ,price= '"+data[3]+"' , customized_feature='"+data[4]+"'" \
-                             " WHERE user_id ='"+data[0]+"' and feature_name = '"+data[1]+"'"
+                             ",added_units='"+data[5]+"',base_units='"+data[6]+"' WHERE user_id ='"+data[0]+"' and feature_name = '"+data[1]+"'"
 
                 res = cursor.execute(select_sql)
                 print(res)
                 if res == 1:
                     cursor.execute(update_sql)
                 else:
-                    insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature)" \
-                                 " VALUES(" + data[0] + ",'" + data[1] + "'," + data[2] + "," + data[3] + ",'" + data[4] + "')"
+                    insert_sql = "INSERT INTO subscriptions_for_brands (user_id, feature_name, units, price,customized_feature,added_units,base_units)" \
+                                 " VALUES(" + data[0] + ",'" + data[1] + "'," + data[2] + "," + data[3] + ",'" + data[4] + "'," + data[5] + "," + data[6] + ")"
                     print(insert_sql)
                     cursor.execute(insert_sql)
                 self.cnx.commit()
