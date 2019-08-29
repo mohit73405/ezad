@@ -568,7 +568,7 @@ class subscriptionFeatureDetails(Resource):
         base_units = post_data.get('base_units')
 
 
-        data = [str(user_id),feature_name, str(units),str(price),customized_feature,added_units,base_units]
+        data = [str(user_id),feature_name, str(units),str(price),customized_feature,str(added_units),str(base_units)]
         result = 0
         try:
             connecsiObj = ConnecsiModel()
