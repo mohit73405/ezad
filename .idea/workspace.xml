@@ -13,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="475">
@@ -65,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="brand.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="574" column="66" lean-forward="true" selection-start-line="574" selection-start-column="66" selection-end-line="574" selection-end-column="66" />
+            <state relative-caret-position="390">
+              <caret line="619" column="36" lean-forward="false" selection-start-line="619" selection-start-column="36" selection-end-line="619" selection-end-column="36" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -843,21 +843,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/brand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="574" column="66" lean-forward="true" selection-start-line="574" selection-start-column="66" selection-end-line="574" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="2705" column="156" lean-forward="true" selection-start-line="2705" selection-start-column="156" selection-end-line="2705" selection-end-column="156" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apis/brand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="619" column="36" lean-forward="false" selection-start-line="619" selection-start-column="36" selection-end-line="619" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

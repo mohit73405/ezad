@@ -617,6 +617,7 @@ class subscriptionPackageDetails(Resource):
             temp_list.append(item[7])
             temp_list.append(item[8])
             temp_list.append(item[9])
+            temp_list.append(item[10])
             data_list.append(temp_list)
         response_list=[]
         for item1 in data_list:
