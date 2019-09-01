@@ -582,7 +582,7 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'brands_inf_fav_list':
                     cursor.execute(sql, data)
-                elif table_name == 'brands_inf_fav_list_only':
+                elif table_name == 'brads_inf_fav_list_only':
                     cursor.execute(sql, data)
                 elif table_name == 'brands_classifieds':
                     cursor.execute(sql, data)
