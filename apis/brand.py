@@ -180,6 +180,22 @@ class Brand(Resource):
         except:
             return {'response': result}, 500
 
+@ns_brand.route('/addToFavListNew/<string:channel_id>/<string:user_id>/<string:channel_name>')
+class Brand(Resource):
+    def post(self,channel_id,user_id,channel_name):
+        '''add influencer to fav list seprated from create alerts
+            required parameters channel_id,user_id,channel_name
+        '''
+        columns = ['channel_id', 'user_id', 'channel_name']
+        data = [channel_id, user_id,channel_name]
+        result = 0
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.insert__(table_name='brands_inf_fav_list_only', columns=columns, data=data,IGNORE='IGNORE')
+            return {'response': 1}, 201
+        except:
+            return {'response': 0}, 500
+
 @ns_brand.route('/deleteFromFavList/<string:channel_id>/<string:user_id>')
 class Brand(Resource):
     def post(self,channel_id,user_id):
@@ -192,6 +208,17 @@ class Brand(Resource):
         except:
             return {'response': result}, 500
 
+@ns_brand.route('/deleteFromFavListNew/<string:channel_id>/<string:user_id>')
+class Brand(Resource):
+    def post(self,channel_id,user_id):
+        '''Delete  influencer from fav list seperated from create alerts'''
+        try:
+            connecsiObj = ConnecsiModel()
+            result = connecsiObj.delete_fav_inf_only(channel_id=channel_id,user_id=user_id)
+            return {'response': 1}, 201
+        except:
+            return {'response': 0}, 500
+
 @ns_brand.route('/getInfluencerFavList/<string:user_id>')
 class Brand(Resource):
     def get(self,user_id):
@@ -199,6 +226,21 @@ class Brand(Resource):
         columns = ['channel_id','alert_followers','alert_views','alert_likes','alert_comments','channel_name']
         connecsiObj = ConnecsiModel()
         data = connecsiObj.get_fav_inf_list(user_id=user_id)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list}
+
+
+@ns_brand.route('/getInfluencerFavListNew/<string:user_id>')
+class Brand(Resource):
+    def get(self,user_id):
+        '''get all Fav influencer list by user_id'''
+        columns = ['channel_id','channel_name']
+        connecsiObj = ConnecsiModel()
+        data = connecsiObj.get_fav_inf_list_only(user_id=user_id)
         response_list = []
         for item in data:
             dict_temp = dict(zip(columns, item))

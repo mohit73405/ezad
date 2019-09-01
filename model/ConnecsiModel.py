@@ -582,6 +582,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'brands_inf_fav_list':
                     cursor.execute(sql, data)
+                elif table_name == 'brands_inf_fav_list_only':
+                    cursor.execute(sql, data)
                 elif table_name == 'brands_classifieds':
                     cursor.execute(sql, data)
                 elif table_name == 'channel_campaign_message':
@@ -1000,6 +1002,22 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT bi.channel_id,bi.alert_followers,bi.alert_views,bi.alert_likes,bi.alert_comments,bi.channel_name " \
                       " FROM brands_inf_fav_list bi " \
+                      " WHERE bi.user_id = '"+user_id +"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+    def get_fav_inf_list_only(self, user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT bi.channel_id,bi.channel_name " \
+                      " FROM brands_inf_fav_list_only bi " \
                       " WHERE bi.user_id = '"+user_id +"'"
                 print(sql)
                 cursor.execute(sql)
@@ -1894,6 +1912,21 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "Delete from  brands_inf_fav_list  WHERE channel_id = '" + channel_id + "'" + " AND user_id = '" + user_id + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def delete_fav_inf_only(self, channel_id,user_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "Delete from  brands_inf_fav_list_only  WHERE channel_id = '" + channel_id + "'" + " AND user_id = '" + user_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
