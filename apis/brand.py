@@ -191,7 +191,7 @@ class Brand(Resource):
         result = 0
         try:
             connecsiObj = ConnecsiModel()
-            result = connecsiObj.insert__(table_name='brands_inf_fav_list_only', columns=columns, data=data,IGNORE='IGNORE')
+            result = connecsiObj.insert__(table_name='brads_inf_fav_list_only', columns=columns, data=data,IGNORE='IGNORE')
             return {'response': 1}, 201
         except:
             return {'response': 0}, 500

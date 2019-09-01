@@ -1017,7 +1017,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT bi.channel_id,bi.channel_name " \
-                      " FROM brands_inf_fav_list_only bi " \
+                      " FROM brads_inf_fav_list_only bi " \
                       " WHERE bi.user_id = '"+user_id +"'"
                 print(sql)
                 cursor.execute(sql)
@@ -1926,7 +1926,7 @@ class ConnecsiModel:
     def delete_fav_inf_only(self, channel_id,user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "Delete from  brands_inf_fav_list_only  WHERE channel_id = '" + channel_id + "'" + " AND user_id = '" + user_id + "'"
+                sql = "Delete from  brads_inf_fav_list_only  WHERE channel_id = '" + channel_id + "'" + " AND user_id = '" + user_id + "'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
