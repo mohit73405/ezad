@@ -2647,7 +2647,7 @@ class ConnecsiModel:
                 sql = "SELECT t1.twitter_id,t1.screen_name,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
                       "t1.business_email, t1.no_of_views_recent100, " \
                       "t1.no_of_likes_recent100, t1.no_of_comments_recent100,t1.no_of_retweets_recent100, " \
-                      "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location " \
+                      "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.location,t1.hashtags " \
                       "FROM twitter_channel_details t1 " \
                       "WHERE t1.screen_name = '" + screen_name + "'"
                       # "JOIN twitter_id_category_id t2 on t1.twitter_id = t2.twitter_id " \
