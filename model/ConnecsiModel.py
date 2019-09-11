@@ -2401,6 +2401,47 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def insert_update_youtube_video_details(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = " INSERT INTO youtube_video_details (video_id,channel_id,publishedAt,title,thumbnail," \
+                      " tags,category_id, description,viewCount,likeCount,dislikeCount,favoriteCount,commentCount) " \
+                      " VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" \
+                      " ON DUPLICATE KEY UPDATE " \
+                      " title = VALUES(title),thumbnail = VALUES(thumbnail),tags = VALUES(tags)," \
+                      " category_id = VALUES(category_id),description = VALUES(description)," \
+                      " viewCount=VALUES(viewCount),likeCount=VALUES(likeCount),dislikeCount=VALUES(dislikeCount)" \
+                      ",favoriteCount=VALUES(favoriteCount),commentCount=VALUES(commentCount)"
+                print(sql)
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+    def insert_youtube_video_stats_data(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                # print(data)
+                sql = " INSERT INTO youtube_video_statistics (video_id," \
+                      " viewCount,likeCount,dislikeCount,favoriteCount,commentCount,channel_id) " \
+                      " VALUES(%s,%s,%s,%s,%s,%s,%s)"
+                print(sql)
+                cursor.execute(sql,data)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
 
     def get_messages_by_to_email_id(self,to_email_id):
         try:

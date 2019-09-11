@@ -151,7 +151,7 @@ class YoutubeApiController:
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
             for item in items:
-                # print(item)
+                print(item)
                 try:
                     self.total_100video_views += int(item['statistics']['viewCount'])
                     self.total_100video_likes += int(item['statistics']['likeCount'])
@@ -164,6 +164,27 @@ class YoutubeApiController:
                     # print(description)
                     tdata = (self.channelId,video_id,video_cat_id)
                     data.append(tdata)
+
+
+                    publishedAt = item['snippet']['publishedAt']
+                    title = item['snippet']['title']
+                    thumbnail = item['snippet']['thumbnails']['default']['url']
+                    tags = item['snippet']['tags']
+                    tags_string = ','.join(tags)
+                    description = item['snippet']['description']
+                    viewCount = item['statistics']['viewCount']
+                    likeCount = item['statistics']['likeCount']
+                    dislikeCount = item['statistics']['dislikeCount']
+                    favoriteCount = item['statistics']['favoriteCount']
+                    commentCount = item['statistics']['commentCount']
+                    video_details_data = (video_id,self.channelId, publishedAt,title,thumbnail,tags_string,
+                                          video_cat_id,description,viewCount,likeCount,dislikeCount,favoriteCount,
+                                          commentCount)
+                    video_details_stats_data = (video_id, viewCount, likeCount, dislikeCount, favoriteCount,
+                                          commentCount, self.channelId)
+                    connecsiObj = ConnecsiModel()
+                    connecsiObj.insert_update_youtube_video_details(data=video_details_data)
+                    connecsiObj.insert_youtube_video_stats_data(data=video_details_stats_data)
                     # print(tdata)
                     # exit()
                 except:pass
@@ -501,7 +522,7 @@ class YoutubeApiController:
         data_done = obj.get__(table_name='youtube_channel_ids_done', STAR='*')
         # print(data)
         # exit()
-        # data=(('UC-lHJZR3Gqxm24_Vd_AJ5Yw',),('UCfX-uO8iDdJRgFR2lrBWsYA',))
+        # data=('UC-lHJZR3Gqxm24_Vd_AJ5Yw','UCfX-uO8iDdJRgFR2lrBWsYA')
         # exit()
         channel_ids_done = []
         total_channel_ids = []
@@ -524,6 +545,7 @@ class YoutubeApiController:
 
         counter=1
         for channelId in channelIds:
+        # for channelId in data:
             myList = []
             historyList=[]
             # self.YoutubeApiController(channelId=channelId)

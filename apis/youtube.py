@@ -317,6 +317,21 @@ class Youtube(Resource):
         return {'data': response_list}
 
 
+@ns_youtube.route('/getAllVideoDetailsByChannelId/<string:channel_id>')
+class Youtube(Resource):
+    def get(self,channel_id):
+        ''' get video detail by channel id'''
+        connecsiObj = ConnecsiModel()
+        columns = ['video_id','channel_id','publishedAt','title','thumbnail','tags','category_id',
+                   'description','viewCount','likeCount','dislikeCount','favoriteCount','commentCount','shareCount']
+        video_details = connecsiObj.get__(table_name='youtube_video_details',columns=columns,WHERE='WHERE',compare_column='channel_id',compare_value=channel_id)
+        response_list = []
+        for item in video_details:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        print(response_list)
+        return {'data': response_list}
+
 
 @ns_youtube.route('/getVideoCategoriesByChannelId/<string:channel_id>')
 class VideoCategories(Resource):
