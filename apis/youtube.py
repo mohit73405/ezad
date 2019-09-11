@@ -330,8 +330,9 @@ class Youtube(Resource):
         print(type(video_details_list))
         response_list = []
         for item in video_details_list:
-            item[2] = datetime.datetime.timestamp(item[2])
-            dict_temp = dict(zip(columns, item))
+            item_list = list(item)
+            item_list[2] = datetime.datetime.timestamp(item_list[2])
+            dict_temp = dict(zip(columns, item_list))
             response_list.append(dict_temp)
         print(response_list)
         return {'data': response_list}
