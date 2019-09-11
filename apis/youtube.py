@@ -326,8 +326,9 @@ class Youtube(Resource):
                    'description','viewCount','likeCount','dislikeCount','favoriteCount','commentCount','shareCount']
         video_details = connecsiObj.get__(table_name='youtube_video_details',columns=columns,WHERE='WHERE',compare_column='channel_id',compare_value=channel_id)
         print(video_details)
+        video_details_list = list(video_details)
         response_list = []
-        for item in video_details:
+        for item in video_details_list:
             item[2] = datetime.datetime.timestamp(item[2])
             dict_temp = dict(zip(columns, item))
             response_list.append(dict_temp)
