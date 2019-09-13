@@ -522,7 +522,7 @@ class YoutubeApiController:
         data_done = obj.get__(table_name='youtube_channel_ids_done', STAR='*')
         # print(data)
         # exit()
-        # data=('UC-lHJZR3Gqxm24_Vd_AJ5Yw','UCfX-uO8iDdJRgFR2lrBWsYA')
+        # data=['UC-lHJZR3Gqxm24_Vd_AJ5Yw']
         # exit()
         channel_ids_done = []
         total_channel_ids = []

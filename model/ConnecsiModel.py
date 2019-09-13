@@ -1073,6 +1073,50 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+    def get_fav_inf_list_by_channel_name_new(self, user_id,channel_name):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql=''
+                if channel_name == 'youtube':
+                    sql = "SELECT bi.channel_id," \
+                          "t1.title, t1.channel_img, t1.desc, t1.subscriberCount_gained, " \
+                          "t1.subscriberCount_lost,t1.business_email, t1.total_100video_views, t1.total_100video_views_unique, " \
+                          "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
+                          "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country,bi.channel_id,bi.channel_name " \
+                          " FROM brads_inf_fav_list_only bi " \
+                          " LEFT JOIN youtube_channel_details t1 ON bi.channel_id = t1.channel_id " \
+                          " WHERE bi.user_id = '"+user_id +"' AND bi.channel_name ='"+channel_name+"'"
+                if channel_name == 'twitter':
+                    sql = "SELECT bi.channel_id," \
+                          "t1.screen_name, t1.title, t1.channel_img, t1.description, t1.no_of_followers," \
+                          "t1.business_email, t1.no_of_views_recent100, " \
+                          "t1.no_of_likes_recent100, t1.no_of_comments_recent100, t1.no_of_retweets_recent100, " \
+                          "t1.facebook_url, t1.insta_url, t1.youtube_url, t1.twitter_url, t1.location,bi.channel_id,bi.channel_name " \
+                          " FROM brads_inf_fav_list_only bi " \
+                          " LEFT JOIN twitter_channel_details t1 ON bi.channel_id = t1.twitter_id " \
+                          " WHERE bi.user_id = '" + user_id + "' AND bi.channel_name ='" + channel_name + "'"
+                if channel_name == 'instagram':
+                    sql = "SELECT bi.channel_id," \
+                          "t1.username,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
+                          "t1.business_email, t1.no_of_views_recent100, " \
+                          "CAST(SUM(t3.no_of_post_likes) AS SIGNED) total_100video_likes, CAST(SUM(t3.no_of_post_comments) AS SIGNED) total_100video_comments,t1.no_of_shares_recent100, " \
+                          "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.country, " \
+                          " bi.channel_id,bi.channel_name " \
+                          " FROM brads_inf_fav_list_only bi " \
+                          " JOIN insta_channel_details t1 ON bi.channel_id = t1.insta_id " \
+                          " JOIN insta_post_details t3 ON t1.insta_id = t3.insta_id " \
+                          " WHERE bi.user_id = '" + user_id + "' AND bi.channel_name ='" + channel_name + "'" \
+                          " GROUP BY t3.insta_id"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
 
     def create_alert_for_fav_influencer(self, user_id,channel_id,alert_followers,alert_views,alert_likes,alert_comments,channel_name):
 

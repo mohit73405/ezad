@@ -251,7 +251,7 @@ class Brand(Resource):
 @ns_brand.route('/getInfluencerFavList_with_details/<string:user_id>/<string:channel_name>')
 class Brand(Resource):
     def get(self,user_id,channel_name):
-        '''get all Fav influencer list by user_id and channel name'''
+        '''get all  influencer alerts list by user_id and channel name'''
         if channel_name == 'youtube':
             columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained', 'subscriberCount_lost',
                        'business_email', 'total_100video_views',
@@ -291,6 +291,56 @@ class Brand(Resource):
                        'alert_followers','alert_views','alert_likes','alert_comments','channel_name']
             connecsiObj = ConnecsiModel()
             data = connecsiObj.get_fav_inf_list_by_channel_name(user_id=user_id,channel_name=channel_name)
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            # print(response_list)
+            return {'data': response_list}
+
+
+@ns_brand.route('/getInfluencerFavList_with_details_new/<string:user_id>/<string:channel_name>')
+class Brand(Resource):
+    def get(self,user_id,channel_name):
+        '''get all Fav influencer list by user_id and channel name'''
+        if channel_name == 'youtube':
+            columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained', 'subscriberCount_lost',
+                       'business_email', 'total_100video_views',
+                       'total_100video_views_unique', 'total_100video_likes', 'total_100video_dislikes',
+                       'total_100video_comments', 'total_100video_shares',
+                       'facebook_url', 'insta_url', 'twitter_url', 'country','channel_id','channel_name']
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_fav_inf_list_by_channel_name_new(user_id=user_id,channel_name=channel_name)
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            # print(response_list)
+            return {'data': response_list}
+        if channel_name == 'twitter':
+            columns = ['channel_id', 'screen_name', 'title', 'channel_img', 'desc', 'subscriberCount_gained',
+                       'business_email', 'total_100video_views',
+                       'total_100video_likes',
+                       'total_100video_comments', 'total_100video_shares',
+                       'facebook_url', 'insta_url', 'youtube_url', 'twitter_url', 'country',
+                       'channel_id','channel_name']
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_fav_inf_list_by_channel_name_new(user_id=user_id,channel_name=channel_name)
+            response_list = []
+            for item in data:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            # print(response_list)
+            return {'data': response_list}
+        if channel_name == 'instagram':
+            columns = ['channel_id', 'username','title', 'channel_img', 'desc', 'subscriberCount_gained',
+                            'business_email', 'total_100video_views',
+                            'total_100video_likes',
+                           'total_100video_comments', 'total_100video_shares',
+                           'facebook_url', 'insta_url','youtube_url', 'twitter_url', 'country',
+                       'channel_id','channel_name']
+            connecsiObj = ConnecsiModel()
+            data = connecsiObj.get_fav_inf_list_by_channel_name_new(user_id=user_id,channel_name=channel_name)
             response_list = []
             for item in data:
                 dict_temp = dict(zip(columns, item))
