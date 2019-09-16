@@ -334,7 +334,7 @@ class Youtube(Resource):
             item_list[2] = datetime.datetime.timestamp(item_list[2])
             dict_temp = dict(zip(columns, item_list))
             response_list.append(dict_temp)
-        print(response_list)
+        # print(response_list)
         return {'data': response_list}
 
 
