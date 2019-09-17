@@ -181,12 +181,13 @@ class Insta_api(Resource):
     def page_metrics(self):
         metrics=''
         try:
-            response = self.__request_url()
-            # print('my response ==================================',response)
-            json_data = self.extract_json(response)
+            # response = self.__request_url()
+            # json_data = self.extract_json(response)
+            response = requests.get(url='https://www.instagram.com/djvicci/?__a=1')
+            json_data = response.json()
             print('my data -----------------------------------------------------',json_data)
             # metrics = json_data['entry_data']['ProfilePage'][0]['graphql']['user']
-            metrics = json_data['entry_data']
+            metrics = json_data['graphql']['user']
             print('metrics ================================',metrics)
         except Exception as e:
             print('i m here in page metrics')
