@@ -2379,9 +2379,9 @@ class ConnecsiModel:
                       ' VALUES("{d[0]}","{d[1]}","{d[2]}","{d[3]}","{d[4]}","{d[5]}",{d[6]},"{d[7]}","{d[8]}","{d[9]}","{d[10]}",' \
                       ' "{d[11]}",{d[12]})' \
                       " ON DUPLICATE KEY UPDATE " \
-                      " youtube_url = COALESCE( VALUES(youtube_url), youtube_url), twitter_url=COALESCE( VALUES(twitter_url), twitter_url),`insta_url`=VALUES(`insta_url`)," \
-                      " facebook_url=COALESCE( VALUES(facebook_url), facebook_url)," \
-                      " country=COALESCE( VALUES(country), country),business_email=VALUES(business_email),username=VALUES(username)," \
+                      " youtube_url = COALESCE( youtube_url,VALUES(youtube_url)), twitter_url=COALESCE(twitter_url, VALUES(twitter_url)),`insta_url`=VALUES(`insta_url`)," \
+                      " facebook_url=COALESCE(facebook_url, VALUES(facebook_url))," \
+                      " country=COALESCE(country, VALUES(country)),business_email=VALUES(business_email),username=VALUES(username)," \
                       " title=VALUES(title)," \
                       " business_category_name=VALUES(business_category_name)," \
                       " channel_img=VALUES(channel_img)," \
