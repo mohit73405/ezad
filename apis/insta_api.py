@@ -185,6 +185,7 @@ class Insta_api(Resource):
             json_data = self.extract_json(response)
             metrics = json_data['entry_data']['ProfilePage'][0]['graphql']['user']
         except Exception as e:
+            print('i m here in page metrics')
             print(e)
             pass
         return metrics
