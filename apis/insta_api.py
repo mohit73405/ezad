@@ -186,7 +186,7 @@ class Insta_api(Resource):
             response = requests.get(url='https://www.instagram.com/djvicci/?__a=1')
             print('my response 000000000000000000000000000000000000000000',type(response))
 
-            # print('my data -----------------------------------------------------',json_data)
+            print('my data -----------------------------------------------------',response.content)
             # metrics = json_data['entry_data']['ProfilePage'][0]['graphql']['user']
             # metrics = json_data['graphql']['user']
             print('metrics ================================',metrics)
