@@ -85,12 +85,14 @@ class Insta_api(Resource):
                 # modelObj.update_insta_url_in_youtube_channel_details(insta_url=instagram_url,youtube_channel_id=youtube_channel_id)
             except Exception as e:
                 print(e)
+                print('i m here exp 1')
                 pass
             # print(insta_data_dict)
             return insta_data_dict
         except Exception as e:
             print(e)
             pass
+            print('i m here exp 2')
             return {'error':e}
 
 
