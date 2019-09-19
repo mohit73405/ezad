@@ -262,7 +262,7 @@ class ConnecsiModel:
                 sql = "SELECT t1.insta_id,t1.username,t1.title, t1.channel_img, t1.description, t1.no_of_followers, " \
                       "t1.business_email, t1.no_of_views_recent100, " \
                       "CAST(SUM(t3.no_of_post_likes) AS SIGNED) total_100video_likes, CAST(SUM(t3.no_of_post_comments) AS SIGNED) total_100video_comments,t1.no_of_shares_recent100, " \
-                      "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.country " \
+                      "t1.facebook_url,t1.insta_url,t1.youtube_url,t1.twitter_url,t1.country,count(t3.post_id) as total_videos " \
                       "FROM (SELECT icd.insta_id,icd.username,icd.title, icd.channel_img, icd.description, icd.no_of_followers, " \
                       " icd.business_email, icd.no_of_views_recent100, " \
                       " icd.no_of_shares_recent100," \
