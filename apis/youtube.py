@@ -149,7 +149,7 @@ class SearchChannels(Resource):
                             'business_email', 'total_100video_views',
                             'total_100video_likes',
                            'total_100video_comments', 'total_100video_shares',
-                           'facebook_url', 'insta_url','youtube_url', 'twitter_url', 'country']
+                           'facebook_url', 'insta_url','youtube_url', 'twitter_url', 'country','total_videos']
                 response_list = []
                 for item in data:
                     dict_temp = dict(zip(columns, item))
