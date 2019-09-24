@@ -631,6 +631,9 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'users_brands_payments':
                     cursor.execute(sql, data)
+                elif table_name == 'notifications':
+                    cursor.execute(sql, data)
+                    inserted_id = cursor.lastrowid
 
                 self.cnx.commit()
             print("closing cnx")
@@ -2903,6 +2906,25 @@ class ConnecsiModel:
 
                 sql = "UPDATE inf_offers SET posted_date = '" + str(posted_date) + "' WHERE offer_id = '"\
                       + str(offer_id) + "' AND channel_id = '" + str(channel_id) + "'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+
+
+
+    def mark_notification_as_read(self, user_id,notification_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE notifications SET `read_unread` = 'read' WHERE user_id = '" + user_id + "' and notification_id = "+notification_id
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
