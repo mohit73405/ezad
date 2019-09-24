@@ -2924,7 +2924,7 @@ class ConnecsiModel:
     def mark_notification_as_read(self, user_id,notification_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "UPDATE notifications SET `read_unread` = 'read' WHERE user_id = '" + user_id + "' and notification_id = "+notification_id
+                sql = "UPDATE notifications SET `read_unread` = 'read' WHERE user_id = '" + user_id + "' and notification_id = '"+notification_id+"'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
