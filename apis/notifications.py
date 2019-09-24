@@ -37,7 +37,7 @@ class Notifications(Resource):
         # print(response_list)
         return {'data': response_list},200
 
-@ns_notifications.route('/<string:user_id>/<int:notification_id>')
+@ns_notifications.route('/<string:user_id>/<string:notification_id>')
 class Notifications(Resource):
     def put(self,user_id,notification_id):
         connecsiObj = ConnecsiModel()
