@@ -146,12 +146,12 @@ class YoutubeApiController:
             # print(type(video_id))
             video_ids_string = ','.join(video_id)
             url = self.video_details_url + video_ids_string
-            print('VIDEO DETAILS URL =',url)
+            # print('VIDEO DETAILS URL =',url)
             # exit()
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
             for item in items:
-                print(item)
+                # print(item)
                 try:
                     self.total_100video_views += int(item['statistics']['viewCount'])
                     self.total_100video_likes += int(item['statistics']['likeCount'])
@@ -639,7 +639,7 @@ class YoutubeApiController:
                 myList.append(self.insta_url)
                 myList.append(self.twitter_url)
                 myList.append(self.country)
-                print(myList)
+                # print(myList)
                 # exit()
                 columns = ['channel_id', 'title', 'channel_img', 'desc', 'subscriberCount_gained','subscriberCount_lost', 'business_email',
                            'total_100video_views','total_100video_views_unique','total_100video_likes','total_100video_dislikes','total_100video_comments',
@@ -647,6 +647,7 @@ class YoutubeApiController:
                 connecsiObj = ConnecsiModel()
                 connecsiObj.insert_update_youtube_details(data=myList)
                 # connecsiObj.insert__(table_name='youtube_channel_details',columns=columns,IGNORE='IGNORE',data=myList)
+                print('data inserted for channel id = ',channelId)
             except:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass
