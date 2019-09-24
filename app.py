@@ -13,6 +13,7 @@ from apis.messages import ns_messages
 from apis.influencer import ns_influencer
 from apis.offers import ns_offer
 from apis.graph_history import ns_graph_history
+from apis.notifications import ns_notifications
 
 app = Flask(__name__)
 CORS(app)
@@ -38,6 +39,7 @@ api.add_namespace(ns_messages)
 api.add_namespace(ns_influencer)
 api.add_namespace(ns_offer)
 api.add_namespace(ns_graph_history)
+api.add_namespace(ns_notifications)
 
 if __name__ == '__main__':
     app.secret_key = 'connecsiSecretKey'
