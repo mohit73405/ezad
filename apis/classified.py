@@ -275,3 +275,48 @@ class Classified(Resource):
             print(e)
             res = 0
             return {'response': res},500
+
+ccvr_form = ns_classified.model('ccvr', {
+    'inf_id' : fields.String(required=True, description='Influencer id'),
+    'comment_message' : fields.String(required=False, description='comments'),
+    'no_of_views' : fields.Integer(required=False, description='no of view'),
+    'reaction' : fields.String(required=False, description='reacions')
+})
+
+@ns_classified.route('/<string:user_id>/<string:classified_id>')
+class CCVR(Resource):
+    @ns_classified.expect(ccvr_form)
+    def post(self,user_id,classified_id):
+        form_data = request.get_json()
+        inf_id = form_data.get('inf_id')
+        comment_message = form_data.get('comment_message')
+        no_of_views = form_data.get('no_of_views')
+        reaction = form_data.get('reaction')
+
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id','classified_id','inf_id','no_of_views','comment_message','reaction']
+
+        data = [user_id, classified_id, inf_id,no_of_views,comment_message,reaction]
+        res = connecsiObj.insert__(table_name='classified_comment_views_reaction',columns=columns, data=data)
+        return {'response': res },201
+
+    def get(self,user_id,classified_id):
+        connecsiObj = ConnecsiModel()
+        columns = ['ccvr_id','inserted_date','user_id', 'classified_id', 'inf_id', 'no_of_views', 'comment_message', 'reaction']
+        data_tuple = connecsiObj.get_ccvr_by_user_id_and_classified_id(user_id=user_id,classified_id=classified_id)
+        response_list = []
+        for item in data_tuple:
+            item_list = list(item)
+            item_list[1] = datetime.datetime.timestamp(item_list[1])
+            dict_temp = dict(zip(columns, item_list))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list},200
+
+# @ns_notifications.route('/<string:user_id>/<string:notification_id>')
+# class Notifications(Resource):
+#     def put(self,user_id,notification_id):
+#         connecsiObj = ConnecsiModel()
+#         res = connecsiObj.mark_notification_as_read(user_id=user_id,notification_id=notification_id)
+#         return {'response': res },201
+
