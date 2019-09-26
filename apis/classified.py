@@ -283,7 +283,7 @@ ccvr_form = ns_classified.model('ccvr', {
     'reaction' : fields.String(required=False, description='reacions')
 })
 
-@ns_classified.route('/<string:user_id>/<string:classified_id>')
+@ns_classified.route('classified_comment_view_reaction/<string:user_id>/<string:classified_id>')
 class CCVR(Resource):
     @ns_classified.expect(ccvr_form)
     def post(self,user_id,classified_id):
