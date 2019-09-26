@@ -236,3 +236,41 @@ class Classified(Resource):
             print(e)
             res = 0
             return {'response': res},500
+
+
+ocvr_form = ns_offer.model('ocvr', {
+    'user_id' : fields.String(required=True, description='user id'),
+    'comment_message' : fields.String(required=False, description='comments'),
+    'no_of_views' : fields.Integer(required=False, description='no of view'),
+    'reaction' : fields.String(required=False, description='reacions')
+})
+
+@ns_offer.route('/offer_comment_view_reaction/<string:inf_id>/<string:offer_id>')
+class OCVR(Resource):
+    @ns_offer.expect(ocvr_form)
+    def post(self,inf_id,offer_id):
+        form_data = request.get_json()
+        user_id = form_data.get('user_id')
+        comment_message = form_data.get('comment_message')
+        no_of_views = form_data.get('no_of_views')
+        reaction = form_data.get('reaction')
+
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id','offer_id','inf_id','no_of_views','comment_message','reaction']
+
+        data = [user_id, offer_id, inf_id,no_of_views,comment_message,reaction]
+        res = connecsiObj.insert__(table_name='offer_comment_views_reaction',columns=columns, data=data)
+        return {'response': res },201
+
+    def get(self,inf_id,offer_id):
+        connecsiObj = ConnecsiModel()
+        columns = ['ocvr_id','inserted_date','user_id', 'classified_id', 'inf_id', 'no_of_views', 'comment_message', 'reaction']
+        data_tuple = connecsiObj.get_ocvr_by_inf_id_and_offer_id(inf_id=inf_id,offer_id=offer_id)
+        response_list = []
+        for item in data_tuple:
+            item_list = list(item)
+            item_list[1] = datetime.datetime.timestamp(item_list[1])
+            dict_temp = dict(zip(columns, item_list))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list},200

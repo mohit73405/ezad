@@ -636,6 +636,8 @@ class ConnecsiModel:
                     inserted_id = cursor.lastrowid
                 elif table_name == 'classified_comment_views_reaction':
                     cursor.execute(sql, data)
+                elif table_name == 'offer_comment_views_reaction':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")
@@ -2946,6 +2948,24 @@ class ConnecsiModel:
                 sql = "SELECT ccvr_id,inserted_date,user_id,classified_id,inf_id,no_of_views,comment_message,reaction" \
                       " FROM classified_comment_views_reaction" \
                       " WHERE user_id = '"+user_id+"' AND classified_id = '"+classified_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def get_ocvr_by_inf_id_and_offer_id(self, inf_id,offer_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT ocvr_id,inserted_date,user_id,classified_id,inf_id,no_of_views,comment_message,reaction" \
+                      " FROM offer_comment_views_reaction" \
+                      " WHERE inf_id = '"+inf_id+"' AND offer_id = '"+offer_id+"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
