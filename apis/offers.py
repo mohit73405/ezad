@@ -242,7 +242,8 @@ ocvr_form = ns_offer.model('ocvr', {
     'user_id' : fields.String(required=True, description='user id'),
     'comment_message' : fields.String(required=False, description='comments'),
     'no_of_views' : fields.Integer(required=False, description='no of view'),
-    'reaction' : fields.String(required=False, description='reacions')
+    'reaction' : fields.String(required=False, description='reacions'),
+    'notification_id' : fields.Integer(required=True, description='Notification id')
 })
 
 @ns_offer.route('/offer_comment_view_reaction/<string:inf_id>/<string:offer_id>')
@@ -254,17 +255,18 @@ class OCVR(Resource):
         comment_message = form_data.get('comment_message')
         no_of_views = form_data.get('no_of_views')
         reaction = form_data.get('reaction')
+        notification_id = form_data.get('notification_id')
 
         connecsiObj = ConnecsiModel()
-        columns = ['user_id','offer_id','inf_id','no_of_views','comment_message','reaction']
+        columns = ['user_id','offer_id','inf_id','no_of_views','comment_message','reaction','notification_id']
 
-        data = [user_id, offer_id, inf_id,no_of_views,comment_message,reaction]
+        data = [user_id, offer_id, inf_id,no_of_views,comment_message,reaction,notification_id]
         res = connecsiObj.insert__(table_name='offer_comment_views_reaction',columns=columns, data=data)
         return {'response': res },201
 
     def get(self,inf_id,offer_id):
         connecsiObj = ConnecsiModel()
-        columns = ['ocvr_id','inserted_date','user_id', 'classified_id', 'inf_id', 'no_of_views', 'comment_message', 'reaction']
+        columns = ['ocvr_id','inserted_date','user_id', 'classified_id', 'inf_id', 'no_of_views', 'comment_message', 'reaction','notification_id']
         data_tuple = connecsiObj.get_ocvr_by_inf_id_and_offer_id(inf_id=inf_id,offer_id=offer_id)
         response_list = []
         for item in data_tuple:
@@ -274,3 +276,10 @@ class OCVR(Resource):
             response_list.append(dict_temp)
         # print(response_list)
         return {'data': response_list},200
+
+@ns_offer.route('/<string:inf_id>/<string:ocvr_id>/<string:notification_id>')
+class OCVR(Resource):
+    def put(self,inf_id,ocvr_id,notification_id):
+        connecsiObj = ConnecsiModel()
+        res = connecsiObj.update_notification_id_in_ocvr(inf_id=inf_id,ocvr_id=ocvr_id,notification_id=notification_id)
+        return {'response': res },201

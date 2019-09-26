@@ -575,6 +575,7 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'brands_campaigns':
                     cursor.execute(sql, data)
+                    inserted_id = cursor.lastrowid
                 elif table_name == 'messages':
                     cursor.execute(sql, data)
                     inserted_id = cursor.lastrowid
@@ -637,6 +638,8 @@ class ConnecsiModel:
                 elif table_name == 'classified_comment_views_reaction':
                     cursor.execute(sql, data)
                 elif table_name == 'offer_comment_views_reaction':
+                    cursor.execute(sql, data)
+                elif table_name == 'campaign_status_notification':
                     cursor.execute(sql, data)
 
                 self.cnx.commit()
@@ -2945,7 +2948,7 @@ class ConnecsiModel:
     def get_ccvr_by_user_id_and_classified_id(self, user_id,classified_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT ccvr_id,inserted_date,user_id,classified_id,inf_id,no_of_views,comment_message,reaction" \
+                sql = "SELECT ccvr_id,inserted_date,user_id,classified_id,inf_id,no_of_views,comment_message,reaction,notification_id" \
                       " FROM classified_comment_views_reaction" \
                       " WHERE user_id = '"+user_id+"' AND classified_id = '"+classified_id+"'"
                 print(sql)
@@ -2959,11 +2962,30 @@ class ConnecsiModel:
             print(e)
             return 0
 
+    def get_csn_by_campaign_id(self, campaign_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT csn_id,campaign_id,status_date,notification_id" \
+                      " FROM campaign_status_notification" \
+                      " WHERE campaign_id = '"+campaign_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+            return 0
+
+
+
 
     def get_ocvr_by_inf_id_and_offer_id(self, inf_id,offer_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT ocvr_id,inserted_date,user_id,classified_id,inf_id,no_of_views,comment_message,reaction" \
+                sql = "SELECT ocvr_id,inserted_date,user_id,classified_id,inf_id,no_of_views,comment_message,reaction,notification_id" \
                       " FROM offer_comment_views_reaction" \
                       " WHERE inf_id = '"+inf_id+"' AND offer_id = '"+offer_id+"'"
                 print(sql)
@@ -2973,6 +2995,59 @@ class ConnecsiModel:
             print("closing cnx")
             cursor.close()
             return data
+        except Exception as e:
+            print(e)
+            return 0
+
+
+
+    def update_notification_id_in_ccvr(self, user_id,ccvr_id,notification_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE classified_comment_views_reaction SET `notification_id` = '"+notification_id+"'" \
+                      " WHERE user_id = '" + user_id + "' and ccvr_id = '"+ccvr_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+        
+        
+    def update_notification_id_in_ocvr(self, inf_id,ocvr_id,notification_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE offer_comment_views_reaction SET `notification_id` = '"+notification_id+"'" \
+                      " WHERE inf_id = '" + inf_id + "' and ocvr_id = '"+ocvr_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+
+    def update_notification_id_in_csn(self, campaign_id,csn_id,notification_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE campaign_status_notification SET `notification_id` = '"+notification_id+"'" \
+                      " WHERE campaign_id = '" + campaign_id + "' and csn_id = '"+csn_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
         except Exception as e:
             print(e)
             return 0

@@ -82,13 +82,13 @@ class Campaign(Resource):
                    'min_lower_followers', 'max_upper_followers', 'video_cat_id', 'target_url', 'campaign_description',
                    'arrangements', 'kpis', 'user_id','is_classified_post','files','campaign_status']
         connecsiObj = ConnecsiModel()
-        res=''
+
         try:
-            res=connecsiObj.insert__(table_name='brands_campaigns', columns=columns, data=data)
-            return {'response' : res}
+            campaign_id=connecsiObj.insert__(table_name='brands_campaigns', columns=columns, data=data)
+            return {'campaign_id' : campaign_id}
         except Exception as e:
             print(e)
-            return {'response':res}
+            return {'campaign_id':e}
 
     def get(self,user_id):
         ''' get all campaings by user id'''
@@ -501,3 +501,45 @@ class Campaign(Resource):
             print(e)
             res = 0
             return {'response': res},500
+
+
+csn_form = ns_campaign.model('csn', {
+    'status_date' : fields.String(required=False, description='status date'),
+    'notification_id' : fields.Integer(required=True, description='Notification id')
+})
+
+@ns_campaign.route('/campaign_status_notification/<string:campaign_id>')
+class CampaignStatusNotification(Resource):
+    @ns_campaign.expect(csn_form)
+    def post(self,campaign_id):
+        form_data = request.get_json()
+        status_date = form_data.get('status_date')
+        notification_id = form_data.get('notification_id')
+
+
+        connecsiObj = ConnecsiModel()
+        columns = ['campaign_id','status_date','notification_id']
+
+        data = [campaign_id, status_date,notification_id]
+        res = connecsiObj.insert__(table_name='campaign_status_notification',columns=columns, data=data)
+        return {'response': res },201
+
+    def get(self,campaign_id):
+        connecsiObj = ConnecsiModel()
+        columns = ['csn_id','campaign_id','status_date','notification_id']
+        data_tuple = connecsiObj.get_csn_by_campaign_id(campaign_id=campaign_id)
+        response_list = []
+        for item in data_tuple:
+            # item_list = list(item)
+            # item_list[1] = datetime.datetime.timestamp(item_list[1])
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list},200
+
+@ns_campaign.route('/campaign_status_notification/<string:campaign_id>/<string:csn_id>/<string:notification_id>')
+class CampaignStatusNotification(Resource):
+    def put(self,campaign_id,csn_id,notification_id):
+        connecsiObj = ConnecsiModel()
+        res = connecsiObj.update_notification_id_in_csn(campaign_id=campaign_id,csn_id=csn_id,notification_id=notification_id)
+        return {'response': res },201

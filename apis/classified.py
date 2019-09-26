@@ -280,7 +280,8 @@ ccvr_form = ns_classified.model('ccvr', {
     'inf_id' : fields.String(required=True, description='Influencer id'),
     'comment_message' : fields.String(required=False, description='comments'),
     'no_of_views' : fields.Integer(required=False, description='no of view'),
-    'reaction' : fields.String(required=False, description='reacions')
+    'reaction' : fields.String(required=False, description='reacions'),
+    'notification_id' : fields.Integer(required=True, description='Notification id')
 })
 
 @ns_classified.route('/classified_comment_view_reaction/<string:user_id>/<string:classified_id>')
@@ -292,17 +293,18 @@ class CCVR(Resource):
         comment_message = form_data.get('comment_message')
         no_of_views = form_data.get('no_of_views')
         reaction = form_data.get('reaction')
+        notification_id = form_data.get('notification_id')
 
         connecsiObj = ConnecsiModel()
-        columns = ['user_id','classified_id','inf_id','no_of_views','comment_message','reaction']
+        columns = ['user_id','classified_id','inf_id','no_of_views','comment_message','reaction','notification_id']
 
-        data = [user_id, classified_id, inf_id,no_of_views,comment_message,reaction]
+        data = [user_id, classified_id, inf_id,no_of_views,comment_message,reaction,notification_id]
         res = connecsiObj.insert__(table_name='classified_comment_views_reaction',columns=columns, data=data)
         return {'response': res },201
 
     def get(self,user_id,classified_id):
         connecsiObj = ConnecsiModel()
-        columns = ['ccvr_id','inserted_date','user_id', 'classified_id', 'inf_id', 'no_of_views', 'comment_message', 'reaction']
+        columns = ['ccvr_id','inserted_date','user_id', 'classified_id', 'inf_id', 'no_of_views', 'comment_message', 'reaction','notification_id']
         data_tuple = connecsiObj.get_ccvr_by_user_id_and_classified_id(user_id=user_id,classified_id=classified_id)
         response_list = []
         for item in data_tuple:
@@ -313,10 +315,10 @@ class CCVR(Resource):
         # print(response_list)
         return {'data': response_list},200
 
-# @ns_notifications.route('/<string:user_id>/<string:notification_id>')
-# class Notifications(Resource):
-#     def put(self,user_id,notification_id):
-#         connecsiObj = ConnecsiModel()
-#         res = connecsiObj.mark_notification_as_read(user_id=user_id,notification_id=notification_id)
-#         return {'response': res },201
+@ns_classified.route('/<string:user_id>/<string:ccvr_id>/<string:notification_id>')
+class CCVR(Resource):
+    def put(self,user_id,ccvr_id,notification_id):
+        connecsiObj = ConnecsiModel()
+        res = connecsiObj.update_notification_id_in_ccvr(user_id=user_id,ccvr_id=ccvr_id,notification_id=notification_id)
+        return {'response': res },201
 
