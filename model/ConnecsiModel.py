@@ -2985,7 +2985,7 @@ class ConnecsiModel:
     def get_ocvr_by_inf_id_and_offer_id(self, inf_id,offer_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "SELECT ocvr_id,inserted_date,user_id,classified_id,inf_id,no_of_views,comment_message,reaction,notification_id" \
+                sql = "SELECT ocvr_id,inserted_date,user_id,offer_id,inf_id,no_of_views,comment_message,reaction,notification_id" \
                       " FROM offer_comment_views_reaction" \
                       " WHERE inf_id = '"+inf_id+"' AND offer_id = '"+offer_id+"'"
                 print(sql)
