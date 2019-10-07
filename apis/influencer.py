@@ -380,7 +380,7 @@ class IAM(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['user_id','inf_id','notification_id']
 
-        data = [user_id,notification_id]
+        data = [user_id,inf_id,notification_id]
         res = connecsiObj.insert__(table_name='influencer_alert_milestone',columns=columns, data=data)
         return {'response': res },201
 
