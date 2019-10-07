@@ -367,7 +367,7 @@ class InfluencerTwitterAnalyticsCredentials(Resource):
 iam_form = ns_influencer.model('iam', {
     # 'user_id' : fields.Integer(required=True, description='Influencer id'),
     # 'inf_id' : fields.String(required=True, description='Influencer id'),
-    'notification_id' : fields.Integer(required=True, description='Notification id')
+    'notification_id' : fields.String(required=True, description='Notification id')
 })
 
 @ns_influencer.route('/influencer_alert_milestone/<string:user_id>/<string:inf_id>')
