@@ -363,3 +363,43 @@ class InfluencerTwitterAnalyticsCredentials(Resource):
         print(response_dict)
         return {'data':response_dict},200
 
+
+iam_form = ns_influencer.model('iam', {
+    # 'user_id' : fields.Integer(required=True, description='Influencer id'),
+    # 'inf_id' : fields.String(required=True, description='Influencer id'),
+    'notification_id' : fields.Integer(required=True, description='Notification id')
+})
+
+@ns_influencer.route('/influencer_alert_milestone/<string:user_id>/<string:inf_id>')
+class IAM(Resource):
+    @ns_influencer.expect(iam_form)
+    def post(self,user_id,inf_id):
+        form_data = request.get_json()
+        notification_id = form_data.get('notification_id')
+
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id','inf_id','notification_id']
+
+        data = [user_id,notification_id]
+        res = connecsiObj.insert__(table_name='influencer_alert_milestone',columns=columns, data=data)
+        return {'response': res },201
+
+    def get(self,user_id,inf_id):
+        connecsiObj = ConnecsiModel()
+        columns = ['iam_id','inserted_date','user_id', 'inf_id','notification_id']
+        data_tuple = connecsiObj.get_iam_by_user_id_and_inf_id(user_id=user_id,inf_id=inf_id)
+        response_list = []
+        for item in data_tuple:
+            item_list = list(item)
+            item_list[1] = datetime.datetime.timestamp(item_list[1])
+            dict_temp = dict(zip(columns, item_list))
+            response_list.append(dict_temp)
+        # print(response_list)
+        return {'data': response_list},200
+
+@ns_influencer.route('/<string:user_id>/<string:iam_id>/<string:notification_id>')
+class IAM(Resource):
+    def put(self,user_id,iam_id,notification_id):
+        connecsiObj = ConnecsiModel()
+        res = connecsiObj.update_notification_id_in_iam(user_id=user_id,iam_id=iam_id,notification_id=notification_id)
+        return {'response': res },201

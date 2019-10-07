@@ -641,6 +641,8 @@ class ConnecsiModel:
                     cursor.execute(sql, data)
                 elif table_name == 'campaign_status_notification':
                     cursor.execute(sql, data)
+                elif table_name == 'influencer_alert_milestone':
+                    cursor.execute(sql, data)
 
                 self.cnx.commit()
             print("closing cnx")
@@ -3041,6 +3043,41 @@ class ConnecsiModel:
             with self.cnx.cursor() as cursor:
                 sql = "UPDATE campaign_status_notification SET `notification_id` = '"+notification_id+"'" \
                       " WHERE campaign_id = '" + campaign_id + "' and csn_id = '"+csn_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def get_iam_by_user_id_and_inf_id(self, user_id,inf_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "SELECT iam_id,inserted_date,user_id,inf_id,notification_id" \
+                      " FROM influencer_alert_milestone" \
+                      " WHERE user_id = '"+user_id+"' AND inf_id = '"+inf_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+            return 0
+
+
+    def update_notification_id_in_iam(self, user_id,iam_id,notification_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                sql = "UPDATE influencer_alert_milestone SET `notification_id` = '"+notification_id+"'" \
+                      " WHERE user_id = '" + user_id + "' and iam_id = '"+iam_id+"'"
                 print(sql)
                 cursor.execute(sql)
                 self.cnx.commit()
