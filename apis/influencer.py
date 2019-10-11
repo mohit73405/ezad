@@ -403,3 +403,28 @@ class IAM(Resource):
         connecsiObj = ConnecsiModel()
         res = connecsiObj.update_notification_id_in_iam(user_id=user_id,iam_id=iam_id,notification_id=notification_id)
         return {'response': res },201
+
+
+
+@ns_influencer.route('getChannelDetails/<string:channel_id>/<string:channel_name>')
+class InfluncerDetails(Resource):
+    """get channel details by channel id and channel name it gives only username for now only for instagram and twitter"""
+    def get(self,channel_id,channel_name):
+        connecsiObj = ConnecsiModel()
+        if channel_name == 'instagram':
+            columns = ['username']
+            data_tuple = connecsiObj.get_insta_channel_details_by_channel_id(channel_id=channel_id)
+            response_list = []
+            for item in data_tuple:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data' : response_list}
+        elif channel_name == 'twitter':
+            columns = ['screen_name']
+            data_tuple = connecsiObj.get_twitter_channel_details_by_channel_id(channel_id=channel_id)
+            response_list = []
+            for item in data_tuple:
+                dict_temp = dict(zip(columns, item))
+                response_list.append(dict_temp)
+            return {'data': response_list}
+

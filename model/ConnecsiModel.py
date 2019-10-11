@@ -3088,3 +3088,60 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
             return 0
+
+
+    def get_insta_channel_details_by_channel_id(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                # sql = "SELECT " \
+                #       " ui.first_name ,ui.last_name ,ui.business_email," \
+                #       " ui.phone ,ui.categories , ui.website , ui.country ," \
+                #       " ui.city ,ui.channel_id," \
+                #       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id,chm.insta_channel_id as mapped_insta_channel_id," \
+                #       " chm.confirmed," \
+                #       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
+                #       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username " \
+                #       " FROM  channels_mapper chm " \
+                #       " LEFT JOIN users_influencers ui ON ui.channel_id = chm.youtube_channel_id " \
+                #       " LEFT JOIN insta_channel_details icd ON icd.insta_id = chm.insta_channel_id " \
+                #       " LEFT JOIN twitter_channel_details tcd ON tcd.twitter_id = chm.twitter_channel_id" \
+                #       " LEFT JOIN youtube_channel_details ycd ON chm.youtube_channel_id = ycd.channel_id " \
+                #       " WHERE ui.channel_id = '"+user_id+"'"
+                sql = "SELECT username from insta_channel_details where insta_id = '"+channel_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+    def get_twitter_channel_details_by_channel_id(self, channel_id):
+        try:
+            with self.cnx.cursor() as cursor:
+                # sql = "SELECT " \
+                #       " ui.first_name ,ui.last_name ,ui.business_email," \
+                #       " ui.phone ,ui.categories , ui.website , ui.country ," \
+                #       " ui.city ,ui.channel_id," \
+                #       " chm.youtube_channel_id as mapped_youtube_channel_id,chm.twitter_channel_id as mapped_twitter_channel_id,chm.insta_channel_id as mapped_insta_channel_id," \
+                #       " chm.confirmed," \
+                #       " ycd.title, ycd.channel_img,ycd.country,ycd.facebook_url,ycd.twitter_url,ycd.insta_url," \
+                #       " tcd.business_email,tcd.screen_name,tcd.title,tcd.channel_img,tcd.hashtags, icd.username as insta_username " \
+                #       " FROM  channels_mapper chm " \
+                #       " LEFT JOIN users_influencers ui ON ui.channel_id = chm.youtube_channel_id " \
+                #       " LEFT JOIN insta_channel_details icd ON icd.insta_id = chm.insta_channel_id " \
+                #       " LEFT JOIN twitter_channel_details tcd ON tcd.twitter_id = chm.twitter_channel_id" \
+                #       " LEFT JOIN youtube_channel_details ycd ON chm.youtube_channel_id = ycd.channel_id " \
+                #       " WHERE ui.channel_id = '"+user_id+"'"
+                sql = "SELECT screen_name from twitter_channel_details where twitter_id = '"+channel_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
