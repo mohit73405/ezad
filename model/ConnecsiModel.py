@@ -3151,7 +3151,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "select t1.campaign_id,t1.regions,t1.video_cat_id,t1.campaign_status,t2.channel_id," \
-                      "t2.revenue_generated,t2.channel,t3.title as youtube_title,t4.username as insta_username,t5.screen_name as twitter_screen_name " \
+                      "t2.revenue_generated,t2.new_users,t2.channel,t3.title as youtube_title,t4.username as insta_username,t5.screen_name as twitter_screen_name " \
                       "FROM brands_campaigns t1 " \
                       "JOIN brand_campaign_report t2 ON t1.user_id = t2.user_id " \
                       "LEFT JOIN youtube_channel_details t3 ON t3.channel_id = t2.channel_id " \

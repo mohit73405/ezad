@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="3162" column="40" lean-forward="true" selection-start-line="3162" selection-start-column="40" selection-end-line="3162" selection-end-column="40" />
+            <state relative-caret-position="186">
+              <caret line="3153" column="55" lean-forward="false" selection-start-line="3153" selection-start-column="55" selection-end-line="3153" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brand.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="767" column="39" lean-forward="true" selection-start-line="767" selection-start-column="39" selection-end-line="767" selection-end-column="39" />
+            <state relative-caret-position="168">
+              <caret line="762" column="40" lean-forward="true" selection-start-line="762" selection-start-column="40" selection-end-line="762" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -216,8 +216,8 @@
         <option value="$PROJECT_DIR$/apis/offers.py" />
         <option value="$PROJECT_DIR$/apis/campaign.py" />
         <option value="$PROJECT_DIR$/apis/influencer.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
       </list>
     </option>
   </component>
@@ -866,18 +866,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+    <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="3162" column="40" lean-forward="true" selection-start-line="3162" selection-start-column="40" selection-end-line="3162" selection-end-column="40" />
+        <state relative-caret-position="168">
+          <caret line="762" column="40" lean-forward="true" selection-start-line="762" selection-start-column="40" selection-end-line="762" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/brand.py">
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="767" column="39" lean-forward="true" selection-start-line="767" selection-start-column="39" selection-end-line="767" selection-end-column="39" />
+        <state relative-caret-position="186">
+          <caret line="3153" column="55" lean-forward="false" selection-start-line="3153" selection-start-column="55" selection-end-line="3153" selection-end-column="55" />
           <folding />
         </state>
       </provider>
