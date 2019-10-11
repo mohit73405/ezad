@@ -753,3 +753,16 @@ class subscriptionAutoFillProposal(Resource):
             response_list.append(dict_temp)
         return {'data': response_list}
 
+@ns_brand.route('/getPlatformAnalysis/<string:user_id>')
+class PlatFormAnalysis(Resource):
+    def get(self,user_id):
+        """get brand data for analysis"""
+        connecsiObj = ConnecsiModel()
+        columns = ['campaign_id','regions','video_cat_id','campaign_status','channel_id',
+                   'revenue_generated','channel','youtube_title','insta_username','twitter_screen_name']
+        data_tuple = connecsiObj.get_platform_analysis_details_by_user_id(user_id=user_id)
+        response_list = []
+        for item in data_tuple:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        return {'data' : response_list}
