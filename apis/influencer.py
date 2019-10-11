@@ -406,7 +406,7 @@ class IAM(Resource):
 
 
 
-@ns_influencer.route('getChannelDetails/<string:channel_id>/<string:channel_name>')
+@ns_influencer.route('/getChannelDetails/<string:channel_id>/<string:channel_name>')
 class InfluncerDetails(Resource):
     """get channel details by channel id and channel name it gives only username for now only for instagram and twitter"""
     def get(self,channel_id,channel_name):
