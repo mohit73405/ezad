@@ -49,7 +49,10 @@ brand_edit_form = ns_brand.model('Brand Details Update', {
     'facebook_url': fields.String(required=False, description='Facebook Url'),
     'twitter_url': fields.String(required=False, description='Twitter Url'),
     'insta_url': fields.String(required=False, description='Instegram Url'),
-    'youtube_url': fields.String(required=False, description='Youtube Url')
+    'youtube_url': fields.String(required=False, description='Youtube Url'),
+    'address_line' : fields.String(required=False, description='address_line'),
+    'postal_code' : fields.String(required=False, description='postal code'),
+    'tax_no' : fields.String(required=False, description='tax no')
 })
 
 @ns_brand.route('/register')
@@ -114,7 +117,7 @@ class Brand(Resource):
         connecsiObj = ConnecsiModel()
         columns = ['user_id', 'first_name', 'last_name', 'company_name', 'email_id', 'role','phone','position','url','country'
                    ,'no_of_employees','city','monthly_budget','business_sector','facebook_url','twitter_url',
-                   'insta_url','youtube_url','profile_pic','confirmed_email']
+                   'insta_url','youtube_url','profile_pic','confirmed_email','address_line','postal_code','tax_no']
         data = connecsiObj.get__(table_name='users_brands',columns=columns,WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
         response_dict = dict(zip(columns, data[0]))
         print(response_dict)
@@ -139,11 +142,15 @@ class Brand(Resource):
         twitter_url = form_data.get('twitter_url')
         insta_url = form_data.get('insta_url')
         youtube_url = form_data.get('youtube_url')
+        address_line = form_data.get('address_line')
+        postal_code = form_data.get('postal_code')
+        tax_no = form_data.get('tax_no')
+
         columns = ['first_name', 'last_name', 'company_name', 'phone', 'position', 'url',
                    'country', 'no_of_employees', 'city', 'monthly_budget', 'business_sector','facebook_url','twitter_url',
-                   'insta_url','youtube_url']
+                   'insta_url','youtube_url','address_line','postal_code','tax_no']
         data=(first_name,last_name,company_name,phone,position,url,country,no_of_employees,city,monthly_budget,business_sector,
-              facebook_url,twitter_url,insta_url,youtube_url)
+              facebook_url,twitter_url,insta_url,youtube_url,address_line,postal_code,tax_no)
         try:
             connecsiObj = ConnecsiModel()
             connecsiObj.update__(table_name='users_brands',columns=columns,WHERE='WHERE',data=data,compare_column='user_id',compare_value=str(user_id))
