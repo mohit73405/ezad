@@ -80,7 +80,7 @@ class ConnecsiModel:
                 "t1.total_100video_likes,t1.total_100video_dislikes, t1.total_100video_comments,t1.total_100video_shares, " \
                 "t1.facebook_url,t1.insta_url,t1.twitter_url,t1.country " \
                 "FROM youtube_channel_details t1 "+category_id_join+ \
-                "WHERE t1.subscriberCount_gained != 0 AND  t1.subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
+                "WHERE t1.subscriberCount_gained > 1000 AND  t1.subscriberCount_gained BETWEEN "+min_lower+ " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
                 if category_id and country:
@@ -319,7 +319,7 @@ class ConnecsiModel:
                 order_by = " order by t1.subscriberCount_gained " + order
                 start_time = time.time()
                 sql = "SELECT distinct(t1.channel_id) FROM youtube_channel_details t1 "+category_id_join+ \
-                      "WHERE t1.subscriberCount_gained != 0 AND t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
+                      "WHERE t1.subscriberCount_gained > 1000 AND t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
                 if category_id and country:
