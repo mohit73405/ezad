@@ -43,4 +43,4 @@ api.add_namespace(ns_notifications)
 
 if __name__ == '__main__':
     app.secret_key = 'connecsiSecretKey'
-    app.run(host='0.0.0.0',debug=True,port=80,use_reloader=False)
+    app.run(debug=True,port=80,use_reloader=False)
