@@ -1974,3 +1974,33 @@ Desired survivor size 17432576 bytes, new threshold 6 (max 6)
 - age   3:        904 bytes,       9432 total
 - age   5:       5224 bytes,      14656 total
 : 272659K->18K(306688K), 6.6222956 secs] 347049K->74408K(1014528K), 6.6226816 secs] [Times: user=2.38 sys=0.14, real=6.62 secs] 
+2019-11-01T20:02:15.290+0100: 1308396.473: Total time for which application threads were stopped: 6.7062590 seconds, Stopping threads took: 0.0253665 seconds
+2019-11-01T20:02:16.292+0100: 1308397.474: Total time for which application threads were stopped: 0.0004088 seconds, Stopping threads took: 0.0000799 seconds
+2019-11-02T02:00:06.931+0100: 1329868.113: Total time for which application threads were stopped: 0.2952029 seconds, Stopping threads took: 0.0239921 seconds
+2019-11-02T02:37:33.375+0100: 1332114.558: [GC (Allocation Failure) 2019-11-02T02:37:33.376+0100: 1332114.558: [ParNew
+Desired survivor size 17432576 bytes, new threshold 6 (max 6)
+- age   1:       8384 bytes,       8384 total
+- age   3:        232 bytes,       8616 total
+- age   4:        768 bytes,       9384 total
+- age   6:       5224 bytes,      14608 total
+: 272658K->21K(306688K), 5.2569684 secs] 347048K->74411K(1014528K), 5.2648955 secs] [Times: user=2.38 sys=0.11, real=5.27 secs] 
+2019-11-02T02:37:38.641+0100: 1332119.823: Total time for which application threads were stopped: 5.2769706 seconds, Stopping threads took: 0.0001571 seconds
+2019-11-02T02:37:47.796+0100: 1332128.978: Total time for which application threads were stopped: 0.1482445 seconds, Stopping threads took: 0.0882023 seconds
+2019-11-02T02:37:56.408+0100: 1332137.590: Total time for which application threads were stopped: 0.2281287 seconds, Stopping threads took: 0.1156372 seconds
+2019-11-02T02:37:56.606+0100: 1332137.788: Total time for which application threads were stopped: 0.1320064 seconds, Stopping threads took: 0.1316311 seconds
+2019-11-02T09:13:49.019+0100: 1355890.202: [GC (Allocation Failure) 2019-11-02T09:13:49.047+0100: 1355890.230: [ParNew
+Desired survivor size 17432576 bytes, new threshold 6 (max 6)
+- age   1:      13096 bytes,      13096 total
+- age   2:        136 bytes,      13232 total
+- age   4:        232 bytes,      13464 total
+- age   5:        688 bytes,      14152 total
+: 272661K->22K(306688K), 0.6791775 secs] 347051K->74418K(1014528K), 0.7073398 secs] [Times: user=0.02 sys=0.02, real=0.73 secs] 
+2019-11-02T09:13:49.727+0100: 1355890.909: Total time for which application threads were stopped: 0.8315895 seconds, Stopping threads took: 0.0002932 seconds
+2019-11-02T15:52:40.665+0100: 1379821.849: [GC (Allocation Failure) 2019-11-02T15:52:40.679+0100: 1379821.862: [ParNew
+Desired survivor size 17432576 bytes, new threshold 6 (max 6)
+- age   1:       8176 bytes,       8176 total
+- age   2:        336 bytes,       8512 total
+- age   3:        136 bytes,       8648 total
+- age   5:        232 bytes,       8880 total
+- age   6:        432 bytes,       9312 total
+: 272662K->12K(306688K), 1.8450899 secs] 347058K->74407K(1014528K), 1.8699464 secs] [Times: user=2.20 sys=0.05, real=1.87 secs] 
