@@ -319,7 +319,7 @@ class ConnecsiModel:
                 # order_by = " order by t1.subscriberCount_gained " + order
                 order_by = ''
                 start_time = time.time()
-                sql = "SELECT distinct(t1.channel_id) FROM youtube_channel_details t1 "+category_id_join+ \
+                sql = "SELECT distinct(count(t1.channel_id)) FROM youtube_channel_details t1 "+category_id_join+ \
                       "WHERE t1.subscriberCount_gained > 1000 AND t1.subscriberCount_gained BETWEEN " + min_lower + " AND " + max_upper
                 # "left join youtube_channel_ids_regioncode t3 on t1.channel_id = t3.channel_id " \
 
