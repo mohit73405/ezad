@@ -2,18 +2,18 @@ import schedule #pip install schedule
 import time
 import sys
 import os
-# print(sys.path)
+print(sys.path)
 cdir = os.getcwd()
-# print(cdir)
+print(cdir)
 
 # sys.path.append('/cryto_trading/CryptoMasterMindsApi/controller')
 # mypath = "/home/Connecsi/backend/ezad"
-mypath = "/backend/ezad"
+mypath = "/home/backend/ezad"
 if cdir not in sys.path:
    sys.path.append(cdir)
 if mypath not in sys.path:
    sys.path.append(mypath)
-# print(sys.path)
+print(sys.path)
 
 try:
     from controller.youtube.YoutubeApiController import YoutubeApiController
