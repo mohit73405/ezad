@@ -64,17 +64,16 @@ class YoutubeApiController:
         # print(channel_data)
         # exit()
         try:
-            self.channel_thumbnail = channel_data['items'][0]['snippet']['thumbnails']['medium']['url']
-            # print(self.channel_thumbnail)
-            # exit()
-            try:
-                self.country = channel_data['items'][0]['snippet']['country']
+            try:self.channel_thumbnail = channel_data['items'][0]['snippet']['thumbnails']['medium']['url']
             except:pass
-            self.channelTitle = channel_data['items'][0]['snippet']['title']
-            self.channel_desc = channel_data['items'][0]['snippet']['description']
-            # print(self.channel_desc)
-            # exit()
-            self.subscriberCount = channel_data['items'][0]['statistics']['subscriberCount']
+            try:self.country = channel_data['items'][0]['snippet']['country']
+            except:pass
+            try:self.channelTitle = channel_data['items'][0]['snippet']['title']
+            except:pass
+            try:self.channel_desc = channel_data['items'][0]['snippet']['description']
+            except:pass
+            try:self.subscriberCount = channel_data['items'][0]['statistics']['subscriberCount']
+            except:pass
             playlist_id=''
             try:
                 playlist_id = channel_data['items'][0]['contentDetails']['relatedPlaylists']['uploads']
@@ -165,18 +164,34 @@ class YoutubeApiController:
                     tdata = (self.channelId,video_id,video_cat_id)
                     data.append(tdata)
 
-
-                    publishedAt = item['snippet']['publishedAt']
-                    title = item['snippet']['title']
-                    thumbnail = item['snippet']['thumbnails']['default']['url']
-                    tags = item['snippet']['tags']
-                    tags_string = ','.join(tags)
-                    description = item['snippet']['description']
-                    viewCount = item['statistics']['viewCount']
-                    likeCount = item['statistics']['likeCount']
-                    dislikeCount = item['statistics']['dislikeCount']
-                    favoriteCount = item['statistics']['favoriteCount']
-                    commentCount = item['statistics']['commentCount']
+                    publishedAt=''
+                    try:publishedAt = item['snippet']['publishedAt']
+                    except:pass
+                    title=''
+                    try:title = item['snippet']['title']
+                    except:pass
+                    thumbnail=''
+                    try:thumbnail = item['snippet']['thumbnails']['default']['url']
+                    except:pass
+                    tags=''
+                    try:tags = item['snippet']['tags']
+                    except:pass
+                    tags_string=''
+                    try:tags_string = ','.join(tags)
+                    except:pass
+                    description=''
+                    try:description = item['snippet']['description']
+                    except:pass
+                    try:viewCount = item['statistics']['viewCount']
+                    except:pass
+                    try:likeCount = item['statistics']['likeCount']
+                    except:pass
+                    try:dislikeCount = item['statistics']['dislikeCount']
+                    except:pass
+                    try:favoriteCount = item['statistics']['favoriteCount']
+                    except:pass
+                    try:commentCount = item['statistics']['commentCount']
+                    except:pass
                     video_details_data = (video_id,self.channelId, publishedAt,title,thumbnail,tags_string,
                                           video_cat_id,description,viewCount,likeCount,dislikeCount,favoriteCount,
                                           commentCount)
@@ -540,7 +555,7 @@ class YoutubeApiController:
         # exit()
         channelIds = []
         for item in channel_ids_not_done:
-            # print(item[0])
+        #     # print(item[0])
             channelIds.append(item)
 
         counter=1
@@ -594,16 +609,22 @@ class YoutubeApiController:
                            'total_100video_shares']
                 connecsiObj.insert__(table_name='youtube_channels_history',columns=columns,data=historyList)
                 connecsiObj.insert_youtube_id_into_channels_mapper(youtube_channel_id=channelId,confirmed='true')
+                print('NO OF IDS DONE = ', counter)
+                print('LAST UPDATED CHANNEL ID = ', channelId, 'WITH INDEX', counter)
+                obj.insert__(table_name='youtube_channel_ids_done', columns=['channel_id'], data=[channelId],
+                             IGNORE='IGNORE')
+                counter += 1
+
             except:
                 print('Channel details failed to insert for channel_id = ',channelId)
                 pass
 
             # time.sleep(3)
             # print('sleeping 3 seconds')
-            print('NO OF IDS DONE = ',counter)
-            print('LAST UPDATED CHANNEL ID = ',channelId ,'WITH INDEX',counter)
-            obj.insert__(table_name='youtube_channel_ids_done',columns=['channel_id'],data=[channelId],IGNORE='IGNORE')
-            counter +=1
+            # print('NO OF IDS DONE = ',counter)
+            # print('LAST UPDATED CHANNEL ID = ',channelId ,'WITH INDEX',counter)
+            # obj.insert__(table_name='youtube_channel_ids_done',columns=['channel_id'],data=[channelId],IGNORE='IGNORE')
+            # counter +=1
             # with open("output.csv", 'a') as resultFile:
             #     wr = csv.writer(resultFile, dialect='excel')
             #     wr.writerow(myList)

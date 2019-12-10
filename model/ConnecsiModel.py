@@ -2466,10 +2466,16 @@ class ConnecsiModel:
                       " tags,category_id, description,viewCount,likeCount,dislikeCount,favoriteCount,commentCount) " \
                       " VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" \
                       " ON DUPLICATE KEY UPDATE " \
-                      " title = VALUES(title),thumbnail = VALUES(thumbnail),tags = VALUES(tags)," \
-                      " category_id = VALUES(category_id),description = VALUES(description)," \
-                      " viewCount=VALUES(viewCount),likeCount=VALUES(likeCount),dislikeCount=VALUES(dislikeCount)" \
-                      ",favoriteCount=VALUES(favoriteCount),commentCount=VALUES(commentCount)"
+                      " title = COALESCE(VALUES(title),title)," \
+                      " thumbnail = COALESCE(VALUES(thumbnail),thumbnail)," \
+                      " tags = COALESCE(VALUES(tags),tags)," \
+                      " category_id = COALESCE(VALUES(category_id),category_id)," \
+                      " description = COALESCE(VALUES(description),description)," \
+                      " viewCount=COALESCE(VALUES(viewCount),viewCount)," \
+                      " likeCount=COALESCE(VALUES(likeCount),likeCount)," \
+                      " dislikeCount=COALESCE(VALUES(dislikeCount),dislikeCount)," \
+                      " favoriteCount=COALESCE(VALUES(favoriteCount),favoriteCount)," \
+                      " commentCount=COALESCE(VALUES(commentCount),commentCount)"
                 print(sql)
                 cursor.execute(sql,data)
                 self.cnx.commit()
