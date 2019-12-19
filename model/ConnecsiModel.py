@@ -3157,7 +3157,7 @@ class ConnecsiModel:
     def get_platform_analysis_details_by_user_id(self, user_id):
         try:
             with self.cnx.cursor() as cursor:
-                sql = "select t1.campaign_id,t6.proposal_price,t6.proposal_from_date,t6.propossal_to_date,t1.regions,t1.video_cat_id,t1.campaign_status,t2.channel_id," \
+                sql = "select t1.campaign_id,t6.proposal_price,t6.proposal_from_date,t6.proposal_to_date,t1.regions,t1.video_cat_id,t1.campaign_status,t2.channel_id," \
                       "t2.revenue_generated,t2.new_users,t2.channel,t3.title as youtube_title,t4.username as insta_username,t5.screen_name as twitter_screen_name " \
                       "FROM brands_campaigns t1 " \
                       "JOIN brand_campaign_report t2 ON t1.user_id = t2.user_id " \
