@@ -1466,7 +1466,7 @@ class ConnecsiModel:
         try:
             with self.cnx.cursor() as cursor:
                 sql = "SELECT " \
-                      " cp.proposal_id,cp.campaign_id, cp.campaign_name, cp.message_id, cp.user_id, " \
+                      " cp.proposal_id,cp.campaign_id, bc.campaign_name, cp.message_id, cp.user_id, " \
                       " ub.company_name,ub.email_id," \
                       " ycd.channel_id,ycd.title,ycd.business_email," \
                       " cp.influencer_id, cp.proposal_description,cp.proposal_from_date,cp.proposal_to_date," \

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/brand.py" afterPath="$PROJECT_DIR$/apis/brand.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="3156" column="37" lean-forward="true" selection-start-line="3156" selection-start-column="37" selection-end-line="3156" selection-end-column="37" />
+            <state relative-caret-position="74">
+              <caret line="1468" column="57" lean-forward="false" selection-start-line="1468" selection-start-column="57" selection-end-line="1468" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -28,8 +26,8 @@
       <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="767" column="90" lean-forward="false" selection-start-line="767" selection-start-column="90" selection-end-line="767" selection-end-column="90" />
+            <state relative-caret-position="193">
+              <caret line="490" column="36" lean-forward="false" selection-start-line="490" selection-start-column="36" selection-end-line="490" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -67,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="messages.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="388" column="43" lean-forward="false" selection-start-line="388" selection-start-column="43" selection-end-line="388" selection-end-column="43" />
+            <state relative-caret-position="125">
+              <caret line="384" column="37" lean-forward="true" selection-start-line="384" selection-start-column="37" selection-end-line="384" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -132,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getInfluencerFavList</find>
       <find>addInstagramChannel</find>
       <find>update</find>
       <find>get_campaigns_added_to_message</find>
@@ -162,6 +159,7 @@
       <find>mark_as</find>
       <find>addCam</find>
       <find>coale</find>
+      <find>get_pro</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,8 +217,8 @@
         <option value="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
         <option value="$PROJECT_DIR$/controller/youtube/scheduler_update_youtube_data.py" />
         <option value="$PROJECT_DIR$/apis/messages.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
       </list>
     </option>
   </component>
@@ -839,26 +837,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+    <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="3156" column="37" lean-forward="true" selection-start-line="3156" selection-start-column="37" selection-end-line="3156" selection-end-column="37" />
+        <state relative-caret-position="125">
+          <caret line="384" column="37" lean-forward="true" selection-start-line="384" selection-start-column="37" selection-end-line="384" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="767" column="90" lean-forward="false" selection-start-line="767" selection-start-column="90" selection-end-line="767" selection-end-column="90" />
+        <state relative-caret-position="193">
+          <caret line="490" column="36" lean-forward="false" selection-start-line="490" selection-start-column="36" selection-end-line="490" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/messages.py">
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="388" column="43" lean-forward="false" selection-start-line="388" selection-start-column="43" selection-end-line="388" selection-end-column="43" />
+        <state relative-caret-position="74">
+          <caret line="1468" column="57" lean-forward="false" selection-start-line="1468" selection-start-column="57" selection-end-line="1468" selection-end-column="57" />
           <folding />
         </state>
       </provider>
