@@ -386,8 +386,7 @@ class MailBox(Resource):
         result=0
         try:
             # connecsiObj.insert__(table_name='channel_campaign_message',columns=columns,data=data)
-            connecsiObj.update_channel_campaign_message(channel_id=channel_id,message_id=message_id,status='Negotiations'
-                                                        ,campaign_id=campaign_id)
+            connecsiObj.update_channel_campaign_message(channel_id=channel_id,message_id=message_id,status='Negotiations',campaign_id=campaign_id)
 
             return {'response': 1}, 200
         except Exception as e:
