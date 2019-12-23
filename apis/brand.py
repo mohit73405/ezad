@@ -766,7 +766,7 @@ class PlatFormAnalysis(Resource):
         """get brand data for analysis"""
         connecsiObj = ConnecsiModel()
         columns = ['campaign_id','proposal_price','proposal_from_date','proposal_to_date','regions','video_cat_id','campaign_status','channel_id',
-                   'revenue_generated','new_users','channel','youtube_title','insta_username','twitter_screen_name']
+                   'revenue_generated','new_users','inf_report_date_posted','inf_report_link_posted','channel','youtube_title','insta_username','twitter_screen_name']
         data_tuple = connecsiObj.get_platform_analysis_details_by_user_id(user_id=user_id)
         response_list = []
         for item in data_tuple:
