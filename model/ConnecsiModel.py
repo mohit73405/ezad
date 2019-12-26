@@ -3168,7 +3168,7 @@ class ConnecsiModel:
                       "LEFT JOIN twitter_channel_details t5 ON t5.twitter_id = t2.channel_id  " \
                       "LEFT JOIN campaign_proposal t6 ON t6.campaign_id = t1.campaign_id  " \
                       "JOIN inf_campaign_report t7 ON t2.channel_id = t7.channel_id " \
-                      "JOIN users_influencers t8 ON t3.channel_id = t8.channel_id " \
+                      "LEFT JOIN users_influencers t8 ON t3.channel_id = t8.channel_id " \
                       "WHERE t1.user_id = '"+user_id+"'"
                 print(sql)
                 cursor.execute(sql)
