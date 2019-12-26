@@ -772,4 +772,6 @@ class PlatFormAnalysis(Resource):
         for item in data_tuple:
             dict_temp = dict(zip(columns, item))
             response_list.append(dict_temp)
+        for item in response_list:
+            print(item)
         return {'data' : response_list}
