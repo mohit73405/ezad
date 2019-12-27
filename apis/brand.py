@@ -776,7 +776,7 @@ class PlatFormAnalysis(Resource):
         from operator import itemgetter
 
         # Sort proposals data by `proposal_id` key.
-        proposals = sorted(data_tuple, key=itemgetter('proposal_id'))
+        proposals = sorted(response_list, key=itemgetter('proposal_id'))
         # for key,value in enumerate(mydict):
         #     print(key,':',value)
         data = []
