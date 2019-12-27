@@ -788,7 +788,7 @@ class PlatFormAnalysis(Resource):
             channel_details = {}
             inf_reports = []
             for i in value:
-                none_value = 'null'
+                none_value = None
                 temp_dict = {}
                 temp_dict_inf_report = {}
 
