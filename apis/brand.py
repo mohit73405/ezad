@@ -774,7 +774,7 @@ class PlatFormAnalysis(Resource):
             response_list.append(dict_temp)
         import itertools
         from operator import itemgetter
-
+        print(response_list)
         # Sort proposals data by `proposal_id` key.
         proposals = sorted(response_list, key=itemgetter('proposal_id'))
         # for key,value in enumerate(mydict):
