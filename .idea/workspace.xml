@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/brand.py" afterPath="$PROJECT_DIR$/apis/brand.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ConnecsiModel.py" afterPath="$PROJECT_DIR$/model/ConnecsiModel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,21 +13,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="1816" column="130" lean-forward="true" selection-start-line="1816" selection-start-column="130" selection-end-line="1816" selection-end-column="130" />
+            <state relative-caret-position="295">
+              <caret line="3171" column="56" lean-forward="true" selection-start-line="3171" selection-start-column="56" selection-end-line="3171" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brand.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="776" column="28" lean-forward="false" selection-start-line="776" selection-start-column="28" selection-end-line="776" selection-end-column="28" />
+            <state relative-caret-position="176">
+              <caret line="769" column="56" lean-forward="false" selection-start-line="769" selection-start-column="56" selection-end-line="769" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -158,8 +158,8 @@
       <find>insert_up</find>
       <find>mark_as</find>
       <find>addCam</find>
-      <find>get_pro</find>
       <find>coale</find>
+      <find>get_pro</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,8 +217,8 @@
         <option value="$PROJECT_DIR$/controller/youtube/scheduler_update_youtube_data.py" />
         <option value="$PROJECT_DIR$/apis/messages.py" />
         <option value="$PROJECT_DIR$/apis/influencer.py" />
-        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
         <option value="$PROJECT_DIR$/apis/brand.py" />
+        <option value="$PROJECT_DIR$/model/ConnecsiModel.py" />
       </list>
     </option>
   </component>
@@ -837,14 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="1816" column="130" lean-forward="true" selection-start-line="1816" selection-start-column="130" selection-end-line="1816" selection-end-column="130" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apis/influencer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -855,8 +847,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="776" column="28" lean-forward="false" selection-start-line="776" selection-start-column="28" selection-end-line="776" selection-end-column="28" />
+        <state relative-caret-position="176">
+          <caret line="769" column="56" lean-forward="false" selection-start-line="769" selection-start-column="56" selection-end-line="769" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="3171" column="56" lean-forward="true" selection-start-line="3171" selection-start-column="56" selection-end-line="3171" selection-end-column="56" />
           <folding />
         </state>
       </provider>
