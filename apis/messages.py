@@ -722,12 +722,12 @@ class MailBox(Resource):
         print(user_id)
         print(user_type)
         connecsiObj = ConnecsiModel()
-        data_tuple = connecsiObj.get_messages_by_user_id_and_user_type(user_id=str(user_id), user_type=user_type)
-        print(data)
+        res = connecsiObj.get_messages_by_user_id_and_user_type(user_id=str(user_id), user_type=user_type)
+        print(res)
         # columns = ['message_id', 'from_email_id', 'to_email_id', 'channel_id', 'date', 'subject', 'message',
         #            'user_id','user_type','deleted', 'deleted_from_bin', 'deleted_from_user_id',     'deleted_from_bin_user_id', 'read']
         # response_list = []
         # for item in data_tuple:
         #     dict_temp = dict(zip(columns, item))
         #     response_list.append(dict_temp)
-        return {'data': data}
+        return {'data': res}
