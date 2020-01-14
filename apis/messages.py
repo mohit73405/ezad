@@ -721,5 +721,5 @@ class MailBox(Resource):
         data.append(data_dict)
         print(user_id)
         print(user_type)
-        
+
         return data

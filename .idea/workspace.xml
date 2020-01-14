@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6bd542b0-e095-4fc8-b41d-b95173e6a2b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apis/messages.py" afterPath="$PROJECT_DIR$/apis/messages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" afterPath="$PROJECT_DIR$/controller/youtube/YoutubeApiController.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/apis/messages.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
-              <caret line="723" column="8" lean-forward="false" selection-start-line="723" selection-start-column="8" selection-end-line="723" selection-end-column="8" />
+              <caret line="724" column="19" lean-forward="true" selection-start-line="724" selection-start-column="19" selection-end-line="724" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -855,7 +854,7 @@
     <entry file="file://$PROJECT_DIR$/apis/messages.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
-          <caret line="723" column="8" lean-forward="false" selection-start-line="723" selection-start-column="8" selection-end-line="723" selection-end-column="8" />
+          <caret line="724" column="19" lean-forward="true" selection-start-line="724" selection-start-column="19" selection-end-line="724" selection-end-column="19" />
           <folding />
         </state>
       </provider>
