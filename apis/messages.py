@@ -711,3 +711,15 @@ class MailBox(Resource):
             return data
         except Exception as e:
             return {"error": e}, 500
+
+
+@ns_messages.route('/inbox/<string:user_id>/<string:user_type>')
+class MailBox(Resource):
+    def get(self,user_id, user_type):
+        data=[]
+        data_dict = {}
+        data.append(data_dict)
+        print(user_id)
+        print(user_type)
+        
+        return data

@@ -145,7 +145,7 @@ class YoutubeApiController:
             # print(type(video_id))
             video_ids_string = ','.join(video_id)
             url = self.video_details_url + video_ids_string
-            # print('VIDEO DETAILS URL =',url)
+            print('VIDEO DETAILS URL =',url)
             # exit()
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
