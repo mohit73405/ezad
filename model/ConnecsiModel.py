@@ -3184,16 +3184,16 @@ class ConnecsiModel:
 
     def get_messages_by_user_id_and_user_type(self, user_id,user_type):
         try:
-            with self.cnx.cursor() as cursor:
-                cursor_dict = cursor(pymysql.cursors.DictCursor)
+            with self.cnx.cursor(pymysql.cursors.DictCursor) as cursor:
+
                 sql = "SELECT m.message_id, m.from_email_id, m.to_email_id, m.channel_id, m.date," \
                       " m.subject, m.message,m.user_id,m.user_type,m.deleted, m.deleted_from_bin," \
                       " m.deleted_from_user_id,m.deleted_from_bin_user_id,m.read " \
                       " FROM messages m " \
                       " WHERE m.user_id = '"+user_id+"' AND m.user_type = '"+user_type+"'"
                 print(sql)
-                cursor_dict.execute(sql)
-                data = cursor_dict.fetchall()
+                cursor.execute(sql)
+                data = cursor.fetchall()
                 # print(result)
             print("closing cnx")
             cursor.close()
