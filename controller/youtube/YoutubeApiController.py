@@ -1,7 +1,7 @@
 # import collections
 import csv
 import re
-
+from datetime import datetime
 import os
 import requests
 from configparser import ConfigParser
@@ -68,9 +68,13 @@ class YoutubeApiController:
             except:pass
             try:self.country = channel_data['items'][0]['snippet']['country']
             except:pass
-            try:self.channelTitle = channel_data['items'][0]['snippet']['title']
+            try:
+                channelTitle_string = channel_data['items'][0]['snippet']['title']
+                self.channelTitle = channelTitle_string.encode('ascii', 'ignore').decode('ascii')
             except:pass
-            try:self.channel_desc = channel_data['items'][0]['snippet']['description']
+            try:
+                channel_desc_string = channel_data['items'][0]['snippet']['description']
+                self.channel_desc = channel_desc_string.encode('ascii', 'ignore').decode('ascii')
             except:pass
             try:self.subscriberCount = channel_data['items'][0]['statistics']['subscriberCount']
             except:pass
@@ -134,6 +138,8 @@ class YoutubeApiController:
             video_ids = [video_ids[x:x + size] for x in range(0, len(video_ids), size)]
         except:pass
         data = []
+        video_details_data_list=[]
+        video_details_stats_data_list = []
         # print('video ids after spliting = ',video_ids)
         # print(type(video_ids))
         if len(video_ids) ==1:
@@ -145,7 +151,7 @@ class YoutubeApiController:
             # print(type(video_id))
             video_ids_string = ','.join(video_id)
             url = self.video_details_url + video_ids_string
-            print('VIDEO DETAILS URL =',url)
+            # print('VIDEO DETAILS URL =',url)
             # exit()
             json_video_data = self.get_Json_data_Request_Lib(url=url)
             items = json_video_data['items']
@@ -165,10 +171,19 @@ class YoutubeApiController:
                     data.append(tdata)
 
                     publishedAt=''
-                    try:publishedAt = item['snippet']['publishedAt']
+                    try:
+                        publishedAt = item['snippet']['publishedAt']
+                        # print('publish at :',publishedAt)
+                        date_format = "%Y-%m-%dT%H:%M:%S.%fZ"
+                        publishedAt = datetime.strptime('2008-09-26T01:51:42.000Z', date_format)
                     except:pass
                     title=''
-                    try:title = item['snippet']['title']
+                    try:
+                        title1 = item['snippet']['title']
+                        # print(title1)
+                        title = title1.encode('ascii', 'ignore').decode('ascii')
+                        # print(title)
+
                     except:pass
                     thumbnail=''
                     try:thumbnail = item['snippet']['thumbnails']['default']['url']
@@ -180,7 +195,9 @@ class YoutubeApiController:
                     try:tags_string = ','.join(tags)
                     except:pass
                     description=''
-                    try:description = item['snippet']['description']
+                    try:
+                        description1 = item['snippet']['description']
+                        description = description1.encode('ascii', 'ignore').decode('ascii')
                     except:pass
                     try:viewCount = item['statistics']['viewCount']
                     except:pass
@@ -192,19 +209,22 @@ class YoutubeApiController:
                     except:pass
                     try:commentCount = item['statistics']['commentCount']
                     except:pass
-                    video_details_data = (video_id,self.channelId, publishedAt,title,thumbnail,tags_string,
-                                          video_cat_id,description,viewCount,likeCount,dislikeCount,favoriteCount,
+                    video_details_data_tuple = (video_id, self.channelId, publishedAt, title, thumbnail, tags_string,
+                                          video_cat_id, description, viewCount, likeCount, dislikeCount, favoriteCount,
                                           commentCount)
-                    video_details_stats_data = (video_id, viewCount, likeCount, dislikeCount, favoriteCount,
-                                          commentCount, self.channelId)
-                    connecsiObj = ConnecsiModel()
-                    connecsiObj.insert_update_youtube_video_details(data=video_details_data)
-                    connecsiObj.insert_youtube_video_stats_data(data=video_details_stats_data)
+                    video_details_stats_data_tuple = (video_id, viewCount, likeCount, dislikeCount, favoriteCount,
+                                                commentCount, self.channelId)
                     # print(tdata)
+                    video_details_data_list.append(video_details_data_tuple)
+                    video_details_stats_data_list.append(video_details_stats_data_tuple)
                     # exit()
                 except:pass
         try:
             connecsiObj = ConnecsiModel()
+            # print(video_details_stats_data_list)
+            # print(video_details_data_list)
+            connecsiObj.insert_update_youtube_video_details(data=video_details_data_list)
+            connecsiObj.insert_youtube_video_stats_data(data=video_details_stats_data_list)
             # connecsiObj.insert__(table_name='youtube_channel_ids_video_categories_id',data=data,columns=['channel_id','video_id','video_cat_id'])
             connecsiObj.insert_update_youtube_ids_video_cat_ids(data=data)
         except:pass

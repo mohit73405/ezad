@@ -2477,7 +2477,7 @@ class ConnecsiModel:
                       " favoriteCount=COALESCE(VALUES(favoriteCount),favoriteCount)," \
                       " commentCount=COALESCE(VALUES(commentCount),commentCount)"
                 print(sql)
-                cursor.execute(sql,data)
+                cursor.executemany(sql,data)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")
@@ -2495,7 +2495,7 @@ class ConnecsiModel:
                       " viewCount,likeCount,dislikeCount,favoriteCount,commentCount,channel_id) " \
                       " VALUES(%s,%s,%s,%s,%s,%s,%s)"
                 print(sql)
-                cursor.execute(sql,data)
+                cursor.executemany(sql,data)
                 self.cnx.commit()
                 # print(result)
                 print("closing cnx")
