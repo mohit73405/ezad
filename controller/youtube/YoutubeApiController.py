@@ -553,7 +553,8 @@ class YoutubeApiController:
 
     def get_data(self):
         obj = ConnecsiModel()
-        data = obj.get__(table_name='youtube_channel_ids',STAR='*')
+        # data = obj.get__(table_name='youtube_channel_ids',STAR='*')
+        data = obj.get_youtube_channel_ids_greater_than_1k()
         data_done = obj.get__(table_name='youtube_channel_ids_done', STAR='*')
         # print(data)
         # exit()

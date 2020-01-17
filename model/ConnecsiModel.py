@@ -3200,3 +3200,20 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+    def get_youtube_channel_ids_greater_than_1k(self):
+        try:
+            with self.cnx.cursor() as cursor:
+
+                sql = "SELECT t1.channel_id from youtube_channel_ids t1" \
+                      " JOIN youtube_channel_details t2 ON t1.channel_id = t2.channel_id " \
+                      " WHERE t2.subscriberCount_gained > 1000 ORDER BY t2.t2,subscriberCount_gained DESC"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
