@@ -713,16 +713,15 @@ class MailBox(Resource):
             return {"error": e}, 500
 
 
-@ns_messages.route('/inbox/<string:user_id>/<string:user_type>')
+@ns_messages.route('/inbox/<string:email_id>')
 class MailBox(Resource):
-    def get(self,user_id, user_type):
+    def get(self,email_id):
         data=[]
         data_dict = {}
         data.append(data_dict)
-        print(user_id)
-        print(user_type)
+        print(email_id)
         connecsiObj = ConnecsiModel()
-        res = connecsiObj.get_messages_by_user_id_and_user_type(user_id=str(user_id), user_type=user_type)
+        res = connecsiObj.get_messages_by_user_id_and_user_type(email_id=str(email_id))
         print(res)
         # columns = ['message_id', 'from_email_id', 'to_email_id', 'channel_id', 'date', 'subject', 'message',
         #            'user_id','user_type','deleted', 'deleted_from_bin', 'deleted_from_user_id',     'deleted_from_bin_user_id', 'read']

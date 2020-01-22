@@ -3182,7 +3182,7 @@ class ConnecsiModel:
 
 
 
-    def get_messages_by_user_id_and_user_type(self, user_id,user_type):
+    def get_messages_by_user_id_and_user_type(self, email_id):
         try:
             with self.cnx.cursor(pymysql.cursors.DictCursor) as cursor:
 
@@ -3190,7 +3190,7 @@ class ConnecsiModel:
                       " m.subject, m.message,m.user_id,m.user_type,m.deleted, m.deleted_from_bin," \
                       " m.deleted_from_user_id,m.deleted_from_bin_user_id,m.read " \
                       " FROM messages m " \
-                      " WHERE m.user_id = '"+user_id+"' AND m.user_type = '"+user_type+"'"
+                      " WHERE m.to_email_id = '"+email_id+"' OR m.from_email_id = '"+email_id+"'"
                 print(sql)
                 cursor.execute(sql)
                 data = cursor.fetchall()
