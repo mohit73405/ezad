@@ -3201,6 +3201,27 @@ class ConnecsiModel:
         except Exception as e:
             print(e)
 
+
+    def get_conversations_by_mess_id(self, message_id):
+        try:
+            with self.cnx.cursor(pymysql.cursors.DictCursor) as cursor:
+
+                sql = "SELECT m.conv_id,m.message_id, m.conv_from_email_id, m.conv_to_email_id, m.conv_date," \
+                      " m.conv_subject, m.conv_message,m.user_id,m.user_type,m.deleted, m.deleted_from_bin," \
+                      " m.deleted_from_user_id,m.deleted_from_bin_user_id,m.read " \
+                      " FROM conversations m " \
+                      " WHERE m.message_id = '"+message_id+"'"
+                print(sql)
+                cursor.execute(sql)
+                data = cursor.fetchall()
+                # print(result)
+            print("closing cnx")
+            cursor.close()
+            return data
+        except Exception as e:
+            print(e)
+
+
     def get_youtube_channel_ids_greater_than_1k(self):
         try:
             with self.cnx.cursor() as cursor:

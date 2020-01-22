@@ -714,7 +714,7 @@ class MailBox(Resource):
 
 
 @ns_messages.route('/inbox/<string:email_id>')
-class MailBox(Resource):
+class Inbox(Resource):
     def get(self,email_id):
         data=[]
         data_dict = {}
@@ -722,6 +722,23 @@ class MailBox(Resource):
         print(email_id)
         connecsiObj = ConnecsiModel()
         res = connecsiObj.get_messages_by_user_id_and_user_type(email_id=str(email_id))
+        print(res)
+        # columns = ['message_id', 'from_email_id', 'to_email_id', 'channel_id', 'date', 'subject', 'message',
+        #            'user_id','user_type','deleted', 'deleted_from_bin', 'deleted_from_user_id',     'deleted_from_bin_user_id', 'read']
+        # response_list = []
+        # for item in data_tuple:
+        #     dict_temp = dict(zip(columns, item))
+        #     response_list.append(dict_temp)
+        return {'data': res}
+
+@ns_messages.route('/inbox/conversation/<string:message_id>')
+class Inbox(Resource):
+    def get(self,message_id):
+        data=[]
+        data_dict = {}
+        data.append(data_dict)
+        connecsiObj = ConnecsiModel()
+        res = connecsiObj.get_conversations_by_mess_id(message_id=str(message_id))
         print(res)
         # columns = ['message_id', 'from_email_id', 'to_email_id', 'channel_id', 'date', 'subject', 'message',
         #            'user_id','user_type','deleted', 'deleted_from_bin', 'deleted_from_user_id',     'deleted_from_bin_user_id', 'read']
