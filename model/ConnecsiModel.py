@@ -3193,8 +3193,8 @@ class ConnecsiModel:
                       " ui.first_name as inf_first_name, ycd.channel_img as inf_youtube_profile_pic " \
                       " FROM messages m " \
                       " LEFT JOIN users_brands ub ON ub.email_id = m.from_email_id OR ub.email_id = m.to_email_id " \
-                      " LEFT JOIN youtube_channel_details ycd ON ycd.business_email = m.from_email_id OR ycd.business_email = m.to_email_id " \
-                      " LEFT JOIN users_influencers ui ON ui.business_email = m.from_email_id OR ui.business_email = m.to_email_id " \
+                      " JOIN youtube_channel_details ycd ON ycd.business_email = m.from_email_id OR ycd.business_email = m.to_email_id " \
+                      " JOIN users_influencers ui ON ui.business_email = m.from_email_id OR ui.business_email = m.to_email_id " \
                       " WHERE m.to_email_id = '"+email_id+"' OR m.from_email_id = '"+email_id+"'"
                 print(sql)
                 cursor.execute(sql)
