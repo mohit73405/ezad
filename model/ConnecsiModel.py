@@ -3214,7 +3214,12 @@ class ConnecsiModel:
                 sql = "SELECT m.conv_id,m.message_id, m.conv_from_email_id, m.conv_to_email_id, m.conv_date," \
                       " m.conv_subject, m.conv_message,m.user_id,m.user_type,m.deleted, m.deleted_from_bin," \
                       " m.deleted_from_user_id,m.deleted_from_bin_user_id,m.read " \
+                      " ub.first_name as brand_first_name,ub.profile_pic as brand_profile_pic, " \
+                      " ui.first_name as inf_first_name, ycd.channel_img as inf_youtube_profile_pic " \
                       " FROM conversations m " \
+                      " JOIN users_brands ub ON ub.email_id = m.from_email_id OR ub.email_id = m.to_email_id " \
+                      " JOIN youtube_channel_details ycd ON ycd.business_email = m.from_email_id OR ycd.business_email = m.to_email_id " \
+                      " JOIN users_influencers ui ON ui.business_email = m.from_email_id OR ui.business_email = m.to_email_id " \
                       " WHERE m.message_id = '"+message_id+"'"
                 print(sql)
                 cursor.execute(sql)
