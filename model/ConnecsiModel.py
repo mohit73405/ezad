@@ -3215,7 +3215,7 @@ class ConnecsiModel:
                       " m.conv_subject, m.conv_message,m.user_id,m.user_type,m.deleted, m.deleted_from_bin," \
                       " m.deleted_from_user_id,m.deleted_from_bin_user_id,m.read, " \
                       " ub.first_name as brand_first_name,ub.profile_pic as brand_profile_pic, " \
-                      " ui.first_name as inf_first_name, ycd.channel_img as inf_youtube_profile_pic " \
+                      " ui.first_name as inf_first_name, ycd.channel_img as inf_youtube_profile_pic, " \
                       " bc.campaign_id,bc.campaign_name , ccm.status as campaign_status " \
                       " FROM conversations m " \
                       " JOIN users_brands ub ON ub.email_id = m.conv_from_email_id OR ub.email_id = m.conv_to_email_id " \
