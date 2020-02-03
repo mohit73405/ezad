@@ -3218,11 +3218,11 @@ class ConnecsiModel:
                       " ui.first_name as inf_first_name, ycd.channel_img as inf_youtube_profile_pic, " \
                       " bc.campaign_id,bc.campaign_name , ccm.status as campaign_status " \
                       " FROM conversations m " \
-                      " JOIN users_brands ub ON ub.email_id = m.conv_from_email_id OR ub.email_id = m.conv_to_email_id " \
-                      " JOIN youtube_channel_details ycd ON ycd.business_email = m.conv_from_email_id OR ycd.business_email = m.conv_to_email_id " \
-                      " JOIN users_influencers ui ON ui.business_email = m.conv_from_email_id OR ui.business_email = m.conv_to_email_id " \
+                      " LEFT JOIN users_brands ub ON ub.email_id = m.conv_from_email_id OR ub.email_id = m.conv_to_email_id " \
+                      " LEFT JOIN youtube_channel_details ycd ON ycd.business_email = m.conv_from_email_id OR ycd.business_email = m.conv_to_email_id " \
+                      " LEFT JOIN users_influencers ui ON ui.business_email = m.conv_from_email_id OR ui.business_email = m.conv_to_email_id " \
                       " LEFT JOIN channel_campaign_message ccm ON ccm.message_id = m.message_id " \
-                      " JOIN brands_campaigns bc ON bc.campaign_id = ccm.campaign_id " \
+                      " LEFT JOIN brands_campaigns bc ON bc.campaign_id = ccm.campaign_id " \
                       " WHERE m.message_id = '"+message_id+"'"
                 print(sql)
                 cursor.execute(sql)
