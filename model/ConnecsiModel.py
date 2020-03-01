@@ -3255,3 +3255,31 @@ class ConnecsiModel:
             return data
         except Exception as e:
             print(e)
+
+    def insert_update_tier_data(self, data):
+        try:
+            with self.cnx.cursor() as cursor:
+                print(data)
+                data_tuple = tuple(data)
+                print(type(data_tuple))
+
+                select_sql = "SELECT 1 from user_channel_tier where user_id =" + data[0] + " AND channel_id = '" + data[1] + "'"
+                update_sql = "UPDATE user_channel_tier SET tier='" + data[2] + "' ,due_action='"+data[3]+"' , remark='"+data[4]+"'" \
+                             " WHERE user_id =" + data[0] + " AND channel_id = '" + data[1] + "'"
+                res = cursor.execute(select_sql)
+                print(res)
+                if res == 1:
+                    cursor.execute(update_sql)
+                else:
+                    insert_sql = "INSERT INTO user_channel_tier (user_id, channel_id, tier,due_action,remark)" \
+                                 " VALUES(" + data[0] + ",'" + data[1] + "','" + data[2] + "','"+data[3]+"','"+data[4]+"')"
+                    print(insert_sql)
+                    cursor.execute(insert_sql)
+                self.cnx.commit()
+                # print(result)
+                print("closing cnx")
+                cursor.close()
+                return 1
+        except Exception as e:
+            print('i m here exception', e)
+            return 0
