@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
-              <caret line="850" column="46" lean-forward="true" selection-start-line="850" selection-start-column="46" selection-end-line="850" selection-end-column="46" />
+              <caret line="850" column="39" lean-forward="true" selection-start-line="850" selection-start-column="39" selection-end-line="850" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -858,7 +858,7 @@
     <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
-          <caret line="850" column="46" lean-forward="true" selection-start-line="850" selection-start-column="46" selection-end-line="850" selection-end-column="46" />
+          <caret line="850" column="39" lean-forward="true" selection-start-line="850" selection-start-column="39" selection-end-line="850" selection-end-column="39" />
           <folding />
         </state>
       </provider>

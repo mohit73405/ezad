@@ -848,7 +848,7 @@ class PlatFormAnalysis(Resource):
         return {'data' : data}
 
 
-@ns_brand.route('/UpdateTierToChannel/<string:user_id>/<string:channel_id>/<string:tier>/<string:due_action>/<string:remark>')
+@ns_brand.route('/UpdateTierToChannel/<user_id>/<string:channel_id>/<string:tier>/<string:due_action>/<string:remark>')
 class UpdateTierToChannel(Resource):
     def post(self,user_id,channel_id,tier,due_action,remark):
         '''Add tier feature details to channels
