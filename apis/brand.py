@@ -862,3 +862,16 @@ class UpdateTierToChannel(Resource):
         except:
             result=0
             return {'response': result}, 500
+
+@ns_brand.route('/getTierChannelDetails/<string:user_id>')
+class GetTierChannelDetails(Resource):
+    def get(self,user_id):
+        connecsiObj = ConnecsiModel()
+        columns = ['user_id', 'channel_id', 'tier','due_action','remark']
+        data = connecsiObj.get__(table_name='user_channel_tier',columns=columns,WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
+        print(data)
+        response_list = []
+        for item in data:
+            dict_temp = dict(zip(columns, item))
+            response_list.append(dict_temp)
+        return {'data': response_list}
