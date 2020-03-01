@@ -13,21 +13,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnecsiModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
-              <caret line="3284" column="20" lean-forward="true" selection-start-line="3284" selection-start-column="20" selection-end-line="3284" selection-end-column="20" />
+              <caret line="3272" column="8" lean-forward="true" selection-start-line="3272" selection-start-column="8" selection-end-line="3272" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brand.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="brand.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apis/brand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="850" column="39" lean-forward="true" selection-start-line="850" selection-start-column="39" selection-end-line="850" selection-end-column="39" />
+            <state relative-caret-position="210">
+              <caret line="859" column="46" lean-forward="false" selection-start-line="859" selection-start-column="46" selection-end-line="859" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -156,8 +156,8 @@
       <find>get_pro</find>
       <find>addCam</find>
       <find>addCampaigns</find>
-      <find>proposal sen</find>
       <find>coale</find>
+      <find>proposal sen</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -847,18 +847,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
+    <entry file="file://$PROJECT_DIR$/apis/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="3284" column="20" lean-forward="true" selection-start-line="3284" selection-start-column="20" selection-end-line="3284" selection-end-column="20" />
+        <state relative-caret-position="210">
+          <caret line="859" column="46" lean-forward="false" selection-start-line="859" selection-start-column="46" selection-end-line="859" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apis/brand.py">
+    <entry file="file://$PROJECT_DIR$/model/ConnecsiModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="850" column="39" lean-forward="true" selection-start-line="850" selection-start-column="39" selection-end-line="850" selection-end-column="39" />
+        <state relative-caret-position="295">
+          <caret line="3272" column="8" lean-forward="true" selection-start-line="3272" selection-start-column="8" selection-end-line="3272" selection-end-column="8" />
           <folding />
         </state>
       </provider>
